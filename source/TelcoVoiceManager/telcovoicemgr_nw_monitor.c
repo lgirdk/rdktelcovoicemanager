@@ -42,8 +42,8 @@
 #include <pthread.h>
 #include <sys/stat.h>
 #include <net/if.h>
-#include <sysevent.h>
-#include <syscfg.h>
+#include <syscfg/syscfg.h>
+#include <sysevent/sysevent.h>
 #include "telcovoicemgr_nw_monitor.h"
 #include "ccsp_trace.h"
 #include "ccsp_syslog.h"
