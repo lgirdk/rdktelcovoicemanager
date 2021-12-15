@@ -22,8 +22,8 @@
 #include <stdlib.h>
 #include "ansc_status.h"
 #include "telcovoicemgr_dml_hal.h"
-#include <sysevent.h>
-#include <syscfg.h>
+#include <syscfg/syscfg.h>
+#include <sysevent/sysevent.h>
 #include "ccsp_trace.h"
 #include "ccsp_syslog.h"
 #include "ccsp_message_bus.h"
