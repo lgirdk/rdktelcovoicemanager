@@ -17,4 +17,3 @@
  # limitations under the License.
 ###########################################################################
 SUBDIRS = middle_layer_src integration_src.shared
-
