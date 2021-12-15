@@ -18,7 +18,7 @@
  */
 
 #include <pthread.h>
-#include <sysevent.h>
+#include <sysevent/sysevent.h>
 #ifdef FEATURE_RDKB_VOICE_DM_TR104_V2
 #include "telcovoicemgr_services_apis_v2.h"
 #else
