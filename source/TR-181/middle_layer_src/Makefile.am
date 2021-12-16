@@ -42,4 +42,4 @@ libCcsptelcovoice_manager_middle_layer_src_la_SOURCES += telcovoicemgr_dml_data_
 endif
 libCcsptelcovoice_manager_middle_layer_src_la_SOURCES += telcovoicemgr_dml_telcovoice.c telcovoicemgr_dml_report.c
 libCcsptelcovoice_manager_middle_layer_src_la_SOURCES += telcovoicemgr_rbus_handler_apis.c
-libCcsptelcovoice_manager_middle_layer_src_la_LDFLAGS = -lccsp_common -ljson_hal_client -ljson-c -lcjson -lrbus
+libCcsptelcovoice_manager_middle_layer_src_la_LDFLAGS = -lccsp_common -ljson_hal_client -ljson-c -lcjson -lrbus -lpthread
