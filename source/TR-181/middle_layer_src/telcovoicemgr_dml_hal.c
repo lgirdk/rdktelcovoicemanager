@@ -646,25 +646,25 @@ ANSC_STATUS TelcoVoiceMgrHal_SetLinkUp(ULONG uVsIndex, char *dns_server_address,
     CHECK(jmsg);
 
     memset(&param, 0, sizeof(param));
-    snprintf(param.name, sizeof(param), VOICE_SERVICE_TABLE_NAME"%s", uVsIndex, "X_RDK_Enable");
+    snprintf(param.name, sizeof(param.name), VOICE_SERVICE_TABLE_NAME"%s", uVsIndex, "X_RDK_Enable");
     snprintf(param.value, sizeof(param.value), "%lu", VOICE_SERVICE_ENABLE);
     param.type = PARAM_UNSIGNED_INTEGER;
     json_hal_add_param(jmsg, SET_REQUEST_MESSAGE, &param);
 
     memset(&param, 0, sizeof(param));
-    snprintf(param.name, sizeof(param), VOICE_SERVICE_TABLE_NAME"%s", uVsIndex, "X_RDK_DnsServers");
+    snprintf(param.name, sizeof(param.name), VOICE_SERVICE_TABLE_NAME"%s", uVsIndex, "X_RDK_DnsServers");
     snprintf(param.value, sizeof(param.value), "%s", dns_server_address);
     param.type = PARAM_STRING;
     json_hal_add_param(jmsg, SET_REQUEST_MESSAGE, &param);
 
     memset(&param, 0, sizeof(param));
-    snprintf(param.name, sizeof(param), VOICE_SERVICE_TABLE_NAME"%s", uVsIndex, "X_RDK_BoundIpAddr");
+    snprintf(param.name, sizeof(param.name), VOICE_SERVICE_TABLE_NAME"%s", uVsIndex, "X_RDK_BoundIpAddr");
     snprintf(param.value, sizeof(param.value), "%s", wanIpAddress);
     param.type = PARAM_STRING;
     json_hal_add_param(jmsg, SET_REQUEST_MESSAGE, &param);
 
     memset(&param, 0, sizeof(param));
-    snprintf(param.name, sizeof(param), VOICE_SERVICE_TABLE_NAME"%s", uVsIndex, "X_RDK_IpAddressFamily");
+    snprintf(param.name, sizeof(param.name), VOICE_SERVICE_TABLE_NAME"%s", uVsIndex, "X_RDK_IpAddressFamily");
     snprintf(param.value, sizeof(param.value), "%s", ipAddrFamily);
     param.type = PARAM_STRING;
     json_hal_add_param(jmsg, SET_REQUEST_MESSAGE, &param);
