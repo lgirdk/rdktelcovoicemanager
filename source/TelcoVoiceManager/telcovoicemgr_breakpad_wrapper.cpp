@@ -34,6 +34,8 @@
    limitations under the License.
 **********************************************************************/
 
+#ifdef INCLUDE_BREAKPAD
+
 #include "telcovoicemgr_breakpad_wrapper.h"
 #include "client/linux/handler/exception_handler.h"
 #include <stdio.h>
@@ -66,3 +68,5 @@ void breakpad_ExceptionHandler()
 #endif
        printf("\t\t\t\t ******** breakpad_ExceptionHandler_TelcoVoICEManager EXIT****************** \n");
 }
+
+#endif
