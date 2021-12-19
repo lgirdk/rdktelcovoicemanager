@@ -72,6 +72,10 @@ BOOL ANSC_EXPORT_API TELCOVOICEMGR_IsObjSupported(char* pObjName);
 
 void ANSC_EXPORT_API TELCOVOICEMGR_Unload(void);
 
+void ANSC_EXPORT_API COSA_MemoryCheck(void);
+void ANSC_EXPORT_API COSA_MemoryUsage(void);
+void ANSC_EXPORT_API COSA_MemoryTable(void);
+
 #ifdef __cplusplus
 }
 #endif
