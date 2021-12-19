@@ -1218,12 +1218,12 @@ void eventcb_FirewallRuleData(const char *msg, const int len)
             if(ANSC_STATUS_FAILURE == telcovoicemgr_hal_get_voiceService_index(event_name, VOICE_SERVICE_TABLE_NAME, &uVsIndex))
 #endif
             {
-                return ANSC_STATUS_FAILURE;
+                return /* ANSC_STATUS_FAILURE */;
             }
             if( uVsIndex <= 0 )
             {
                 AnscTraceError(("\n%s:%d:: \nInvalid index ParamName[%s]", __FUNCTION__, __LINE__, event_name));
-                return ANSC_STATUS_FAILURE;
+                return /* ANSC_STATUS_FAILURE */;
             }
             TELCOVOICEMGR_DML_DATA*  pTelcoVoiceMgrData = TelcoVoiceMgrDmlGetDataLocked();
             if(pTelcoVoiceMgrData != NULL)
@@ -1239,7 +1239,7 @@ void eventcb_FirewallRuleData(const char *msg, const int len)
                     if(pDmlVoiceService == NULL)
                     {
                         TelcoVoiceMgrDmlGetDataRelease(pTelcoVoiceMgrData);
-                        return ANSC_STATUS_FAILURE;
+                        return /* ANSC_STATUS_FAILURE */;
                     }
                 }
                 parse_and_update_rule(pDmlVoiceService->X_RDK_Firewall_Rule_Data, event_val, sizeof(pDmlVoiceService->X_RDK_Firewall_Rule_Data));
@@ -1262,7 +1262,6 @@ void eventcb_FirewallRuleData(const char *msg, const int len)
             }
         }
     }
-    return ANSC_STATUS_SUCCESS;
 }
 
 ANSC_STATUS TelcoVoiceMgrHal_EventSubscribe(event_callback callback, const char* event_name, const char* event_notification_type)
