@@ -119,13 +119,13 @@ void voicemgr_create_nw_monitor()
     if(pTelcoVoiceMgrDmlData == NULL)
     {
         CcspTraceError(("%s:%d:: TelcoVoiceMgrDmlGetDataLocked: Failed\n", __FUNCTION__, __LINE__));
-        return ANSC_STATUS_RESOURCES;
+        return /* ANSC_STATUS_RESOURCES */;
     }
     DML_VOICE_SERVICE_CTRL_T* pVoiceService = pTelcoVoiceMgrDmlData->Service.VoiceService.pdata[TELCOVOICEMGR_DML_VOICE_SERVICE_INDEX - 1];
     if(pVoiceService == NULL)
     {
         TelcoVoiceMgrDmlGetDataRelease(pTelcoVoiceMgrDmlData);
-        return ANSC_STATUS_RESOURCES;
+        return /* ANSC_STATUS_RESOURCES */;
     }
     pDmlVoiceService = &(pVoiceService->dml);
 
@@ -133,7 +133,7 @@ void voicemgr_create_nw_monitor()
     {
         CcspTraceError(("%s:%d:: pDmlVoiceService: NULL\n", __FUNCTION__, __LINE__));
         TelcoVoiceMgrDmlGetDataRelease(pTelcoVoiceMgrDmlData);
-        return ANSC_STATUS_RESOURCES;
+        return /* ANSC_STATUS_RESOURCES */;
     }
     if(pDmlVoiceService->X_RDK_BoundIfName != NULL)
     {
