@@ -23,7 +23,6 @@
 #include "telcovoicemgr_dml_hal.h"
 #include "voice_report.h"
 
-#ifdef _ANSC_LINUX
 #include <stdio.h>
 #include <unistd.h>
 #include <arpa/inet.h>
@@ -31,7 +30,6 @@
 #include <sys/socket.h>
 #include <net/if.h>
 #include <sys/types.h>
-#endif
 #include "ansc_platform.h"
 
 extern char * VoiceServiceReportStatusEnable;
