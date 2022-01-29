@@ -136,7 +136,6 @@ int  cmd_dispatch(int  command)
     {
         case    'e' :
 
-#ifdef _ANSC_LINUX
             CcspTraceInfo(("Connect to bus daemon...\n"));
 
             {
@@ -158,7 +157,6 @@ int  cmd_dispatch(int  command)
                         COMPONENT_PATH_VOICEMANAGER
                     );
             }
-#endif
 
             ssp_create();
             ssp_engage();
@@ -216,7 +214,6 @@ static void _print_stack_backtrace(void)
 #endif
 }
 
-#if defined(_ANSC_LINUX)
 static void daemonize(void)
 {
     int fd;
@@ -333,7 +330,6 @@ void sig_handler(int sig)
          }
     #endif
 }
-#endif
 
 
 
@@ -364,19 +360,6 @@ int main(int argc, char* argv[])
 
     pComponentName          = COMPONENT_NAME_VOICEMANAGER;
 
-#if  defined(_ANSC_WINDOWSNT)
-
-    AnscStartupSocketWrapper(NULL);
-
-    cmd_dispatch('e');
-
-    while ( cmdChar != 'q' )
-    {
-        cmdChar = getchar();
-
-        cmd_dispatch(cmdChar);
-    }
-#elif defined(_ANSC_LINUX)
     if ( bRunAsDaemon )
         daemonize();
 
@@ -497,7 +480,6 @@ int main(int argc, char* argv[])
         }
     }
 
-#endif
     err = Cdm_Term();
     if (err != CCSP_SUCCESS)
     {
