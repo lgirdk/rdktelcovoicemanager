@@ -62,7 +62,6 @@ extern char                 g_Subsystem[32];
 extern ANSC_HANDLE          g_MessageBusHandle_Irep;
 extern char                 g_SubSysPrefix_Irep[32];
 
-#ifdef _ANSC_LINUX
 DBusHandlerResult CcspComp_path_message_func(DBusConnection *conn, DBusMessage *message, void *user_data)
 {
     CCSP_MESSAGE_BUS_INFO *bus_info =(CCSP_MESSAGE_BUS_INFO *) user_data;
@@ -179,7 +178,6 @@ ANSC_STATUS ssp_Mbi_MessageBusEngage(char *component_id, char *config_file, char
 
 }
 
-#endif
 
 int ssp_Mbi_Initialize(void *user_data)
 {
