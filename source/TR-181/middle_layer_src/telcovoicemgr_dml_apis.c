@@ -26,7 +26,7 @@
 #include "telcovoicemgr_rbus_handler_apis.h"
 #include "telcovoicemgr_dml_json_cfg_init.h"
 #endif // RBUS_BUILD_FLAG_ENABLE _HUB4_PRODUCT_REQ_
-#ifdef _ANSC_LINUX
+
 #include <stdio.h>
 #include <unistd.h>
 #include <arpa/inet.h>
@@ -34,7 +34,6 @@
 #include <sys/socket.h>
 #include <net/if.h>
 #include <sys/types.h>
-#endif
 #include "ansc_platform.h"
 
 extern char * VoiceServiceReportStatusEnable;
