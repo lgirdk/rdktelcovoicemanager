@@ -16,9 +16,8 @@
  # See the License for the specific language governing permissions and
  # limitations under the License.
 ###########################################################################
-AM_CFLAGS = -D_ANSC_LINUX
-AM_CFLAGS += -D_ANSC_USER -DFEATURE_SUPPORT_RDKLOG $(DBUS_CFLAGS) $(SYSTEMD_CFLAGS)
-AM_CFLAGS += -D_ANSC_LITTLE_ENDIAN_
+AM_CFLAGS =
+AM_CFLAGS += -DFEATURE_SUPPORT_RDKLOG $(DBUS_CFLAGS) $(SYSTEMD_CFLAGS)
 
 ACLOCAL_AMFLAGS = -I m4
 
