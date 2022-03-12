@@ -24,7 +24,7 @@ telcovoice_manager_DEPENDENCIES = \
 	${top_builddir}/source/TR-181/middle_layer_src/libCcsptelcovoice_manager_middle_layer_src.la \
 	${top_builddir}/source/TR-181/integration_src.shared/libCcsptelcovoice_manager_integration_src_shared.la
 
-telcovoice_manager_CFLAGS = -D_ANSC_LINUX -D_ANSC_USER -D_ANSC_LITTLE_ENDIAN_ -DFEATURE_SUPPORT_RDKLOG $(DBUS_CFLAGS) $(SYSTEMD_CFLAGS) -DVOICE_IPV6_SUPPORT
+telcovoice_manager_CFLAGS = -DFEATURE_SUPPORT_RDKLOG $(DBUS_CFLAGS) $(SYSTEMD_CFLAGS) -DVOICE_IPV6_SUPPORT
 telcovoice_manager_CPPFLAGS = -I$(top_srcdir)/source/TR-181/middle_layer_src -I$(top_srcdir)/source/TR-181/include
 telcovoice_manager_LDFLAGS = -lccsp_common -lrdkloggers -lsyscfg -lsysevent $(DBUS_LIBS) $(SYSTEMD_LDFLAGS) -lwebconfig_framework
 
