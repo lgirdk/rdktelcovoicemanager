@@ -22,7 +22,7 @@
 
 #include <stdio.h>
 #include <sys/time.h>
-#include <libparodus.h>
+#include <libparodus/libparodus.h>
 #include <avro.h>
 #include "telcovoicemgr_dml_apis.h"
 
