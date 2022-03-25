@@ -41,7 +41,7 @@
 #define MAX_FILENAME_LENGTH 128
 
 #include <stdbool.h>
-#include "cJSON.h"
+#include <cjson/cJSON.h>
 
 char gVOICE_CONFIG_DEFAULT_NAME[MAX_FILENAME_LENGTH];
 
