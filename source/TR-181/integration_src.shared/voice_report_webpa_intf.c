@@ -19,7 +19,7 @@
 #include "telcovoicemgr_ssp_global.h"
 #include "stdlib.h"
 #include <math.h>
-#include <libparodus.h>
+#include <libparodus/libparodus.h>
 #include "voice_report.h"
 
 static libpd_instance_t client_instance;
