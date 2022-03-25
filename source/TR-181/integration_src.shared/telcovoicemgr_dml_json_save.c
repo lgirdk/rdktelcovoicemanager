@@ -23,7 +23,7 @@ code or tables extracted from it, as desired without restriction.
 
 /*  To store data in the JSON file.
  */
-#include "cJSON.h"
+#include <cjson/cJSON.h>
 #include <stdint.h>
 #include <string.h>
 #include <rdk_error.h>
