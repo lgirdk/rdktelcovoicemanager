@@ -28,7 +28,7 @@
 *              rather than telcovoice_config_default.json.
 *              To change region, copy telcovoice_config_default_UK | telcovoice_config_default_ITA | telcovoice_config_default_ROI -> telcovoice_config_default.json and call.
 */
-#include "cJSON.h"              // Used by voice_hal and voice_hal_priv
+#include <cjson/cJSON.h>        // Used by voice_hal and voice_hal_priv
 #include <rdk_error.h>
 #include <rdk_debug.h>
 #include <stdlib.h>
