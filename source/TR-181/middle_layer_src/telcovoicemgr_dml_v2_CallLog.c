@@ -2379,7 +2379,7 @@ ULONG TelcoVoiceMgrDml_CallLogList_SessionList_source_VoiceQuality_GetParamUlong
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "X_RDK_MOS", TRUE) )
+    if (strcmp(ParamName, "X_RDK_MOS") == 0)
     {
         //Fetch status from voice stack
         hal_param_t req_param;
