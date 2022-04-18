@@ -73,22 +73,22 @@ ULONG X_RDK_Debug_GetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, 
 
     PTELCOVOICEMGR_DML_X_RDK_DEBUG pHEAD = &(pDmlVoiceService->X_RDK_DebugObj);
 
-    if( AnscEqualString(ParamName, "ModuleLogLevels", TRUE) )
+    if (strcmp(ParamName, "ModuleLogLevels") == 0)
     {
         AnscCopyString(pValue,pHEAD->ModuleLogLevels);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "LogServer", TRUE) )
+    else if (strcmp(ParamName, "LogServer") == 0)
     {
         AnscCopyString(pValue,pHEAD->LogServer);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "CCTKTraceLevel", TRUE) )
+    else if (strcmp(ParamName, "CCTKTraceLevel") == 0)
     {
         AnscCopyString(pValue,pHEAD->CCTKTraceLevel);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "CCTKTraceGroup", TRUE) )
+    else if (strcmp(ParamName, "CCTKTraceGroup") == 0)
     {
         AnscCopyString(pValue,pHEAD->CCTKTraceGroup);
         ret = 0;
@@ -146,7 +146,7 @@ BOOL X_RDK_Debug_GetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, UL
 
     PTELCOVOICEMGR_DML_X_RDK_DEBUG pHEAD = &(pDmlVoiceService->X_RDK_DebugObj);
 
-    if( AnscEqualString(ParamName, "LogServerPort", TRUE) )
+    if (strcmp(ParamName, "LogServerPort") == 0)
     {
         *puLong = pHEAD->LogServerPort;
         ret = TRUE;
@@ -215,7 +215,7 @@ BOOL X_RDK_Debug_SetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, c
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "CCTKTraceGroup", TRUE) )
+    if (strcmp(ParamName, "CCTKTraceGroup") == 0)
     {
         if(TelcoVoiceMgrDmlSetCCTKTraceGroup(uVsIndex, pString) == ANSC_STATUS_SUCCESS)
         {
@@ -225,7 +225,7 @@ BOOL X_RDK_Debug_SetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, c
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "CCTKTraceLevel", TRUE) )
+    else if (strcmp(ParamName, "CCTKTraceLevel") == 0)
     {
         if(TelcoVoiceMgrDmlSetCCTKTraceLevel(uVsIndex, pString) == ANSC_STATUS_SUCCESS)
         {
@@ -235,7 +235,7 @@ BOOL X_RDK_Debug_SetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, c
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "ModuleLogLevels", TRUE) )
+    else if (strcmp(ParamName, "ModuleLogLevels") == 0)
     {
         if(TelcoVoiceMgrDmlSetModuleLogLevel(uVsIndex, pString) == ANSC_STATUS_SUCCESS)
         {
@@ -245,7 +245,7 @@ BOOL X_RDK_Debug_SetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, c
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "LogServer", TRUE) )
+    else if (strcmp(ParamName, "LogServer") == 0)
     {
         //Security Vulnerability Check
         if( TRUE != TelcoVoiceMgrAnscValidateInputString(pString) )
@@ -318,7 +318,7 @@ BOOL X_RDK_Debug_SetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, UL
 
         TELCOVOICEMGR_UNLOCK()
 
-        if( AnscEqualString(ParamName, "LogServerPort", TRUE) )
+        if (strcmp(ParamName, "LogServerPort") == 0)
         {
             if(TelcoVoiceMgrDmlSetLogServerPort(uVsIndex, uValue) == ANSC_STATUS_SUCCESS)
             {

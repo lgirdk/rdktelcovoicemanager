@@ -205,32 +205,32 @@ BOOL TelcoVoiceMgrDml_VoipProfileList_GetParamUlongValue(ANSC_HANDLE hInsContext
 
     PDML_VOIPPROFILE pHEAD = &(pVoipProfileCtrl->dml);
 
-    if( AnscEqualString(ParamName, "X_RDK-Central_COM_ZDigitTimer", TRUE) )
+    if (strcmp(ParamName, "X_RDK-Central_COM_ZDigitTimer") == 0)
     {
         *puLong = pHEAD->X_RDK_Central_COM_ZDigitTimer;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "X_RDK-Central_COM_SDigitTimer", TRUE) )
+    else if (strcmp(ParamName, "X_RDK-Central_COM_SDigitTimer") == 0)
     {
         *puLong = pHEAD->X_RDK_Central_COM_SDigitTimer;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "QICalculationInterval", TRUE) )
+    else if (strcmp(ParamName, "QICalculationInterval") == 0)
     {
         *puLong = pHEAD->QICalculationInterval;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "NumberOfWorstQIValues", TRUE) )
+    else if (strcmp(ParamName, "NumberOfWorstQIValues") == 0)
     {
         *puLong = pHEAD->NumberOfWorstQIValues;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "DTMFMethodG711", TRUE) )
+    else if (strcmp(ParamName, "DTMFMethodG711") == 0)
     {
         *puLong = pHEAD->DTMFMethodG711;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "DTMFMethod", TRUE) )
+    else if (strcmp(ParamName, "DTMFMethod") == 0)
     {
         *puLong = pHEAD->DTMFMethod;
         ret = TRUE;
@@ -311,7 +311,7 @@ BOOL TelcoVoiceMgrDml_VoipProfileList_SetParamUlongValue(ANSC_HANDLE hInsContext
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "X_RDK-Central_COM_ZDigitTimer", TRUE) )
+    if (strcmp(ParamName, "X_RDK-Central_COM_ZDigitTimer") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.VoIPProfile.%d.X_RDK-Central_COM_ZDigitTimer",uVsIndex,uProfileIndex);
 
@@ -326,7 +326,7 @@ BOOL TelcoVoiceMgrDml_VoipProfileList_SetParamUlongValue(ANSC_HANDLE hInsContext
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "X_RDK-Central_COM_SDigitTimer", TRUE) )
+    else if (strcmp(ParamName, "X_RDK-Central_COM_SDigitTimer") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.VoIPProfile.%d.X_RDK-Central_COM_SDigitTimer",uVsIndex,uProfileIndex);
 
@@ -341,7 +341,7 @@ BOOL TelcoVoiceMgrDml_VoipProfileList_SetParamUlongValue(ANSC_HANDLE hInsContext
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "QICalculationInterval", TRUE) )
+    else if (strcmp(ParamName, "QICalculationInterval") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.VoIPProfile.%d.QICalculationInterval",uVsIndex,uProfileIndex);
 
@@ -356,7 +356,7 @@ BOOL TelcoVoiceMgrDml_VoipProfileList_SetParamUlongValue(ANSC_HANDLE hInsContext
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "NumberOfWorstQIValues", TRUE) )
+    else if (strcmp(ParamName, "NumberOfWorstQIValues") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.VoIPProfile.%d.NumberOfWorstQIValues",uVsIndex,uProfileIndex);
 
@@ -371,7 +371,7 @@ BOOL TelcoVoiceMgrDml_VoipProfileList_SetParamUlongValue(ANSC_HANDLE hInsContext
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "DTMFMethodG711", TRUE) )
+    else if (strcmp(ParamName, "DTMFMethodG711") == 0)
     {
         char enumValue[][STR_LEN_32]={"InBand","RFC4733","SIPInfo",""};
 
@@ -388,7 +388,7 @@ BOOL TelcoVoiceMgrDml_VoipProfileList_SetParamUlongValue(ANSC_HANDLE hInsContext
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "DTMFMethod", TRUE) )
+    else if (strcmp(ParamName, "DTMFMethod") == 0)
     {
         char enumValue[][STR_LEN_32]={"InBand","RFC4733","SIPInfo"};
 
@@ -462,7 +462,7 @@ ULONG TelcoVoiceMgrDml_VoipProfileList_GetParamStringValue(ANSC_HANDLE hInsConte
 
     PDML_VOIPPROFILE pHEAD = &(pVoipProfileCtrl->dml);
 
-    if( AnscEqualString(ParamName, "X_RDK-Central_COM_EmergencyDigitMap", TRUE) )
+    if (strcmp(ParamName, "X_RDK-Central_COM_EmergencyDigitMap") == 0)
     {
         if(strlen(pHEAD->X_RDK_Central_COM_EmergencyDigitMap) < *pulSize)
         {
@@ -480,7 +480,7 @@ ULONG TelcoVoiceMgrDml_VoipProfileList_GetParamStringValue(ANSC_HANDLE hInsConte
           ret = 1;
         }
     }
-    else if( AnscEqualString(ParamName, "X_RDK-Central_COM_DigitMap", TRUE) )
+    else if (strcmp(ParamName, "X_RDK-Central_COM_DigitMap") == 0)
     {
         if(strlen(pHEAD->X_RDK_Central_COM_DigitMap) < *pulSize)
         {
@@ -498,17 +498,17 @@ ULONG TelcoVoiceMgrDml_VoipProfileList_GetParamStringValue(ANSC_HANDLE hInsConte
           ret = 1;
         }
     }
-    else if( AnscEqualString(ParamName, "QIModelUsed", TRUE) )
+    else if (strcmp(ParamName, "QIModelUsed") == 0)
     {
         AnscCopyString(pValue,pHEAD->QIModelUsed);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Name", TRUE) )
+    else if (strcmp(ParamName, "Name") == 0)
     {
         AnscCopyString(pValue,pHEAD->Name);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         AnscCopyString(pValue,pHEAD->Alias);
         ret = 0;
@@ -589,7 +589,7 @@ BOOL TelcoVoiceMgrDml_VoipProfileList_SetParamStringValue(ANSC_HANDLE hInsContex
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "X_RDK-Central_COM_EmergencyDigitMap", TRUE) )
+    if (strcmp(ParamName, "X_RDK-Central_COM_EmergencyDigitMap") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.VoIPProfile.%d.X_RDK-Central_COM_EmergencyDigitMap",uVsIndex,uProfileIndex);
 
@@ -604,7 +604,7 @@ BOOL TelcoVoiceMgrDml_VoipProfileList_SetParamStringValue(ANSC_HANDLE hInsContex
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "X_RDK-Central_COM_DigitMap", TRUE) )
+    else if (strcmp(ParamName, "X_RDK-Central_COM_DigitMap") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.VoIPProfile.%d.X_RDK-Central_COM_DigitMap",uVsIndex,uProfileIndex);
 
@@ -619,7 +619,7 @@ BOOL TelcoVoiceMgrDml_VoipProfileList_SetParamStringValue(ANSC_HANDLE hInsContex
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "QIModelUsed", TRUE) )
+    else if (strcmp(ParamName, "QIModelUsed") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.VoIPProfile.%d.QIModelUsed",uVsIndex,uProfileIndex);
 
@@ -634,7 +634,7 @@ BOOL TelcoVoiceMgrDml_VoipProfileList_SetParamStringValue(ANSC_HANDLE hInsContex
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Name", TRUE) )
+    else if (strcmp(ParamName, "Name") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.VoIPProfile.%d.Name",uVsIndex,uProfileIndex);
 
@@ -649,7 +649,7 @@ BOOL TelcoVoiceMgrDml_VoipProfileList_SetParamStringValue(ANSC_HANDLE hInsContex
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         TELCOVOICEMGR_LOCK_OR_EXIT()
 
@@ -709,12 +709,12 @@ BOOL TelcoVoiceMgrDml_VoipProfileList_GetParamBoolValue(ANSC_HANDLE hInsContext,
 
     PDML_VOIPPROFILE pHEAD = &(pVoipProfileCtrl->dml);
 
-    if( AnscEqualString(ParamName, "QuiescentMode", TRUE) )
+    if (strcmp(ParamName, "QuiescentMode") == 0)
     {
         *pBool = pHEAD->QuiescentMode;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Enable", TRUE) )
+    else if (strcmp(ParamName, "Enable") == 0)
     {
         *pBool = pHEAD->Enable;
         ret = TRUE;
@@ -795,7 +795,7 @@ BOOL TelcoVoiceMgrDml_VoipProfileList_SetParamBoolValue(ANSC_HANDLE hInsContext,
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "QuiescentMode", TRUE) )
+    if (strcmp(ParamName, "QuiescentMode") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.VoIPProfile.%d.QuiescentMode",uVsIndex,uProfileIndex);
 
@@ -810,7 +810,7 @@ BOOL TelcoVoiceMgrDml_VoipProfileList_SetParamBoolValue(ANSC_HANDLE hInsContext,
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Enable", TRUE) )
+    else if (strcmp(ParamName, "Enable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.VoIPProfile.%d.Enable",uVsIndex,uProfileIndex);
 
@@ -949,52 +949,52 @@ BOOL TelcoVoiceMgrDml_VoipProfileList_RTP_GetParamUlongValue(ANSC_HANDLE hInsCon
 
     PDML_VOIPPROFILE_RTP pHEAD = &(pDmlVoipProfile->RTP);
 
-    if( AnscEqualString(ParamName, "X_RDK_SKBMark", TRUE) )
+    if (strcmp(ParamName, "X_RDK_SKBMark") == 0)
     {
         *puLong = pHEAD->X_RDK_SKBMark;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "TelephoneEventPayloadType", TRUE) )
+    else if (strcmp(ParamName, "TelephoneEventPayloadType") == 0)
     {
         *puLong = pHEAD->TelephoneEventPayloadType;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "LocalPortMin", TRUE) )
+    else if (strcmp(ParamName, "LocalPortMin") == 0)
     {
         *puLong = pHEAD->LocalPortMin;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "LocalPortMax", TRUE) )
+    else if (strcmp(ParamName, "LocalPortMax") == 0)
     {
         *puLong = pHEAD->LocalPortMax;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "JitterBufferType", TRUE) )
+    else if (strcmp(ParamName, "JitterBufferType") == 0)
     {
         *puLong = pHEAD->JitterBufferType;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "JitterBufferMinSize", TRUE) )
+    else if (strcmp(ParamName, "JitterBufferMinSize") == 0)
     {
         *puLong = pHEAD->JitterBufferMinSize;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "JitterBufferMaxSize", TRUE) )
+    else if (strcmp(ParamName, "JitterBufferMaxSize") == 0)
     {
         *puLong = pHEAD->JitterBufferMaxSize;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "JitterBufferActualSize", TRUE) )
+    else if (strcmp(ParamName, "JitterBufferActualSize") == 0)
     {
         *puLong = pHEAD->JitterBufferActualSize;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Gmin", TRUE) )
+    else if (strcmp(ParamName, "Gmin") == 0)
     {
         *puLong = pHEAD->Gmin;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "DSCPMark", TRUE) )
+    else if (strcmp(ParamName, "DSCPMark") == 0)
     {
         *puLong = pHEAD->DSCPMark;
         ret = TRUE;
@@ -1078,7 +1078,7 @@ BOOL TelcoVoiceMgrDml_VoipProfileList_RTP_SetParamUlongValue(ANSC_HANDLE hInsCon
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "X_RDK_SKBMark", TRUE) )
+    if (strcmp(ParamName, "X_RDK_SKBMark") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.VoIPProfile.%d.RTP.X_RDK_SKBMark",uVsIndex,uProfileIndex);
 
@@ -1093,7 +1093,7 @@ BOOL TelcoVoiceMgrDml_VoipProfileList_RTP_SetParamUlongValue(ANSC_HANDLE hInsCon
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "TelephoneEventPayloadType", TRUE) )
+    else if (strcmp(ParamName, "TelephoneEventPayloadType") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.VoIPProfile.%d.RTP.TelephoneEventPayloadType",uVsIndex,uProfileIndex);
 
@@ -1108,7 +1108,7 @@ BOOL TelcoVoiceMgrDml_VoipProfileList_RTP_SetParamUlongValue(ANSC_HANDLE hInsCon
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "LocalPortMin", TRUE) )
+    else if (strcmp(ParamName, "LocalPortMin") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.VoIPProfile.%d.RTP.LocalPortMin",uVsIndex,uProfileIndex);
 
@@ -1123,7 +1123,7 @@ BOOL TelcoVoiceMgrDml_VoipProfileList_RTP_SetParamUlongValue(ANSC_HANDLE hInsCon
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "LocalPortMax", TRUE) )
+    else if (strcmp(ParamName, "LocalPortMax") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.VoIPProfile.%d.RTP.LocalPortMax",uVsIndex,uProfileIndex);
 
@@ -1138,7 +1138,7 @@ BOOL TelcoVoiceMgrDml_VoipProfileList_RTP_SetParamUlongValue(ANSC_HANDLE hInsCon
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "JitterBufferType", TRUE) )
+    else if (strcmp(ParamName, "JitterBufferType") == 0)
     {
         char enumValue[][STR_LEN_32]={"Static","Dynamic"};
 
@@ -1155,7 +1155,7 @@ BOOL TelcoVoiceMgrDml_VoipProfileList_RTP_SetParamUlongValue(ANSC_HANDLE hInsCon
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "JitterBufferMinSize", TRUE) )
+    else if (strcmp(ParamName, "JitterBufferMinSize") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.VoIPProfile.%d.RTP.JitterBufferMinSize",uVsIndex,uProfileIndex);
 
@@ -1170,7 +1170,7 @@ BOOL TelcoVoiceMgrDml_VoipProfileList_RTP_SetParamUlongValue(ANSC_HANDLE hInsCon
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "JitterBufferMaxSize", TRUE) )
+    else if (strcmp(ParamName, "JitterBufferMaxSize") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.VoIPProfile.%d.RTP.JitterBufferMaxSize",uVsIndex,uProfileIndex);
 
@@ -1185,7 +1185,7 @@ BOOL TelcoVoiceMgrDml_VoipProfileList_RTP_SetParamUlongValue(ANSC_HANDLE hInsCon
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "JitterBufferActualSize", TRUE) )
+    else if (strcmp(ParamName, "JitterBufferActualSize") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.VoIPProfile.%d.RTP.JitterBufferActualSize",uVsIndex,uProfileIndex);
 
@@ -1200,7 +1200,7 @@ BOOL TelcoVoiceMgrDml_VoipProfileList_RTP_SetParamUlongValue(ANSC_HANDLE hInsCon
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Gmin", TRUE) )
+    else if (strcmp(ParamName, "Gmin") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.VoIPProfile.%d.RTP.Gmin",uVsIndex,uProfileIndex);
 
@@ -1215,7 +1215,7 @@ BOOL TelcoVoiceMgrDml_VoipProfileList_RTP_SetParamUlongValue(ANSC_HANDLE hInsCon
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "DSCPMark", TRUE) )
+    else if (strcmp(ParamName, "DSCPMark") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.VoIPProfile.%d.RTP.DSCPMark",uVsIndex,uProfileIndex);
 
@@ -1320,12 +1320,12 @@ BOOL TelcoVoiceMgrDml_VoipProfileList_RTP_GetParamIntValue(ANSC_HANDLE hInsConte
 
     PDML_VOIPPROFILE_RTP pHEAD = &(pDmlVoipProfile->RTP);
 
-    if( AnscEqualString(ParamName, "VLANIDMark", TRUE) )
+    if (strcmp(ParamName, "VLANIDMark") == 0)
     {
         *pInt = pHEAD->VLANIDMark;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "EthernetPriorityMark", TRUE) )
+    else if (strcmp(ParamName, "EthernetPriorityMark") == 0)
     {
         *pInt = pHEAD->EthernetPriorityMark;
         ret = TRUE;
@@ -1409,7 +1409,7 @@ BOOL TelcoVoiceMgrDml_VoipProfileList_RTP_SetParamIntValue(ANSC_HANDLE hInsConte
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "VLANIDMark", TRUE) )
+    if (strcmp(ParamName, "VLANIDMark") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.VoIPProfile.%d.RTP.VLANIDMark",uVsIndex,uProfileIndex);
 
@@ -1424,7 +1424,7 @@ BOOL TelcoVoiceMgrDml_VoipProfileList_RTP_SetParamIntValue(ANSC_HANDLE hInsConte
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "EthernetPriorityMark", TRUE) )
+    else if (strcmp(ParamName, "EthernetPriorityMark") == 0)
     {
         int iEthValue = -1;
         if ((TelcoVoiceMgrDmlGetWanEthernetPriorityMark(RTP, &iEthValue) == ANSC_STATUS_SUCCESS) &&
@@ -1503,7 +1503,7 @@ BOOL TelcoVoiceMgrDml_VoipProfileList_RTP_RTCP_GetParamUlongValue(ANSC_HANDLE hI
 
     PDML_VOIPPROFILE_RTP_RTCP pHEAD = &(pDmlVoipProfile->RTP.RTCP);
 
-    if( AnscEqualString(ParamName, "TxRepeatInterval", TRUE) )
+    if (strcmp(ParamName, "TxRepeatInterval") == 0)
     {
         *puLong = pHEAD->TxRepeatInterval;
         ret = TRUE;
@@ -1587,7 +1587,7 @@ BOOL TelcoVoiceMgrDml_VoipProfileList_RTP_RTCP_SetParamUlongValue(ANSC_HANDLE hI
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "TxRepeatInterval", TRUE) )
+    if (strcmp(ParamName, "TxRepeatInterval") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.VoIPProfile.%d.RTP.RTCP.TxRepeatInterval",uVsIndex,uProfileIndex);
 
@@ -1661,7 +1661,7 @@ ULONG TelcoVoiceMgrDml_VoipProfileList_RTP_RTCP_GetParamStringValue(ANSC_HANDLE 
 
     PDML_VOIPPROFILE_RTP_RTCP pHEAD = &(pDmlVoipProfile->RTP.RTCP);
 
-    if( AnscEqualString(ParamName, "LocalCName", TRUE) )
+    if (strcmp(ParamName, "LocalCName") == 0)
     {
         AnscCopyString(pValue,pHEAD->LocalCName);
         ret = 0;
@@ -1744,7 +1744,7 @@ BOOL TelcoVoiceMgrDml_VoipProfileList_RTP_RTCP_SetParamStringValue(ANSC_HANDLE h
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "LocalCName", TRUE) )
+    if (strcmp(ParamName, "LocalCName") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.VoIPProfile.%d.RTP.RTCP.LocalCName",uVsIndex,uProfileIndex);
 
@@ -1810,7 +1810,7 @@ BOOL TelcoVoiceMgrDml_VoipProfileList_RTP_RTCP_GetParamBoolValue(ANSC_HANDLE hIn
 
     PDML_VOIPPROFILE_RTP_RTCP pHEAD = &(pDmlVoipProfile->RTP.RTCP);
 
-    if( AnscEqualString(ParamName, "Enable", TRUE) )
+    if (strcmp(ParamName, "Enable") == 0)
     {
         *pBool = pHEAD->Enable;
         ret = TRUE;
@@ -1894,7 +1894,7 @@ BOOL TelcoVoiceMgrDml_VoipProfileList_RTP_RTCP_SetParamBoolValue(ANSC_HANDLE hIn
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "Enable", TRUE) )
+    if (strcmp(ParamName, "Enable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.VoIPProfile.%d.RTP.RTCP.Enable",uVsIndex,uProfileIndex);
 
@@ -1960,7 +1960,7 @@ BOOL TelcoVoiceMgrDml_VoipProfileList_RTP_SRTP_GetParamUlongValue(ANSC_HANDLE hI
 
     PDML_VOIPPROFILE_RTP_SRTP pHEAD = &(pDmlVoipProfile->RTP.SRTP);
 
-    if( AnscEqualString(ParamName, "KeyingMethods", TRUE) )
+    if (strcmp(ParamName, "KeyingMethods") == 0)
     {
         *puLong = pHEAD->KeyingMethods;
         ret =TRUE;
@@ -2043,7 +2043,7 @@ BOOL TelcoVoiceMgrDml_VoipProfileList_RTP_SRTP_SetParamUlongValue(ANSC_HANDLE hI
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "KeyingMethods", TRUE) )
+    if (strcmp(ParamName, "KeyingMethods") == 0)
     {
         char enumValue[][STR_LEN_32]={"Null","Static","SDP","IKE"};
 
@@ -2118,7 +2118,7 @@ ULONG TelcoVoiceMgrDml_VoipProfileList_RTP_SRTP_GetParamStringValue(ANSC_HANDLE 
 
     PDML_VOIPPROFILE_RTP_SRTP pHEAD = &(pDmlVoipProfile->RTP.SRTP);
 
-    if( AnscEqualString(ParamName, "EncryptionKeySizes", TRUE) )
+    if (strcmp(ParamName, "EncryptionKeySizes") == 0)
     {
         AnscCopyString(pValue,pHEAD->EncryptionKeySizes);
         ret = 0;
@@ -2201,7 +2201,7 @@ BOOL TelcoVoiceMgrDml_VoipProfileList_RTP_SRTP_SetParamStringValue(ANSC_HANDLE h
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "EncryptionKeySizes", TRUE) )
+    if (strcmp(ParamName, "EncryptionKeySizes") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.VoIPProfile.%d.RTP.SRTP.EncryptionKeySizes",uVsIndex,uProfileIndex);
 
@@ -2267,7 +2267,7 @@ BOOL TelcoVoiceMgrDml_VoipProfileList_RTP_SRTP_GetParamBoolValue(ANSC_HANDLE hIn
 
     PDML_VOIPPROFILE_RTP_SRTP pHEAD = &(pDmlVoipProfile->RTP.SRTP);
 
-    if( AnscEqualString(ParamName, "Enable", TRUE) )
+    if (strcmp(ParamName, "Enable") == 0)
     {
         *pBool = pHEAD->Enable;
         ret = TRUE;
@@ -2351,7 +2351,7 @@ BOOL TelcoVoiceMgrDml_VoipProfileList_RTP_SRTP_SetParamBoolValue(ANSC_HANDLE hIn
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "Enable", TRUE) )
+    if (strcmp(ParamName, "Enable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.VoIPProfile.%d.RTP.SRTP.Enable",uVsIndex,uProfileIndex);
 
@@ -2417,17 +2417,17 @@ BOOL TelcoVoiceMgrDml_VoipProfileList_RTP_Redundancy_GetParamUlongValue(ANSC_HAN
 
     PDML_VOIPPROFILE_RTP_REDUNDANCY pHEAD = &(pDmlVoipProfile->RTP.Redundancy);
 
-    if( AnscEqualString(ParamName, "PayloadType", TRUE) )
+    if (strcmp(ParamName, "PayloadType") == 0)
     {
         *puLong = pHEAD->PayloadType;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "MaxSessionsUsingRedundancy", TRUE) )
+    else if (strcmp(ParamName, "MaxSessionsUsingRedundancy") == 0)
     {
         *puLong = pHEAD->MaxSessionsUsingRedundancy;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "BlockPayloadType", TRUE) )
+    else if (strcmp(ParamName, "BlockPayloadType") == 0)
     {
         *puLong = pHEAD->BlockPayloadType;
         ret = TRUE;
@@ -2511,7 +2511,7 @@ BOOL TelcoVoiceMgrDml_VoipProfileList_RTP_Redundancy_SetParamUlongValue(ANSC_HAN
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "MaxSessionsUsingRedundancy", TRUE) )
+    if (strcmp(ParamName, "MaxSessionsUsingRedundancy") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.VoIPProfile.%d.RTP.Redundancy.MaxSessionsUsingRedundancy",uVsIndex,uProfileIndex);
 
@@ -2577,22 +2577,22 @@ BOOL TelcoVoiceMgrDml_VoipProfileList_RTP_Redundancy_GetParamIntValue(ANSC_HANDL
 
     PDML_VOIPPROFILE_RTP_REDUNDANCY pHEAD = &(pDmlVoipProfile->RTP.Redundancy);
 
-    if( AnscEqualString(ParamName, "VoiceRedundancy", TRUE) )
+    if (strcmp(ParamName, "VoiceRedundancy") == 0)
     {
         *pInt = pHEAD->VoiceRedundancy;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "ModemRedundancy", TRUE) )
+    else if (strcmp(ParamName, "ModemRedundancy") == 0)
     {
         *pInt = pHEAD->ModemRedundancy;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "FaxAndModemRedundancy", TRUE) )
+    else if (strcmp(ParamName, "FaxAndModemRedundancy") == 0)
     {
         *pInt = pHEAD->FaxAndModemRedundancy;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "DTMFRedundancy", TRUE) )
+    else if (strcmp(ParamName, "DTMFRedundancy") == 0)
     {
         *pInt = pHEAD->DTMFRedundancy;
         ret = TRUE;
@@ -2676,7 +2676,7 @@ BOOL TelcoVoiceMgrDml_VoipProfileList_RTP_Redundancy_SetParamIntValue(ANSC_HANDL
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "VoiceRedundancy", TRUE) )
+    if (strcmp(ParamName, "VoiceRedundancy") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.VoIPProfile.%d.RTP.Redundancy.VoiceRedundancy",uVsIndex,uProfileIndex);
 
@@ -2691,7 +2691,7 @@ BOOL TelcoVoiceMgrDml_VoipProfileList_RTP_Redundancy_SetParamIntValue(ANSC_HANDL
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "ModemRedundancy", TRUE) )
+    else if (strcmp(ParamName, "ModemRedundancy") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.VoIPProfile.%d.RTP.Redundancy.ModemRedundancy",uVsIndex,uProfileIndex);
 
@@ -2706,7 +2706,7 @@ BOOL TelcoVoiceMgrDml_VoipProfileList_RTP_Redundancy_SetParamIntValue(ANSC_HANDL
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "FaxAndModemRedundancy", TRUE) )
+    else if (strcmp(ParamName, "FaxAndModemRedundancy") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.VoIPProfile.%d.RTP.Redundancy.FaxAndModemRedundancy",uVsIndex,uProfileIndex);
 
@@ -2721,7 +2721,7 @@ BOOL TelcoVoiceMgrDml_VoipProfileList_RTP_Redundancy_SetParamIntValue(ANSC_HANDL
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "DTMFRedundancy", TRUE) )
+    else if (strcmp(ParamName, "DTMFRedundancy") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.VoIPProfile.%d.RTP.Redundancy.DTMFRedundancy",uVsIndex,uProfileIndex);
 
@@ -2788,7 +2788,7 @@ BOOL TelcoVoiceMgrDml_VoipProfileList_RTP_Redundancy_GetParamBoolValue(ANSC_HAND
 
     PDML_VOIPPROFILE_RTP_REDUNDANCY pHEAD = &(pDmlVoipProfile->RTP.Redundancy);
 
-    if( AnscEqualString(ParamName, "Enable", TRUE) )
+    if (strcmp(ParamName, "Enable") == 0)
     {
         *pBool = pHEAD->Enable;
         ret = TRUE;
@@ -2872,7 +2872,7 @@ BOOL TelcoVoiceMgrDml_VoipProfileList_RTP_Redundancy_SetParamBoolValue(ANSC_HAND
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "Enable", TRUE) )
+    if (strcmp(ParamName, "Enable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.VoIPProfile.%d.RTP.Redundancy.Enable",uVsIndex,uProfileIndex);
 
@@ -2939,22 +2939,22 @@ BOOL TelcoVoiceMgrDml_VoipProfileList_FaxT38_GetParamUlongValue(ANSC_HANDLE hIns
 
     PDML_VOIPPROFILE_FAXT38 pHEAD = &(pDmlVoipProfile->FaxT38);
 
-    if( AnscEqualString(ParamName, "TCFMethod", TRUE) )
+    if (strcmp(ParamName, "TCFMethod") == 0)
     {
         *puLong = pHEAD->TCFMethod;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "MaxBitRate", TRUE) )
+    else if (strcmp(ParamName, "MaxBitRate") == 0)
     {
         *puLong = pHEAD->MaxBitRate;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "LowSpeedRedundancy", TRUE) )
+    else if (strcmp(ParamName, "LowSpeedRedundancy") == 0)
     {
         *puLong = pHEAD->LowSpeedRedundancy;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "HighSpeedRedundancy", TRUE) )
+    else if (strcmp(ParamName, "HighSpeedRedundancy") == 0)
     {
         *puLong = pHEAD->HighSpeedRedundancy;
         ret = TRUE;
@@ -3038,7 +3038,7 @@ BOOL TelcoVoiceMgrDml_VoipProfileList_FaxT38_SetParamUlongValue(ANSC_HANDLE hIns
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "TCFMethod", TRUE) )
+    if (strcmp(ParamName, "TCFMethod") == 0)
     {
         char enumValue[][STR_LEN_32]={"Local","Network"};
 
@@ -3055,7 +3055,7 @@ BOOL TelcoVoiceMgrDml_VoipProfileList_FaxT38_SetParamUlongValue(ANSC_HANDLE hIns
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "MaxBitRate", TRUE) )
+    else if (strcmp(ParamName, "MaxBitRate") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.VoIPProfile.%d.FaxT38.MaxBitRate",uVsIndex,uProfileIndex);
 
@@ -3070,7 +3070,7 @@ BOOL TelcoVoiceMgrDml_VoipProfileList_FaxT38_SetParamUlongValue(ANSC_HANDLE hIns
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "LowSpeedRedundancy", TRUE) )
+    else if (strcmp(ParamName, "LowSpeedRedundancy") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.VoIPProfile.%d.FaxT38.LowSpeedRedundancy",uVsIndex,uProfileIndex);
 
@@ -3085,7 +3085,7 @@ BOOL TelcoVoiceMgrDml_VoipProfileList_FaxT38_SetParamUlongValue(ANSC_HANDLE hIns
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "HighSpeedRedundancy", TRUE) )
+    else if (strcmp(ParamName, "HighSpeedRedundancy") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.VoIPProfile.%d.FaxT38.HighSpeedRedundancy",uVsIndex,uProfileIndex);
 

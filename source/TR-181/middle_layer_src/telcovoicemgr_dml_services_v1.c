@@ -71,7 +71,7 @@ BOOL Services_GetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, ULONG
     {
       if (puLong)
       {
-        if( AnscEqualString(ParamName, "VoiceServiceNumberOfEntries", TRUE) )
+        if (strcmp(ParamName, "VoiceServiceNumberOfEntries") == 0)
         {
             count = pTelcoVoiceMgrDmlData->Service.VoiceService.ulQuantity;
             *puLong = count;
@@ -273,12 +273,12 @@ BOOL VoiceService_GetParamBoolValue(ANSC_HANDLE hInsContext, char* ParamName, BO
                 CcspTraceError(("%s:%d:: pVoiceService or pBool NULL\n", __FUNCTION__, __LINE__));
                 return ret;
             }
-            if( AnscEqualString(ParamName, "X_RDK_DisableLoopCurrentUntilRegistered", TRUE))
+            if (strcmp(ParamName, "X_RDK_DisableLoopCurrentUntilRegistered") == 0)
             {
                 * pBool = pVoiceService->X_RDK_DisableLoopCurrentUntilRegistered;
                 ret = TRUE;
             }
-            else if( AnscEqualString(ParamName, "X_RDK_FactoryReset", TRUE))
+            else if (strcmp(ParamName, "X_RDK_FactoryReset") == 0)
             {
                 /*Always return FALSE when read the X_RDK_FactoryReset param*/
                 *pBool = FALSE;
@@ -339,7 +339,7 @@ BOOL VoiceService_SetParamBoolValue(ANSC_HANDLE hInsContext, char* ParamName, BO
             uVsIndex = pVoiceService->InstanceNumber;
             ULONG VoiceState = pVoiceService->X_RDK_Enable;
             TelcoVoiceMgrDmlGetDataRelease(pTelcoVoiceMgrDmlData);
-            if( AnscEqualString(ParamName, "X_RDK_DisableLoopCurrentUntilRegistered", TRUE))
+            if (strcmp(ParamName, "X_RDK_DisableLoopCurrentUntilRegistered") == 0)
             {
                 if (TelcoVoiceMgrDmlSetLoopCurrentDisabled(uVsIndex, bValue) == ANSC_STATUS_SUCCESS)
                 {
@@ -352,7 +352,7 @@ BOOL VoiceService_SetParamBoolValue(ANSC_HANDLE hInsContext, char* ParamName, BO
                     }
                 }
             }
-            else if( AnscEqualString(ParamName, "X_RDK_FactoryReset", TRUE))
+            else if (strcmp(ParamName, "X_RDK_FactoryReset") == 0)
             {
                 if(TRUE == bValue)
                 {               
@@ -413,22 +413,22 @@ LONG VoiceService_GetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, 
 
           if (pVoiceService && pValue && pUlSize)
           {
-            if( AnscEqualString(ParamName, "X_RDK_BoundIfName", TRUE) )
+            if (strcmp(ParamName, "X_RDK_BoundIfName") == 0)
             { 
                 AnscCopyString(pValue, pVoiceService->X_RDK_BoundIfName);
                 ret = 0;
             }
-            else if( AnscEqualString(ParamName, "X_RDK_IpAddressFamily", TRUE) )
+            else if (strcmp(ParamName, "X_RDK_IpAddressFamily") == 0)
             {
                 AnscCopyString(pValue, pVoiceService->X_RDK_IpAddressFamily);
                 ret = 0;
             }
-            else if( AnscEqualString(ParamName, "X_RDK_BoundIpAddr", TRUE) )
+            else if (strcmp(ParamName, "X_RDK_BoundIpAddr") == 0)
             {
                 AnscCopyString(pValue, pVoiceService->X_RDK_BoundIpAddr);
                 ret = 0;
             }
-            else if( AnscEqualString(ParamName, "X_RDK_Firewall_Rule_Data", TRUE) )
+            else if (strcmp(ParamName, "X_RDK_Firewall_Rule_Data") == 0)
             {
                 AnscCopyString(pValue, pVoiceService->X_RDK_Firewall_Rule_Data);
                 ret = 0;
@@ -489,7 +489,7 @@ BOOL VoiceService_SetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, 
             }
             uVsIndex = pVoiceService->InstanceNumber;
             TelcoVoiceMgrDmlGetDataRelease(pTelcoVoiceMgrDmlData);
-            if( AnscEqualString(ParamName, "X_RDK_BoundIfName", TRUE) )
+            if (strcmp(ParamName, "X_RDK_BoundIfName") == 0)
             {
                 if(TelcoVoiceMgrDmlSetBoundIfname(uVsIndex, pString) == ANSC_STATUS_SUCCESS)
                 {
@@ -502,7 +502,7 @@ BOOL VoiceService_SetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, 
                     }
                 }
             }
-            else if( AnscEqualString(ParamName, "X_RDK_IpAddressFamily", TRUE) )
+            else if (strcmp(ParamName, "X_RDK_IpAddressFamily") == 0)
             {
                 if(TelcoVoiceMgrDmlSetIpAddressFamily(pVoiceService->InstanceNumber, pString) == ANSC_STATUS_SUCCESS)
                 {
@@ -566,7 +566,7 @@ BOOL VoiceService_GetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, U
             }
             uVsIndex = pVoiceService->InstanceNumber;
             TelcoVoiceMgrDmlGetDataRelease(pTelcoVoiceMgrDmlData);
-            if( AnscEqualString(ParamName, "X_RDK_Enable", TRUE))
+            if (strcmp(ParamName, "X_RDK_Enable") == 0)
             {
                 TELCOVOICEMGR_DML_DATA* pTelcoVoiceMgrDmlData = TelcoVoiceMgrDmlGetDataLocked();
                 if(pTelcoVoiceMgrDmlData != NULL)
@@ -576,7 +576,7 @@ BOOL VoiceService_GetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, U
                     TelcoVoiceMgrDmlGetDataRelease(pTelcoVoiceMgrDmlData);
                 }
             }
-            else if( AnscEqualString(ParamName, "X_RDK_Status", TRUE))
+            else if (strcmp(ParamName, "X_RDK_Status") == 0)
             {
                 if(TelcoVoiceMgrDmlGetVoiceProcessStatus(uVsIndex, &voiceStatus) == ANSC_STATUS_SUCCESS)
                 {
@@ -641,7 +641,7 @@ BOOL VoiceService_SetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, U
             }
             uVsIndex = pVoiceService->InstanceNumber;
             TelcoVoiceMgrDmlGetDataRelease(pTelcoVoiceMgrDmlData);
-            if( AnscEqualString(ParamName, "X_RDK_Enable", TRUE) )
+            if (strcmp(ParamName, "X_RDK_Enable") == 0)
             {
                 TELCOVOICEMGR_VOICE_ENABLE_ENUM eState = uValue;
                 if(TelcoVoiceMgrDmlSetVoiceProcessState(uVsIndex, eState) == ANSC_STATUS_SUCCESS)
@@ -722,22 +722,22 @@ LONG X_RDK_Debug_GetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, c
 
           if (pVoiceService && pValue && pUlSize)
           {
-            if( AnscEqualString(ParamName, "CCTKTraceGroup", TRUE) )
+            if (strcmp(ParamName, "CCTKTraceGroup") == 0)
             {
                 AnscCopyString(pValue, pVoiceService->X_RDK_DebugObj.CCTKTraceGroup);
                 ret = 0;
             }
-            else if( AnscEqualString(ParamName, "CCTKTraceLevel", TRUE) )
+            else if (strcmp(ParamName, "CCTKTraceLevel") == 0)
             {
                 AnscCopyString(pValue, pVoiceService->X_RDK_DebugObj.CCTKTraceLevel);
                 ret = 0;
             }
-            else if( AnscEqualString(ParamName, "ModuleLogLevels", TRUE) )
+            else if (strcmp(ParamName, "ModuleLogLevels") == 0)
             {
                 AnscCopyString(pValue, pVoiceService->X_RDK_DebugObj.ModuleLogLevels);
                 ret = 0;
             }
-            else if( AnscEqualString(ParamName, "LogServer", TRUE) )
+            else if (strcmp(ParamName, "LogServer") == 0)
             {
                 AnscCopyString(pValue, pVoiceService->X_RDK_DebugObj.LogServer);
                 ret = 0;
@@ -802,7 +802,7 @@ BOOL X_RDK_Debug_SetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, c
             }
             uVsIndex = pVoiceService->InstanceNumber;
             TelcoVoiceMgrDmlGetDataRelease(pTelcoVoiceMgrDmlData);
-            if( AnscEqualString(ParamName, "CCTKTraceGroup", TRUE) )
+            if (strcmp(ParamName, "CCTKTraceGroup") == 0)
             {
                 if(TelcoVoiceMgrDmlSetCCTKTraceGroup(pVoiceService->InstanceNumber, pString) == ANSC_STATUS_SUCCESS)
                 {
@@ -815,7 +815,7 @@ BOOL X_RDK_Debug_SetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, c
                     }
                 }
             }
-            else if( AnscEqualString(ParamName, "CCTKTraceLevel", TRUE) )
+            else if (strcmp(ParamName, "CCTKTraceLevel") == 0)
             {
                 if(TelcoVoiceMgrDmlSetCCTKTraceLevel(pVoiceService->InstanceNumber, pString) == ANSC_STATUS_SUCCESS)
                 {
@@ -828,7 +828,7 @@ BOOL X_RDK_Debug_SetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, c
                     }
                 }
             }
-            else if( AnscEqualString(ParamName, "ModuleLogLevels", TRUE) )
+            else if (strcmp(ParamName, "ModuleLogLevels") == 0)
             {
                 if(TelcoVoiceMgrDmlSetModuleLogLevel(pVoiceService->InstanceNumber, pString) == ANSC_STATUS_SUCCESS)
                 {
@@ -841,7 +841,7 @@ BOOL X_RDK_Debug_SetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, c
                     }
                 }
             }
-            else if( AnscEqualString(ParamName, "LogServer", TRUE) )
+            else if (strcmp(ParamName, "LogServer") == 0)
             {
                 //Security Vulnerability Check
                 if( TRUE != TelcoVoiceMgrAnscValidateInputString(pString) )
@@ -907,7 +907,7 @@ BOOL X_RDK_Debug_GetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, UL
             TELCOVOICEMGR_DML_VOICESERVICE* pVoiceService = &(pTelcoVoiceMgrCtrl->dml);
             if (pVoiceService && pValue)
             {
-                if( AnscEqualString(ParamName, "LogServerPort", TRUE))
+                if (strcmp(ParamName, "LogServerPort") == 0)
                 {
                     *pValue = pVoiceService->X_RDK_DebugObj.LogServerPort;
                     ret = TRUE;
@@ -965,7 +965,7 @@ BOOL X_RDK_Debug_SetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, UL
             {
                 uVsIndex = pVoiceService->InstanceNumber;
                 TelcoVoiceMgrDmlGetDataRelease(pTelcoVoiceMgrDmlData);
-                if( AnscEqualString(ParamName, "LogServerPort", TRUE) )
+                if (strcmp(ParamName, "LogServerPort") == 0)
                 {
                     if(TelcoVoiceMgrDmlSetLogServerPort(pVoiceService->InstanceNumber, uValue) == ANSC_STATUS_SUCCESS)
                     {
