@@ -77,7 +77,7 @@ ULONG TelcoVoiceMgrDml_POTS_GetParamStringValue(ANSC_HANDLE hInsContext, char* P
 
     PDML_POTS pHEAD = &(pDmlVoiceService->POTS_obj);
 
-    if( AnscEqualString(ParamName, "Region", TRUE) )
+    if (strcmp(ParamName, "Region") == 0)
     {
         AnscCopyString(pValue,pHEAD->Region);
         ret = 0;
@@ -152,7 +152,7 @@ BOOL TelcoVoiceMgrDml_POTS_SetParamStringValue(ANSC_HANDLE hInsContext, char* Pa
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "Region", TRUE) )
+    if (strcmp(ParamName, "Region") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.POTS.Region",uVsIndex);
 
@@ -379,12 +379,12 @@ BOOL TelcoVoiceMgrDml_POTS_FXOList_GetParamUlongValue(ANSC_HANDLE hInsContext, c
 
     uPotsFxoIndex = pHEAD->uInstanceNumber;
 
-    if( AnscEqualString(ParamName, "TimeoutBeforeDialing", TRUE) )
+    if (strcmp(ParamName, "TimeoutBeforeDialing") == 0)
     {
         *puLong = pHEAD->TimeoutBeforeDialing;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Status", TRUE) )
+    else if (strcmp(ParamName, "Status") == 0)
     {
         //Fetch status from voice stack
         hal_param_t req_param;
@@ -401,27 +401,27 @@ BOOL TelcoVoiceMgrDml_POTS_FXOList_GetParamUlongValue(ANSC_HANDLE hInsContext, c
             ret = FALSE;
         }
     }
-    else if( AnscEqualString(ParamName, "SignalingMode", TRUE) )
+    else if (strcmp(ParamName, "SignalingMode") == 0)
     {
         *puLong = pHEAD->SignalingMode;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "RingNumber", TRUE) )
+    else if (strcmp(ParamName, "RingNumber") == 0)
     {
         *puLong = pHEAD->RingNumber;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "RingingTimeout", TRUE) )
+    else if (strcmp(ParamName, "RingingTimeout") == 0)
     {
         *puLong = pHEAD->RingingTimeout;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "OnHookMinDuration", TRUE) )
+    else if (strcmp(ParamName, "OnHookMinDuration") == 0)
     {
         *puLong = pHEAD->OnHookMinDuration;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "DTMFDialoutInterval", TRUE) )
+    else if (strcmp(ParamName, "DTMFDialoutInterval") == 0)
     {
         *puLong = pHEAD->DTMFDialoutInterval;
         ret = TRUE;
@@ -502,7 +502,7 @@ BOOL TelcoVoiceMgrDml_POTS_FXOList_SetParamUlongValue(ANSC_HANDLE hInsContext, c
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "TimeoutBeforeDialing", TRUE) )
+    if (strcmp(ParamName, "TimeoutBeforeDialing") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, HAL_DML_VOICESERVICE_POTS_FXO"TimeoutBeforeDialing",uVsIndex,uFxoIndex);
 
@@ -517,7 +517,7 @@ BOOL TelcoVoiceMgrDml_POTS_FXOList_SetParamUlongValue(ANSC_HANDLE hInsContext, c
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "SignalingMode", TRUE) )
+    else if (strcmp(ParamName, "SignalingMode") == 0)
     {
         char enumValue[][STR_LEN_16] = {"LoopStart","GroundStart"};
         snprintf(HalName, MAX_STR_LEN, HAL_DML_VOICESERVICE_POTS_FXO"SignalingMode",uVsIndex,uFxoIndex);
@@ -533,7 +533,7 @@ BOOL TelcoVoiceMgrDml_POTS_FXOList_SetParamUlongValue(ANSC_HANDLE hInsContext, c
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "RingNumber", TRUE) )
+    else if (strcmp(ParamName, "RingNumber") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, HAL_DML_VOICESERVICE_POTS_FXO"RingNumber",uVsIndex,uFxoIndex);
 
@@ -548,7 +548,7 @@ BOOL TelcoVoiceMgrDml_POTS_FXOList_SetParamUlongValue(ANSC_HANDLE hInsContext, c
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "RingingTimeout", TRUE) )
+    else if (strcmp(ParamName, "RingingTimeout") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, HAL_DML_VOICESERVICE_POTS_FXO"RingingTimeout",uVsIndex,uFxoIndex);
 
@@ -563,7 +563,7 @@ BOOL TelcoVoiceMgrDml_POTS_FXOList_SetParamUlongValue(ANSC_HANDLE hInsContext, c
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "OnHookMinDuration", TRUE) )
+    else if (strcmp(ParamName, "OnHookMinDuration") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, HAL_DML_VOICESERVICE_POTS_FXO"OnHookMinDuration",uVsIndex,uFxoIndex);
 
@@ -578,7 +578,7 @@ BOOL TelcoVoiceMgrDml_POTS_FXOList_SetParamUlongValue(ANSC_HANDLE hInsContext, c
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "DTMFDialoutInterval", TRUE) )
+    else if (strcmp(ParamName, "DTMFDialoutInterval") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, HAL_DML_VOICESERVICE_POTS_FXO"DTMFDialoutInterval",uVsIndex,uFxoIndex);
 
@@ -649,17 +649,17 @@ ULONG TelcoVoiceMgrDml_POTS_FXOList_GetParamStringValue(ANSC_HANDLE hInsContext,
 
     PDML_POTS_FXO pHEAD = &(pPotsFxoCtrl->dml);
 
-    if( AnscEqualString(ParamName, "ToneEventProfile", TRUE) )
+    if (strcmp(ParamName, "ToneEventProfile") == 0)
     {
         AnscCopyString(pValue,pHEAD->ToneEventProfile);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Name", TRUE) )
+    else if (strcmp(ParamName, "Name") == 0)
     {
         AnscCopyString(pValue,pHEAD->Name);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         AnscCopyString(pValue,pHEAD->Alias);
         ret = 0;
@@ -739,7 +739,7 @@ BOOL TelcoVoiceMgrDml_POTS_FXOList_SetParamStringValue(ANSC_HANDLE hInsContext, 
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "ToneEventProfile", TRUE) )
+    if (strcmp(ParamName, "ToneEventProfile") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, HAL_DML_VOICESERVICE_POTS_FXO"ToneEventProfile",uVsIndex,uFxoIndex);
 
@@ -754,7 +754,7 @@ BOOL TelcoVoiceMgrDml_POTS_FXOList_SetParamStringValue(ANSC_HANDLE hInsContext, 
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Name", TRUE) )
+    else if (strcmp(ParamName, "Name") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, HAL_DML_VOICESERVICE_POTS_FXO"Name",uVsIndex,uFxoIndex);
 
@@ -769,7 +769,7 @@ BOOL TelcoVoiceMgrDml_POTS_FXOList_SetParamStringValue(ANSC_HANDLE hInsContext, 
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         TELCOVOICEMGR_LOCK_OR_EXIT()
 
@@ -830,22 +830,22 @@ BOOL TelcoVoiceMgrDml_POTS_FXOList_GetParamBoolValue(ANSC_HANDLE hInsContext, ch
 
     PDML_POTS_FXO pHEAD = &(pPotsFxoCtrl->dml);
 
-    if( AnscEqualString(ParamName, "SecondStepDialing", TRUE) )
+    if (strcmp(ParamName, "SecondStepDialing") == 0)
     {
         *pBool = pHEAD->SecondStepDialing;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Enable", TRUE) )
+    else if (strcmp(ParamName, "Enable") == 0)
     {
         *pBool = pHEAD->Enable;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "CallerIdDetectionEnable", TRUE) )
+    else if (strcmp(ParamName, "CallerIdDetectionEnable") == 0)
     {
         *pBool = pHEAD->CallerIdDetectionEnable;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Active", TRUE) )
+    else if (strcmp(ParamName, "Active") == 0)
     {
         *pBool = pHEAD->Active;
         ret = TRUE;
@@ -926,7 +926,7 @@ BOOL TelcoVoiceMgrDml_POTS_FXOList_SetParamBoolValue(ANSC_HANDLE hInsContext, ch
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "SecondStepDialing", TRUE) )
+    if (strcmp(ParamName, "SecondStepDialing") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, HAL_DML_VOICESERVICE_POTS_FXO"SecondStepDialing",uVsIndex,uFxoIndex);
 
@@ -941,7 +941,7 @@ BOOL TelcoVoiceMgrDml_POTS_FXOList_SetParamBoolValue(ANSC_HANDLE hInsContext, ch
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "CallerIdDetectionEnable", TRUE) )
+    else if (strcmp(ParamName, "CallerIdDetectionEnable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, HAL_DML_VOICESERVICE_POTS_FXO"CallerIdDetectionEnable",uVsIndex,uFxoIndex);
 
@@ -956,7 +956,7 @@ BOOL TelcoVoiceMgrDml_POTS_FXOList_SetParamBoolValue(ANSC_HANDLE hInsContext, ch
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Enable", TRUE) )
+    else if (strcmp(ParamName, "Enable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, HAL_DML_VOICESERVICE_POTS_FXO"Enable",uVsIndex,uFxoIndex);
 
@@ -1094,17 +1094,17 @@ BOOL TelcoVoiceMgrDml_POTS_FXOList_DiagTests_GetParamUlongValue(ANSC_HANDLE hIns
 
     PDML_POTS_FXO_DIAGTESTS pHEAD = &(pPotsFxo->DiagTests);
 
-    if( AnscEqualString(ParamName, "TestSelector", TRUE) )
+    if (strcmp(ParamName, "TestSelector") == 0)
     {
         *puLong = pHEAD->TestSelector;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "TestResult", TRUE) )
+    else if (strcmp(ParamName, "TestResult") == 0)
     {
         *puLong = pHEAD->TestResult;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "DiagnosticsState", TRUE) )
+    else if (strcmp(ParamName, "DiagnosticsState") == 0)
     {
         *puLong = pHEAD->DiagnosticsState;
         ret = TRUE;
@@ -1188,7 +1188,7 @@ BOOL TelcoVoiceMgrDml_POTS_FXOList_DiagTests_SetParamUlongValue(ANSC_HANDLE hIns
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "TestSelector", TRUE) )
+    if (strcmp(ParamName, "TestSelector") == 0)
     {
         char enumValue[][STR_LEN_32]={"Battery","DialTone"};
 
@@ -1205,7 +1205,7 @@ BOOL TelcoVoiceMgrDml_POTS_FXOList_DiagTests_SetParamUlongValue(ANSC_HANDLE hIns
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "DiagnosticsState", TRUE) )
+    else if (strcmp(ParamName, "DiagnosticsState") == 0)
     {
         char enumValue[][STR_LEN_32]={"None","Requested","Complete","Error_Internal","Error_Other"};
 
@@ -1435,12 +1435,12 @@ BOOL TelcoVoiceMgrDml_POTS_FXSList_GetParamUlongValue(ANSC_HANDLE hInsContext, c
 
     uPotsFxsIndex = pHEAD->uInstanceNumber;
 
-    if( AnscEqualString(ParamName, "TerminalType", TRUE) )
+    if (strcmp(ParamName, "TerminalType") == 0)
     {
         *puLong = pHEAD->TerminalType;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Status", TRUE) )
+    else if (strcmp(ParamName, "Status") == 0)
     {
         //Fetch status from voice stack
         hal_param_t req_param;
@@ -1457,17 +1457,17 @@ BOOL TelcoVoiceMgrDml_POTS_FXSList_GetParamUlongValue(ANSC_HANDLE hInsContext, c
             ret = FALSE;
         }
     }
-    else if( AnscEqualString(ParamName, "ModemPassThrough", TRUE) )
+    else if (strcmp(ParamName, "ModemPassThrough") == 0)
     {
         *puLong = pHEAD->ModemPassThrough;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "FaxPassThrough", TRUE) )
+    else if (strcmp(ParamName, "FaxPassThrough") == 0)
     {
         *puLong = pHEAD->FaxPassThrough;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "DialType", TRUE) )
+    else if (strcmp(ParamName, "DialType") == 0)
     {
         *puLong = pHEAD->DialType;
         ret = TRUE;
@@ -1548,7 +1548,7 @@ BOOL TelcoVoiceMgrDml_POTS_FXSList_SetParamUlongValue(ANSC_HANDLE hInsContext, c
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "TerminalType", TRUE) )
+    if (strcmp(ParamName, "TerminalType") == 0)
     {
         char enumValue[][STR_LEN_32]={"Audio","Fax","Modem","Any"};
 
@@ -1565,7 +1565,7 @@ BOOL TelcoVoiceMgrDml_POTS_FXSList_SetParamUlongValue(ANSC_HANDLE hInsContext, c
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "ModemPassThrough", TRUE) )
+    else if (strcmp(ParamName, "ModemPassThrough") == 0)
     {
         char enumValue[][STR_LEN_32]={"Disable","Auto","Force"};
 
@@ -1582,7 +1582,7 @@ BOOL TelcoVoiceMgrDml_POTS_FXSList_SetParamUlongValue(ANSC_HANDLE hInsContext, c
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "FaxPassThrough", TRUE) )
+    else if (strcmp(ParamName, "FaxPassThrough") == 0)
     {
         char enumValue[][STR_LEN_32]={"Disable","Auto","Force"};
 
@@ -1599,7 +1599,7 @@ BOOL TelcoVoiceMgrDml_POTS_FXSList_SetParamUlongValue(ANSC_HANDLE hInsContext, c
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "DialType", TRUE) )
+    else if (strcmp(ParamName, "DialType") == 0)
     {
         char enumValue[][STR_LEN_32]={"Tone","Pulse"};
 
@@ -1673,17 +1673,17 @@ ULONG TelcoVoiceMgrDml_POTS_FXSList_GetParamStringValue(ANSC_HANDLE hInsContext,
 
     PDML_POTS_FXS pHEAD = &(pPotsFxsCtrl->dml);
 
-    if( AnscEqualString(ParamName, "ToneEventProfile", TRUE) )
+    if (strcmp(ParamName, "ToneEventProfile") == 0)
     {
         AnscCopyString(pValue,pHEAD->ToneEventProfile);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Name", TRUE) )
+    else if (strcmp(ParamName, "Name") == 0)
     {
         AnscCopyString(pValue,pHEAD->Name);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         AnscCopyString(pValue,pHEAD->Alias);
         ret = 0;
@@ -1764,7 +1764,7 @@ BOOL TelcoVoiceMgrDml_POTS_FXSList_SetParamStringValue(ANSC_HANDLE hInsContext, 
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "ToneEventProfile", TRUE) )
+    if (strcmp(ParamName, "ToneEventProfile") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, HAL_DML_VOICESERVICE_POTS_FXS"ToneEventProfile",uVsIndex,uFxsIndex);
 
@@ -1779,7 +1779,7 @@ BOOL TelcoVoiceMgrDml_POTS_FXSList_SetParamStringValue(ANSC_HANDLE hInsContext, 
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
             TELCOVOICEMGR_LOCK_OR_EXIT()
 
@@ -1841,22 +1841,22 @@ BOOL TelcoVoiceMgrDml_POTS_FXSList_GetParamBoolValue(ANSC_HANDLE hInsContext, ch
 
     PDML_POTS_FXS pHEAD = &(pPotsFxsCtrl->dml);
 
-    if( AnscEqualString(ParamName, "Enable", TRUE) )
+    if (strcmp(ParamName, "Enable") == 0)
     {
         *pBool = pHEAD->Enable;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "ClipGeneration", TRUE) )
+    else if (strcmp(ParamName, "ClipGeneration") == 0)
     {
         *pBool = pHEAD->ClipGeneration;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "ChargingPulse", TRUE) )
+    else if (strcmp(ParamName, "ChargingPulse") == 0)
     {
         *pBool = pHEAD->ChargingPulse;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Active", TRUE) )
+    else if (strcmp(ParamName, "Active") == 0)
     {
         *pBool = pHEAD->Active;
         ret = TRUE;
@@ -1937,7 +1937,7 @@ BOOL TelcoVoiceMgrDml_POTS_FXSList_SetParamBoolValue(ANSC_HANDLE hInsContext, ch
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "Enable", TRUE) )
+    if (strcmp(ParamName, "Enable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, HAL_DML_VOICESERVICE_POTS_FXS"Enable",uVsIndex,uFxsIndex);
 
@@ -1952,7 +1952,7 @@ BOOL TelcoVoiceMgrDml_POTS_FXSList_SetParamBoolValue(ANSC_HANDLE hInsContext, ch
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "ClipGeneration", TRUE) )
+    else if (strcmp(ParamName, "ClipGeneration") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, HAL_DML_VOICESERVICE_POTS_FXS"ClipGeneration",uVsIndex,uFxsIndex);
 
@@ -1967,7 +1967,7 @@ BOOL TelcoVoiceMgrDml_POTS_FXSList_SetParamBoolValue(ANSC_HANDLE hInsContext, ch
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "ChargingPulse", TRUE) )
+    else if (strcmp(ParamName, "ChargingPulse") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, HAL_DML_VOICESERVICE_POTS_FXS"ChargingPulse",uVsIndex,uFxsIndex);
 
@@ -2105,7 +2105,7 @@ BOOL TelcoVoiceMgrDml_POTS_FXSList_VoiceProcessing_GetParamUlongValue(ANSC_HANDL
 
     PDML_POTS_FXS_VOICEPROCESSING pHEAD = &(pPotsFxs->VoiceProcessing);
 
-    if( AnscEqualString(ParamName, "EchoCancellationTail", TRUE) )
+    if (strcmp(ParamName, "EchoCancellationTail") == 0)
     {
         *puLong = pHEAD->EchoCancellationTail;
         ret = TRUE;
@@ -2163,12 +2163,12 @@ BOOL TelcoVoiceMgrDml_POTS_FXSList_VoiceProcessing_GetParamIntValue(ANSC_HANDLE 
 
     PDML_POTS_FXS_VOICEPROCESSING pHEAD = &(pPotsFxs->VoiceProcessing);
 
-    if( AnscEqualString(ParamName, "TransmitGain", TRUE) )
+    if (strcmp(ParamName, "TransmitGain") == 0)
     {
         *pInt = pHEAD->TransmitGain;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "ReceiveGain", TRUE) )
+    else if (strcmp(ParamName, "ReceiveGain") == 0)
     {
         *pInt = pHEAD->ReceiveGain;
         ret = TRUE;
@@ -2251,7 +2251,7 @@ BOOL TelcoVoiceMgrDml_POTS_FXSList_VoiceProcessing_SetParamIntValue(ANSC_HANDLE 
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "TransmitGain", TRUE) )
+    if (strcmp(ParamName, "TransmitGain") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, HAL_DML_VOICESERVICE_POTS_FXS"VoiceProcessing.TransmitGain",uVsIndex,uFxsIndex);
 
@@ -2266,7 +2266,7 @@ BOOL TelcoVoiceMgrDml_POTS_FXSList_VoiceProcessing_SetParamIntValue(ANSC_HANDLE 
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "ReceiveGain", TRUE) )
+    else if (strcmp(ParamName, "ReceiveGain") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, HAL_DML_VOICESERVICE_POTS_FXS"VoiceProcessing.ReceiveGain",uVsIndex,uFxsIndex);
 
@@ -2332,12 +2332,12 @@ BOOL TelcoVoiceMgrDml_POTS_FXSList_VoiceProcessing_GetParamBoolValue(ANSC_HANDLE
 
     PDML_POTS_FXS_VOICEPROCESSING pHEAD = &(pPotsFxs->VoiceProcessing);
 
-    if( AnscEqualString(ParamName, "EchoCancellationInUse", TRUE) )
+    if (strcmp(ParamName, "EchoCancellationInUse") == 0)
     {
         *pBool = pHEAD->EchoCancellationInUse;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "EchoCancellationEnable", TRUE) )
+    else if (strcmp(ParamName, "EchoCancellationEnable") == 0)
     {
         *pBool = pHEAD->EchoCancellationEnable;
         ret = TRUE;
@@ -2421,7 +2421,7 @@ BOOL TelcoVoiceMgrDml_POTS_FXSList_VoiceProcessing_SetParamBoolValue(ANSC_HANDLE
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "EchoCancellationEnable", TRUE) )
+    if (strcmp(ParamName, "EchoCancellationEnable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, HAL_DML_VOICESERVICE_POTS_FXS"VoiceProcessing.EchoCancellationEnable",uVsIndex,uFxsIndex);
 
@@ -2488,17 +2488,17 @@ BOOL TelcoVoiceMgrDml_POTS_FXSList_DiagTests_GetParamUlongValue(ANSC_HANDLE hIns
 
     PDML_POTS_FXS_DIAGTESTS pHEAD = &(pPotsFxs->DiagTests);
 
-    if( AnscEqualString(ParamName, "TestSelector", TRUE) )
+    if (strcmp(ParamName, "TestSelector") == 0)
     {
         *puLong = pHEAD->TestSelector;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "TestResult", TRUE) )
+    else if (strcmp(ParamName, "TestResult") == 0)
     {
         *puLong = pHEAD->TestResult;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "DiagnosticsState", TRUE) )
+    else if (strcmp(ParamName, "DiagnosticsState") == 0)
     {
         *puLong = pHEAD->DiagnosticsState;
         ret = TRUE;
@@ -2581,7 +2581,7 @@ BOOL TelcoVoiceMgrDml_POTS_FXSList_DiagTests_SetParamUlongValue(ANSC_HANDLE hIns
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "TestSelector", TRUE) )
+    if (strcmp(ParamName, "TestSelector") == 0)
     {
         char enumValue[][STR_LEN_32]={"Hazard Potential","Foreign Voltage","Resistive Faults","Off-hook","REN"};
 
@@ -2598,7 +2598,7 @@ BOOL TelcoVoiceMgrDml_POTS_FXSList_DiagTests_SetParamUlongValue(ANSC_HANDLE hIns
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "DiagnosticsState", TRUE) )
+    else if (strcmp(ParamName, "DiagnosticsState") == 0)
     {
         char enumValue[][STR_LEN_32]={"None","Requested","Complete","Error_Internal","Error_Other"};
 
@@ -2807,7 +2807,7 @@ BOOL TelcoVoiceMgrDml_POTS_Ringer_EventList_GetParamUlongValue(ANSC_HANDLE hInsC
 
     PDML_POTS_RINGER_EVT pHEAD = &(pPotsRingerEvtCtrl->dml);
 
-    if( AnscEqualString(ParamName, "Function", TRUE) )
+    if (strcmp(ParamName, "Function") == 0)
     {
         *puLong = pHEAD->Function;
         ret = TRUE;
@@ -2871,12 +2871,12 @@ ULONG TelcoVoiceMgrDml_POTS_Ringer_EventList_GetParamStringValue(ANSC_HANDLE hIn
 
     PDML_POTS_RINGER_EVT pHEAD = &(pPotsRingerEvtCtrl->dml);
 
-    if( AnscEqualString(ParamName, "Cadence", TRUE) )
+    if (strcmp(ParamName, "Cadence") == 0)
     {
         AnscCopyString(pValue,pHEAD->Cadence);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         AnscCopyString(pValue,pHEAD->Alias);
         ret = 0;
@@ -2958,7 +2958,7 @@ BOOL TelcoVoiceMgrDml_POTS_Ringer_EventList_SetParamStringValue(ANSC_HANDLE hIns
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "Cadence", TRUE) )
+    if (strcmp(ParamName, "Cadence") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.POTS.Ringer.Event.%d.Cadence",uVsIndex,uEvtIndex);
 
@@ -2973,7 +2973,7 @@ BOOL TelcoVoiceMgrDml_POTS_Ringer_EventList_SetParamStringValue(ANSC_HANDLE hIns
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         TELCOVOICEMGR_LOCK_OR_EXIT()
 

@@ -150,7 +150,7 @@ LONG VoiceProfile_GetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, 
 
           if (pVoiceProfile && pValue && pUlSize)
           {
-            if( AnscEqualString(ParamName, "X_RDK-Central_COM_DigitMap", TRUE) )
+            if (strcmp(ParamName, "X_RDK-Central_COM_DigitMap") == 0)
             { 
                 if(strlen(pVoiceProfile->X_RDK_DigitMap) < *pUlSize)
                 {
@@ -168,7 +168,7 @@ LONG VoiceProfile_GetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, 
                    ret = 1;
                 }
             }
-            else if( AnscEqualString(ParamName, "X_RDK-Central_COM_EmergencyDigitMap", TRUE) )
+            else if (strcmp(ParamName, "X_RDK-Central_COM_EmergencyDigitMap") == 0)
             {
                 if(strlen(pVoiceProfile->EmergencyDigitMap) < *pUlSize)
                 {
@@ -186,32 +186,32 @@ LONG VoiceProfile_GetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, 
                    ret = 1;
                 }
             }
-            else if( AnscEqualString(ParamName, "Alias", TRUE) )
+            else if (strcmp(ParamName, "Alias") == 0)
             {
                 AnscCopyString(pValue, pVoiceProfile->Alias);
                 ret = 0;
             }
-            else if( AnscEqualString(ParamName, "Name", TRUE) )
+            else if (strcmp(ParamName, "Name") == 0)
             {
                 AnscCopyString(pValue, pVoiceProfile->Name);
                 ret = 0;
             }
-            else if( AnscEqualString(ParamName, "SignalingProtocol", TRUE) )
+            else if (strcmp(ParamName, "SignalingProtocol") == 0)
             {
                 AnscCopyString(pValue, pVoiceProfile->SignalingProtocol);
                 ret = 0;
             }
-            else if( AnscEqualString(ParamName, "Region", TRUE) )
+            else if (strcmp(ParamName, "Region") == 0)
             {
                 AnscCopyString(pValue, pVoiceProfile->Region);
                 ret = 0;
             }
-            else if( AnscEqualString(ParamName, "DigitMap", TRUE) )
+            else if (strcmp(ParamName, "DigitMap") == 0)
             {
                 AnscCopyString(pValue, pVoiceProfile->DigitMap);
                 ret = 0;
             }
-            else if( AnscEqualString(ParamName, "STUNServer", TRUE) )
+            else if (strcmp(ParamName, "STUNServer") == 0)
             {
                 AnscCopyString(pValue, pVoiceProfile->STUNServer);
                 ret = 0;
@@ -281,7 +281,7 @@ BOOL VoiceProfile_SetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, 
                 uVsIndex = pDmlVoiceService->InstanceNumber;
                 uVpIndex = pVoiceProfile->InstanceNumber;
                 TelcoVoiceMgrDmlGetDataRelease(pTelcoVoiceMgrDmlData);
-                if( AnscEqualString(ParamName, "X_RDK-Central_COM_DigitMap", TRUE) )
+                if (strcmp(ParamName, "X_RDK-Central_COM_DigitMap") == 0)
                 {
                     if(TelcoVoiceMgrDmlSetDigitMap(uVsIndex, uVpIndex, pString, "X_RDK-Central_COM_DigitMap") == ANSC_STATUS_SUCCESS)
                     {
@@ -294,7 +294,7 @@ BOOL VoiceProfile_SetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, 
                         }
                     }
                 }
-                else if( AnscEqualString(ParamName, "X_RDK-Central_COM_EmergencyDigitMap", TRUE) )
+                else if (strcmp(ParamName, "X_RDK-Central_COM_EmergencyDigitMap") == 0)
                 {
                     if(TelcoVoiceMgrDmlSetDigitMap(uVsIndex, uVpIndex, pString, "X_RDK-Central_COM_EmergencyDigitMap") == ANSC_STATUS_SUCCESS)
                     {
@@ -307,7 +307,7 @@ BOOL VoiceProfile_SetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, 
                         }
                     }
                 }
-                else if( AnscEqualString(ParamName, "DigitMap", TRUE) )
+                else if (strcmp(ParamName, "DigitMap") == 0)
                 {
                     if(TelcoVoiceMgrDmlSetDigitMap(uVsIndex, uVpIndex, pString, "DigitMap") == ANSC_STATUS_SUCCESS)
                     {
@@ -376,57 +376,57 @@ BOOL VoiceProfile_GetParamUlongValue(ANSC_HANDLE hInsContext, char*  ParamName, 
                 TelcoVoiceMgrDmlGetDataRelease(pTelcoVoiceMgrDmlData);
                 return ret;
             }
-            if( AnscEqualString(ParamName, "X_RDK-Central_COM_SDigitTimer", TRUE) )
+            if (strcmp(ParamName, "X_RDK-Central_COM_SDigitTimer") == 0)
             {
                 * puValue = pVoiceProfile->SDigitTimer;
                 ret = TRUE;
             }
-            else if( AnscEqualString(ParamName, "X_RDK-Central_COM_ZDigitTimer", TRUE) )
+            else if (strcmp(ParamName, "X_RDK-Central_COM_ZDigitTimer") == 0)
             {
                 * puValue = pVoiceProfile->ZDigitTimer;
                 ret = TRUE;
             }
-            else if( AnscEqualString(ParamName, "Enable", TRUE) )
+            else if (strcmp(ParamName, "Enable") == 0)
             {
                 *puValue = pVoiceProfile->Enable;
                 ret = TRUE;
             }
-            else if( AnscEqualString(ParamName, "DTMFMethod", TRUE) )
+            else if (strcmp(ParamName, "DTMFMethod") == 0)
             {
                 *puValue = pVoiceProfile->DTMFMethod;
                 ret = 0;
             }
-            else if( AnscEqualString(ParamName, "DTMFMethodG711", TRUE) )
+            else if (strcmp(ParamName, "DTMFMethodG711") == 0)
             {
                 *puValue = pVoiceProfile->DTMFMethodG711;
                 ret = 0;
             }
-            else if( AnscEqualString(ParamName, "NumberOfLines", TRUE) )
+            else if (strcmp(ParamName, "NumberOfLines") == 0)
             {
                 *puValue = pVoiceProfile->NumberOfLines;
                 ret = TRUE;
             }
-            else if( AnscEqualString(ParamName, "MaxSessions", TRUE) )
+            else if (strcmp(ParamName, "MaxSessions") == 0)
             {
                 *puValue = pVoiceProfile->MaxSessions;
                 ret = TRUE;
             }
-            else if( AnscEqualString(ParamName, "NonVoiceBandwidthReservedUpstream", TRUE) )
+            else if (strcmp(ParamName, "NonVoiceBandwidthReservedUpstream") == 0)
             {
                 *puValue = pVoiceProfile->NonVoiceBandwidthReservedUpstream;
                 ret = TRUE;
             }
-            else if( AnscEqualString(ParamName, "NonVoiceBandwidthReservedDownstream", TRUE) )
+            else if (strcmp(ParamName, "NonVoiceBandwidthReservedDownstream") == 0)
             {
                 *puValue = pVoiceProfile->NonVoiceBandwidthReservedDownstream;
                 ret = TRUE;
             }
-            else if( AnscEqualString(ParamName, "FaxPassThrough", TRUE) )
+            else if (strcmp(ParamName, "FaxPassThrough") == 0)
             {
                 *puValue = pVoiceProfile->FaxPassThrough;
                 ret = TRUE;
             }
-            else if( AnscEqualString(ParamName, "ModemPassThrough", TRUE) )
+            else if (strcmp(ParamName, "ModemPassThrough") == 0)
             {
                 *puValue = pVoiceProfile->ModemPassThrough;
                 ret = TRUE;
@@ -495,7 +495,7 @@ BOOL VoiceProfile_SetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, U
                 uVsIndex = pDmlVoiceService->InstanceNumber;
                 uVpIndex = pVoiceProfile->InstanceNumber;
                 TelcoVoiceMgrDmlGetDataRelease(pTelcoVoiceMgrDmlData);
-                if( AnscEqualString(ParamName, "X_RDK-Central_COM_SDigitTimer", TRUE) )
+                if (strcmp(ParamName, "X_RDK-Central_COM_SDigitTimer") == 0)
                 {
                     if( TelcoVoiceMgrDmlSetSDigitTimer(uVsIndex, uVpIndex, uValue )== ANSC_STATUS_SUCCESS)
                     {
@@ -508,7 +508,7 @@ BOOL VoiceProfile_SetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, U
                         }
                     }
                 }
-                else if( AnscEqualString(ParamName, "X_RDK-Central_COM_ZDigitTimer", TRUE) )
+                else if (strcmp(ParamName, "X_RDK-Central_COM_ZDigitTimer") == 0)
                 {
                     if(TelcoVoiceMgrDmlSetZDigitTimer(uVsIndex, uVpIndex, uValue ) == ANSC_STATUS_SUCCESS)
                     {
@@ -521,7 +521,7 @@ BOOL VoiceProfile_SetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, U
                         }
                     }
                 }
-                else if( AnscEqualString(ParamName, "Enable", TRUE) )
+                else if (strcmp(ParamName, "Enable") == 0)
                 {
                     pVoiceProfile->Enable = uValue;
                     ret = TRUE;
@@ -599,19 +599,19 @@ ULONG VoiceProfile_GetEntryCount(ANSC_HANDLE hInsContext)
 BOOL VoiceProfile_SetParamBoolValue(ANSC_HANDLE hInsContext, char* ParamName, BOOL bValue)
 {
     BOOL ret = FALSE;
-    if( AnscEqualString(ParamName, "Reset", TRUE) )
+    if (strcmp(ParamName, "Reset") == 0)
     {
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "DigitMapEnable", TRUE) )
+    else if (strcmp(ParamName, "DigitMapEnable") == 0)
     {
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "STUNEnable", TRUE) )
+    else if (strcmp(ParamName, "STUNEnable") == 0)
     {
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "PSTNFailOver", TRUE) )
+    else if (strcmp(ParamName, "PSTNFailOver") == 0)
     {
         ret = TRUE;
     }
@@ -674,22 +674,22 @@ BOOL VoiceProfile_GetParamBoolValue(ANSC_HANDLE hInsContext, char* ParamName, BO
     
     if(pDmlVoiceProfile != NULL)
     {
-        if( AnscEqualString(ParamName, "Reset", TRUE))
+        if (strcmp(ParamName, "Reset") == 0)
         {
             *pBool = pDmlVoiceProfile->Reset;
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "DigitMapEnable", TRUE))
+        else if (strcmp(ParamName, "DigitMapEnable") == 0)
         {
             *pBool = pDmlVoiceProfile->DigitMapEnable;
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "STUNEnable", TRUE))
+        else if (strcmp(ParamName, "STUNEnable") == 0)
         {
             *pBool = pDmlVoiceProfile->STUNEnable;
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "PSTNFailOver", TRUE))
+        else if (strcmp(ParamName, "PSTNFailOver") == 0)
         {
             *pBool = pDmlVoiceProfile->PSTNFailOver;
             ret = TRUE;
@@ -869,47 +869,47 @@ LONG SIP_GetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, char* pVa
 
           if (pVoiceProfile != NULL)
           {
-            if( AnscEqualString(ParamName, "OutboundProxy", TRUE) )
+            if (strcmp(ParamName, "OutboundProxy") == 0)
             { 
                 AnscCopyString(pValue, pVoiceProfile->SIPObj.OutboundProxy);
                 ret = 0;
             }
-            else if( AnscEqualString(ParamName, "ProxyServer", TRUE) )
+            else if (strcmp(ParamName, "ProxyServer") == 0)
             {
                 AnscCopyString(pValue, pVoiceProfile->SIPObj.ProxyServer);
                 ret = 0;
             }
-            else if( AnscEqualString(ParamName, "RegistrarServer", TRUE) )
+            else if (strcmp(ParamName, "RegistrarServer") == 0)
             {
                 AnscCopyString(pValue, pVoiceProfile->SIPObj.RegistrarServer);
                 ret = 0;
             }
-            else if( AnscEqualString(ParamName, "UserAgentDomain", TRUE) )
+            else if (strcmp(ParamName, "UserAgentDomain") == 0)
             {
                 AnscCopyString(pValue, pVoiceProfile->SIPObj.UserAgentDomain);
                 ret = 0;
             }
-            else if( AnscEqualString(ParamName, "X_RDK-Central_COM_ConferencingURI", TRUE) )
+            else if (strcmp(ParamName, "X_RDK-Central_COM_ConferencingURI") == 0)
             {
                 AnscCopyString(pValue, pVoiceProfile->SIPObj.ConferencingURI);
                 ret = 0;
             }
-            else if( AnscEqualString(ParamName, "UserAgentTransport", TRUE) )
+            else if (strcmp(ParamName, "UserAgentTransport") == 0)
             {
                 AnscCopyString(pValue, pVoiceProfile->SIPObj.UserAgentTransport);
                 ret = 0;
             }
-            else if( AnscEqualString(ParamName, "RegistrarServerTransport", TRUE) )
+            else if (strcmp(ParamName, "RegistrarServerTransport") == 0)
             {
                 AnscCopyString(pValue, pVoiceProfile->SIPObj.RegistrarServerTransport);
                 ret = 0;
             }
-            else if( AnscEqualString(ParamName, "Organization", TRUE) )
+            else if (strcmp(ParamName, "Organization") == 0)
             {
                 AnscCopyString(pValue, pVoiceProfile->SIPObj.Organization);
                 ret = 0;
             }
-            else if( AnscEqualString(ParamName, "InboundAuth", TRUE) )
+            else if (strcmp(ParamName, "InboundAuth") == 0)
             {
                 if(pVoiceProfile->SIPObj.InboundAuth == SIP_INBOUNDAUTH_NONE)
                 {
@@ -922,22 +922,22 @@ LONG SIP_GetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, char* pVa
                 
                 ret = 0;
             }
-            else if( AnscEqualString(ParamName, "InboundAuthUsername", TRUE) )
+            else if (strcmp(ParamName, "InboundAuthUsername") == 0)
             {
                 AnscCopyString(pValue, pVoiceProfile->SIPObj.InboundAuthUsername);
                 ret = 0;
             }
-            else if( AnscEqualString(ParamName, "InboundAuthPassword", TRUE) )
+            else if (strcmp(ParamName, "InboundAuthPassword") == 0)
             {
                 AnscCopyString(pValue, pVoiceProfile->SIPObj.InboundAuthPassword);
                 ret = 0;
             }
-            else if( AnscEqualString(ParamName, "RegistrarServerTransport", TRUE) )
+            else if (strcmp(ParamName, "RegistrarServerTransport") == 0)
             {
                 AnscCopyString(pValue, pVoiceProfile->SIPObj.RegistrarServerTransport);
                 ret = 0;
             }
-            else if( AnscEqualString(ParamName, "ProxyServerTransport", TRUE) )
+            else if (strcmp(ParamName, "ProxyServerTransport") == 0)
             {
                 AnscCopyString(pValue, pVoiceProfile->SIPObj.ProxyServerTransport);
                 ret = 0;
@@ -1007,7 +1007,7 @@ BOOL SIP_SetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, char* pSt
                 uVsIndex = pDmlVoiceService->InstanceNumber;
                 uVpIndex = pVoiceProfile->InstanceNumber;
                 TelcoVoiceMgrDmlGetDataRelease(pTelcoVoiceMgrDmlData);
-                if ( AnscEqualString(ParamName, "OutboundProxy", TRUE) )
+                if (strcmp(ParamName, "OutboundProxy") == 0)
                 {
                     if(TelcoVoiceMgrDmlSetOutboundProxy(uVsIndex,pVoiceProfile->InstanceNumber, pString) == ANSC_STATUS_SUCCESS)
                     {
@@ -1020,7 +1020,7 @@ BOOL SIP_SetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, char* pSt
                         }
                     }
                 }
-                else if( AnscEqualString(ParamName, "ProxyServer", TRUE) )
+                else if (strcmp(ParamName, "ProxyServer") == 0)
                 {
                     if(TelcoVoiceMgrDmlSetProxyServer(uVsIndex,pVoiceProfile->InstanceNumber, pString) == ANSC_STATUS_SUCCESS)
                     {
@@ -1033,7 +1033,7 @@ BOOL SIP_SetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, char* pSt
                         }
                     }
                 }
-                else if( AnscEqualString(ParamName, "RegistrarServer", TRUE) )
+                else if (strcmp(ParamName, "RegistrarServer") == 0)
                 {
                     if(TelcoVoiceMgrDmlSetRegistrarServer(uVsIndex,pVoiceProfile->InstanceNumber, pString) == ANSC_STATUS_SUCCESS)
                     {
@@ -1046,7 +1046,7 @@ BOOL SIP_SetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, char* pSt
                         }
                     }
                 }
-                else if( AnscEqualString(ParamName, "UserAgentDomain", TRUE) )
+                else if (strcmp(ParamName, "UserAgentDomain") == 0)
                 {
                     if(TelcoVoiceMgrDmlSetUserAgentDomain(uVsIndex, uVpIndex, pString) == ANSC_STATUS_SUCCESS)
                     {
@@ -1059,7 +1059,7 @@ BOOL SIP_SetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, char* pSt
                         }
                     }
                 }
-                else if( AnscEqualString(ParamName, "X_RDK-Central_COM_ConferencingURI", TRUE) )
+                else if (strcmp(ParamName, "X_RDK-Central_COM_ConferencingURI") == 0)
                 {
                     if(TelcoVoiceMgrDmlSetConferencingURI(uVsIndex, uVpIndex, pString) == ANSC_STATUS_SUCCESS)
                     {
@@ -1072,31 +1072,31 @@ BOOL SIP_SetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, char* pSt
                         }
                     }
                 }
-                else if( AnscEqualString(ParamName, "UserAgentTransport", TRUE) )
+                else if (strcmp(ParamName, "UserAgentTransport") == 0)
                 {
                     ret = 0;
                 }
-                else if( AnscEqualString(ParamName, "RegistrarServerTransport", TRUE) )
+                else if (strcmp(ParamName, "RegistrarServerTransport") == 0)
                 {
                     ret = 0;
                 }
-                else if( AnscEqualString(ParamName, "Organization", TRUE) )
+                else if (strcmp(ParamName, "Organization") == 0)
                 {
                     ret = 0;
                 }
-                else if( AnscEqualString(ParamName, "InboundAuth", TRUE) )
+                else if (strcmp(ParamName, "InboundAuth") == 0)
                 {
                     ret = 0;
                 }
-                else if( AnscEqualString(ParamName, "InboundAuthUsername", TRUE) )
+                else if (strcmp(ParamName, "InboundAuthUsername") == 0)
                 {
                     ret = 0;
                 }
-                else if( AnscEqualString(ParamName, "InboundAuthPassword", TRUE) )
+                else if (strcmp(ParamName, "InboundAuthPassword") == 0)
                 {
                     ret = 0;
                 }
-                else if( AnscEqualString(ParamName, "RegistrarServerTransport", TRUE) )
+                else if (strcmp(ParamName, "RegistrarServerTransport") == 0)
                 {
                     ret = 0;
                 }
@@ -1157,132 +1157,132 @@ BOOL SIP_GetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, ULONG* pVa
                 return ret;
             }
 
-            if( AnscEqualString(ParamName, "OutboundProxyPort", TRUE) )
+            if (strcmp(ParamName, "OutboundProxyPort") == 0)
             {
                 * pValue = pVoiceProfile->SIPObj.OutboundProxyPort;
                 ret = TRUE;
             }
-            else if( AnscEqualString(ParamName, "ProxyServerPort", TRUE) )
+            else if (strcmp(ParamName, "ProxyServerPort") == 0)
             {
                 * pValue = pVoiceProfile->SIPObj.ProxyServerPort;
                 ret = TRUE;
             }
-            else if( AnscEqualString(ParamName, "RegistrarServerPort", TRUE) )
+            else if (strcmp(ParamName, "RegistrarServerPort") == 0)
             {
                 * pValue = pVoiceProfile->SIPObj.RegistrarServerPort;
                 ret = TRUE;
             }
-            else if( AnscEqualString(ParamName, "DSCPMark", TRUE) )
+            else if (strcmp(ParamName, "DSCPMark") == 0)
             {
                 * pValue = pVoiceProfile->SIPObj.DSCPMark;
                 ret = TRUE;
             }
-            else if( AnscEqualString(ParamName, "X_RDK_SKBMark", TRUE) )
+            else if (strcmp(ParamName, "X_RDK_SKBMark") == 0)
             {
                 * pValue = pVoiceProfile->SIPObj.X_RDK_SKBMark;
                 ret = TRUE;
             }
-            else if( AnscEqualString(ParamName, "UserAgentPort", TRUE) )
+            else if (strcmp(ParamName, "UserAgentPort") == 0)
             {
                 * pValue = pVoiceProfile->SIPObj.UserAgentPort;
                 ret = TRUE;
             }
-            else if( AnscEqualString(ParamName, "RegistrationPeriod", TRUE) )
+            else if (strcmp(ParamName, "RegistrationPeriod") == 0)
             {
                 * pValue = pVoiceProfile->SIPObj.RegistrationPeriod;
                 ret = TRUE;
             }
-            else if( AnscEqualString(ParamName, "TimerT1", TRUE) )
+            else if (strcmp(ParamName, "TimerT1") == 0)
             {
                 * pValue = pVoiceProfile->SIPObj.TimerT1;
                 ret = TRUE;
             }
-            else if( AnscEqualString(ParamName, "TimerT2", TRUE) )
+            else if (strcmp(ParamName, "TimerT2") == 0)
             {
                 * pValue = pVoiceProfile->SIPObj.TimerT2;
                 ret = TRUE;
             }
-            else if( AnscEqualString(ParamName, "TimerT4", TRUE) )
+            else if (strcmp(ParamName, "TimerT4") == 0)
             {
                 * pValue = pVoiceProfile->SIPObj.TimerT4;
                 ret = TRUE;
             }
-            else if( AnscEqualString(ParamName, "TimerA", TRUE) )
+            else if (strcmp(ParamName, "TimerA") == 0)
             {
                 * pValue = pVoiceProfile->SIPObj.TimerA;
                 ret = TRUE;
             }
-            else if( AnscEqualString(ParamName, "TimerB", TRUE) )
+            else if (strcmp(ParamName, "TimerB") == 0)
             {
                 * pValue = pVoiceProfile->SIPObj.TimerB;
                 ret = TRUE;
             }
-            else if( AnscEqualString(ParamName, "TimerC", TRUE) )
+            else if (strcmp(ParamName, "TimerC") == 0)
             {
                 * pValue = pVoiceProfile->SIPObj.TimerC;
                 ret = TRUE;
             }
-            else if( AnscEqualString(ParamName, "TimerD", TRUE) )
+            else if (strcmp(ParamName, "TimerD") == 0)
             {
                 * pValue = pVoiceProfile->SIPObj.TimerD;
                 ret = TRUE;
             }
-            else if( AnscEqualString(ParamName, "TimerE", TRUE) )
+            else if (strcmp(ParamName, "TimerE") == 0)
             {
                 * pValue = pVoiceProfile->SIPObj.TimerE;
                 ret = TRUE;
             }
-            else if( AnscEqualString(ParamName, "TimerF", TRUE) )
+            else if (strcmp(ParamName, "TimerF") == 0)
             {
                 * pValue = pVoiceProfile->SIPObj.TimerF;
                 ret = TRUE;
             }
-            else if( AnscEqualString(ParamName, "TimerG", TRUE) )
+            else if (strcmp(ParamName, "TimerG") == 0)
             {
                 * pValue = pVoiceProfile->SIPObj.TimerG;
                 ret = TRUE;
             }
-            else if( AnscEqualString(ParamName, "TimerH", TRUE) )
+            else if (strcmp(ParamName, "TimerH") == 0)
             {
                 * pValue = pVoiceProfile->SIPObj.TimerH;
                 ret = TRUE;
             }
-            else if( AnscEqualString(ParamName, "TimerI", TRUE) )
+            else if (strcmp(ParamName, "TimerI") == 0)
             {
                 * pValue = pVoiceProfile->SIPObj.TimerI;
                 ret = TRUE;
             }
-            else if( AnscEqualString(ParamName, "TimerJ", TRUE) )
+            else if (strcmp(ParamName, "TimerJ") == 0)
             {
                 * pValue = pVoiceProfile->SIPObj.TimerJ;
                 ret = TRUE;
             }
-            else if( AnscEqualString(ParamName, "TimerK", TRUE) )
+            else if (strcmp(ParamName, "TimerK") == 0)
             {
                 * pValue = pVoiceProfile->SIPObj.TimerK;
                 ret = TRUE;
             }
-            else if( AnscEqualString(ParamName, "InviteExpires", TRUE) )
+            else if (strcmp(ParamName, "InviteExpires") == 0)
             {
                 * pValue = pVoiceProfile->SIPObj.InviteExpires;
                 ret = TRUE;
             }
-            else if( AnscEqualString(ParamName, "ReInviteExpires", TRUE) )
+            else if (strcmp(ParamName, "ReInviteExpires") == 0)
             {
                 * pValue = pVoiceProfile->SIPObj.ReInviteExpires;
                 ret = TRUE;
             }
-            else if( AnscEqualString(ParamName, "RegisterExpires", TRUE) )
+            else if (strcmp(ParamName, "RegisterExpires") == 0)
             {
                 * pValue = pVoiceProfile->SIPObj.RegisterExpires;
                 ret = TRUE;
             }
-            else if( AnscEqualString(ParamName, "RegistersMinExpires", TRUE) )
+            else if (strcmp(ParamName, "RegistersMinExpires") == 0)
             {
                 * pValue = pVoiceProfile->SIPObj.RegistersMinExpires;
                 ret = TRUE;
             }
-            else if( AnscEqualString(ParamName, "RegisterRetryInterval", TRUE) )
+            else if (strcmp(ParamName, "RegisterRetryInterval") == 0)
             {
                 * pValue = pVoiceProfile->SIPObj.RegisterRetryInterval;
                 ret = TRUE;
@@ -1348,7 +1348,7 @@ BOOL SIP_SetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, ULONG uVal
                 uVsIndex = pDmlVoiceService->InstanceNumber;
                 uVpIndex = pVoiceProfile->InstanceNumber;
                 TelcoVoiceMgrDmlGetDataRelease(pTelcoVoiceMgrDmlData);
-                if( AnscEqualString(ParamName, "OutboundProxyPort", TRUE) )
+                if (strcmp(ParamName, "OutboundProxyPort") == 0)
                 {
                     if(TelcoVoiceMgrDmlSetOutboundProxyPort(uVsIndex,uVpIndex, uValue) == ANSC_STATUS_SUCCESS)
                     {
@@ -1361,7 +1361,7 @@ BOOL SIP_SetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, ULONG uVal
                         }
                     }
                 }
-                else if( AnscEqualString(ParamName, "ProxyServerPort", TRUE) )
+                else if (strcmp(ParamName, "ProxyServerPort") == 0)
                 {
                     if(TelcoVoiceMgrDmlSetProxyServerPort(uVsIndex,uVpIndex, uValue) == ANSC_STATUS_SUCCESS)
                     {
@@ -1374,7 +1374,7 @@ BOOL SIP_SetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, ULONG uVal
                         }
                     }
                 }
-                else if( AnscEqualString(ParamName, "RegistrarServerPort", TRUE) )
+                else if (strcmp(ParamName, "RegistrarServerPort") == 0)
                 {
                     if(TelcoVoiceMgrDmlSetRegistrarServerPort(uVsIndex,uVpIndex, uValue) == ANSC_STATUS_SUCCESS)
                     {
@@ -1387,7 +1387,7 @@ BOOL SIP_SetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, ULONG uVal
                         }
                     }
                 }
-                else if( AnscEqualString(ParamName, "DSCPMark", TRUE) )
+                else if (strcmp(ParamName, "DSCPMark") == 0)
                 {
                     if(TelcoVoiceMgrDmlSetSipDscpMark(uVsIndex, uVpIndex, uValue) == ANSC_STATUS_SUCCESS)
                     {
@@ -1400,7 +1400,7 @@ BOOL SIP_SetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, ULONG uVal
                         }
                     }
                 }
-                else if( AnscEqualString(ParamName, "UserAgentPort", TRUE) )
+                else if (strcmp(ParamName, "UserAgentPort") == 0)
                 {
                         pVoiceProfile->SIPObj.UserAgentPort  =  uValue;
                         ret = TRUE;
@@ -1465,12 +1465,12 @@ BOOL SIP_GetParamIntValue(ANSC_HANDLE hInsContext, char* ParamName, int* pInt)
                 return ret;
             }
 
-            if( AnscEqualString(ParamName, "EthernetPriorityMark", TRUE) )
+            if (strcmp(ParamName, "EthernetPriorityMark") == 0)
             {
                * pInt = pVoiceProfile->SIPObj.EthernetPriorityMark;
                ret = TRUE;
             }
-            else if( AnscEqualString(ParamName, "VLANIDMark", TRUE) )
+            else if (strcmp(ParamName, "VLANIDMark") == 0)
             {
                * pInt = pVoiceProfile->SIPObj.VLANIDMark;
                ret = TRUE;
@@ -1541,7 +1541,7 @@ BOOL SIP_SetParamIntValue(ANSC_HANDLE hInsContext, char* ParamName, int iValue)
                 uVpIndex = pVoiceProfile->InstanceNumber;
                 TelcoVoiceMgrDmlGetDataRelease(pTelcoVoiceMgrDmlData);
 
-                if( AnscEqualString(ParamName, "EthernetPriorityMark", TRUE) )
+                if (strcmp(ParamName, "EthernetPriorityMark") == 0)
                 {
                     if(TelcoVoiceMgrDmlSetSipEthernetPriorityMark(uVsIndex,uVpIndex,iValue) == ANSC_STATUS_SUCCESS)
                     {
@@ -1554,7 +1554,7 @@ BOOL SIP_SetParamIntValue(ANSC_HANDLE hInsContext, char* ParamName, int iValue)
                        }
                     }
                 }
-                else if( AnscEqualString(ParamName, "VLANIDMark", TRUE) )
+                else if (strcmp(ParamName, "VLANIDMark") == 0)
                 {
                     ret = TRUE;
                 }
@@ -1621,17 +1621,17 @@ BOOL SIP_GetParamBoolValue(ANSC_HANDLE hInsContext, char* ParamName, BOOL* pBool
                 return ret;
             }
 
-            if( AnscEqualString(ParamName, "X_RDK-Central_COM_NetworkDisconnect", TRUE) )
+            if (strcmp(ParamName, "X_RDK-Central_COM_NetworkDisconnect") == 0)
             {
                * pBool = pVoiceProfile->SIPObj.NetworkDisconnect;
                ret = TRUE;
             }
-            else if( AnscEqualString(ParamName, "X_RDK_PRACKRequired", TRUE) )
+            else if (strcmp(ParamName, "X_RDK_PRACKRequired") == 0)
             {
                * pBool = pVoiceProfile->SIPObj.X_RDK_PRACKRequired;
                ret = TRUE;
             }
-            else if( AnscEqualString(ParamName, "UseCodecPriorityInSDPResponse", TRUE) )
+            else if (strcmp(ParamName, "UseCodecPriorityInSDPResponse") == 0)
             {
                * pBool = pVoiceProfile->SIPObj.UseCodecPriorityInSDPResponse;
                ret = TRUE;
@@ -1698,7 +1698,7 @@ BOOL SIP_SetParamBoolValue(ANSC_HANDLE hInsContext, char* ParamName, BOOL bValue
                 uVsIndex = pDmlVoiceService->InstanceNumber;
                 uVpIndex = pVoiceProfile->InstanceNumber;
                 TelcoVoiceMgrDmlGetDataRelease(pTelcoVoiceMgrDmlData);
-                if( AnscEqualString(ParamName, "X_RDK-Central_COM_NetworkDisconnect", TRUE) )
+                if (strcmp(ParamName, "X_RDK-Central_COM_NetworkDisconnect") == 0)
                 {
                     if(TelcoVoiceMgrDmlSetNetworkDisconnect(uVsIndex,uVpIndex, bValue) == ANSC_STATUS_SUCCESS)
                     {
@@ -1711,7 +1711,7 @@ BOOL SIP_SetParamBoolValue(ANSC_HANDLE hInsContext, char* ParamName, BOOL bValue
                         }
                     }
                 }
-                else if( AnscEqualString(ParamName, "X_RDK_PRACKRequired", TRUE) )
+                else if (strcmp(ParamName, "X_RDK_PRACKRequired") == 0)
                 {
                     if(TelcoVoiceMgrDmlSetPrackRequired(uVsIndex,uVpIndex, bValue) == ANSC_STATUS_SUCCESS)
                     {
@@ -1782,27 +1782,27 @@ BOOL RTP_GetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, ULONG* pVa
                 return ret;
             }
 
-            if( AnscEqualString(ParamName, "DSCPMark", TRUE) )
+            if (strcmp(ParamName, "DSCPMark") == 0)
             {
                *pValue = pVoiceProfile->RTPObj.DSCPMark;
                ret = TRUE;
             }
-            else if( AnscEqualString(ParamName, "X_RDK_SKBMark", TRUE) )
+            else if (strcmp(ParamName, "X_RDK_SKBMark") == 0)
             {
                *pValue = pVoiceProfile->RTPObj.X_RDK_SKBMark;
                ret = TRUE;
             }
-            else if( AnscEqualString(ParamName, "LocalPortMin", TRUE) )
+            else if (strcmp(ParamName, "LocalPortMin") == 0)
             {
                *pValue = pVoiceProfile->RTPObj.LocalPortMin;
                ret = TRUE;
             }
-            else if( AnscEqualString(ParamName, "LocalPortMax", TRUE) )
+            else if (strcmp(ParamName, "LocalPortMax") == 0)
             {
                *pValue = pVoiceProfile->RTPObj.LocalPortMax;
                ret = TRUE;
             }
-            else if( AnscEqualString(ParamName, "TelephoneEventPayloadType", TRUE) )
+            else if (strcmp(ParamName, "TelephoneEventPayloadType") == 0)
             {
                *pValue = pVoiceProfile->RTPObj.TelephoneEventPayloadType;
                ret = TRUE;
@@ -1867,7 +1867,7 @@ BOOL RTP_SetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, ULONG uVal
             {
                 pDmlVoiceService = pVoiceProfile->pParentVoiceService;
                 TelcoVoiceMgrDmlGetDataRelease(pTelcoVoiceMgrDmlData);
-                if( AnscEqualString(ParamName, "DSCPMark", TRUE) )
+                if (strcmp(ParamName, "DSCPMark") == 0)
                 {
                     if(TelcoVoiceMgrDmlSetRtpDscpMark(uVsIndex, uVpIndex, uValue) == ANSC_STATUS_SUCCESS)
                     {
@@ -1933,12 +1933,12 @@ BOOL RTP_GetParamIntValue(ANSC_HANDLE hInsContext, char* ParamName, int* pInt)
                 return ret;
             }
 
-            if( AnscEqualString(ParamName, "EthernetPriorityMark", TRUE) )
+            if (strcmp(ParamName, "EthernetPriorityMark") == 0)
             {
                * pInt = pVoiceProfile->RTPObj.EthernetPriorityMark;
                ret = TRUE;
             }
-            else if( AnscEqualString(ParamName, "VLANIDMark", TRUE) )
+            else if (strcmp(ParamName, "VLANIDMark") == 0)
             {
                * pInt = pVoiceProfile->RTPObj.VLANIDMark;
                ret = TRUE;
@@ -2005,7 +2005,7 @@ BOOL RTP_SetParamIntValue(ANSC_HANDLE hInsContext, char* ParamName, int iValue)
                 uVsIndex = pDmlVoiceService->InstanceNumber;
                 uVpIndex = pVoiceProfile->InstanceNumber;
                 TelcoVoiceMgrDmlGetDataRelease(pTelcoVoiceMgrDmlData);
-                if( AnscEqualString(ParamName, "EthernetPriorityMark", TRUE) )
+                if (strcmp(ParamName, "EthernetPriorityMark") == 0)
                 {
                     if(TelcoVoiceMgrDmlSetRtpEthernetPriorityMark(uVsIndex,uVpIndex, iValue) == ANSC_STATUS_SUCCESS)
                     {
@@ -2068,17 +2068,17 @@ BOOL Redundancy_GetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, ULO
                 return ret;
             }
 
-            if( AnscEqualString(ParamName,"BlockPayloadType", TRUE))
+            if (strcmp(ParamName, "BlockPayloadType") == 0)
             {
                 *pValue = pVoiceProfile->RTPObj.RedundancyObj.BlockPayloadType;
                 ret = TRUE;
             }
-            else if( AnscEqualString(ParamName, "PayloadType", TRUE))
+            else if (strcmp(ParamName, "PayloadType") == 0)
             {
                 *pValue = pVoiceProfile->RTPObj.RedundancyObj.PayloadType;
                 ret = TRUE;
             }
-            else if( AnscEqualString(ParamName,"MaxSessionsUsingRedundancy", TRUE))
+            else if (strcmp(ParamName, "MaxSessionsUsingRedundancy") == 0)
             {
                 *pValue = pVoiceProfile->RTPObj.RedundancyObj.MaxSessionsUsingRedundancy;
                 ret = TRUE;
@@ -2121,11 +2121,11 @@ BOOL Redundancy_SetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, ULO
 {
     BOOL ret = FALSE;
 
-    if( AnscEqualString(ParamName, "PayloadType", TRUE))
+    if (strcmp(ParamName, "PayloadType") == 0)
     {
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "MaxSessionsUsingRedundancy", TRUE))
+    else if (strcmp(ParamName, "MaxSessionsUsingRedundancy") == 0)
     {
         ret = TRUE;
     }
@@ -2161,19 +2161,19 @@ BOOL Redundancy_SetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, ULO
 BOOL Redundancy_SetParamIntValue(ANSC_HANDLE hInsContext, char* ParamName, int iValue)
 {
     BOOL ret = FALSE;
-    if( AnscEqualString(ParamName, "FaxAndModemRedundancy", TRUE) )
+    if (strcmp(ParamName, "FaxAndModemRedundancy") == 0)
     {
         ret = FALSE;
     }
-    else if( AnscEqualString(ParamName, "ModemRedundancy", TRUE) )
+    else if (strcmp(ParamName, "ModemRedundancy") == 0)
     {
         ret = FALSE;
     }
-    else if( AnscEqualString(ParamName, "DTMFRedundancy", TRUE) )
+    else if (strcmp(ParamName, "DTMFRedundancy") == 0)
     {
         ret = FALSE;
     }
-    else if( AnscEqualString(ParamName, "VoiceRedundancy", TRUE) )
+    else if (strcmp(ParamName, "VoiceRedundancy") == 0)
     {
         ret = FALSE;
     }
@@ -2208,11 +2208,11 @@ BOOL Redundancy_SetParamIntValue(ANSC_HANDLE hInsContext, char* ParamName, int i
 BOOL Redundancy_SetParamBoolValue(ANSC_HANDLE hInsContext, char* ParamName, BOOL bValue)
 {
     BOOL ret = FALSE;
-    if( AnscEqualString(ParamName, "X_RDK-Central_COM_NetworkDisconnect", TRUE) )
+    if (strcmp(ParamName, "X_RDK-Central_COM_NetworkDisconnect") == 0)
     {
         ret = FALSE;
     }
-    else if( AnscEqualString(ParamName, "X_RDK-Central_COM_NetworkDisconnect", TRUE) )
+    else if (strcmp(ParamName, "X_RDK-Central_COM_NetworkDisconnect") == 0)
     {
             ret = FALSE;
     }
@@ -2260,22 +2260,22 @@ BOOL Redundancy_GetParamIntValue(ANSC_HANDLE hInsContext, char* ParamName, int* 
                 TelcoVoiceMgrDmlGetDataRelease(pTelcoVoiceMgrDmlData);
                 return ret;
             }
-            if( AnscEqualString(ParamName, "ModemRedundancy", TRUE) )
+            if (strcmp(ParamName, "ModemRedundancy") == 0)
             {
                 *pInt = pVoiceProfile->RTPObj.RedundancyObj.ModemRedundancy;
                 ret = TRUE;
             }
-            else if( AnscEqualString(ParamName, "FaxAndModemRedundancy", TRUE) )
+            else if (strcmp(ParamName, "FaxAndModemRedundancy") == 0)
             {
                 *pInt = pVoiceProfile->RTPObj.RedundancyObj.FaxAndModemRedundancy;
                 ret = TRUE;
             }
-            else if( AnscEqualString(ParamName, "DTMFRedundancy", TRUE) )
+            else if (strcmp(ParamName, "DTMFRedundancy") == 0)
             {
                 *pInt = pVoiceProfile->RTPObj.RedundancyObj.DTMFRedundancy;
                 ret = TRUE;
             }
-            else if( AnscEqualString(ParamName, "VoiceRedundancy", TRUE) )
+            else if (strcmp(ParamName, "VoiceRedundancy") == 0)
             {
                 *pInt = pVoiceProfile->RTPObj.RedundancyObj.VoiceRedundancy;
                 ret = TRUE;
@@ -2330,7 +2330,7 @@ BOOL Redundancy_GetParamBoolValue(ANSC_HANDLE hInsContext, char* ParamName, BOOL
                 TelcoVoiceMgrDmlGetDataRelease(pTelcoVoiceMgrDmlData);
                 return ret;
             }
-            if( AnscEqualString(ParamName, "Enable", TRUE))
+            if (strcmp(ParamName, "Enable") == 0)
             {
                 *pBool = pVoiceProfile->RTPObj.RedundancyObj.Enable;
                 ret = TRUE;
@@ -2386,7 +2386,7 @@ BOOL RTCP_GetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, ULONG* pV
                 TelcoVoiceMgrDmlGetDataRelease(pTelcoVoiceMgrDmlData);
                 return ret;
             }
-            if( AnscEqualString(ParamName, "TxRepeatInterval", TRUE))
+            if (strcmp(ParamName, "TxRepeatInterval") == 0)
             {
                 *pValue =  pVoiceProfile->RTPObj.RTCPObj.TxRepeatInterval;
                 ret = TRUE;
@@ -2449,7 +2449,7 @@ LONG RTCP_GetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, char* pV
                 ret = FALSE;
             }
 
-            if( AnscEqualString(ParamName, "LocalCName", TRUE) )
+            if (strcmp(ParamName, "LocalCName") == 0)
             {
                 AnscCopyString(pValue,pVoiceProfile->RTPObj.RTCPObj.LocalCName);
                 ret = 0;
@@ -2491,7 +2491,7 @@ LONG RTCP_GetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, char* pV
 BOOL RTCP_SetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, ULONG uValue)
 {
     BOOL ret = FALSE;
-    if( AnscEqualString(ParamName, "TxRepeatInterval", TRUE))
+    if (strcmp(ParamName, "TxRepeatInterval") == 0)
     {
         ret = TRUE;
     }
@@ -2538,7 +2538,7 @@ BOOL RTCP_GetParamBoolValue(ANSC_HANDLE hInsContext, char* ParamName, BOOL* pBoo
                 TelcoVoiceMgrDmlGetDataRelease(pTelcoVoiceMgrDmlData);
                 return ret;
             }
-            if( AnscEqualString(ParamName, "Enable", TRUE))
+            if (strcmp(ParamName, "Enable") == 0)
             {
                 *pBool = pVoiceProfile->RTPObj.RTCPObj.Enable;
                 ret = TRUE;
@@ -2580,7 +2580,7 @@ BOOL RTCP_GetParamBoolValue(ANSC_HANDLE hInsContext, char* ParamName, BOOL* pBoo
 BOOL RTCP_SetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, char* pString)
 {
     BOOL ret = FALSE;
-    if( AnscEqualString(ParamName, "LocalCName", TRUE) )
+    if (strcmp(ParamName, "LocalCName") == 0)
     {
         ret = TRUE;
     }
@@ -2614,7 +2614,7 @@ BOOL RTCP_SetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, char* pS
 BOOL RTCP_SetParamBoolValue(ANSC_HANDLE hInsContext, char* ParamName, BOOL bValue)
 {
     BOOL ret = FALSE;
-    if( AnscEqualString(ParamName, "Enable", TRUE) )
+    if (strcmp(ParamName, "Enable") == 0)
     {
         ret = TRUE;
     }
@@ -2705,19 +2705,19 @@ BOOL SIPEventSubscribe_SetParamStringValue(ANSC_HANDLE hInsContext, char* ParamN
         return ret;
     }
 
-    if( AnscEqualString(ParamName, "Alias", TRUE) )
+    if (strcmp(ParamName, "Alias") == 0)
     {
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Event", TRUE) )
+    else if (strcmp(ParamName, "Event") == 0)
     {
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Notifier", TRUE) )
+    else if (strcmp(ParamName, "Notifier") == 0)
     {
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "NotifierTransport", TRUE) )
+    else if (strcmp(ParamName, "NotifierTransport") == 0)
     {
         ret = TRUE;
     }
@@ -2773,7 +2773,7 @@ BOOL SRTP_GetParamBoolValue(ANSC_HANDLE hInsContext, char* ParamName, BOOL* pBoo
 
             PTELCOVOICEMGR_DML_RTP_SRTP pDmlRtpSRTP = &(pDmlVoiceProfile->RTPObj.SRTPObj);
 
-            if( AnscEqualString(ParamName, "Enable", TRUE))
+            if (strcmp(ParamName, "Enable") == 0)
             {
                 *pBool = pDmlRtpSRTP->Enable;
                 ret = TRUE;
@@ -2842,7 +2842,7 @@ BOOL SRTP_SetParamBoolValue(ANSC_HANDLE hInsContext, char* ParamName, BOOL bValu
     if(pDml_RTP_SRTP != NULL)
     {
 
-        if( AnscEqualString(ParamName, "Enable", TRUE) )
+        if (strcmp(ParamName, "Enable") == 0)
         {
             ret = TRUE;
         }
@@ -2908,11 +2908,11 @@ BOOL SRTP_SetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, char* pS
     PTELCOVOICEMGR_DML_RTP_SRTP pDml_RTP_SRTP = &(pDmlVoiceProfile->RTPObj.SRTPObj);
     if(pDml_RTP_SRTP != NULL)
     {
-        if( AnscEqualString(ParamName, "KeyingMethods", TRUE) )
+        if (strcmp(ParamName, "KeyingMethods") == 0)
         {
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "EncryptionKeySizes", TRUE) )
+        else if (strcmp(ParamName, "EncryptionKeySizes") == 0)
         {
             ret = TRUE;
         }
@@ -2983,12 +2983,12 @@ LONG SRTP_GetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, char* pV
     PTELCOVOICEMGR_DML_RTP_SRTP pDml_RTP_SRTP = &(pDmlVoiceProfile->RTPObj.SRTPObj);
     if(pDml_RTP_SRTP != NULL)
     {
-        if( AnscEqualString(ParamName, "KeyingMethods", TRUE) )
+        if (strcmp(ParamName, "KeyingMethods") == 0)
         {
             AnscCopyString(pValue,pDml_RTP_SRTP->KeyingMethods);
             ret = 0;
         }
-        else if( AnscEqualString(ParamName, "EncryptionKeySizes", TRUE) )
+        else if (strcmp(ParamName, "EncryptionKeySizes") == 0)
         {
             AnscCopyString(pValue,pDml_RTP_SRTP->EncryptionKeySizes);
             ret = 0;
@@ -3055,17 +3055,17 @@ BOOL H323_GetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, ULONG* pV
     PTELCOVOICEMGR_DML_H323 pDmlH323 = &(pDmlVoiceProfile->H323Obj);
     if(pDmlH323 != NULL)
     {
-        if( AnscEqualString(ParamName, "GatekeeperPort", TRUE))
+        if (strcmp(ParamName, "GatekeeperPort") == 0)
         {
             *pValue = pDmlH323->GatekeeperPort;
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "TimeToLive", TRUE))
+        else if (strcmp(ParamName, "TimeToLive") == 0)
         {
             *pValue = pDmlH323->TimeToLive;
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "DSCPMark", TRUE))
+        else if (strcmp(ParamName, "DSCPMark") == 0)
         {
             *pValue = pDmlH323->DSCPMark;
             ret = TRUE;
@@ -3130,7 +3130,7 @@ BOOL H323_GetParamBoolValue(ANSC_HANDLE hInsContext, char* ParamName, BOOL* pBoo
     PTELCOVOICEMGR_DML_H323 pDmlH323 = &(pDmlVoiceProfile->H323Obj);
     if(pDmlH323 != NULL)
     {
-        if( AnscEqualString(ParamName, "H235Authentication", TRUE))
+        if (strcmp(ParamName, "H235Authentication") == 0)
         {
             *pBool = pDmlH323->H235Authentication;
             ret = TRUE;
@@ -3202,22 +3202,22 @@ LONG H323_GetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, char* pV
     PTELCOVOICEMGR_DML_H323 pDmlH323 = &(pDmlVoiceProfile->H323Obj);
     if(pDmlH323 != NULL)
     {
-        if( AnscEqualString(ParamName, "GatekeeperID", TRUE) )
+        if (strcmp(ParamName, "GatekeeperID") == 0)
         {
             AnscCopyString(pValue,pDmlH323->GatekeeperID);
             ret = 0;
         }
-        else if( AnscEqualString(ParamName, "Gatekeeper", TRUE) )
+        else if (strcmp(ParamName, "Gatekeeper") == 0)
         {
             AnscCopyString(pValue,pDmlH323->Gatekeeper);
             ret = 0;
         }
-        else if( AnscEqualString(ParamName, "AuthPassword", TRUE) )
+        else if (strcmp(ParamName, "AuthPassword") == 0)
         {
             AnscCopyString(pValue,pDmlH323->AuthPassword);
             ret = 0;
         }
-        else if( AnscEqualString(ParamName, "SendersID", TRUE) )
+        else if (strcmp(ParamName, "SendersID") == 0)
         {
             AnscCopyString(pValue,pDmlH323->SendersID);
             ret = 0;
@@ -3283,7 +3283,7 @@ BOOL H323_SetParamBoolValue(ANSC_HANDLE hInsContext, char* ParamName, BOOL bValu
     PTELCOVOICEMGR_DML_H323 pDmlH323 = &(pDmlVoiceProfile->H323Obj);
     if(pDmlH323 != NULL)
     {
-        if( AnscEqualString(ParamName, "H235Authentication", TRUE) )
+        if (strcmp(ParamName, "H235Authentication") == 0)
         {
             ret = TRUE;
         }
@@ -3348,11 +3348,11 @@ BOOL H323_SetParamIntValue(ANSC_HANDLE hInsContext, char* ParamName, int iValue)
     PTELCOVOICEMGR_DML_H323 pDmlH323 = &(pDmlVoiceProfile->H323Obj);
     if(pDmlH323 != NULL)
     {
-        if( AnscEqualString(ParamName, "VLANIDMark", TRUE) )
+        if (strcmp(ParamName, "VLANIDMark") == 0)
         {
             ret = FALSE;
         }
-        else if( AnscEqualString(ParamName, "EthernetPriorityMark", TRUE) )
+        else if (strcmp(ParamName, "EthernetPriorityMark") == 0)
         {
             ret = FALSE;
         }
@@ -3417,15 +3417,15 @@ BOOL H323_SetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, ULONG uVa
     PTELCOVOICEMGR_DML_H323 pDmlH323 = &(pDmlVoiceProfile->H323Obj);
     if(pDmlH323 != NULL)
     {
-        if( AnscEqualString(ParamName, "GatekeeperPort", TRUE))
+        if (strcmp(ParamName, "GatekeeperPort") == 0)
         {
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "TimeToLive", TRUE))
+        else if (strcmp(ParamName, "TimeToLive") == 0)
         {
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "DSCPMark", TRUE))
+        else if (strcmp(ParamName, "DSCPMark") == 0)
         {
             ret = TRUE;
         }
@@ -3490,19 +3490,19 @@ BOOL H323_SetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, char* pS
     PTELCOVOICEMGR_DML_H323 pDmlH323 = &(pDmlVoiceProfile->H323Obj);
     if(pDmlH323 != NULL)
     {
-        if( AnscEqualString(ParamName, "Gatekeeper", TRUE) )
+        if (strcmp(ParamName, "Gatekeeper") == 0)
         {
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "GatekeeperID", TRUE) )
+        else if (strcmp(ParamName, "GatekeeperID") == 0)
         {
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "AuthPassword", TRUE) )
+        else if (strcmp(ParamName, "AuthPassword") == 0)
         {
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "SendersID", TRUE) )
+        else if (strcmp(ParamName, "SendersID") == 0)
         {
             ret = TRUE;
         }
@@ -3567,27 +3567,27 @@ BOOL H323_GetParamIntValue(ANSC_HANDLE hInsContext, char* ParamName, int* pInt)
     PTELCOVOICEMGR_DML_H323 pDmlH323 = &(pDmlVoiceProfile->H323Obj);
     if(pDmlH323 != NULL)
     {
-        if( AnscEqualString(ParamName, "VLANIDMark", TRUE) )
+        if (strcmp(ParamName, "VLANIDMark") == 0)
         {
             *pInt = pDmlH323->VLANIDMark;
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "EthernetPriorityMark", TRUE) )
+        else if (strcmp(ParamName, "EthernetPriorityMark") == 0)
         {
             *pInt = pDmlH323->EthernetPriorityMark;
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "GatekeeperPort", TRUE) )
+        else if (strcmp(ParamName, "GatekeeperPort") == 0)
         {
             *pInt = pDmlH323->GatekeeperPort;
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "TimeToLive", TRUE) )
+        else if (strcmp(ParamName, "TimeToLive") == 0)
         {
             *pInt = pDmlH323->TimeToLive;
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "DSCPMark", TRUE) )
+        else if (strcmp(ParamName, "DSCPMark") == 0)
         {
             *pInt = pDmlH323->DSCPMark;
             ret = TRUE;
@@ -3652,32 +3652,32 @@ BOOL MGCP_GetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, ULONG* pV
     PTELCOVOICEMGR_DML_MGCP pDmlMGCP = &(pDmlVoiceProfile->MGCPObj);
     if(pDmlMGCP != NULL)
     {
-        if( AnscEqualString(ParamName, "CallAgentPort1", TRUE))
+        if (strcmp(ParamName, "CallAgentPort1") == 0)
         {
             *pValue = pDmlMGCP->CallAgentPort1;
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "CallAgentPort2", TRUE))
+        else if (strcmp(ParamName, "CallAgentPort2") == 0)
         {
             *pValue = pDmlMGCP->CallAgentPort2;
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "RetranIntervalTimer", TRUE))
+        else if (strcmp(ParamName, "RetranIntervalTimer") == 0)
         {
             *pValue = pDmlMGCP->RetranIntervalTimer;
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "MaxRetranCount", TRUE))
+        else if (strcmp(ParamName, "MaxRetranCount") == 0)
         {
             *pValue = pDmlMGCP->MaxRetranCount;
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "LocalPort", TRUE))
+        else if (strcmp(ParamName, "LocalPort") == 0)
         {
             *pValue = pDmlMGCP->LocalPort;
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "DSCPMark", TRUE))
+        else if (strcmp(ParamName, "DSCPMark") == 0)
         {
             *pValue = pDmlMGCP->DSCPMark;
             ret = TRUE;
@@ -3745,27 +3745,27 @@ BOOL MGCP_SetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, ULONG uVa
     if(pDmlMGCP != NULL)
     {
 
-        if( AnscEqualString(ParamName, "CallAgentPort1", TRUE))
+        if (strcmp(ParamName, "CallAgentPort1") == 0)
         {
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "CallAgentPort2", TRUE))
+        else if (strcmp(ParamName, "CallAgentPort2") == 0)
         {
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "RetranIntervalTimer", TRUE))
+        else if (strcmp(ParamName, "RetranIntervalTimer") == 0)
         {
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "MaxRetranCount", TRUE))
+        else if (strcmp(ParamName, "MaxRetranCount") == 0)
         {
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "LocalPort", TRUE))
+        else if (strcmp(ParamName, "LocalPort") == 0)
         {
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "DSCPMark", TRUE))
+        else if (strcmp(ParamName, "DSCPMark") == 0)
         {
             ret = TRUE;
         }
@@ -3833,11 +3833,11 @@ BOOL MGCP_SetParamBoolValue(ANSC_HANDLE hInsContext, char* ParamName, BOOL bValu
     if(pDmlMGCP != NULL)
     {
 
-        if( AnscEqualString(ParamName, "AllowPiggybackEvents", TRUE) )
+        if (strcmp(ParamName, "AllowPiggybackEvents") == 0)
         {
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "SendRSIPImmediately", TRUE) )
+        else if (strcmp(ParamName, "SendRSIPImmediately") == 0)
         {
             ret = TRUE;
         }
@@ -3903,12 +3903,12 @@ BOOL MGCP_GetParamBoolValue(ANSC_HANDLE hInsContext, char* ParamName, BOOL* pBoo
     if(pDmlMGCP != NULL)
     {
 
-        if( AnscEqualString(ParamName, "AllowPiggybackEvents", TRUE))
+        if (strcmp(ParamName, "AllowPiggybackEvents") == 0)
         {
             *pBool = pDmlMGCP->AllowPiggybackEvents; 
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "SendRSIPImmediately", TRUE))
+        else if (strcmp(ParamName, "SendRSIPImmediately") == 0)
         {
             *pBool = pDmlMGCP->SendRSIPImmediately;
             ret = TRUE;
@@ -3974,11 +3974,11 @@ BOOL MGCP_SetParamIntValue(ANSC_HANDLE hInsContext, char* ParamName, int iValue)
     PTELCOVOICEMGR_DML_MGCP pDmlMGCP = &(pDmlVoiceProfile->MGCPObj);
     if(pDmlMGCP != NULL)
     {
-        if( AnscEqualString(ParamName, "VLANIDMark", TRUE) )
+        if (strcmp(ParamName, "VLANIDMark") == 0)
         {
             ret = FALSE;
         }
-        else if( AnscEqualString(ParamName, "EthernetPriorityMark", TRUE) )
+        else if (strcmp(ParamName, "EthernetPriorityMark") == 0)
         {
             ret = FALSE;
         }
@@ -4044,7 +4044,7 @@ BOOL ButtonMap_GetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, ULON
     PTELCOVOICEMGR_DML_BUTTONMAP pDmlButtonMap = &(pDmlVoiceProfile->ButtonMapObj);
     if(pDmlButtonMap != NULL)
     {
-        if( AnscEqualString(ParamName, "NumberOfButtons", TRUE))
+        if (strcmp(ParamName, "NumberOfButtons") == 0)
         {
             *pValue = pDmlButtonMap->NumberOfButtons;
             ret = TRUE;
@@ -4171,7 +4171,7 @@ ANSC_HANDLE Button_GetEntry(ANSC_HANDLE hInsContext, ULONG nIndex, ULONG* pInsNu
 BOOL Button_SetParamBoolValue(ANSC_HANDLE hInsContext, char* ParamName, BOOL bValue)
 {
     BOOL ret = FALSE;
-    if( AnscEqualString(ParamName, "UserAccess", TRUE) )
+    if (strcmp(ParamName, "UserAccess") == 0)
     {
         ret = FALSE;
     }
@@ -4204,7 +4204,7 @@ return:     TRUE if succeeded.
 BOOL Button_GetParamBoolValue(ANSC_HANDLE hInsContext, char* ParamName, BOOL* pBool)
 {
         BOOL ret = FALSE;
-        if( AnscEqualString(ParamName, "UserAccess", TRUE))
+        if (strcmp(ParamName, "UserAccess") == 0)
         {
             ret = TRUE;
         }
@@ -4249,27 +4249,27 @@ BOOL Button_GetParamBoolValue(ANSC_HANDLE hInsContext, char* ParamName, BOOL* pB
 LONG Button_GetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, char* pValue, ULONG* pUlSize)
 {
     ULONG ret = 1;
-    if( AnscEqualString(ParamName, "Alias", TRUE) )
+    if (strcmp(ParamName, "Alias") == 0)
     {
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "ButtonName", TRUE) )
+    else if (strcmp(ParamName, "ButtonName") == 0)
     {
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "FacilityAction", TRUE) )
+    else if (strcmp(ParamName, "FacilityAction") == 0)
     {
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "FacilityActionArgument", TRUE) )
+    else if (strcmp(ParamName, "FacilityActionArgument") == 0)
     {
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "QuickDialNumber", TRUE) )
+    else if (strcmp(ParamName, "QuickDialNumber") == 0)
     {
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "ButtonMessage", TRUE) )
+    else if (strcmp(ParamName, "ButtonMessage") == 0)
     {
         ret = 0;
     }
@@ -4310,19 +4310,19 @@ BOOL FaxT38_GetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, ULONG* 
 {
     BOOL ret = FALSE;
 
-    if( AnscEqualString(ParamName, "BitRate", TRUE))
+    if (strcmp(ParamName, "BitRate") == 0)
     {
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName,"HighSpeedPacketRate", TRUE))
+    else if (strcmp(ParamName, "HighSpeedPacketRate") == 0)
     {
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName,"HighSpeedRedundancy", TRUE))
+    else if (strcmp(ParamName, "HighSpeedRedundancy") == 0)
     {
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName,"LowSpeedRedundancy", TRUE))
+    else if (strcmp(ParamName, "LowSpeedRedundancy") == 0)
     {
         ret = TRUE;
     }
@@ -4362,19 +4362,19 @@ BOOL FaxT38_SetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, ULONG u
 {
     BOOL ret = FALSE;
 
-    if( AnscEqualString(ParamName, "BitRate", TRUE))
+    if (strcmp(ParamName, "BitRate") == 0)
     {
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "HighSpeedPacketRate", TRUE))
+    else if (strcmp(ParamName, "HighSpeedPacketRate") == 0)
     {
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "HighSpeedRedundancy", TRUE))
+    else if (strcmp(ParamName, "HighSpeedRedundancy") == 0)
     {
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "LowSpeedRedundancy", TRUE))
+    else if (strcmp(ParamName, "LowSpeedRedundancy") == 0)
     {
         ret = TRUE;
     }
@@ -4407,7 +4407,7 @@ return:     TRUE if succeeded.
 BOOL FaxT38_GetParamBoolValue(ANSC_HANDLE hInsContext, char* ParamName, BOOL* pBool)
 {
     BOOL ret = FALSE;
-    if( AnscEqualString(ParamName, "Enable", TRUE))
+    if (strcmp(ParamName, "Enable") == 0)
     {
         ret = TRUE;
     }
@@ -4446,7 +4446,7 @@ BOOL FaxT38_GetParamBoolValue(ANSC_HANDLE hInsContext, char* ParamName, BOOL* pB
 BOOL FaxT38_SetParamBoolValue(ANSC_HANDLE hInsContext, char* ParamName, BOOL bValue)
 {
     BOOL ret = FALSE;
-    if( AnscEqualString(ParamName, "Enable", TRUE) )
+    if (strcmp(ParamName, "Enable") == 0)
     {
         ret = FALSE;
     }
@@ -4480,7 +4480,7 @@ BOOL FaxT38_SetParamBoolValue(ANSC_HANDLE hInsContext, char* ParamName, BOOL bVa
 BOOL FaxT38_SetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, char* pString)
 {
     BOOL ret = FALSE;
-    if( AnscEqualString(ParamName, "TCFMethod", TRUE) )
+    if (strcmp(ParamName, "TCFMethod") == 0)
     {
         ret = TRUE;
     }
@@ -4520,7 +4520,7 @@ BOOL FaxT38_SetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, char* 
 LONG FaxT38_GetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, char* pValue, ULONG* pUlSize)
 {
     ULONG ret = 1;
-    if( AnscEqualString(ParamName, "TCFMethod", TRUE) )
+    if (strcmp(ParamName, "TCFMethod") == 0)
     {
         ret = 0;
     }
@@ -4644,11 +4644,11 @@ ANSC_HANDLE SIPResponseMap_GetEntry(ANSC_HANDLE hInsContext, ULONG nIndex, ULONG
 BOOL SIPResponseMap_GetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, ULONG uValue)
 {
     BOOL ret = FALSE;
-    if( AnscEqualString(ParamName, "SIPResponseNumber", TRUE) )
+    if (strcmp(ParamName, "SIPResponseNumber") == 0)
     {
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Tone", TRUE) )
+    else if (strcmp(ParamName, "Tone") == 0)
     {
         ret = TRUE;
     }
@@ -4693,11 +4693,11 @@ BOOL SIPResponseMap_GetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName,
 LONG SIPResponseMap_GetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, char* pValue, ULONG* pUlSize)
 {
     ULONG ret = 1;
-    if( AnscEqualString(ParamName, "Alias", TRUE) )
+    if (strcmp(ParamName, "Alias") == 0)
     {
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "TextMessage", TRUE) )
+    else if (strcmp(ParamName, "TextMessage") == 0)
     {
         ret = 0;
     }
@@ -4736,11 +4736,11 @@ BOOL SIPResponseMap_SetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName,
 {
     BOOL ret = FALSE;
 
-    if( AnscEqualString(ParamName, "SIPResponseNumber", TRUE))
+    if (strcmp(ParamName, "SIPResponseNumber") == 0)
     {
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Tone", TRUE))
+    else if (strcmp(ParamName, "Tone") == 0)
     {
         ret = TRUE;
     }
@@ -4775,11 +4775,11 @@ BOOL SIPResponseMap_SetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName,
 BOOL SIPResponseMap_SetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, char* pString)
 {
     BOOL ret = FALSE;
-    if( AnscEqualString(ParamName, "Alias", TRUE) )
+    if (strcmp(ParamName, "Alias") == 0)
     {
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "TextMessage", TRUE) )
+    else if (strcmp(ParamName, "TextMessage") == 0)
     {
         ret = TRUE;
     }
@@ -4925,22 +4925,22 @@ LONG SIPEventSubscribe_GetParamStringValue(ANSC_HANDLE hInsContext, char* ParamN
         return ret;
     }
     
-    if( AnscEqualString(ParamName, "Alias", TRUE) )
+    if (strcmp(ParamName, "Alias") == 0)
     {
         AnscCopyString(pValue,pDmlSIPEvtSubscribe->Alias);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Event", TRUE) )
+    else if (strcmp(ParamName, "Event") == 0)
     {
         AnscCopyString(pValue,pDmlSIPEvtSubscribe->Event);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "NotifierTransport", TRUE) )
+    else if (strcmp(ParamName, "NotifierTransport") == 0)
     {
         AnscCopyString(pValue,pDmlSIPEvtSubscribe->NotifierTransport);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Notifier", TRUE) )
+    else if (strcmp(ParamName, "Notifier") == 0)
     {
         AnscCopyString(pValue,pDmlSIPEvtSubscribe->Notifier);
         ret = 0;
@@ -5003,12 +5003,12 @@ BOOL SIPEventSubscribe_GetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamNa
     }
     
 
-    if( AnscEqualString(ParamName, "NotifierPort", TRUE))
+    if (strcmp(ParamName, "NotifierPort") == 0)
     {
         *pValue = pDmlSIPEvtSubscribe->NotifierPort;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "ExpireTime", TRUE))
+    else if (strcmp(ParamName, "ExpireTime") == 0)
     {
         *pValue = pDmlSIPEvtSubscribe->ExpireTime;
         ret = TRUE;
@@ -5071,11 +5071,11 @@ BOOL SIPEventSubscribe_SetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamNa
         return ret;
     }
 
-    if( AnscEqualString(ParamName, "NotifierPort", TRUE) )
+    if (strcmp(ParamName, "NotifierPort") == 0)
     {
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "ExpireTime", TRUE) )
+    else if (strcmp(ParamName, "ExpireTime") == 0)
     {
         ret = TRUE;
     }
@@ -5120,19 +5120,19 @@ BOOL SIPEventSubscribe_SetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamNa
 LONG ServiceProviderInfo_GetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, char* pValue, ULONG* pUlSize)
 {
     ULONG ret = 1;
-    if( AnscEqualString(ParamName, "Name", TRUE) )
+    if (strcmp(ParamName, "Name") == 0)
     {
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "ContactPhoneNumber", TRUE) )
+    else if (strcmp(ParamName, "ContactPhoneNumber") == 0)
     {
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "URL", TRUE) )
+    else if (strcmp(ParamName, "URL") == 0)
     {
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "EmailAddress", TRUE) )
+    else if (strcmp(ParamName, "EmailAddress") == 0)
     {
         ret = 0;
     }
@@ -5171,19 +5171,19 @@ LONG ServiceProviderInfo_GetParamStringValue(ANSC_HANDLE hInsContext, char* Para
 BOOL ServiceProviderInfo_SetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, char* pString)
 {
     BOOL ret = FALSE;
-    if( AnscEqualString(ParamName, "Name", TRUE) )
+    if (strcmp(ParamName, "Name") == 0)
     {
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "ContactPhoneNumber", TRUE) )
+    else if (strcmp(ParamName, "ContactPhoneNumber") == 0)
     {
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "URL", TRUE) )
+    else if (strcmp(ParamName, "URL") == 0)
     {
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "EmailAddress", TRUE) )
+    else if (strcmp(ParamName, "EmailAddress") == 0)
     {
         ret = TRUE;
     }
@@ -5248,17 +5248,17 @@ LONG MGCP_GetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, char* pV
     PTELCOVOICEMGR_DML_MGCP pDmlMGCP = &(pDmlVoiceProfile->MGCPObj);
     if(pDmlMGCP != NULL)
     {
-        if( AnscEqualString(ParamName, "CallAgent1", TRUE) )
+        if (strcmp(ParamName, "CallAgent1") == 0)
         {
             AnscCopyString(pValue, pDmlMGCP->CallAgent1);
             ret = 0;
         }
-        else if( AnscEqualString(ParamName, "CallAgent2", TRUE) )
+        else if (strcmp(ParamName, "CallAgent2") == 0)
         {
             AnscCopyString(pValue, pDmlMGCP->CallAgent1);
             ret = 0;
         }
-        else if( AnscEqualString(ParamName, "RegisterMode", TRUE) )
+        else if (strcmp(ParamName, "RegisterMode") == 0)
         {
             if (MGCP_REGISTERMODE_WILDCARD == pDmlMGCP->RegisterMode)
             {
@@ -5271,12 +5271,12 @@ LONG MGCP_GetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, char* pV
                 ret = 0;
             }
         }
-        else if( AnscEqualString(ParamName, "Domain", TRUE) )
+        else if (strcmp(ParamName, "Domain") == 0)
         {
             AnscCopyString(pValue, pDmlMGCP->Domain);
             ret = 0;
         }
-        else if( AnscEqualString(ParamName, "User", TRUE) )
+        else if (strcmp(ParamName, "User") == 0)
         {
             AnscCopyString(pValue, pDmlMGCP->User);
             ret = 0;
@@ -5344,42 +5344,42 @@ BOOL MGCP_GetParamIntValue(ANSC_HANDLE hInsContext, char* ParamName, int* pInt)
     if(pDmlMGCP != NULL)
     {
 
-        if( AnscEqualString(ParamName, "VLANIDMark", TRUE) )
+        if (strcmp(ParamName, "VLANIDMark") == 0)
         {
             *pInt = pDmlMGCP->VLANIDMark;
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "EthernetPriorityMark", TRUE) )
+        else if (strcmp(ParamName, "EthernetPriorityMark") == 0)
         {
             *pInt = pDmlMGCP->EthernetPriorityMark;
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "CallAgentPort1", TRUE) )
+        else if (strcmp(ParamName, "CallAgentPort1") == 0)
         {
             *pInt = pDmlMGCP->CallAgentPort1;
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "CallAgentPort2", TRUE) )
+        else if (strcmp(ParamName, "CallAgentPort2") == 0)
         {
             *pInt = pDmlMGCP->CallAgentPort2;
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "RetranIntervalTimer", TRUE) )
+        else if (strcmp(ParamName, "RetranIntervalTimer") == 0)
         {
             *pInt = pDmlMGCP->RetranIntervalTimer;
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "MaxRetranCount", TRUE) )
+        else if (strcmp(ParamName, "MaxRetranCount") == 0)
         {
             *pInt = pDmlMGCP->MaxRetranCount;
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "LocalPort", TRUE) )
+        else if (strcmp(ParamName, "LocalPort") == 0)
         {
             *pInt = pDmlMGCP->LocalPort;
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "DSCPMark", TRUE) )
+        else if (strcmp(ParamName, "DSCPMark") == 0)
         {
             *pInt = pDmlMGCP->DSCPMark;
             ret = TRUE;
@@ -5445,23 +5445,23 @@ BOOL MGCP_SetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, char* pS
     PTELCOVOICEMGR_DML_MGCP pDmlMGCP = &(pDmlVoiceProfile->MGCPObj);
     if(pDmlMGCP != NULL)
     {
-        if( AnscEqualString(ParamName, "CallAgent1", TRUE) )
+        if (strcmp(ParamName, "CallAgent1") == 0)
         {
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "CallAgent2", TRUE) )
+        else if (strcmp(ParamName, "CallAgent2") == 0)
         {
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "RegisterMode", TRUE) )
+        else if (strcmp(ParamName, "RegisterMode") == 0)
         {
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "Domain", TRUE) )
+        else if (strcmp(ParamName, "Domain") == 0)
         {
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "User", TRUE) )
+        else if (strcmp(ParamName, "User") == 0)
         {
             ret = TRUE;
         }

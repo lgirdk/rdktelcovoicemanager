@@ -101,13 +101,13 @@ X_RDK_TelcoVoice_GetParamStringValue
 {
     PTELCOVOICEMGR_DATAMODEL_TELCOVOICE       pMyObject     = (PTELCOVOICEMGR_DATAMODEL_TELCOVOICE)g_pTelcoVoiceBEManager->hTelcoVoice;
 
-    if( AnscEqualString(ParamName, "Data", TRUE) )
+    if (strcmp(ParamName, "Data") == 0)
     {
         /* Data value should be empty for all get */
         snprintf(pValue, pUlSize, "%s", "");
         return 0;
     }
-    if( AnscEqualString(ParamName, "DatamodelVersion", TRUE) )
+    if (strcmp(ParamName, "DatamodelVersion") == 0)
     {
 #ifdef FEATURE_RDKB_VOICE_DM_TR104_V2
         snprintf(pValue, pUlSize, "%s", "TR104V2");
@@ -160,7 +160,7 @@ X_RDK_TelcoVoice_SetParamStringValue
 {
     PTELCOVOICEMGR_DATAMODEL_TELCOVOICE       pMyObject     = (PTELCOVOICEMGR_DATAMODEL_TELCOVOICE)g_pTelcoVoiceBEManager->hTelcoVoice;
 
-    if( AnscEqualString(ParamName, "Data", TRUE) )
+    if (strcmp(ParamName, "Data") == 0)
     {
         char *webConf = NULL;
         int webSize = 0;
