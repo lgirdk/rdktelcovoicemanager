@@ -107,7 +107,7 @@ X_RDK_TelcoVoice_GetParamStringValue
         snprintf(pValue, pUlSize, "%s", "");
         return 0;
     }
-    if( AnscEqualString(ParamName, "DatamodelVersion", TRUE) )
+    if (strcmp(ParamName, "DatamodelVersion") == 0)
     {
 #ifdef FEATURE_RDKB_VOICE_DM_TR104_V2
         snprintf(pValue, pUlSize, "%s", "TR104V2");
