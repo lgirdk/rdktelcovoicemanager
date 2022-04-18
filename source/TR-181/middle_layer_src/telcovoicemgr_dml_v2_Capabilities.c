@@ -66,17 +66,17 @@ BOOL TelcoVoiceMgrDml_capabilities_GetParamUlongValue(ANSC_HANDLE hInsContext, c
 
     PDML_VOICESERVICE_CAPABILITIES pHEAD = &(pDmlVoiceService->Capabilities);
 
-    if( AnscEqualString(ParamName, "ToneFileFormats", TRUE) )
+    if (strcmp(ParamName, "ToneFileFormats") == 0)
     {
         *puLong = pHEAD->ToneFileFormats;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "RingFileFormats", TRUE) )
+    else if (strcmp(ParamName, "RingFileFormats") == 0)
     {
         *puLong = pHEAD->RingFileFormats;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "FacilityActions", TRUE) )
+    else if (strcmp(ParamName, "FacilityActions") == 0)
     {
         *puLong = pHEAD->FacilityActions;
         ret = TRUE;
@@ -142,12 +142,12 @@ ULONG TelcoVoiceMgrDml_capabilities_GetParamStringValue(ANSC_HANDLE hInsContext,
 
     PDML_VOICESERVICE_CAPABILITIES pHEAD = &(pDmlVoiceService->Capabilities);
 
-    if( AnscEqualString(ParamName, "UserConnectionModes", TRUE) )
+    if (strcmp(ParamName, "UserConnectionModes") == 0)
     {
         AnscCopyString(pValue,pHEAD->UserConnectionModes);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "NetworkConnectionModes", TRUE) )
+    else if (strcmp(ParamName, "NetworkConnectionModes") == 0)
     {
         AnscCopyString(pValue,pHEAD->NetworkConnectionModes);
         ret = 0;
@@ -206,32 +206,32 @@ BOOL TelcoVoiceMgrDml_capabilities_GetParamIntValue(ANSC_HANDLE hInsContext, cha
 
     PDML_VOICESERVICE_CAPABILITIES pHEAD = &(pDmlVoiceService->Capabilities);
 
-    if( AnscEqualString(ParamName, "MaxSessionsPerLine", TRUE) )
+    if (strcmp(ParamName, "MaxSessionsPerLine") == 0)
     {
         *pInt = pHEAD->MaxSessionsPerLine;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "MaxSessionsPerExtension", TRUE) )
+    else if (strcmp(ParamName, "MaxSessionsPerExtension") == 0)
     {
         *pInt = pHEAD->MaxSessionsPerExtension;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "MaxSessionCount", TRUE) )
+    else if (strcmp(ParamName, "MaxSessionCount") == 0)
     {
         *pInt = pHEAD->MaxSessionCount;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "MaxLineCount", TRUE) )
+    else if (strcmp(ParamName, "MaxLineCount") == 0)
     {
         *pInt = pHEAD->MaxLineCount;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "MaxExtensionCount", TRUE) )
+    else if (strcmp(ParamName, "MaxExtensionCount") == 0)
     {
         *pInt = pHEAD->MaxExtensionCount;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "MaxCallLogCount", TRUE) )
+    else if (strcmp(ParamName, "MaxCallLogCount") == 0)
     {
         *pInt = pHEAD->MaxCallLogCount;
         ret = TRUE;
@@ -288,17 +288,17 @@ BOOL TelcoVoiceMgrDml_capabilities_SIP_Client_GetParamUlongValue(ANSC_HANDLE hIn
 
     PDML_VOICESERVICE_CAPABILITIES_SIP_CLIENT pHEAD = &(pDmlVoiceService->Capabilities.SIP.Client_Obj);
 
-    if( AnscEqualString(ParamName, "TLSKeyExchangeProtocols", TRUE) )
+    if (strcmp(ParamName, "TLSKeyExchangeProtocols") == 0)
     {
         *puLong = pHEAD->TLSKeyExchangeProtocols;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "TLSEncryptionProtocols", TRUE) )
+    else if (strcmp(ParamName, "TLSEncryptionProtocols") == 0)
     {
         *puLong = pHEAD->TLSEncryptionProtocols;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "TLSAuthenticationProtocols", TRUE) )
+    else if (strcmp(ParamName, "TLSAuthenticationProtocols") == 0)
     {
         *puLong = pHEAD->TLSAuthenticationProtocols;
         ret = TRUE;
@@ -363,27 +363,27 @@ ULONG TelcoVoiceMgrDml_capabilities_SIP_Client_GetParamStringValue(ANSC_HANDLE h
 
     PDML_VOICESERVICE_CAPABILITIES_SIP_CLIENT pHEAD = &(pDmlVoiceService->Capabilities.SIP.Client_Obj);
 
-    if( AnscEqualString(ParamName, "URISchemes", TRUE) )
+    if (strcmp(ParamName, "URISchemes") == 0)
     {
         AnscCopyString(pValue,pHEAD->URISchemes);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "TLSEncryptionKeySizes", TRUE) )
+    else if (strcmp(ParamName, "TLSEncryptionKeySizes") == 0)
     {
         AnscCopyString(pValue,pHEAD->TLSEncryptionKeySizes);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "TLSAuthenticationKeySizes", TRUE) )
+    else if (strcmp(ParamName, "TLSAuthenticationKeySizes") == 0)
     {
         AnscCopyString(pValue,pHEAD->TLSAuthenticationKeySizes);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Extensions", TRUE) )
+    else if (strcmp(ParamName, "Extensions") == 0)
     {
         AnscCopyString(pValue,pHEAD->Extensions);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "EventTypes", TRUE) )
+    else if (strcmp(ParamName, "EventTypes") == 0)
     {
         AnscCopyString(pValue,pHEAD->EventTypes);
         ret = 0;
@@ -442,17 +442,17 @@ BOOL TelcoVoiceMgrDml_capabilities_SIP_Registrar_GetParamUlongValue(ANSC_HANDLE 
 
     PDML_VOICESERVICE_CAPABILITIES_SIP_REGISTRAR pHEAD = &(pDmlVoiceService->Capabilities.SIP.Registrar_Obj);
 
-    if( AnscEqualString(ParamName, "TLSKeyExchangeProtocols", TRUE) )
+    if (strcmp(ParamName, "TLSKeyExchangeProtocols") == 0)
     {
         *puLong = pHEAD->TLSKeyExchangeProtocols;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "TLSEncryptionProtocols", TRUE) )
+    else if (strcmp(ParamName, "TLSEncryptionProtocols") == 0)
     {
         *puLong = pHEAD->TLSEncryptionProtocols;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "TLSAuthenticationProtocols", TRUE) )
+    else if (strcmp(ParamName, "TLSAuthenticationProtocols") == 0)
     {
         *puLong = pHEAD->TLSAuthenticationProtocols;
         ret = TRUE;
@@ -517,27 +517,27 @@ ULONG TelcoVoiceMgrDml_capabilities_SIP_Registrar_GetParamStringValue(ANSC_HANDL
 
     PDML_VOICESERVICE_CAPABILITIES_SIP_REGISTRAR pHEAD = &(pDmlVoiceService->Capabilities.SIP.Registrar_Obj);
 
-    if( AnscEqualString(ParamName, "URISchemes", TRUE) )
+    if (strcmp(ParamName, "URISchemes") == 0)
     {
         AnscCopyString(pValue,pHEAD->URISchemes);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "TLSEncryptionKeySizes", TRUE) )
+    else if (strcmp(ParamName, "TLSEncryptionKeySizes") == 0)
     {
         AnscCopyString(pValue,pHEAD->TLSEncryptionKeySizes);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "TLSAuthenticationKeySizes", TRUE) )
+    else if (strcmp(ParamName, "TLSAuthenticationKeySizes") == 0)
     {
         AnscCopyString(pValue,pHEAD->TLSAuthenticationKeySizes);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Extensions", TRUE) )
+    else if (strcmp(ParamName, "Extensions") == 0)
     {
         AnscCopyString(pValue,pHEAD->Extensions);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "EventTypes", TRUE) )
+    else if (strcmp(ParamName, "EventTypes") == 0)
     {
         AnscCopyString(pValue,pHEAD->EventTypes);
         ret = 0;
@@ -602,7 +602,7 @@ ULONG TelcoVoiceMgrDml_capabilities_MGCP_GetParamStringValue(ANSC_HANDLE hInsCon
 
     PDML_VOICESERVICE_CAPABILITIES_MGCP pHEAD = &(pDmlVoiceService->Capabilities.MGCP);
 
-    if( AnscEqualString(ParamName, "Extensions", TRUE) )
+    if (strcmp(ParamName, "Extensions") == 0)
     {
         AnscCopyString(pValue,pHEAD->Extensions);
         ret = 0;
@@ -660,7 +660,7 @@ BOOL TelcoVoiceMgrDml_capabilities_H323_GetParamUlongValue(ANSC_HANDLE hInsConte
 
     PDML_VOICESERVICE_CAPABILITIES_H323 pHEAD = &(pDmlVoiceService->Capabilities.H323);
 
-    if( AnscEqualString(ParamName, "H235AuthenticationMethods", TRUE) )
+    if (strcmp(ParamName, "H235AuthenticationMethods") == 0)
     {
         *puLong = pHEAD->H235AuthenticationMethods;
         ret = TRUE;
@@ -719,7 +719,7 @@ BOOL TelcoVoiceMgrDml_capabilities_H323_GetParamBoolValue(ANSC_HANDLE hInsContex
 
     PDML_VOICESERVICE_CAPABILITIES_H323 pHEAD = &(pDmlVoiceService->Capabilities.H323);
 
-    if( AnscEqualString(ParamName, "FastStart", TRUE) )
+    if (strcmp(ParamName, "FastStart") == 0)
     {
         *pBool = pHEAD->FastStart;
         ret = TRUE;
@@ -777,32 +777,32 @@ BOOL TelcoVoiceMgrDml_capabilities_ISDN_GetParamBoolValue(ANSC_HANDLE hInsContex
 
     PDML_VOICESERVICE_CAPABILITIES_ISDN pHEAD = &(pDmlVoiceService->Capabilities.ISDN);
 
-    if( AnscEqualString(ParamName, "MWI", TRUE) )
+    if (strcmp(ParamName, "MWI") == 0)
     {
         *pBool = pHEAD->MWI;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "MSN", TRUE) )
+    else if (strcmp(ParamName, "MSN") == 0)
     {
         *pBool = pHEAD->MSN;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "MCID", TRUE) )
+    else if (strcmp(ParamName, "MCID") == 0)
     {
         *pBool = pHEAD->MCID;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "ECT", TRUE) )
+    else if (strcmp(ParamName, "ECT") == 0)
     {
         *pBool = pHEAD->ECT;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "DDI", TRUE) )
+    else if (strcmp(ParamName, "DDI") == 0)
     {
         *pBool = pHEAD->DDI;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "AoC", TRUE) )
+    else if (strcmp(ParamName, "AoC") == 0)
     {
         *pBool = pHEAD->AoC;
         ret = TRUE;
@@ -859,7 +859,7 @@ BOOL TelcoVoiceMgrDml_capabilities_POTS_GetParamUlongValue(ANSC_HANDLE hInsConte
 
     PDML_VOICESERVICE_CAPABILITIES_POTS pHEAD = &(pDmlVoiceService->Capabilities.POTS);
 
-    if( AnscEqualString(ParamName, "DialType", TRUE) )
+    if (strcmp(ParamName, "DialType") == 0)
     {
         *puLong = pHEAD->DialType;
         ret = TRUE;
@@ -967,12 +967,12 @@ BOOL TelcoVoiceMgrDml_capabilities_POTS_GetParamBoolValue(ANSC_HANDLE hInsContex
 
     PDML_VOICESERVICE_CAPABILITIES_POTS pHEAD = &(pDmlVoiceService->Capabilities.POTS);
 
-    if( AnscEqualString(ParamName, "ClipGeneration", TRUE) )
+    if (strcmp(ParamName, "ClipGeneration") == 0)
     {
         *pBool = pHEAD->ClipGeneration;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "ChargingPulse", TRUE) )
+    else if (strcmp(ParamName, "ChargingPulse") == 0)
     {
         *pBool = pHEAD->ChargingPulse;
         ret = TRUE;
@@ -1170,12 +1170,12 @@ BOOL TelcoVoiceMgrDml_capabilities_CodecList_GetParamUlongValue(ANSC_HANDLE hIns
 
     PDML_VOICESERVICE_CAPABILITIES_CODEC pHEAD = &(pCapCodecCtrl->dml);
 
-    if( AnscEqualString(ParamName, "Codec", TRUE) )
+    if (strcmp(ParamName, "Codec") == 0)
     {
         *puLong = pHEAD->Codec;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "BitRate", TRUE) )
+    else if (strcmp(ParamName, "BitRate") == 0)
     {
         *puLong = pHEAD->BitRate;
         ret = TRUE;
@@ -1238,12 +1238,12 @@ ULONG TelcoVoiceMgrDml_capabilities_CodecList_GetParamStringValue(ANSC_HANDLE hI
 
     PDML_VOICESERVICE_CAPABILITIES_CODEC pHEAD = &(pCapCodecCtrl->dml);
 
-    if( AnscEqualString(ParamName, "PacketizationPeriod", TRUE) )
+    if (strcmp(ParamName, "PacketizationPeriod") == 0)
     {
         AnscCopyString(pValue,pHEAD->PacketizationPeriod);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         AnscCopyString(pValue,pHEAD->Alias);
         ret = 0;
@@ -1310,7 +1310,7 @@ BOOL TelcoVoiceMgrDml_capabilities_CodecList_SetParamStringValue(ANSC_HANDLE hIn
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "Alias", TRUE) )
+    if (strcmp(ParamName, "Alias") == 0)
     {
         TELCOVOICEMGR_LOCK_OR_EXIT()
 
@@ -1369,7 +1369,7 @@ BOOL TelcoVoiceMgrDml_capabilities_CodecList_GetParamBoolValue(ANSC_HANDLE hInsC
 
     PDML_VOICESERVICE_CAPABILITIES_CODEC pHEAD = &(pCapCodecCtrl->dml);
 
-    if( AnscEqualString(ParamName, "SilenceSuppression", TRUE) )
+    if (strcmp(ParamName, "SilenceSuppression") == 0)
     {
         *pBool = pHEAD->SilenceSuppression;
         ret = TRUE;
@@ -1499,12 +1499,12 @@ BOOL TelcoVoiceMgrDml_capabilities_QualityIndicator_GetParamUlongValue(ANSC_HAND
 
     PDML_VOICESERVICE_CAPABILITIES_QUALITYINDICATOR pHEAD = &(pDmlVoiceService->Capabilities.QualityIndicator);
 
-    if( AnscEqualString(ParamName, "MaxWorstQIValues", TRUE) )
+    if (strcmp(ParamName, "MaxWorstQIValues") == 0)
     {
         *puLong = pHEAD->MaxWorstQIValues;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "MaxQIValues", TRUE) )
+    else if (strcmp(ParamName, "MaxQIValues") == 0)
     {
         *puLong = pHEAD->MaxQIValues;
         ret = TRUE;
@@ -1569,7 +1569,7 @@ ULONG TelcoVoiceMgrDml_capabilities_QualityIndicator_GetParamStringValue(ANSC_HA
 
     PDML_VOICESERVICE_CAPABILITIES_QUALITYINDICATOR pHEAD = &(pDmlVoiceService->Capabilities.QualityIndicator);
 
-    if( AnscEqualString(ParamName, "QIModelsSupported", TRUE) )
+    if (strcmp(ParamName, "QIModelsSupported") == 0)
     {
         AnscCopyString(pValue,pHEAD->QIModelsSupported);
         ret = 0;
