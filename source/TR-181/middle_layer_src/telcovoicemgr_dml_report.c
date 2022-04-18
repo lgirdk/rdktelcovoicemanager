@@ -88,9 +88,11 @@ X_RDK_Report_VoiceService_GetParamUlongValue
     PTELCOVOICE_CONTEXT_LINK_OBJECT         pMyObject             = (PTELCOVOICE_CONTEXT_LINK_OBJECT)g_pTelcoVoiceBEManager->hServices;
     PDML_X_RDK_REPORT_VOICE_SERVICE  pVoiceServiceReport   = (PDML_X_RDK_REPORT_VOICE_SERVICE)pMyObject->pVoiceServiceReport;
 
-    /* check the parameter name and set the corresponding value */
-    if(AnscEqualString(ParamName, "ReportingPeriod", TRUE) && (puLong != NULL))
+    if (strcmp(ParamName, "ReportingPeriod") == 0)
     {
+        if (puLong == NULL)
+            return FALSE;
+
         *puLong = pVoiceServiceReport->ReportingPeriod;
         return TRUE;
     }
@@ -296,8 +298,11 @@ X_RDK_Report_VoiceService_GetParamBoolValue
     PTELCOVOICE_CONTEXT_LINK_OBJECT         pMyObject             = (PTELCOVOICE_CONTEXT_LINK_OBJECT)g_pTelcoVoiceBEManager->hServices;
     PDML_X_RDK_REPORT_VOICE_SERVICE  pVoiceServiceReport   = (PDML_X_RDK_REPORT_VOICE_SERVICE)pMyObject->pVoiceServiceReport;
 
-    if(AnscEqualString(ParamName, "Enabled", TRUE) && (pBool != NULL))
+    if (strcmp(ParamName, "Enabled") == 0)
     {
+        if (pBool == NULL)
+            return FALSE;
+
         *pBool = pVoiceServiceReport->Enabled;
         return TRUE;
     }
@@ -545,17 +550,21 @@ X_RDK_Report_VoiceService_Default_GetParamUlongValue
     PDML_X_RDK_REPORT_VOICE_SERVICE  pVoiceServiceReport   = (PDML_X_RDK_REPORT_VOICE_SERVICE)pMyObject->pVoiceServiceReport;
     PDML_X_RDK_REPORT_VOICE_SERVICE_DEFAULT    pVoiceServiceReportDflt  = (PDML_X_RDK_REPORT_VOICE_SERVICE_DEFAULT)pVoiceServiceReport->pVoiceServiceDefaultReport;
 
-    /* check the parameter name and set the corresponding value */
-    if(AnscEqualString(ParamName, "OverrideTTL", TRUE) && (puLong != NULL))
+    if (strcmp(ParamName, "OverrideTTL") == 0)
     {
+        if (puLong == NULL)
+            return FALSE;
+
         pVoiceServiceReportDflt->OverrideTTL = VoiceServiceReportGetDefaultOverrideTTL();
         *puLong = pVoiceServiceReportDflt->OverrideTTL;
         return TRUE;
     }
 
-    /* check the parameter name and set the corresponding value */
-    if(AnscEqualString(ParamName, "ReportingPeriod", TRUE) && (puLong != NULL))
+    if (strcmp(ParamName, "ReportingPeriod") == 0)
     {
+        if (puLong == NULL)
+            return FALSE;
+
         *puLong = pVoiceServiceReportDflt->ReportingPeriod;
         return TRUE;
     }
