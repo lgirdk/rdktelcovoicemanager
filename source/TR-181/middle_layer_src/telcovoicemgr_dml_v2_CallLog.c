@@ -205,17 +205,17 @@ BOOL TelcoVoiceMgrDml_CallLogList_GetParamUlongValue(ANSC_HANDLE hInsContext, ch
 
     PDML_CALLLOG pHEAD = &(pHEADCtrl->dml);
 
-    if( AnscEqualString(ParamName, "Duration", TRUE) )
+    if (strcmp(ParamName, "Duration") == 0)
     {
         *puLong = pHEAD->Duration;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Direction", TRUE) )
+    else if (strcmp(ParamName, "Direction") == 0)
     {
         *puLong = pHEAD->Direction;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "CallTerminationCause", TRUE) )
+    else if (strcmp(ParamName, "CallTerminationCause") == 0)
     {
         *puLong = pHEAD->CallTerminationCause;
         ret = TRUE;
@@ -277,47 +277,47 @@ ULONG TelcoVoiceMgrDml_CallLogList_GetParamStringValue(ANSC_HANDLE hInsContext, 
 
     PDML_CALLLOG pHEAD = &(pHEADCtrl->dml);
 
-    if( AnscEqualString(ParamName, "UsedLine", TRUE) )
+    if (strcmp(ParamName, "UsedLine") == 0)
     {
         AnscCopyString(pValue,pHEAD->UsedLine);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "UsedExtensions", TRUE) )
+    else if (strcmp(ParamName, "UsedExtensions") == 0)
     {
         AnscCopyString(pValue,pHEAD->UsedExtensions);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Start", TRUE) )
+    else if (strcmp(ParamName, "Start") == 0)
     {
         AnscCopyString(pValue,pHEAD->Start);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Source", TRUE) )
+    else if (strcmp(ParamName, "Source") == 0)
     {
         AnscCopyString(pValue,pHEAD->Source);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "RemoteParty", TRUE) )
+    else if (strcmp(ParamName, "RemoteParty") == 0)
     {
         AnscCopyString(pValue,pHEAD->RemoteParty);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Destination", TRUE) )
+    else if (strcmp(ParamName, "Destination") == 0)
     {
         AnscCopyString(pValue,pHEAD->Destination);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "CallingPartyNumber", TRUE) )
+    else if (strcmp(ParamName, "CallingPartyNumber") == 0)
     {
         AnscCopyString(pValue,pHEAD->CallingPartyNumber);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "CalledPartyNumber", TRUE) )
+    else if (strcmp(ParamName, "CalledPartyNumber") == 0)
     {
         AnscCopyString(pValue,pHEAD->CalledPartyNumber);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         AnscCopyString(pValue,pHEAD->Alias);
         ret = 0;
@@ -384,7 +384,7 @@ BOOL TelcoVoiceMgrDml_CallLogList_SetParamStringValue(ANSC_HANDLE hInsContext, c
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "Alias", TRUE) )
+    if (strcmp(ParamName, "Alias") == 0)
     {
         TELCOVOICEMGR_LOCK_OR_EXIT()
 
@@ -658,12 +658,12 @@ BOOL TelcoVoiceMgrDml_CallLogList_SignalPerfList_GetParamUlongValue(ANSC_HANDLE 
 
     PDML_CALLLOG_SIGNALINGPERF pHEAD = &(pHEADCtrl->dml);
 
-    if( AnscEqualString(ParamName, "Protocol", TRUE) )
+    if (strcmp(ParamName, "Protocol") == 0)
     {
         *puLong = pHEAD->Protocol;
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "CallSetupDelay", TRUE) )
+    else if (strcmp(ParamName, "CallSetupDelay") == 0)
     {
         *puLong = pHEAD->CallSetupDelay;
         ret = TRUE;
@@ -762,12 +762,12 @@ BOOL TelcoVoiceMgrDml_CallLogList_SignalPerfList_GetParamIntValue(ANSC_HANDLE hI
 
     PDML_CALLLOG_SIGNALINGPERF pHEAD = &(pHEADCtrl->dml);
 
-    if( AnscEqualString(ParamName, "OutgoingMediaEstablishDelay", TRUE) )
+    if (strcmp(ParamName, "OutgoingMediaEstablishDelay") == 0)
     {
         *pInt = pHEAD->OutgoingMediaEstablishDelay;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "IncomingMediaEstablishDelay", TRUE) )
+    else if (strcmp(ParamName, "IncomingMediaEstablishDelay") == 0)
     {
         *pInt = pHEAD->IncomingMediaEstablishDelay;
         ret = TRUE;
@@ -1080,12 +1080,12 @@ BOOL TelcoVoiceMgrDml_CallLogList_SessionList_GetParamUlongValue(ANSC_HANDLE hIn
 
     PDML_CALLLOG_SESSION pHEAD = &(pHEADCtrl->dml);
 
-    if( AnscEqualString(ParamName, "StreamType", TRUE) )
+    if (strcmp(ParamName, "StreamType") == 0)
     {
         *puLong = pHEAD->StreamType;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Duration", TRUE) )
+    else if (strcmp(ParamName, "Duration") == 0)
     {
         *puLong = pHEAD->Duration;
         ret = TRUE;
@@ -1148,12 +1148,12 @@ ULONG TelcoVoiceMgrDml_CallLogList_SessionList_GetParamStringValue(ANSC_HANDLE h
 
     PDML_CALLLOG_SESSION pHEAD = &(pHEADCtrl->dml);
 
-    if( AnscEqualString(ParamName, "Start", TRUE) )
+    if (strcmp(ParamName, "Start") == 0)
     {
         AnscCopyString(pValue,pHEAD->Start);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "SessionID", TRUE) )
+    else if (strcmp(ParamName, "SessionID") == 0)
     {
         AnscCopyString(pValue,pHEAD->SessionID);
         ret = 0;
@@ -1283,62 +1283,62 @@ BOOL TelcoVoiceMgrDml_CallLogList_SessionList_source_RTP_GetParamUlongValue(ANSC
 
     PDML_CALLLOG_SESSION_RTP pHEAD = &(pDmlCallLogSession->Source.RTP);
 
-    if( AnscEqualString(ParamName, "SamplingFrequency", TRUE) )
+    if (strcmp(ParamName, "SamplingFrequency") == 0)
     {
         *puLong = pHEAD->SamplingFrequency;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "ReceivePacketLossRate", TRUE) )
+    else if (strcmp(ParamName, "ReceivePacketLossRate") == 0)
     {
         *puLong = pHEAD->ReceivePacketLossRate;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "PacketsSent", TRUE) )
+    else if (strcmp(ParamName, "PacketsSent") == 0)
     {
         *puLong = pHEAD->PacketsSent;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "PacketsReceived", TRUE) )
+    else if (strcmp(ParamName, "PacketsReceived") == 0)
     {
         *puLong = pHEAD->PacketsReceived;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "PacketsLost", TRUE) )
+    else if (strcmp(ParamName, "PacketsLost") == 0)
     {
         *puLong = pHEAD->PacketsLost;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "PacketsDiscarded", TRUE) )
+    else if (strcmp(ParamName, "PacketsDiscarded") == 0)
     {
         *puLong = pHEAD->PacketsDiscarded;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "LocalUDPPort", TRUE) )
+    else if (strcmp(ParamName, "LocalUDPPort") == 0)
     {
         *puLong = pHEAD->LocalUDPPort;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "FarEndUDPPort", TRUE) )
+    else if (strcmp(ParamName, "FarEndUDPPort") == 0)
     {
         *puLong = pHEAD->FarEndUDPPort;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "FarEndPacketLossRate", TRUE) )
+    else if (strcmp(ParamName, "FarEndPacketLossRate") == 0)
     {
         *puLong = pHEAD->FarEndPacketLossRate;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "BytesSent", TRUE) )
+    else if (strcmp(ParamName, "BytesSent") == 0)
     {
         *puLong = pHEAD->BytesSent;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "BytesReceived", TRUE) )
+    else if (strcmp(ParamName, "BytesReceived") == 0)
     {
         *puLong = pHEAD->BytesReceived;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "BurstCount", TRUE) )
+    else if (strcmp(ParamName, "BurstCount") == 0)
     {
         *puLong = pHEAD->BurstCount;
         ret = TRUE;
@@ -1403,7 +1403,7 @@ ULONG TelcoVoiceMgrDml_CallLogList_SessionList_source_RTP_GetParamStringValue(AN
 
     PDML_CALLLOG_SESSION_RTP pHEAD = &(pDmlCallLogSession->Source.RTP);
 
-    if( AnscEqualString(ParamName, "FarEndIPAddress", TRUE) )
+    if (strcmp(ParamName, "FarEndIPAddress") == 0)
     {
         AnscCopyString(pValue,pHEAD->FarEndIPAddress);
         ret = 0;
@@ -1461,57 +1461,57 @@ BOOL TelcoVoiceMgrDml_CallLogList_SessionList_source_RTP_GetParamIntValue(ANSC_H
 
     PDML_CALLLOG_SESSION_RTP pHEAD = &(pDmlCallLogSession->Source.RTP);
 
-    if( AnscEqualString(ParamName, "RoundTripDelay", TRUE) )
+    if (strcmp(ParamName, "RoundTripDelay") == 0)
     {
         *pInt = pHEAD->RoundTripDelay;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "ReceiveInterarrivalJitter", TRUE) )
+    else if (strcmp(ParamName, "ReceiveInterarrivalJitter") == 0)
     {
         *pInt = pHEAD->ReceiveInterarrivalJitter;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "PacketDelayVariation", TRUE) )
+    else if (strcmp(ParamName, "PacketDelayVariation") == 0)
     {
         *pInt = pHEAD->PacketDelayVariation;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "MinJitter", TRUE) )
+    else if (strcmp(ParamName, "MinJitter") == 0)
     {
         *pInt = pHEAD->MinJitter;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "MeanJitter", TRUE) )
+    else if (strcmp(ParamName, "MeanJitter") == 0)
     {
         *pInt = pHEAD->MeanJitter;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "MaxJitter", TRUE) )
+    else if (strcmp(ParamName, "MaxJitter") == 0)
     {
         *pInt = pHEAD->MaxJitter;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "FarEndInterarrivalJitter", TRUE) )
+    else if (strcmp(ParamName, "FarEndInterarrivalJitter") == 0)
     {
         *pInt = pHEAD->FarEndInterarrivalJitter;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "BufferDelay", TRUE) )
+    else if (strcmp(ParamName, "BufferDelay") == 0)
     {
         *pInt = pHEAD->BufferDelay;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "AverageRoundTripDelay", TRUE) )
+    else if (strcmp(ParamName, "AverageRoundTripDelay") == 0)
     {
         *pInt = pHEAD->AverageRoundTripDelay;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "AverageReceiveInterarrivalJitter", TRUE) )
+    else if (strcmp(ParamName, "AverageReceiveInterarrivalJitter") == 0)
     {
         *pInt = pHEAD->AverageReceiveInterarrivalJitter;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "AverageFarEndInterarrivalJitter", TRUE) )
+    else if (strcmp(ParamName, "AverageFarEndInterarrivalJitter") == 0)
     {
         *pInt = pHEAD->AverageFarEndInterarrivalJitter;
         ret = TRUE;
@@ -1569,12 +1569,12 @@ BOOL TelcoVoiceMgrDml_CallLogList_SessionList_source_DSP_RecvCodec_GetParamUlong
 
     PDML_CALLLOG_SESSION_DSP_RXCODEC pHEAD = &(pDmlCallLogSession->Source.DSP.ReceiveCodec);
 
-    if( AnscEqualString(ParamName, "Underruns", TRUE) )
+    if (strcmp(ParamName, "Underruns") == 0)
     {
         *puLong = pHEAD->Underruns;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Overruns", TRUE) )
+    else if (strcmp(ParamName, "Overruns") == 0)
     {
         *puLong = pHEAD->Overruns;
         ret = TRUE;
@@ -1639,7 +1639,7 @@ ULONG TelcoVoiceMgrDml_CallLogList_SessionList_source_DSP_RecvCodec_GetParamStri
 
     PDML_CALLLOG_SESSION_DSP_RXCODEC pHEAD = &(pDmlCallLogSession->Source.DSP.ReceiveCodec);
 
-    if( AnscEqualString(ParamName, "Codec", TRUE) )
+    if (strcmp(ParamName, "Codec") == 0)
     {
         AnscCopyString(pValue,pHEAD->Codec);
         ret = 0;
@@ -1697,7 +1697,7 @@ BOOL TelcoVoiceMgrDml_CallLogList_SessionList_source_DSP_RecvCodec_GetParamBoolV
 
     PDML_CALLLOG_SESSION_DSP_RXCODEC pHEAD = &(pDmlCallLogSession->Source.DSP.ReceiveCodec);
 
-    if( AnscEqualString(ParamName, "SilenceSuppression", TRUE) )
+    if (strcmp(ParamName, "SilenceSuppression") == 0)
     {
         *pBool = pHEAD->SilenceSuppression;
         ret = TRUE;
@@ -1755,17 +1755,17 @@ BOOL TelcoVoiceMgrDml_CallLogList_SessionList_source_DSP_TXCodec_GetParamUlongVa
 
     PDML_CALLLOG_SESSION_DSP_TXCODEC pHEAD = &(pDmlCallLogSession->Source.DSP.TransmitCodec);
 
-    if( AnscEqualString(ParamName, "Underruns", TRUE) )
+    if (strcmp(ParamName, "Underruns") == 0)
     {
         *puLong = pHEAD->Underruns;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "PacketizationPeriod", TRUE) )
+    else if (strcmp(ParamName, "PacketizationPeriod") == 0)
     {
         *puLong = pHEAD->PacketizationPeriod;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Overruns", TRUE) )
+    else if (strcmp(ParamName, "Overruns") == 0)
     {
         *puLong = pHEAD->Overruns;
         ret = TRUE;
@@ -1829,7 +1829,7 @@ ULONG TelcoVoiceMgrDml_CallLogList_SessionList_source_DSP_TXCodec_GetParamString
 
     PDML_CALLLOG_SESSION_DSP_TXCODEC pHEAD = &(pDmlCallLogSession->Source.DSP.TransmitCodec);
 
-    if( AnscEqualString(ParamName, "Codec", TRUE) )
+    if (strcmp(ParamName, "Codec") == 0)
     {
         AnscCopyString(pValue,pHEAD->Codec);
         ret = 0;
@@ -1886,7 +1886,7 @@ BOOL TelcoVoiceMgrDml_CallLogList_SessionList_source_DSP_TXCodec_GetParamBoolVal
 
     PDML_CALLLOG_SESSION_DSP_TXCODEC pHEAD = &(pDmlCallLogSession->Source.DSP.TransmitCodec);
 
-    if( AnscEqualString(ParamName, "SilenceSuppression", TRUE) )
+    if (strcmp(ParamName, "SilenceSuppression") == 0)
     {
         *pBool = pHEAD->SilenceSuppression;
         ret = TRUE;
@@ -1951,17 +1951,17 @@ ULONG TelcoVoiceMgrDml_CallLogList_SessionList_source_VoiceQuality_GetParamStrin
 
     PDML_CALLLOG_SESSION_VOICEQUALITY pHEAD = &(pDmlCallLogSession->Source.VoiceQuality);
 
-    if( AnscEqualString(ParamName, "WorstVoIPQualityIndicatorTimestamps", TRUE) )
+    if (strcmp(ParamName, "WorstVoIPQualityIndicatorTimestamps") == 0)
     {
         AnscCopyString(pValue,pHEAD->WorstVoIPQualityIndicatorTimestamps);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "WorstVoIPQualityIndicatorsValues", TRUE) )
+    else if (strcmp(ParamName, "WorstVoIPQualityIndicatorsValues") == 0)
     {
         AnscCopyString(pValue,pHEAD->WorstVoIPQualityIndicatorsValues);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "VoIPQualityIndicator", TRUE) )
+    else if (strcmp(ParamName, "VoIPQualityIndicator") == 0)
     {
         AnscCopyString(pValue,pHEAD->VoIPQualityIndicator);
         ret = 0;
@@ -2018,62 +2018,62 @@ BOOL TelcoVoiceMgrDml_CallLogList_SessionList_Dest_RTP_GetParamUlongValue(ANSC_H
 
     PDML_CALLLOG_SESSION_RTP pHEAD = &(pDmlCallLogSession->Destination.RTP);
 
-    if( AnscEqualString(ParamName, "SamplingFrequency", TRUE) )
+    if (strcmp(ParamName, "SamplingFrequency") == 0)
     {
         *puLong = pHEAD->SamplingFrequency;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "ReceivePacketLossRate", TRUE) )
+    else if (strcmp(ParamName, "ReceivePacketLossRate") == 0)
     {
         *puLong = pHEAD->ReceivePacketLossRate;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "PacketsSent", TRUE) )
+    else if (strcmp(ParamName, "PacketsSent") == 0)
     {
         *puLong = pHEAD->PacketsSent;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "PacketsReceived", TRUE) )
+    else if (strcmp(ParamName, "PacketsReceived") == 0)
     {
         *puLong = pHEAD->PacketsReceived;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "PacketsLost", TRUE) )
+    else if (strcmp(ParamName, "PacketsLost") == 0)
     {
         *puLong = pHEAD->PacketsLost;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "PacketsDiscarded", TRUE) )
+    else if (strcmp(ParamName, "PacketsDiscarded") == 0)
     {
         *puLong = pHEAD->PacketsDiscarded;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "LocalUDPPort", TRUE) )
+    else if (strcmp(ParamName, "LocalUDPPort") == 0)
     {
         *puLong = pHEAD->LocalUDPPort;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "FarEndUDPPort", TRUE) )
+    else if (strcmp(ParamName, "FarEndUDPPort") == 0)
     {
         *puLong = pHEAD->FarEndUDPPort;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "FarEndPacketLossRate", TRUE) )
+    else if (strcmp(ParamName, "FarEndPacketLossRate") == 0)
     {
         *puLong = pHEAD->FarEndPacketLossRate;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "BytesSent", TRUE) )
+    else if (strcmp(ParamName, "BytesSent") == 0)
     {
         *puLong = pHEAD->BytesSent;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "BytesReceived", TRUE) )
+    else if (strcmp(ParamName, "BytesReceived") == 0)
     {
         *puLong = pHEAD->BytesReceived;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "BurstCount", TRUE) )
+    else if (strcmp(ParamName, "BurstCount") == 0)
     {
         *puLong = pHEAD->BurstCount;
         ret = TRUE;
@@ -2138,7 +2138,7 @@ ULONG TelcoVoiceMgrDml_CallLogList_SessionList_Dest_RTP_GetParamStringValue(ANSC
 
     PDML_CALLLOG_SESSION_RTP pHEAD = &(pDmlCallLogSession->Destination.RTP);
 
-    if( AnscEqualString(ParamName, "FarEndIPAddress", TRUE) )
+    if (strcmp(ParamName, "FarEndIPAddress") == 0)
     {
         AnscCopyString(pValue,pHEAD->FarEndIPAddress);
         ret = 0;
@@ -2196,57 +2196,57 @@ BOOL TelcoVoiceMgrDml_CallLogList_SessionList_Dest_RTP_GetParamIntValue(ANSC_HAN
 
     PDML_CALLLOG_SESSION_RTP pHEAD = &(pDmlCallLogSession->Destination.RTP);
 
-    if( AnscEqualString(ParamName, "RoundTripDelay", TRUE) )
+    if (strcmp(ParamName, "RoundTripDelay") == 0)
     {
         *pInt = pHEAD->RoundTripDelay;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "ReceiveInterarrivalJitter", TRUE) )
+    else if (strcmp(ParamName, "ReceiveInterarrivalJitter") == 0)
     {
         *pInt = pHEAD->ReceiveInterarrivalJitter;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "PacketDelayVariation", TRUE) )
+    else if (strcmp(ParamName, "PacketDelayVariation") == 0)
     {
         *pInt = pHEAD->PacketDelayVariation;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "MinJitter", TRUE) )
+    else if (strcmp(ParamName, "MinJitter") == 0)
     {
         *pInt = pHEAD->MinJitter;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "MeanJitter", TRUE) )
+    else if (strcmp(ParamName, "MeanJitter") == 0)
     {
         *pInt = pHEAD->MeanJitter;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "MaxJitter", TRUE) )
+    else if (strcmp(ParamName, "MaxJitter") == 0)
     {
         *pInt = pHEAD->MaxJitter;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "FarEndInterarrivalJitter", TRUE) )
+    else if (strcmp(ParamName, "FarEndInterarrivalJitter") == 0)
     {
         *pInt = pHEAD->FarEndInterarrivalJitter;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "BufferDelay", TRUE) )
+    else if (strcmp(ParamName, "BufferDelay") == 0)
     {
         *pInt = pHEAD->BufferDelay;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "AverageRoundTripDelay", TRUE) )
+    else if (strcmp(ParamName, "AverageRoundTripDelay") == 0)
     {
         *pInt = pHEAD->AverageRoundTripDelay;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "AverageReceiveInterarrivalJitter", TRUE) )
+    else if (strcmp(ParamName, "AverageReceiveInterarrivalJitter") == 0)
     {
         *pInt = pHEAD->AverageReceiveInterarrivalJitter;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "AverageFarEndInterarrivalJitter", TRUE) )
+    else if (strcmp(ParamName, "AverageFarEndInterarrivalJitter") == 0)
     {
         *pInt = pHEAD->AverageFarEndInterarrivalJitter;
         ret = TRUE;
@@ -2304,12 +2304,12 @@ BOOL TelcoVoiceMgrDml_CallLogList_SessionList_Dest_DSP_RxCodec_GetParamUlongValu
 
     PDML_CALLLOG_SESSION_DSP_RXCODEC pHEAD = &(pDmlCallLogSession->Destination.DSP.ReceiveCodec);
 
-    if( AnscEqualString(ParamName, "Underruns", TRUE) )
+    if (strcmp(ParamName, "Underruns") == 0)
     {
         *puLong = pHEAD->Underruns;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Overruns", TRUE) )
+    else if (strcmp(ParamName, "Overruns") == 0)
     {
         *puLong = pHEAD->Overruns;
         ret = TRUE;
@@ -2374,7 +2374,7 @@ ULONG TelcoVoiceMgrDml_CallLogList_SessionList_Dest_DSP_RxCodec_GetParamStringVa
 
     PDML_CALLLOG_SESSION_DSP_RXCODEC pHEAD = &(pDmlCallLogSession->Destination.DSP.ReceiveCodec);
 
-    if( AnscEqualString(ParamName, "Codec", TRUE) )
+    if (strcmp(ParamName, "Codec") == 0)
     {
         AnscCopyString(pValue,pHEAD->Codec);
         ret = 0;
@@ -2432,7 +2432,7 @@ BOOL TelcoVoiceMgrDml_CallLogList_SessionList_Dest_DSP_RxCodec_GetParamBoolValue
 
     PDML_CALLLOG_SESSION_DSP_RXCODEC pHEAD = &(pDmlCallLogSession->Destination.DSP.ReceiveCodec);
 
-    if( AnscEqualString(ParamName, "SilenceSuppression", TRUE) )
+    if (strcmp(ParamName, "SilenceSuppression") == 0)
     {
         *pBool = pHEAD->SilenceSuppression;
         ret = TRUE;
@@ -2490,17 +2490,17 @@ BOOL TelcoVoiceMgrDml_CallLogList_SessionList_Dest_DSP_TxCodec_GetParamUlongValu
 
     PDML_CALLLOG_SESSION_DSP_TXCODEC pHEAD = &(pDmlCallLogSession->Destination.DSP.TransmitCodec);
 
-    if( AnscEqualString(ParamName, "Underruns", TRUE) )
+    if (strcmp(ParamName, "Underruns") == 0)
     {
         *puLong = pHEAD->Underruns;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "PacketizationPeriod", TRUE) )
+    else if (strcmp(ParamName, "PacketizationPeriod") == 0)
     {
         *puLong = pHEAD->PacketizationPeriod;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Overruns", TRUE) )
+    else if (strcmp(ParamName, "Overruns") == 0)
     {
         *puLong = pHEAD->Overruns;
         ret = TRUE;
@@ -2565,7 +2565,7 @@ ULONG TelcoVoiceMgrDml_CallLogList_SessionList_Dest_DSP_TxCodec_GetParamStringVa
 
     PDML_CALLLOG_SESSION_DSP_TXCODEC pHEAD = &(pDmlCallLogSession->Destination.DSP.TransmitCodec);
 
-    if( AnscEqualString(ParamName, "Codec", TRUE) )
+    if (strcmp(ParamName, "Codec") == 0)
     {
         AnscCopyString(pValue,pHEAD->Codec);
         ret = 0;
@@ -2623,7 +2623,7 @@ BOOL TelcoVoiceMgrDml_CallLogList_SessionList_Dest_DSP_TxCodec_GetParamBoolValue
 
     PDML_CALLLOG_SESSION_DSP_TXCODEC pHEAD = &(pDmlCallLogSession->Destination.DSP.TransmitCodec);
 
-    if( AnscEqualString(ParamName, "SilenceSuppression", TRUE) )
+    if (strcmp(ParamName, "SilenceSuppression") == 0)
     {
         *pBool = pHEAD->SilenceSuppression;
         ret = TRUE;
@@ -2688,17 +2688,17 @@ ULONG TelcoVoiceMgrDml_CallLogList_SessionList_Dest_VoiceQuality_GetParamStringV
 
     PDML_CALLLOG_SESSION_VOICEQUALITY pHEAD = &(pDmlCallLogSession->Destination.VoiceQuality);
 
-    if( AnscEqualString(ParamName, "WorstVoIPQualityIndicatorTimestamps", TRUE) )
+    if (strcmp(ParamName, "WorstVoIPQualityIndicatorTimestamps") == 0)
     {
         AnscCopyString(pValue,pHEAD->WorstVoIPQualityIndicatorTimestamps);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "WorstVoIPQualityIndicatorsValues", TRUE) )
+    else if (strcmp(ParamName, "WorstVoIPQualityIndicatorsValues") == 0)
     {
         AnscCopyString(pValue,pHEAD->WorstVoIPQualityIndicatorsValues);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "VoIPQualityIndicator", TRUE) )
+    else if (strcmp(ParamName, "VoIPQualityIndicator") == 0)
     {
         AnscCopyString(pValue,pHEAD->VoIPQualityIndicator);
         ret = 0;

@@ -84,32 +84,32 @@ BOOL NumberingPlan_GetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, 
                 CcspTraceError(("%s: NULL Pointer\n", __FUNCTION__));
                 ret = FALSE;
             }
-            else if( AnscEqualString(ParamName, "MinimumNumberOfDigits", TRUE))
+            else if (strcmp(ParamName, "MinimumNumberOfDigits") == 0)
             {
                 * pValue = pVoiceProfile->NumberingPlanObj.MinimumNumberOfDigits;
                 ret = TRUE;
             }
-            else if( AnscEqualString(ParamName,"MaximumNumberOfDigits", TRUE))
+            else if (strcmp(ParamName, "MaximumNumberOfDigits") == 0)
             {
                 * pValue = pVoiceProfile->NumberingPlanObj.MaximumNumberOfDigits;
                 ret = TRUE;
             }
-            else if( AnscEqualString(ParamName,"InterDigitTimerStd", TRUE))
+            else if (strcmp(ParamName, "InterDigitTimerStd") == 0)
             {
                 * pValue = pVoiceProfile->NumberingPlanObj.InterDigitTimerStd;
                 ret = TRUE;
             }
-            else if( AnscEqualString(ParamName,"InterDigitTimerOpen", TRUE))
+            else if (strcmp(ParamName, "InterDigitTimerOpen") == 0)
             {
                 * pValue = pVoiceProfile->NumberingPlanObj.InterDigitTimerOpen;
                 ret = TRUE;
             }
-            else if( AnscEqualString(ParamName,"InvalidNumberTone", TRUE))
+            else if (strcmp(ParamName, "InvalidNumberTone") == 0)
             {
                 * pValue = pVoiceProfile->NumberingPlanObj.InvalidNumberTone;
                 ret = TRUE;
             }
-            else if( AnscEqualString(ParamName,"PrefixInfoMaxEntries", TRUE))
+            else if (strcmp(ParamName, "PrefixInfoMaxEntries") == 0)
             {
                 * pValue = pVoiceProfile->NumberingPlanObj.PrefixInfoMaxEntries;
                 ret = TRUE;
@@ -168,27 +168,27 @@ BOOL NumberingPlan_SetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, 
                 CcspTraceError(("%s: NULL Pointer\n", __FUNCTION__));
                 ret = FALSE;
             } 
-            else if( AnscEqualString(ParamName, "MinimumNumberOfDigits", TRUE))
+            else if (strcmp(ParamName, "MinimumNumberOfDigits") == 0)
             {
                 pVoiceProfile->NumberingPlanObj.MinimumNumberOfDigits = uValue;
                 ret = TRUE;
             }
-            else if( AnscEqualString(ParamName, "MaximumNumberOfDigits", TRUE))
+            else if (strcmp(ParamName, "MaximumNumberOfDigits") == 0)
             {
                 pVoiceProfile->NumberingPlanObj.MaximumNumberOfDigits = uValue;
                 ret = TRUE;
             }
-            else if( AnscEqualString(ParamName, "InterDigitTimerStd", TRUE))
+            else if (strcmp(ParamName, "InterDigitTimerStd") == 0)
             {
                 pVoiceProfile->NumberingPlanObj.InterDigitTimerStd = uValue;
                 ret = TRUE;
             }
-            else if( AnscEqualString(ParamName, "InterDigitTimerOpen", TRUE))
+            else if (strcmp(ParamName, "InterDigitTimerOpen") == 0)
             {
                 pVoiceProfile->NumberingPlanObj.InterDigitTimerOpen = uValue;
                 ret = TRUE;
             }
-            else if( AnscEqualString(ParamName, "InvalidNumberTone", TRUE))
+            else if (strcmp(ParamName, "InvalidNumberTone") == 0)
             {
                 pVoiceProfile->NumberingPlanObj.InvalidNumberTone = uValue;
                 ret = TRUE;
@@ -301,27 +301,27 @@ BOOL PrefixInfo_GetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, ULO
 
             if (pVoiceService && pVoiceProfile && pPrefixInfo)
             {
-                if( AnscEqualString(ParamName, "PrefixMinNumberOfDigits", TRUE))
+                if (strcmp(ParamName, "PrefixMinNumberOfDigits") == 0)
                 {
                     * pValue = pPrefixInfo->PrefixMinNumberOfDigits;
                     ret = TRUE;
                 }
-                else if( AnscEqualString(ParamName,"PrefixMaxNumberOfDigits", TRUE))
+                else if (strcmp(ParamName, "PrefixMaxNumberOfDigits") == 0)
                 {
                     * pValue = pPrefixInfo->PrefixMaxNumberOfDigits;
                     ret = TRUE;
                 }
-                else if( AnscEqualString(ParamName,"NumberOfDigitsToRemove", TRUE))
+                else if (strcmp(ParamName, "NumberOfDigitsToRemove") == 0)
                 {
                     * pValue = pPrefixInfo->NumberOfDigitsToRemove;
                     ret = TRUE;
                 }
-                else if( AnscEqualString(ParamName,"PosOfDigitsToRemove", TRUE))
+                else if (strcmp(ParamName, "PosOfDigitsToRemove") == 0)
                 {
                     * pValue = pPrefixInfo->PosOfDigitsToRemove;
                     ret = TRUE;
                 }
-                else if( AnscEqualString(ParamName,"DialTone", TRUE))
+                else if (strcmp(ParamName, "DialTone") == 0)
                 {
                     * pValue = pPrefixInfo->DialTone;
                     ret = TRUE;
@@ -397,17 +397,17 @@ LONG PrefixInfo_GetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, ch
 
             if (pVoiceService && pVoiceProfile && pPrefixInfo)
             {
-                if( AnscEqualString(ParamName, "Alias", TRUE) )
+                if (strcmp(ParamName, "Alias") == 0)
                 {
                     AnscCopyString(pValue, pPrefixInfo->Alias);
                     ret = 0;
                 }
-                else if( AnscEqualString(ParamName, "FacilityAction", TRUE) )
+                else if (strcmp(ParamName, "FacilityAction") == 0)
                 {
                     AnscCopyString(pValue, pPrefixInfo->FacilityAction);
                     ret = 0;
                 }
-                else if( AnscEqualString(ParamName, "FacilityActionArgument", TRUE) )
+                else if (strcmp(ParamName, "FacilityActionArgument") == 0)
                 {
                     AnscCopyString(pValue, pPrefixInfo->FacilityActionArgument);
                     ret = 0;
@@ -476,22 +476,22 @@ BOOL PrefixInfo_SetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, ch
 
             if (pVoiceService && pVoiceProfile && pPrefixInfo)
             {
-                if( AnscEqualString(ParamName, "Alias", TRUE) )
+                if (strcmp(ParamName, "Alias") == 0)
                 {
                     AnscCopyString(pPrefixInfo->Alias, pString); 
                     ret = TRUE;
                 }
-                else if( AnscEqualString(ParamName, "PrefixRange", TRUE) )
+                else if (strcmp(ParamName, "PrefixRange") == 0)
                 {
                     AnscCopyString(pPrefixInfo->PrefixRange, pString); 
                     ret = TRUE;
                 }
-                else if( AnscEqualString(ParamName, "FacilityAction", TRUE) )
+                else if (strcmp(ParamName, "FacilityAction") == 0)
                 {
                     AnscCopyString(pPrefixInfo->FacilityAction, pString); 
                     ret = TRUE;
                 }
-                else if( AnscEqualString(ParamName, "FacilityActionArgument", TRUE) )
+                else if (strcmp(ParamName, "FacilityActionArgument") == 0)
                 {
                     AnscCopyString(pPrefixInfo->FacilityActionArgument, pString); 
                     ret = TRUE;
@@ -560,27 +560,27 @@ BOOL PrefixInfo_SetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, ULO
 
             if (pVoiceService && pVoiceProfile && pPrefixInfo)
             {
-                if( AnscEqualString(ParamName, "PrefixMinNumberOfDigits", TRUE))
+                if (strcmp(ParamName, "PrefixMinNumberOfDigits") == 0)
                 {
                     pPrefixInfo->PrefixMinNumberOfDigits = uValue;
                     ret = TRUE;
                 }
-                else if( AnscEqualString(ParamName,"PrefixMaxNumberOfDigits", TRUE))
+                else if (strcmp(ParamName, "PrefixMaxNumberOfDigits") == 0)
                 {
                     pPrefixInfo->PrefixMaxNumberOfDigits = uValue;
                     ret = TRUE;
                 }
-                else if( AnscEqualString(ParamName,"NumberOfDigitsToRemove", TRUE))
+                else if (strcmp(ParamName, "NumberOfDigitsToRemove") == 0)
                 {
                     pPrefixInfo->NumberOfDigitsToRemove = uValue;
                     ret = TRUE;
                 }
-                else if( AnscEqualString(ParamName,"PosOfDigitsToRemove", TRUE))
+                else if (strcmp(ParamName, "PosOfDigitsToRemove") == 0)
                 {
                     pPrefixInfo->PosOfDigitsToRemove = uValue;
                     ret = TRUE;
                 }
-                else if( AnscEqualString(ParamName,"DialTone", TRUE))
+                else if (strcmp(ParamName, "DialTone") == 0)
                 {
                     pPrefixInfo->DialTone = uValue;
                     ret = TRUE;
