@@ -3621,27 +3621,27 @@ BOOL TelcoVoiceMgrDml_TerminalList_DiagTests_SetParamStringValue(ANSC_HANDLE hIn
     else if (strcmp(ParamName, "TestSelector") == 0)
     {
         ULONG uValue = 0;
-        if(AnscEqualString(pString, "PhoneConnectivityTest", TRUE))
+        if (strcmp(pString, "PhoneConnectivityTest") == 0)
         {
             uValue = DIAG_TESTSELECTOR_PHONE_CONNECTIVITY_TEST;
         }
-        else if(AnscEqualString(pString, "Hazard Potential", TRUE))
+        else if (strcmp(pString, "Hazard Potential") == 0)
         {
             uValue = DIAG_TESTSELECTOR_HAZARD_POTENTIAL;
         }
-        else if(AnscEqualString(pString, "Foreign Voltage", TRUE))
+        else if (strcmp(pString, "Foreign Voltage") == 0)
         {
             uValue = DIAG_TESTSELECTOR_FOREIGN_VOLTAGE;
         }
-        else if(AnscEqualString(pString, "Resistive Faults", TRUE))
+        else if (strcmp(pString, "Resistive Faults") == 0)
         {
             uValue = DIAG_TESTSELECTOR_RESISTIVE_FAULTS;
         }
-        else if(AnscEqualString(pString, "Off-hook", TRUE))
+        else if (strcmp(pString, "Off-hook") == 0)
         {
             uValue = DIAG_TESTSELECTOR_OFF_HOOK;
         }
-        else if(AnscEqualString(pString, "REN", TRUE))
+        else if (strcmp(pString, "REN") == 0)
         {
             uValue = DIAG_TESTSELECTOR_REN;
         }
