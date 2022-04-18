@@ -229,7 +229,7 @@ BOOL TelcoVoiceMgrDml_TerminalList_GetParamUlongValue(ANSC_HANDLE hInsContext, c
 
     uTerminalIndex = pHEAD->uInstanceNumber;
 
-    if( AnscEqualString(ParamName, "Status", TRUE) )
+    if (strcmp(ParamName, "Status") == 0)
     {
         //Fetch status from voice stack
         hal_param_t req_param;
@@ -313,12 +313,12 @@ ULONG TelcoVoiceMgrDml_TerminalList_GetParamStringValue(ANSC_HANDLE hInsContext,
 
             return ret;
         }
-        if( AnscEqualString(ParamName, "ToneEventProfile", TRUE) )
+        if (strcmp(ParamName, "ToneEventProfile") == 0)
         {
             AnscCopyString(pValue,pHEAD->ToneEventProfile);
             ret = 0;
         }
-        else if( AnscEqualString(ParamName, "Alias", TRUE) )
+        else if (strcmp(ParamName, "Alias") == 0)
         {
             AnscCopyString(pValue,pHEAD->Alias);
             ret = 0;
@@ -400,7 +400,7 @@ BOOL TelcoVoiceMgrDml_TerminalList_SetParamStringValue(ANSC_HANDLE hInsContext, 
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "ToneEventProfile", TRUE) )
+    if (strcmp(ParamName, "ToneEventProfile") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Terminal.%d.ToneEventProfile",uVsIndex,uTerminalIndex);
 
@@ -415,7 +415,7 @@ BOOL TelcoVoiceMgrDml_TerminalList_SetParamStringValue(ANSC_HANDLE hInsContext, 
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         TELCOVOICEMGR_LOCK_OR_EXIT()
 
@@ -475,12 +475,12 @@ BOOL TelcoVoiceMgrDml_TerminalList_GetParamBoolValue(ANSC_HANDLE hInsContext, ch
 
     PDML_VOICESERVICE_TERMINAL pHEAD = &(pHEADCtrl->dml);
 
-    if( AnscEqualString(ParamName, "QuiescentMode", TRUE) )
+    if (strcmp(ParamName, "QuiescentMode") == 0)
     {
         *pBool = pHEAD->QuiescentMode;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Enable", TRUE) )
+    else if (strcmp(ParamName, "Enable") == 0)
     {
         *pBool = pHEAD->Enable;
         ret = TRUE;
@@ -561,7 +561,7 @@ BOOL TelcoVoiceMgrDml_TerminalList_SetParamBoolValue(ANSC_HANDLE hInsContext, ch
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "QuiescentMode", TRUE) )
+    if (strcmp(ParamName, "QuiescentMode") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Terminal.%d.QuiescentMode",uVsIndex,uTerminalIndex);
 
@@ -576,7 +576,7 @@ BOOL TelcoVoiceMgrDml_TerminalList_SetParamBoolValue(ANSC_HANDLE hInsContext, ch
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Enable", TRUE) )
+    else if (strcmp(ParamName, "Enable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Terminal.%d.Enable",uVsIndex,uTerminalIndex);
 
@@ -868,12 +868,12 @@ ULONG TelcoVoiceMgrDml_TerminalList_AudioList_GetParamStringValue(ANSC_HANDLE hI
 
     PDML_TERMINAL_AUDIO pHEAD = &(pHEADCtrl->dml);
 
-    if( AnscEqualString(ParamName, "Name", TRUE) )
+    if (strcmp(ParamName, "Name") == 0)
     {
         AnscCopyString(pValue,pHEAD->Name);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         AnscCopyString(pValue,pHEAD->Alias);
         ret = 0;
@@ -964,7 +964,7 @@ BOOL TelcoVoiceMgrDml_TerminalList_AudioList_SetParamStringValue(ANSC_HANDLE hIn
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "Name", TRUE) )
+    if (strcmp(ParamName, "Name") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Terminal.%d.Audio.%d.Name",uVsIndex,uTermIndex,uAudioIndex);
 
@@ -979,7 +979,7 @@ BOOL TelcoVoiceMgrDml_TerminalList_AudioList_SetParamStringValue(ANSC_HANDLE hIn
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         TELCOVOICEMGR_LOCK_OR_EXIT()
 
@@ -1113,7 +1113,7 @@ BOOL TelcoVoiceMgrDml_TerminalList_AudioList_VoiceProcessing_GetParamUlongValue(
 
     PDML_TERMINAL_AUDIO_VOICEPROCESSING pHEAD = &(pTerminalAudio->VoiceProcessing);
 
-    if( AnscEqualString(ParamName, "EchoCancellationTail", TRUE) )
+    if (strcmp(ParamName, "EchoCancellationTail") == 0)
     {
         *puLong = pHEAD->EchoCancellationTail;
         ret = TRUE;
@@ -1172,12 +1172,12 @@ BOOL TelcoVoiceMgrDml_TerminalList_AudioList_VoiceProcessing_GetParamIntValue(AN
 
     PDML_TERMINAL_AUDIO_VOICEPROCESSING pHEAD = &(pTerminalAudio->VoiceProcessing);
 
-    if( AnscEqualString(ParamName, "TransmitGain", TRUE) )
+    if (strcmp(ParamName, "TransmitGain") == 0)
     {
         *pInt = pHEAD->TransmitGain;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "ReceiveGain", TRUE) )
+    else if (strcmp(ParamName, "ReceiveGain") == 0)
     {
         *pInt = pHEAD->ReceiveGain;
         ret = TRUE;
@@ -1270,7 +1270,7 @@ BOOL TelcoVoiceMgrDml_TerminalList_AudioList_VoiceProcessing_SetParamIntValue(AN
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "TransmitGain", TRUE) )
+    if (strcmp(ParamName, "TransmitGain") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Terminal.%d.Audio.%d.VoiceProcessing.TransmitGain",uVsIndex,uTermIndex,uAudioIndex);
 
@@ -1287,7 +1287,7 @@ BOOL TelcoVoiceMgrDml_TerminalList_AudioList_VoiceProcessing_SetParamIntValue(AN
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "ReceiveGain", TRUE) )
+    else if (strcmp(ParamName, "ReceiveGain") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Terminal.%d.Audio.%d.VoiceProcessing.ReceiveGain",uVsIndex,uTermIndex,uAudioIndex);
 
@@ -1356,12 +1356,12 @@ BOOL TelcoVoiceMgrDml_TerminalList_AudioList_VoiceProcessing_GetParamBoolValue(A
 
     PDML_TERMINAL_AUDIO_VOICEPROCESSING pHEAD = &(pTerminalAudio->VoiceProcessing);
 
-    if( AnscEqualString(ParamName, "EchoCancellationInUse", TRUE) )
+    if (strcmp(ParamName, "EchoCancellationInUse") == 0)
     {
         *pBool = pHEAD->EchoCancellationInUse;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "EchoCancellationEnable", TRUE) )
+    else if (strcmp(ParamName, "EchoCancellationEnable") == 0)
     {
         *pBool = pHEAD->EchoCancellationEnable;
         ret = TRUE;
@@ -1454,7 +1454,7 @@ BOOL TelcoVoiceMgrDml_TerminalList_AudioList_VoiceProcessing_SetParamBoolValue(A
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "EchoCancellationEnable", TRUE) )
+    if (strcmp(ParamName, "EchoCancellationEnable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Terminal.%d.Audio.%d.VoiceProcessing.EchoCancellationEnable",uVsIndex,uTermIndex,uAudioIndex);
 
@@ -1672,32 +1672,32 @@ ULONG TelcoVoiceMgrDml_TerminalList_ButtonMap_ButtonList_GetParamStringValue(ANS
 
     PDML_TERMINAL_BUTTONMAP_BUTTON pHEAD = &(pHEADCtrl->dml);
 
-    if( AnscEqualString(ParamName, "QuickDialNumber", TRUE) )
+    if (strcmp(ParamName, "QuickDialNumber") == 0)
     {
         AnscCopyString(pValue,pHEAD->QuickDialNumber);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "FacilityActionArgument", TRUE) )
+    else if (strcmp(ParamName, "FacilityActionArgument") == 0)
     {
         AnscCopyString(pValue,pHEAD->FacilityActionArgument);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "FacilityAction", TRUE) )
+    else if (strcmp(ParamName, "FacilityAction") == 0)
     {
         AnscCopyString(pValue,pHEAD->FacilityAction);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "ButtonName", TRUE) )
+    else if (strcmp(ParamName, "ButtonName") == 0)
     {
         AnscCopyString(pValue,pHEAD->ButtonName);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "ButtonMessage", TRUE) )
+    else if (strcmp(ParamName, "ButtonMessage") == 0)
     {
         AnscCopyString(pValue,pHEAD->ButtonMessage);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         AnscCopyString(pValue,pHEAD->Alias);
         ret = 0;
@@ -1788,7 +1788,7 @@ BOOL TelcoVoiceMgrDml_TerminalList_ButtonMap_ButtonList_SetParamStringValue(ANSC
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "QuickDialNumber", TRUE) )
+    if (strcmp(ParamName, "QuickDialNumber") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Terminal.%d.ButtonMap.Button.%d.QuickDialNumber",uVsIndex,uTerminalIndex,uButtonIndex);
 
@@ -1803,7 +1803,7 @@ BOOL TelcoVoiceMgrDml_TerminalList_ButtonMap_ButtonList_SetParamStringValue(ANSC
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "FacilityActionArgument", TRUE) )
+    else if (strcmp(ParamName, "FacilityActionArgument") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Terminal.%d.ButtonMap.Button.%d.FacilityActionArgument",uVsIndex,uTerminalIndex,uButtonIndex);
 
@@ -1818,7 +1818,7 @@ BOOL TelcoVoiceMgrDml_TerminalList_ButtonMap_ButtonList_SetParamStringValue(ANSC
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "FacilityAction", TRUE) )
+    else if (strcmp(ParamName, "FacilityAction") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Terminal.%d.ButtonMap.Button.%d.FacilityAction",uVsIndex,uTerminalIndex,uButtonIndex);
 
@@ -1833,7 +1833,7 @@ BOOL TelcoVoiceMgrDml_TerminalList_ButtonMap_ButtonList_SetParamStringValue(ANSC
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "ButtonMessage", TRUE) )
+    else if (strcmp(ParamName, "ButtonMessage") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Terminal.%d.ButtonMap.Button.%d.ButtonMessage",uVsIndex,uTerminalIndex,uButtonIndex);
 
@@ -1848,7 +1848,7 @@ BOOL TelcoVoiceMgrDml_TerminalList_ButtonMap_ButtonList_SetParamStringValue(ANSC
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         TELCOVOICEMGR_LOCK_OR_EXIT()
 
@@ -1908,7 +1908,7 @@ BOOL TelcoVoiceMgrDml_TerminalList_ButtonMap_ButtonList_GetParamBoolValue(ANSC_H
 
     PDML_TERMINAL_BUTTONMAP_BUTTON pHEAD = &(pHEADCtrl->dml);
 
-    if( AnscEqualString(ParamName, "UserAccess", TRUE) )
+    if (strcmp(ParamName, "UserAccess") == 0)
     {
         *pBool = pHEAD->UserAccess;
         ret = TRUE;
@@ -2000,7 +2000,7 @@ BOOL TelcoVoiceMgrDml_TerminalList_ButtonMap_ButtonList_SetParamBoolValue(ANSC_H
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "UserAccess", TRUE) )
+    if (strcmp(ParamName, "UserAccess") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Terminal.%d.ButtonMap.Button.%d.UserAccess",uVsIndex,uTerminalIndex,uButtonIndex);
 
@@ -2290,22 +2290,22 @@ ULONG TelcoVoiceMgrDml_TerminalList_Ringer_DescList_GetParamStringValue(ANSC_HAN
 
     PDML_TERMINAL_RINGER_DESCRIPTION pHEAD = &(pHEADCtrl->dml);
 
-    if( AnscEqualString(ParamName, "RingPattern", TRUE) )
+    if (strcmp(ParamName, "RingPattern") == 0)
     {
         AnscCopyString(pValue,pHEAD->RingPattern);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "RingName", TRUE) )
+    else if (strcmp(ParamName, "RingName") == 0)
     {
         AnscCopyString(pValue,pHEAD->RingName);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "RingFile", TRUE) )
+    else if (strcmp(ParamName, "RingFile") == 0)
     {
         AnscCopyString(pValue,pHEAD->RingFile);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         AnscCopyString(pValue,pHEAD->Alias);
         ret = 0;
@@ -2395,7 +2395,7 @@ BOOL TelcoVoiceMgrDml_TerminalList_Ringer_DescList_SetParamStringValue(ANSC_HAND
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "RingPattern", TRUE) )
+    if (strcmp(ParamName, "RingPattern") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Terminal.%d.Ringer.Description.%d.RingPattern",uVsIndex,uTermIndex,uRingerDescIndex);
 
@@ -2410,7 +2410,7 @@ BOOL TelcoVoiceMgrDml_TerminalList_Ringer_DescList_SetParamStringValue(ANSC_HAND
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "RingName", TRUE) )
+    else if (strcmp(ParamName, "RingName") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Terminal.%d.Ringer.Description.%d.RingName",uVsIndex,uTermIndex,uRingerDescIndex);
 
@@ -2425,7 +2425,7 @@ BOOL TelcoVoiceMgrDml_TerminalList_Ringer_DescList_SetParamStringValue(ANSC_HAND
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "RingFile", TRUE) )
+    else if (strcmp(ParamName, "RingFile") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Terminal.%d.Ringer.Description.%d.RingFile",uVsIndex,uTermIndex,uRingerDescIndex);
 
@@ -2440,7 +2440,7 @@ BOOL TelcoVoiceMgrDml_TerminalList_Ringer_DescList_SetParamStringValue(ANSC_HAND
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         TELCOVOICEMGR_LOCK_OR_EXIT()
 
@@ -2499,7 +2499,7 @@ BOOL TelcoVoiceMgrDml_TerminalList_Ringer_DescList_GetParamBoolValue(ANSC_HANDLE
 
     PDML_TERMINAL_RINGER_DESCRIPTION pHEAD = &(pHEADCtrl->dml);
 
-    if( AnscEqualString(ParamName, "RingEnable", TRUE) )
+    if (strcmp(ParamName, "RingEnable") == 0)
     {
         *pBool = pHEAD->RingEnable;
         ret = TRUE;
@@ -2590,7 +2590,7 @@ BOOL TelcoVoiceMgrDml_TerminalList_Ringer_DescList_SetParamBoolValue(ANSC_HANDLE
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "RingEnable", TRUE) )
+    if (strcmp(ParamName, "RingEnable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Terminal.%d.Ringer.Description.%d.RingEnable",uVsIndex,uTermIndex,uRingerDescIndex);
 
@@ -2874,7 +2874,7 @@ BOOL TelcoVoiceMgrDml_TerminalList_Ringer_PatternList_GetParamUlongValue(ANSC_HA
 
     PDML_TERMINAL_RINGER_PATTERN pHEAD = &(pHEADCtrl->dml);
 
-    if( AnscEqualString(ParamName, "Duration", TRUE) )
+    if (strcmp(ParamName, "Duration") == 0)
     {
         *puLong = pHEAD->Duration;
         ret = TRUE;
@@ -2965,7 +2965,7 @@ BOOL TelcoVoiceMgrDml_TerminalList_Ringer_PatternList_SetParamUlongValue(ANSC_HA
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "Duration", TRUE) )
+    if (strcmp(ParamName, "Duration") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Terminal.%d.Ringer.Pattern.%d.Duration",uVsIndex,uTermIndex,uRingerPatternIndex);
 
@@ -3036,12 +3036,12 @@ ULONG TelcoVoiceMgrDml_TerminalList_Ringer_PatternList_GetParamStringValue(ANSC_
 
     PDML_TERMINAL_RINGER_PATTERN pHEAD = &(pHEADCtrl->dml);
 
-    if( AnscEqualString(ParamName, "NextPattern", TRUE) )
+    if (strcmp(ParamName, "NextPattern") == 0)
     {
         AnscCopyString(pValue,pHEAD->NextPattern);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         AnscCopyString(pValue,pHEAD->Alias);
         ret = 0;
@@ -3132,7 +3132,7 @@ BOOL TelcoVoiceMgrDml_TerminalList_Ringer_PatternList_SetParamStringValue(ANSC_H
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "NextPattern", TRUE) )
+    if (strcmp(ParamName, "NextPattern") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Terminal.%d.Ringer.Pattern.%d.NextPattern",uVsIndex,uTermIndex,uRingerPatternIndex);
 
@@ -3147,7 +3147,7 @@ BOOL TelcoVoiceMgrDml_TerminalList_Ringer_PatternList_SetParamStringValue(ANSC_H
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         TELCOVOICEMGR_LOCK_OR_EXIT()
 
@@ -3206,12 +3206,12 @@ BOOL TelcoVoiceMgrDml_TerminalList_Ringer_PatternList_GetParamBoolValue(ANSC_HAN
 
     PDML_TERMINAL_RINGER_PATTERN pHEAD = &(pHEADCtrl->dml);
 
-    if( AnscEqualString(ParamName, "RingerOn", TRUE) )
+    if (strcmp(ParamName, "RingerOn") == 0)
     {
         *pBool = pHEAD->RingerOn;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Enable", TRUE) )
+    else if (strcmp(ParamName, "Enable") == 0)
     {
         *pBool = pHEAD->Enable;
         ret = TRUE;
@@ -3302,7 +3302,7 @@ BOOL TelcoVoiceMgrDml_TerminalList_Ringer_PatternList_SetParamBoolValue(ANSC_HAN
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "RingerOn", TRUE) )
+    if (strcmp(ParamName, "RingerOn") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Terminal.%d.Ringer.Pattern.%d.RingerOn",uVsIndex,uTermIndex,uRingerPatternIndex);
 
@@ -3317,7 +3317,7 @@ BOOL TelcoVoiceMgrDml_TerminalList_Ringer_PatternList_SetParamBoolValue(ANSC_HAN
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Enable", TRUE) )
+    else if (strcmp(ParamName, "Enable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Terminal.%d.Ringer.Pattern.%d.Enable",uVsIndex,uTermIndex,uRingerPatternIndex);
 
@@ -3468,7 +3468,7 @@ ULONG TelcoVoiceMgrDml_TerminalList_DiagTests_GetParamStringValue(ANSC_HANDLE hI
     ULONG uVsIndex = pDmlVoiceService->InstanceNumber;
     ULONG uTerminalIndex = pDmlTerminal->uInstanceNumber;
 
-    if( AnscEqualString(ParamName, "X_RDK_TestResult", TRUE) )
+    if (strcmp(ParamName, "X_RDK_TestResult") == 0)
     {
         //Fetch status from voice stack
         hal_param_t req_param;
@@ -3488,7 +3488,7 @@ ULONG TelcoVoiceMgrDml_TerminalList_DiagTests_GetParamStringValue(ANSC_HANDLE hI
 
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "TestSelector", TRUE) )
+    else if (strcmp(ParamName, "TestSelector") == 0)
     {
         if(pHEAD->TestSelector == DIAG_TESTSELECTOR_PHONE_CONNECTIVITY_TEST)
         {
@@ -3603,7 +3603,7 @@ BOOL TelcoVoiceMgrDml_TerminalList_DiagTests_SetParamStringValue(ANSC_HANDLE hIn
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "X_RDK_TestResult", TRUE) )
+    if (strcmp(ParamName, "X_RDK_TestResult") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Terminal.%d.DiagTests.X_RDK_TestResult",uVsIndex,uTerminalIndex);
 
@@ -3618,7 +3618,7 @@ BOOL TelcoVoiceMgrDml_TerminalList_DiagTests_SetParamStringValue(ANSC_HANDLE hIn
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "TestSelector", TRUE) )
+    else if (strcmp(ParamName, "TestSelector") == 0)
     {
         ULONG uValue = 0;
         if(AnscEqualString(pString, "PhoneConnectivityTest", TRUE))
@@ -3719,7 +3719,7 @@ BOOL TelcoVoiceMgrDml_TerminalList_DiagTests_GetParamBoolValue(ANSC_HANDLE hInsC
 
     PDML_TERMINAL_DIAGTESTS pHEAD = &(pDmlTerminal->DiagTests);
 
-    if( AnscEqualString(ParamName, "PhoneRinging", TRUE) )
+    if (strcmp(ParamName, "PhoneRinging") == 0)
     {
         *pBool = pHEAD->PhoneRinging;
         ret = TRUE;
@@ -3777,7 +3777,7 @@ BOOL TelcoVoiceMgrDml_TerminalList_DiagTests_GetParamUlongValue(ANSC_HANDLE hIns
 
     PDML_TERMINAL_DIAGTESTS pHEAD = &(pDmlTerminal->DiagTests);
 
-    if( AnscEqualString(ParamName, "DiagnosticsState", TRUE) )
+    if (strcmp(ParamName, "DiagnosticsState") == 0)
     {
         *puLong = pHEAD->DiagnosticsState;
         ret = TRUE;
@@ -3860,7 +3860,7 @@ BOOL TelcoVoiceMgrDml_TerminalList_DiagTests_SetParamUlongValue(ANSC_HANDLE hIns
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "DiagnosticsState", TRUE) )
+    if (strcmp(ParamName, "DiagnosticsState") == 0)
     {
         char enumValue[][STR_LEN_32]={"None","Requested","Complete","Error_Internal","Error_Other"};
 

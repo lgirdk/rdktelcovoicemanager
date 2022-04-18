@@ -73,7 +73,7 @@ ULONG TelcoVoiceMgrDml_Tone_GetParamStringValue(ANSC_HANDLE hInsContext, char* P
 
     PDML_TONE pHEAD = &(pDmlVoiceService->Tone_obj);
 
-    if( AnscEqualString(ParamName, "DefautEventProfile", TRUE) )
+    if (strcmp(ParamName, "DefautEventProfile") == 0)
     {
         AnscCopyString(pValue,pHEAD->DefautEventProfile);
         ret = 0;
@@ -148,7 +148,7 @@ BOOL TelcoVoiceMgrDml_Tone_SetParamStringValue(ANSC_HANDLE hInsContext, char* Pa
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "DefautEventProfile", TRUE) )
+    if (strcmp(ParamName, "DefautEventProfile") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Tone.DefautEventProfile",uVsIndex);
 
@@ -355,7 +355,7 @@ BOOL TelcoVoiceMgrDml_Tone_DescList_GetParamUlongValue(ANSC_HANDLE hInsContext, 
 
     PDML_TONE_DESCRIPTION pHEAD = &(pHEADCtrl->dml);
 
-    if( AnscEqualString(ParamName, "ToneRepetitions", TRUE) )
+    if (strcmp(ParamName, "ToneRepetitions") == 0)
     {
         *puLong = pHEAD->ToneRepetitions;
         ret = TRUE;
@@ -436,7 +436,7 @@ BOOL TelcoVoiceMgrDml_Tone_DescList_SetParamUlongValue(ANSC_HANDLE hInsContext, 
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "ToneRepetitions", TRUE) )
+    if (strcmp(ParamName, "ToneRepetitions") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Tone.Description.%d.ToneRepetitions",uVsIndex,uDescIndex);
 
@@ -507,27 +507,27 @@ ULONG TelcoVoiceMgrDml_Tone_DescList_GetParamStringValue(ANSC_HANDLE hInsContext
 
     PDML_TONE_DESCRIPTION pHEAD = &(pHEADCtrl->dml);
 
-    if( AnscEqualString(ParamName, "ToneText", TRUE) )
+    if (strcmp(ParamName, "ToneText") == 0)
     {
         AnscCopyString(pValue,pHEAD->ToneText);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "TonePattern", TRUE) )
+    else if (strcmp(ParamName, "TonePattern") == 0)
     {
         AnscCopyString(pValue,pHEAD->TonePattern);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "ToneName", TRUE) )
+    else if (strcmp(ParamName, "ToneName") == 0)
     {
         AnscCopyString(pValue,pHEAD->ToneName);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "ToneFile", TRUE) )
+    else if (strcmp(ParamName, "ToneFile") == 0)
     {
         AnscCopyString(pValue,pHEAD->ToneFile);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         AnscCopyString(pValue,pHEAD->Alias);
         ret = 0;
@@ -608,7 +608,7 @@ BOOL TelcoVoiceMgrDml_Tone_DescList_SetParamStringValue(ANSC_HANDLE hInsContext,
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "ToneText", TRUE) )
+    if (strcmp(ParamName, "ToneText") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Tone.Description.%d.ToneText",uVsIndex,uDescIndex);
 
@@ -623,7 +623,7 @@ BOOL TelcoVoiceMgrDml_Tone_DescList_SetParamStringValue(ANSC_HANDLE hInsContext,
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "TonePattern", TRUE) )
+    else if (strcmp(ParamName, "TonePattern") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Tone.Description.%d.TonePattern",uVsIndex,uDescIndex);
 
@@ -638,7 +638,7 @@ BOOL TelcoVoiceMgrDml_Tone_DescList_SetParamStringValue(ANSC_HANDLE hInsContext,
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "ToneName", TRUE) )
+    else if (strcmp(ParamName, "ToneName") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Tone.Description.%d.ToneName",uVsIndex,uDescIndex);
 
@@ -653,7 +653,7 @@ BOOL TelcoVoiceMgrDml_Tone_DescList_SetParamStringValue(ANSC_HANDLE hInsContext,
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "ToneFile", TRUE) )
+    else if (strcmp(ParamName, "ToneFile") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Tone.Description.%d.ToneFile",uVsIndex,uDescIndex);
 
@@ -668,7 +668,7 @@ BOOL TelcoVoiceMgrDml_Tone_DescList_SetParamStringValue(ANSC_HANDLE hInsContext,
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         TELCOVOICEMGR_LOCK_OR_EXIT()
 
@@ -727,7 +727,7 @@ BOOL TelcoVoiceMgrDml_Tone_DescList_GetParamBoolValue(ANSC_HANDLE hInsContext, c
 
     PDML_TONE_DESCRIPTION pHEAD = &(pHEADCtrl->dml);
 
-    if( AnscEqualString(ParamName, "ToneEnable", TRUE) )
+    if (strcmp(ParamName, "ToneEnable") == 0)
     {
         *pBool = pHEAD->ToneEnable;
         ret = TRUE;
@@ -808,7 +808,7 @@ BOOL TelcoVoiceMgrDml_Tone_DescList_SetParamBoolValue(ANSC_HANDLE hInsContext, c
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "ToneEnable", TRUE) )
+    if (strcmp(ParamName, "ToneEnable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Tone.Description.%d.ToneEnable",uVsIndex,uDescIndex);
 
@@ -1087,32 +1087,32 @@ BOOL TelcoVoiceMgrDml_Tone_PatternList_GetParamUlongValue(ANSC_HANDLE hInsContex
 
     PDML_TONE_PATTERN pHEAD = &(pHEADCtrl->dml);
 
-    if( AnscEqualString(ParamName, "ModulationFrequency", TRUE) )
+    if (strcmp(ParamName, "ModulationFrequency") == 0)
     {
         *puLong = pHEAD->ModulationFrequency;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Frequency4", TRUE) )
+    else if (strcmp(ParamName, "Frequency4") == 0)
     {
         *puLong = pHEAD->Frequency4;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Frequency3", TRUE) )
+    else if (strcmp(ParamName, "Frequency3") == 0)
     {
         *puLong = pHEAD->Frequency3;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Frequency2", TRUE) )
+    else if (strcmp(ParamName, "Frequency2") == 0)
     {
         *puLong = pHEAD->Frequency2;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Frequency1", TRUE) )
+    else if (strcmp(ParamName, "Frequency1") == 0)
     {
         *puLong = pHEAD->Frequency1;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Duration", TRUE) )
+    else if (strcmp(ParamName, "Duration") == 0)
     {
         *puLong = pHEAD->Duration;
         ret = TRUE;
@@ -1193,7 +1193,7 @@ BOOL TelcoVoiceMgrDml_Tone_PatternList_SetParamUlongValue(ANSC_HANDLE hInsContex
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "ModulationFrequency", TRUE) )
+    if (strcmp(ParamName, "ModulationFrequency") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Tone.Pattern.%d.ModulationFrequency",uVsIndex,uPatternIndex);
 
@@ -1208,7 +1208,7 @@ BOOL TelcoVoiceMgrDml_Tone_PatternList_SetParamUlongValue(ANSC_HANDLE hInsContex
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Frequency4", TRUE) )
+    else if (strcmp(ParamName, "Frequency4") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Tone.Pattern.%d.Frequency4",uVsIndex,uPatternIndex);
 
@@ -1223,7 +1223,7 @@ BOOL TelcoVoiceMgrDml_Tone_PatternList_SetParamUlongValue(ANSC_HANDLE hInsContex
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Frequency3", TRUE) )
+    else if (strcmp(ParamName, "Frequency3") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Tone.Pattern.%d.Frequency3",uVsIndex,uPatternIndex);
 
@@ -1238,7 +1238,7 @@ BOOL TelcoVoiceMgrDml_Tone_PatternList_SetParamUlongValue(ANSC_HANDLE hInsContex
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Frequency2", TRUE) )
+    else if (strcmp(ParamName, "Frequency2") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Tone.Pattern.%d.Frequency2",uVsIndex,uPatternIndex);
 
@@ -1253,7 +1253,7 @@ BOOL TelcoVoiceMgrDml_Tone_PatternList_SetParamUlongValue(ANSC_HANDLE hInsContex
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Frequency1", TRUE) )
+    else if (strcmp(ParamName, "Frequency1") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Tone.Pattern.%d.Frequency1",uVsIndex,uPatternIndex);
 
@@ -1268,7 +1268,7 @@ BOOL TelcoVoiceMgrDml_Tone_PatternList_SetParamUlongValue(ANSC_HANDLE hInsContex
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Duration", TRUE) )
+    else if (strcmp(ParamName, "Duration") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Tone.Pattern.%d.Duration",uVsIndex,uPatternIndex);
 
@@ -1340,12 +1340,12 @@ ULONG TelcoVoiceMgrDml_Tone_PatternList_GetParamStringValue(ANSC_HANDLE hInsCont
 
     PDML_TONE_PATTERN pHEAD = &(pHEADCtrl->dml);
 
-    if( AnscEqualString(ParamName, "NextPattern", TRUE) )
+    if (strcmp(ParamName, "NextPattern") == 0)
     {
         AnscCopyString(pValue,pHEAD->NextPattern);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         AnscCopyString(pValue,pHEAD->Alias);
         ret = 0;
@@ -1426,7 +1426,7 @@ BOOL TelcoVoiceMgrDml_Tone_PatternList_SetParamStringValue(ANSC_HANDLE hInsConte
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "NextPattern", TRUE) )
+    if (strcmp(ParamName, "NextPattern") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Tone.Pattern.%d.NextPattern",uVsIndex,uPatternIndex);
 
@@ -1441,7 +1441,7 @@ BOOL TelcoVoiceMgrDml_Tone_PatternList_SetParamStringValue(ANSC_HANDLE hInsConte
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         TELCOVOICEMGR_LOCK_OR_EXIT()
 
@@ -1501,27 +1501,27 @@ BOOL TelcoVoiceMgrDml_Tone_PatternList_GetParamIntValue(ANSC_HANDLE hInsContext,
 
     PDML_TONE_PATTERN pHEAD = &(pHEADCtrl->dml);
 
-    if( AnscEqualString(ParamName, "Power4", TRUE) )
+    if (strcmp(ParamName, "Power4") == 0)
     {
         *pInt = pHEAD->Power4;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Power3", TRUE) )
+    else if (strcmp(ParamName, "Power3") == 0)
     {
         *pInt = pHEAD->Power3;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Power2", TRUE) )
+    else if (strcmp(ParamName, "Power2") == 0)
     {
         *pInt = pHEAD->Power2;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Power1", TRUE) )
+    else if (strcmp(ParamName, "Power1") == 0)
     {
         *pInt = pHEAD->Power1;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "ModulationPower", TRUE) )
+    else if (strcmp(ParamName, "ModulationPower") == 0)
     {
         *pInt = pHEAD->ModulationPower;
         ret = TRUE;
@@ -1602,7 +1602,7 @@ BOOL TelcoVoiceMgrDml_Tone_PatternList_SetParamIntValue(ANSC_HANDLE hInsContext,
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "Power4", TRUE) )
+    if (strcmp(ParamName, "Power4") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Tone.Pattern.%d.Power4",uVsIndex,uPatternIndex);
 
@@ -1617,7 +1617,7 @@ BOOL TelcoVoiceMgrDml_Tone_PatternList_SetParamIntValue(ANSC_HANDLE hInsContext,
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Power3", TRUE) )
+    else if (strcmp(ParamName, "Power3") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Tone.Pattern.%d.Power3",uVsIndex,uPatternIndex);
 
@@ -1632,7 +1632,7 @@ BOOL TelcoVoiceMgrDml_Tone_PatternList_SetParamIntValue(ANSC_HANDLE hInsContext,
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Power2", TRUE) )
+    else if (strcmp(ParamName, "Power2") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Tone.Pattern.%d.Power2",uVsIndex,uPatternIndex);
 
@@ -1647,7 +1647,7 @@ BOOL TelcoVoiceMgrDml_Tone_PatternList_SetParamIntValue(ANSC_HANDLE hInsContext,
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Power1", TRUE) )
+    else if (strcmp(ParamName, "Power1") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Tone.Pattern.%d.Power1",uVsIndex,uPatternIndex);
 
@@ -1662,7 +1662,7 @@ BOOL TelcoVoiceMgrDml_Tone_PatternList_SetParamIntValue(ANSC_HANDLE hInsContext,
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "ModulationPower", TRUE) )
+    else if (strcmp(ParamName, "ModulationPower") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Tone.Pattern.%d.ModulationPower",uVsIndex,uPatternIndex);
 
@@ -1727,12 +1727,12 @@ BOOL TelcoVoiceMgrDml_Tone_PatternList_GetParamBoolValue(ANSC_HANDLE hInsContext
 
     PDML_TONE_PATTERN pHEAD = &(pHEADCtrl->dml);
 
-    if( AnscEqualString(ParamName, "ToneOn", TRUE) )
+    if (strcmp(ParamName, "ToneOn") == 0)
     {
         *pBool = pHEAD->ToneOn;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Enable", TRUE) )
+    else if (strcmp(ParamName, "Enable") == 0)
     {
         *pBool = pHEAD->Enable;
         ret = TRUE;
@@ -1813,7 +1813,7 @@ BOOL TelcoVoiceMgrDml_Tone_PatternList_SetParamBoolValue(ANSC_HANDLE hInsContext
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "ToneOn", TRUE) )
+    if (strcmp(ParamName, "ToneOn") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Tone.Pattern.%d.ToneOn",uVsIndex,uPatternIndex);
 
@@ -1828,7 +1828,7 @@ BOOL TelcoVoiceMgrDml_Tone_PatternList_SetParamBoolValue(ANSC_HANDLE hInsContext
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Enable", TRUE) )
+    else if (strcmp(ParamName, "Enable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Tone.Pattern.%d.Enable",uVsIndex,uPatternIndex);
 
@@ -2114,7 +2114,7 @@ ULONG TelcoVoiceMgrDml_Tone_EventProfileList_GetParamStringValue(ANSC_HANDLE hIn
 
     PDML_TONE_EVENTPROFILE pHEAD = &(pHEADCtrl->dml);
 
-    if( AnscEqualString(ParamName, "Alias", TRUE) )
+    if (strcmp(ParamName, "Alias") == 0)
     {
         AnscCopyString(pValue,pHEAD->Alias);
         ret = 0;
@@ -2182,7 +2182,7 @@ BOOL TelcoVoiceMgrDml_Tone_EventProfileList_SetParamStringValue(ANSC_HANDLE hIns
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "Alias", TRUE) )
+    if (strcmp(ParamName, "Alias") == 0)
     {
         TELCOVOICEMGR_LOCK_OR_EXIT()
 
@@ -2463,17 +2463,17 @@ ULONG TelcoVoiceMgrDml_Tone_EventProfileList_EvtList_GetParamStringValue(ANSC_HA
 
     PDML_TONE_EVENTPROFILE_EVENT pHEAD = &(pHEADCtrl->dml);
 
-    if( AnscEqualString(ParamName, "Tone", TRUE) )
+    if (strcmp(ParamName, "Tone") == 0)
     {
         AnscCopyString(pValue,pHEAD->Tone);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Function", TRUE) )
+    else if (strcmp(ParamName, "Function") == 0)
     {
         //AnscCopyString(pValue,pHEAD->Function);
         //ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         AnscCopyString(pValue,pHEAD->Alias);
         ret = 0;
@@ -2564,7 +2564,7 @@ BOOL TelcoVoiceMgrDml_Tone_EventProfileList_EvtList_SetParamStringValue(ANSC_HAN
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "Tone", TRUE) )
+    if (strcmp(ParamName, "Tone") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Tone.EventProfile.%d.Event.%d.Tone",uVsIndex,uEvtProfIndex,uEvtIndex);
 
@@ -2579,7 +2579,7 @@ BOOL TelcoVoiceMgrDml_Tone_EventProfileList_EvtList_SetParamStringValue(ANSC_HAN
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Function", TRUE) )
+    else if (strcmp(ParamName, "Function") == 0)
     {
         char enumValue[][STR_LEN_32]={"Busy","Confirmation","Dial","LineMessagesWaiting","OffHookWarning",
         "RingBack","ReOrder","Stutterdial","CallWaiting1","CallWaiting2","CallWaiting3","CallWaiting4",
@@ -2599,7 +2599,7 @@ BOOL TelcoVoiceMgrDml_Tone_EventProfileList_EvtList_SetParamStringValue(ANSC_HAN
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         TELCOVOICEMGR_LOCK_OR_EXIT()
 

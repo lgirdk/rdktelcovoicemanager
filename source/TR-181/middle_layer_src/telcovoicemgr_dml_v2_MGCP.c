@@ -228,7 +228,7 @@ BOOL TelcoVoiceMgrDml_MGCP_ClientList_GetParamUlongValue(ANSC_HANDLE hInsContext
 
     uMGCPClientIndex = pHEAD->uInstanceNumber;
 
-    if( AnscEqualString(ParamName, "Status", TRUE) )
+    if (strcmp(ParamName, "Status") == 0)
     {
         //Fetch status from voice stack
         hal_param_t req_param;
@@ -245,17 +245,17 @@ BOOL TelcoVoiceMgrDml_MGCP_ClientList_GetParamUlongValue(ANSC_HANDLE hInsContext
             ret = FALSE;
         }
     }
-    else if( AnscEqualString(ParamName, "RegisterMode", TRUE) )
+    else if (strcmp(ParamName, "RegisterMode") == 0)
     {
         *puLong = pHEAD->RegisterMode;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "MaxSessions", TRUE) )
+    else if (strcmp(ParamName, "MaxSessions") == 0)
     {
         *puLong = pHEAD->MaxSessions;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "LocalPort", TRUE) )
+    else if (strcmp(ParamName, "LocalPort") == 0)
     {
         *puLong = pHEAD->LocalPort;
         ret = TRUE;
@@ -337,7 +337,7 @@ BOOL TelcoVoiceMgrDml_MGCP_ClientList_SetParamUlongValue(ANSC_HANDLE hInsContext
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "RegisterMode", TRUE) )
+    if (strcmp(ParamName, "RegisterMode") == 0)
     {
         char enumValue[][STR_LEN_32]={"Wildcard","Individual"};
 
@@ -354,7 +354,7 @@ BOOL TelcoVoiceMgrDml_MGCP_ClientList_SetParamUlongValue(ANSC_HANDLE hInsContext
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "MaxSessions", TRUE) )
+    else if (strcmp(ParamName, "MaxSessions") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.MGCP.Client.%d.MaxSessions",uVsIndex,uClientIndex);
 
@@ -369,7 +369,7 @@ BOOL TelcoVoiceMgrDml_MGCP_ClientList_SetParamUlongValue(ANSC_HANDLE hInsContext
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "LocalPort", TRUE) )
+    else if (strcmp(ParamName, "LocalPort") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.MGCP.Client.%d.LocalPort",uVsIndex,uClientIndex);
 
@@ -440,22 +440,22 @@ ULONG TelcoVoiceMgrDml_MGCP_ClientList_GetParamStringValue(ANSC_HANDLE hInsConte
 
     PDML_MGCP_CLIENT pHEAD = &(pMGCPClientCtrl->dml);
 
-    if( AnscEqualString(ParamName, "User", TRUE) )
+    if (strcmp(ParamName, "User") == 0)
     {
         AnscCopyString(pValue,pHEAD->User);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Network", TRUE) )
+    else if (strcmp(ParamName, "Network") == 0)
     {
         AnscCopyString(pValue,pHEAD->Network);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Domain", TRUE) )
+    else if (strcmp(ParamName, "Domain") == 0)
     {
         AnscCopyString(pValue,pHEAD->Domain);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         AnscCopyString(pValue,pHEAD->Alias);
         ret = 0;
@@ -537,7 +537,7 @@ BOOL TelcoVoiceMgrDml_MGCP_ClientList_SetParamStringValue(ANSC_HANDLE hInsContex
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "User", TRUE) )
+    if (strcmp(ParamName, "User") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.MGCP.Client.%d.User",uVsIndex,uClientIndex);
 
@@ -552,7 +552,7 @@ BOOL TelcoVoiceMgrDml_MGCP_ClientList_SetParamStringValue(ANSC_HANDLE hInsContex
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Network", TRUE) )
+    else if (strcmp(ParamName, "Network") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.MGCP.Client.%d.Network",uVsIndex,uClientIndex);
 
@@ -567,7 +567,7 @@ BOOL TelcoVoiceMgrDml_MGCP_ClientList_SetParamStringValue(ANSC_HANDLE hInsContex
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Domain", TRUE) )
+    else if (strcmp(ParamName, "Domain") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.MGCP.Client.%d.Domain",uVsIndex,uClientIndex);
 
@@ -582,7 +582,7 @@ BOOL TelcoVoiceMgrDml_MGCP_ClientList_SetParamStringValue(ANSC_HANDLE hInsContex
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         TELCOVOICEMGR_LOCK_OR_EXIT()
 
@@ -642,12 +642,12 @@ BOOL TelcoVoiceMgrDml_MGCP_ClientList_GetParamBoolValue(ANSC_HANDLE hInsContext,
 
     PDML_MGCP_CLIENT pHEAD = &(pMGCPClientCtrl->dml);
 
-    if( AnscEqualString(ParamName, "QuiescentMode", TRUE) )
+    if (strcmp(ParamName, "QuiescentMode") == 0)
     {
         *pBool = pHEAD->QuiescentMode;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Enable", TRUE) )
+    else if (strcmp(ParamName, "Enable") == 0)
     {
         *pBool = pHEAD->Enable;
         ret = TRUE;
@@ -728,7 +728,7 @@ BOOL TelcoVoiceMgrDml_MGCP_ClientList_SetParamBoolValue(ANSC_HANDLE hInsContext,
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "QuiescentMode", TRUE) )
+    if (strcmp(ParamName, "QuiescentMode") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.MGCP.Client.%d.QuiescentMode",uVsIndex,uClientIndex);
 
@@ -743,7 +743,7 @@ BOOL TelcoVoiceMgrDml_MGCP_ClientList_SetParamBoolValue(ANSC_HANDLE hInsContext,
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Enable", TRUE) )
+    else if (strcmp(ParamName, "Enable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.MGCP.Client.%d.Enable",uVsIndex,uClientIndex);
 
@@ -1046,7 +1046,7 @@ BOOL TelcoVoiceMgrDml_MGCP_NetworkList_GetParamUlongValue(ANSC_HANDLE hInsContex
 
     uMGCPNetworkIndex = pHEAD->uInstanceNumber;
 
-    if( AnscEqualString(ParamName, "Status", TRUE) )
+    if (strcmp(ParamName, "Status") == 0)
     {
         //Fetch status from voice stack
         hal_param_t req_param;
@@ -1063,42 +1063,42 @@ BOOL TelcoVoiceMgrDml_MGCP_NetworkList_GetParamUlongValue(ANSC_HANDLE hInsContex
             ret = FALSE;
         }
     }
-    else if( AnscEqualString(ParamName, "RetranIntervalTimer", TRUE) )
+    else if (strcmp(ParamName, "RetranIntervalTimer") == 0)
     {
         *puLong = pHEAD->RetranIntervalTimer;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "NonVoiceBandwidthReservedUpstream", TRUE) )
+    else if (strcmp(ParamName, "NonVoiceBandwidthReservedUpstream") == 0)
     {
         *puLong = pHEAD->NonVoiceBandwidthReservedUpstream;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "NonVoiceBandwidthReservedDownstream", TRUE) )
+    else if (strcmp(ParamName, "NonVoiceBandwidthReservedDownstream") == 0)
     {
         *puLong = pHEAD->NonVoiceBandwidthReservedDownstream;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "MaxSessions", TRUE) )
+    else if (strcmp(ParamName, "MaxSessions") == 0)
     {
         *puLong = pHEAD->MaxSessions;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "MaxRetranCount", TRUE) )
+    else if (strcmp(ParamName, "MaxRetranCount") == 0)
     {
         *puLong = pHEAD->MaxRetranCount;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "DSCPMark", TRUE) )
+    else if (strcmp(ParamName, "DSCPMark") == 0)
     {
         *puLong = pHEAD->DSCPMark;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "CallAgentPort2", TRUE) )
+    else if (strcmp(ParamName, "CallAgentPort2") == 0)
     {
         *puLong = pHEAD->CallAgentPort2;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "CallAgentPort1", TRUE) )
+    else if (strcmp(ParamName, "CallAgentPort1") == 0)
     {
         *puLong = pHEAD->CallAgentPort1;
         ret = TRUE;
@@ -1179,7 +1179,7 @@ BOOL TelcoVoiceMgrDml_MGCP_NetworkList_SetParamUlongValue(ANSC_HANDLE hInsContex
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "RetranIntervalTimer", TRUE) )
+    if (strcmp(ParamName, "RetranIntervalTimer") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.MGCP.Network.%d.RetranIntervalTimer",uVsIndex,uNetworkIndex);
 
@@ -1194,7 +1194,7 @@ BOOL TelcoVoiceMgrDml_MGCP_NetworkList_SetParamUlongValue(ANSC_HANDLE hInsContex
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "NonVoiceBandwidthReservedUpstream", TRUE) )
+    else if (strcmp(ParamName, "NonVoiceBandwidthReservedUpstream") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.MGCP.Network.%d.NonVoiceBandwidthReservedUpstream",uVsIndex,uNetworkIndex);
 
@@ -1209,7 +1209,7 @@ BOOL TelcoVoiceMgrDml_MGCP_NetworkList_SetParamUlongValue(ANSC_HANDLE hInsContex
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "NonVoiceBandwidthReservedDownstream", TRUE) )
+    else if (strcmp(ParamName, "NonVoiceBandwidthReservedDownstream") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.MGCP.Network.%d.NonVoiceBandwidthReservedDownstream",uVsIndex,uNetworkIndex);
 
@@ -1224,7 +1224,7 @@ BOOL TelcoVoiceMgrDml_MGCP_NetworkList_SetParamUlongValue(ANSC_HANDLE hInsContex
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "MaxSessions", TRUE) )
+    else if (strcmp(ParamName, "MaxSessions") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.MGCP.Network.%d.MaxSessions",uVsIndex,uNetworkIndex);
 
@@ -1239,7 +1239,7 @@ BOOL TelcoVoiceMgrDml_MGCP_NetworkList_SetParamUlongValue(ANSC_HANDLE hInsContex
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "MaxRetranCount", TRUE) )
+    else if (strcmp(ParamName, "MaxRetranCount") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.MGCP.Network.%d.MaxRetranCount",uVsIndex,uNetworkIndex);
 
@@ -1254,7 +1254,7 @@ BOOL TelcoVoiceMgrDml_MGCP_NetworkList_SetParamUlongValue(ANSC_HANDLE hInsContex
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "DSCPMark", TRUE) )
+    else if (strcmp(ParamName, "DSCPMark") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.MGCP.Network.%d.DSCPMark",uVsIndex,uNetworkIndex);
 
@@ -1269,7 +1269,7 @@ BOOL TelcoVoiceMgrDml_MGCP_NetworkList_SetParamUlongValue(ANSC_HANDLE hInsContex
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "CallAgentPort2", TRUE) )
+    else if (strcmp(ParamName, "CallAgentPort2") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.MGCP.Network.%d.CallAgentPort2",uVsIndex,uNetworkIndex);
 
@@ -1284,7 +1284,7 @@ BOOL TelcoVoiceMgrDml_MGCP_NetworkList_SetParamUlongValue(ANSC_HANDLE hInsContex
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "CallAgentPort1", TRUE) )
+    else if (strcmp(ParamName, "CallAgentPort1") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.MGCP.Network.%d.CallAgentPort1",uVsIndex,uNetworkIndex);
 
@@ -1356,32 +1356,32 @@ ULONG TelcoVoiceMgrDml_MGCP_NetworkList_GetParamStringValue(ANSC_HANDLE hInsCont
 
     PDML_MGCP_NETWORK pHEAD = &(pMGCPNetworkCtrl->dml);
 
-    if( AnscEqualString(ParamName, "VoIPProfile", TRUE) )
+    if (strcmp(ParamName, "VoIPProfile") == 0)
     {
         AnscCopyString(pValue,pHEAD->VoIPProfile);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "STUNServer", TRUE) )
+    else if (strcmp(ParamName, "STUNServer") == 0)
     {
         AnscCopyString(pValue,pHEAD->STUNServer);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "CodecList", TRUE) )
+    else if (strcmp(ParamName, "CodecList") == 0)
     {
         AnscCopyString(pValue,pHEAD->CodecList);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "CallAgent2", TRUE) )
+    else if (strcmp(ParamName, "CallAgent2") == 0)
     {
         AnscCopyString(pValue,pHEAD->CallAgent2);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "CallAgent1", TRUE) )
+    else if (strcmp(ParamName, "CallAgent1") == 0)
     {
         AnscCopyString(pValue,pHEAD->CallAgent1);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         AnscCopyString(pValue,pHEAD->Alias);
         ret = 0;
@@ -1462,7 +1462,7 @@ BOOL TelcoVoiceMgrDml_MGCP_NetworkList_SetParamStringValue(ANSC_HANDLE hInsConte
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "VoIPProfile", TRUE) )
+    if (strcmp(ParamName, "VoIPProfile") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.MGCP.Network.%d.VoIPProfile",uVsIndex,uNetworkIndex);
 
@@ -1477,7 +1477,7 @@ BOOL TelcoVoiceMgrDml_MGCP_NetworkList_SetParamStringValue(ANSC_HANDLE hInsConte
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "STUNServer", TRUE) )
+    else if (strcmp(ParamName, "STUNServer") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.MGCP.Network.%d.STUNServer",uVsIndex,uNetworkIndex);
 
@@ -1492,7 +1492,7 @@ BOOL TelcoVoiceMgrDml_MGCP_NetworkList_SetParamStringValue(ANSC_HANDLE hInsConte
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "CodecList", TRUE) )
+    else if (strcmp(ParamName, "CodecList") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.MGCP.Network.%d.CodecList",uVsIndex,uNetworkIndex);
 
@@ -1507,7 +1507,7 @@ BOOL TelcoVoiceMgrDml_MGCP_NetworkList_SetParamStringValue(ANSC_HANDLE hInsConte
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "CallAgent2", TRUE) )
+    else if (strcmp(ParamName, "CallAgent2") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.MGCP.Network.%d.CallAgent2",uVsIndex,uNetworkIndex);
 
@@ -1522,7 +1522,7 @@ BOOL TelcoVoiceMgrDml_MGCP_NetworkList_SetParamStringValue(ANSC_HANDLE hInsConte
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "CallAgent1", TRUE) )
+    else if (strcmp(ParamName, "CallAgent1") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.MGCP.Network.%d.CallAgent1",uVsIndex,uNetworkIndex);
 
@@ -1537,7 +1537,7 @@ BOOL TelcoVoiceMgrDml_MGCP_NetworkList_SetParamStringValue(ANSC_HANDLE hInsConte
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         TELCOVOICEMGR_LOCK_OR_EXIT()
 
@@ -1596,12 +1596,12 @@ BOOL TelcoVoiceMgrDml_MGCP_NetworkList_GetParamIntValue(ANSC_HANDLE hInsContext,
 
     PDML_MGCP_NETWORK pHEAD = &(pMGCPNetworkCtrl->dml);
 
-    if( AnscEqualString(ParamName, "VLANIDMark", TRUE) )
+    if (strcmp(ParamName, "VLANIDMark") == 0)
     {
         *pInt = pHEAD->VLANIDMark;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "EthernetPriorityMark", TRUE) )
+    else if (strcmp(ParamName, "EthernetPriorityMark") == 0)
     {
         *pInt = pHEAD->EthernetPriorityMark;
         ret = TRUE;
@@ -1682,7 +1682,7 @@ BOOL TelcoVoiceMgrDml_MGCP_NetworkList_SetParamIntValue(ANSC_HANDLE hInsContext,
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "VLANIDMark", TRUE) )
+    if (strcmp(ParamName, "VLANIDMark") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.MGCP.Network.%d.VLANIDMark",uVsIndex,uNetworkIndex);
 
@@ -1697,7 +1697,7 @@ BOOL TelcoVoiceMgrDml_MGCP_NetworkList_SetParamIntValue(ANSC_HANDLE hInsContext,
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "EthernetPriorityMark", TRUE) )
+    else if (strcmp(ParamName, "EthernetPriorityMark") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.MGCP.Network.%d.EthernetPriorityMark",uVsIndex,uNetworkIndex);
 
@@ -1762,27 +1762,27 @@ BOOL TelcoVoiceMgrDml_MGCP_NetworkList_GetParamBoolValue(ANSC_HANDLE hInsContext
 
     PDML_MGCP_NETWORK pHEAD = &(pMGCPNetworkCtrl->dml);
 
-    if( AnscEqualString(ParamName, "STUNEnable", TRUE) )
+    if (strcmp(ParamName, "STUNEnable") == 0)
     {
         *pBool = pHEAD->STUNEnable;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "SendRSIPImmediately", TRUE) )
+    else if (strcmp(ParamName, "SendRSIPImmediately") == 0)
     {
         *pBool = pHEAD->SendRSIPImmediately;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "QuiescentMode", TRUE) )
+    else if (strcmp(ParamName, "QuiescentMode") == 0)
     {
         *pBool = pHEAD->QuiescentMode;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Enable", TRUE) )
+    else if (strcmp(ParamName, "Enable") == 0)
     {
         *pBool = pHEAD->Enable;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "AllowPiggybackEvents", TRUE) )
+    else if (strcmp(ParamName, "AllowPiggybackEvents") == 0)
     {
         *pBool = pHEAD->AllowPiggybackEvents;
         ret = TRUE;
@@ -1864,7 +1864,7 @@ BOOL TelcoVoiceMgrDml_MGCP_NetworkList_SetParamBoolValue(ANSC_HANDLE hInsContext
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "STUNEnable", TRUE) )
+    if (strcmp(ParamName, "STUNEnable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.MGCP.Network.%d.STUNEnable",uVsIndex,uNetworkIndex);
 
@@ -1879,7 +1879,7 @@ BOOL TelcoVoiceMgrDml_MGCP_NetworkList_SetParamBoolValue(ANSC_HANDLE hInsContext
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "SendRSIPImmediately", TRUE) )
+    else if (strcmp(ParamName, "SendRSIPImmediately") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.MGCP.Network.%d.SendRSIPImmediately",uVsIndex,uNetworkIndex);
 
@@ -1894,7 +1894,7 @@ BOOL TelcoVoiceMgrDml_MGCP_NetworkList_SetParamBoolValue(ANSC_HANDLE hInsContext
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "QuiescentMode", TRUE) )
+    else if (strcmp(ParamName, "QuiescentMode") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.MGCP.Network.%d.QuiescentMode",uVsIndex,uNetworkIndex);
 
@@ -1909,7 +1909,7 @@ BOOL TelcoVoiceMgrDml_MGCP_NetworkList_SetParamBoolValue(ANSC_HANDLE hInsContext
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Enable", TRUE) )
+    else if (strcmp(ParamName, "Enable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.MGCP.Network.%d.Enable",uVsIndex,uNetworkIndex);
 
@@ -1924,7 +1924,7 @@ BOOL TelcoVoiceMgrDml_MGCP_NetworkList_SetParamBoolValue(ANSC_HANDLE hInsContext
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "AllowPiggybackEvents", TRUE) )
+    else if (strcmp(ParamName, "AllowPiggybackEvents") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.MGCP.Network.%d.AllowPiggybackEvents",uVsIndex,uNetworkIndex);
 

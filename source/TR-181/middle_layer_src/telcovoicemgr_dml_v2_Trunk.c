@@ -229,7 +229,7 @@ BOOL TelcoVoiceMgrDml_TrunkList_GetParamUlongValue(ANSC_HANDLE hInsContext, char
 
     uTrunkIndex = pHEAD->uInstanceNumber;
 
-    if( AnscEqualString(ParamName, "Status", TRUE) )
+    if (strcmp(ParamName, "Status") == 0)
     {
         //Fetch status from voice stack
         hal_param_t req_param;
@@ -247,17 +247,17 @@ BOOL TelcoVoiceMgrDml_TrunkList_GetParamUlongValue(ANSC_HANDLE hInsContext, char
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Origin", TRUE) )
+    else if (strcmp(ParamName, "Origin") == 0)
     {
         *puLong = pHEAD->Origin;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "MaxChannels", TRUE) )
+    else if (strcmp(ParamName, "MaxChannels") == 0)
     {
         *puLong = pHEAD->MaxChannels;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "CodecPriority", TRUE) )
+    else if (strcmp(ParamName, "CodecPriority") == 0)
     {
         *puLong = pHEAD->CodecPriority;
         ret = TRUE;
@@ -338,7 +338,7 @@ BOOL TelcoVoiceMgrDml_TrunkList_SetParamUlongValue(ANSC_HANDLE hInsContext, char
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "MaxChannels", TRUE) )
+    if (strcmp(ParamName, "MaxChannels") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Trunk.%d.MaxChannels",uVsIndex,uTrunkIndex);
 
@@ -353,7 +353,7 @@ BOOL TelcoVoiceMgrDml_TrunkList_SetParamUlongValue(ANSC_HANDLE hInsContext, char
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "CodecPriority", TRUE) )
+    else if (strcmp(ParamName, "CodecPriority") == 0)
     {
         char enumValue[][STR_LEN_32]={"Local","Remote"};
 
@@ -429,22 +429,22 @@ ULONG TelcoVoiceMgrDml_TrunkList_GetParamStringValue(ANSC_HANDLE hInsContext, ch
 
     PDML_TRUNK pHEAD = &(pTrunk->dml);
 
-    if( AnscEqualString(ParamName, "Provider", TRUE) )
+    if (strcmp(ParamName, "Provider") == 0)
     {
         AnscCopyString(pValue,pHEAD->Provider);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Name", TRUE) )
+    else if (strcmp(ParamName, "Name") == 0)
     {
         AnscCopyString(pValue,pHEAD->Name);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "DDIRange", TRUE) )
+    else if (strcmp(ParamName, "DDIRange") == 0)
     {
         AnscCopyString(pValue,pHEAD->DDIRange);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         AnscCopyString(pValue,pHEAD->Alias);
         ret = 0;
@@ -525,7 +525,7 @@ BOOL TelcoVoiceMgrDml_TrunkList_SetParamStringValue(ANSC_HANDLE hInsContext, cha
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "Provider", TRUE) )
+    if (strcmp(ParamName, "Provider") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Trunk.%d.Provider",uVsIndex,uTrunkIndex);
 
@@ -540,7 +540,7 @@ BOOL TelcoVoiceMgrDml_TrunkList_SetParamStringValue(ANSC_HANDLE hInsContext, cha
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Name", TRUE) )
+    else if (strcmp(ParamName, "Name") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Trunk.%d.Name",uVsIndex,uTrunkIndex);
 
@@ -555,7 +555,7 @@ BOOL TelcoVoiceMgrDml_TrunkList_SetParamStringValue(ANSC_HANDLE hInsContext, cha
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "DDIRange", TRUE) )
+    else if (strcmp(ParamName, "DDIRange") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Trunk.%d.DDIRange",uVsIndex,uTrunkIndex);
 
@@ -570,7 +570,7 @@ BOOL TelcoVoiceMgrDml_TrunkList_SetParamStringValue(ANSC_HANDLE hInsContext, cha
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         TELCOVOICEMGR_LOCK_OR_EXIT()
 
@@ -629,12 +629,12 @@ BOOL TelcoVoiceMgrDml_TrunkList_GetParamIntValue(ANSC_HANDLE hInsContext, char* 
 
     PDML_TRUNK pHEAD = &(pTrunk->dml);
 
-    if( AnscEqualString(ParamName, "MaxOutboundChannelCount", TRUE) )
+    if (strcmp(ParamName, "MaxOutboundChannelCount") == 0)
     {
         *pInt = pHEAD->MaxOutboundChannelCount;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "MaxInboundChannelCount", TRUE) )
+    else if (strcmp(ParamName, "MaxInboundChannelCount") == 0)
     {
         *pInt = pHEAD->MaxInboundChannelCount;
         ret = TRUE;
@@ -715,7 +715,7 @@ BOOL TelcoVoiceMgrDml_TrunkList_SetParamIntValue(ANSC_HANDLE hInsContext, char* 
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "MaxOutboundChannelCount", TRUE) )
+    if (strcmp(ParamName, "MaxOutboundChannelCount") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Trunk.%d.MaxOutboundChannelCount",uVsIndex,uTrunkIndex);
 
@@ -730,7 +730,7 @@ BOOL TelcoVoiceMgrDml_TrunkList_SetParamIntValue(ANSC_HANDLE hInsContext, char* 
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "MaxInboundChannelCount", TRUE) )
+    else if (strcmp(ParamName, "MaxInboundChannelCount") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Trunk.%d.MaxInboundChannelCount",uVsIndex,uTrunkIndex);
 
@@ -795,17 +795,17 @@ BOOL TelcoVoiceMgrDml_TrunkList_GetParamBoolValue(ANSC_HANDLE hInsContext, char*
 
     PDML_TRUNK pHEAD = &(pTrunk->dml);
 
-    if( AnscEqualString(ParamName, "QuiescentMode", TRUE) )
+    if (strcmp(ParamName, "QuiescentMode") == 0)
     {
         *pBool = pHEAD->QuiescentMode;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "LineObjectCreation", TRUE) )
+    else if (strcmp(ParamName, "LineObjectCreation") == 0)
     {
         *pBool = pHEAD->LineObjectCreation;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Enable", TRUE) )
+    else if (strcmp(ParamName, "Enable") == 0)
     {
         *pBool = pHEAD->Enable;
         ret = TRUE;
@@ -885,7 +885,7 @@ BOOL TelcoVoiceMgrDml_TrunkList_SetParamBoolValue(ANSC_HANDLE hInsContext, char*
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "QuiescentMode", TRUE) )
+    if (strcmp(ParamName, "QuiescentMode") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Trunk.%d.QuiescentMode",uVsIndex,uTrunkIndex);
 
@@ -900,7 +900,7 @@ BOOL TelcoVoiceMgrDml_TrunkList_SetParamBoolValue(ANSC_HANDLE hInsContext, char*
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "LineObjectCreation", TRUE) )
+    else if (strcmp(ParamName, "LineObjectCreation") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Trunk.%d.LineObjectCreation",uVsIndex,uTrunkIndex);
 
@@ -915,7 +915,7 @@ BOOL TelcoVoiceMgrDml_TrunkList_SetParamBoolValue(ANSC_HANDLE hInsContext, char*
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Enable", TRUE) )
+    else if (strcmp(ParamName, "Enable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Trunk.%d.Enable",uVsIndex,uTrunkIndex);
 
