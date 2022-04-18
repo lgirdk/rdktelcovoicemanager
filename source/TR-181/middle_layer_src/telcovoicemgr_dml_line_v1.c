@@ -454,7 +454,7 @@ LONG Line_GetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, char* pV
 
             if (pVoiceService && pVoiceProfile && pLine)
             {
-                if( AnscEqualString(ParamName, "DirectoryNumber", TRUE) )
+                if (strcmp(ParamName, "DirectoryNumber") == 0)
                 {
                     snprintf(buf, sizeof(buf), "%s", pLine->DirectoryNumber);
                     if ( AnscSizeOfString(buf) < *pUlSize)
@@ -468,7 +468,7 @@ LONG Line_GetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, char* pV
                         ret = 1;
                     }
                 }
-                else if( AnscEqualString(ParamName, "X_RDK_OutboundProxyAddresses", TRUE) )
+                else if (strcmp(ParamName, "X_RDK_OutboundProxyAddresses") == 0)
                 {
                     //Fetch status from voice stack
                     hal_param_t req_param;
@@ -496,7 +496,7 @@ LONG Line_GetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, char* pV
                         ret = 1;
                     }
                 }
-                else if( AnscEqualString(ParamName, "Alias", TRUE) )
+                else if (strcmp(ParamName, "Alias") == 0)
                 {
                     snprintf(buf, sizeof(buf), "%s", pLine->Alias);
                     if ( AnscSizeOfString(buf) < *pUlSize)
@@ -510,7 +510,7 @@ LONG Line_GetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, char* pV
                         ret = 1;
                     }
                 }
-                else if( AnscEqualString(ParamName, "PhyReferenceList", TRUE) )
+                else if (strcmp(ParamName, "PhyReferenceList") == 0)
                 {
                     snprintf(buf, sizeof(buf), "%s", pLine->PhyReferenceList);
                     if ( AnscSizeOfString(buf) < *pUlSize)
@@ -595,7 +595,7 @@ BOOL Line_SetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, char* pS
                 uVpIndex = pVoiceProfile->InstanceNumber;
                 uLineIndex = pLine->InstanceNumber;
                 TelcoVoiceMgrDmlGetDataRelease(pTelcoVoiceMgrDmlData);
-                if( AnscEqualString(ParamName, "DirectoryNumber", TRUE) )
+                if (strcmp(ParamName, "DirectoryNumber") == 0)
                 {
                     if(TelcoVoiceMgrDmlSetDirectoryNumber(uVsIndex, uVpIndex, uLineIndex, pString) == ANSC_STATUS_SUCCESS)
                     {
@@ -680,7 +680,7 @@ BOOL Line_GetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, ULONG* pV
 
             if (pVoiceService && pVoiceProfile && pLine)
             {
-                if( AnscEqualString(ParamName, "CallState", TRUE) )
+                if (strcmp(ParamName, "CallState") == 0)
                 {
                     if(ANSC_STATUS_SUCCESS == TelcoVoiceMgrDmlGetLineCallState(pVoiceService->InstanceNumber, pVoiceProfile->InstanceNumber, 
                                                   pLine->InstanceNumber, &callState))
@@ -690,12 +690,12 @@ BOOL Line_GetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, ULONG* pV
                         ret = TRUE;
                     }
                 }
-                else if( AnscEqualString(ParamName, "Enable", TRUE) )
+                else if (strcmp(ParamName, "Enable") == 0)
                 {
                     *pValue = pLine->Enable;
                     ret =TRUE;
                 }
-                else if( AnscEqualString(ParamName, "Status", TRUE) )
+                else if (strcmp(ParamName, "Status") == 0)
                 {
                     if(ANSC_STATUS_SUCCESS == TelcoVoiceMgrDmlGetLineStatus(pVoiceService->InstanceNumber, pVoiceProfile->InstanceNumber, 
                                                   pLine->InstanceNumber, &lineStatus))
@@ -705,7 +705,7 @@ BOOL Line_GetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, ULONG* pV
                         ret = TRUE;
                     }
                 }
-                else if( AnscEqualString(ParamName, "RingVolumeStatus", TRUE) )
+                else if (strcmp(ParamName, "RingVolumeStatus") == 0)
                 {
                     *pValue = pLine->RingVolumeStatus;
                     ret = TRUE;
@@ -778,7 +778,7 @@ BOOL Line_SetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, ULONG uVa
                 uVpIndex = pVoiceProfile->InstanceNumber;
                 uLineIndex = pLine->InstanceNumber;
                 TelcoVoiceMgrDmlGetDataRelease(pTelcoVoiceMgrDmlData);
-                if( AnscEqualString(ParamName, "Enable", TRUE) )
+                if (strcmp(ParamName, "Enable") == 0)
                 {
                     if(ANSC_STATUS_SUCCESS == TelcoVoiceMgrDmlSetLineEnable(uVsIndex, uVpIndex, uLineIndex, uValue))
                     {
@@ -858,7 +858,7 @@ BOOL Line_GetParamBoolValue(ANSC_HANDLE hInsContext, char* ParamName, BOOL* pBoo
     }
     else
     {
-        if( AnscEqualString(ParamName, "RingMuteStatus", TRUE))
+        if (strcmp(ParamName, "RingMuteStatus") == 0)
         {
             *pBool = pLine->RingMuteStatus;
             ret = TRUE;
@@ -1649,7 +1649,7 @@ BOOL VoiceProcessing_GetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName
 
             if (pVoiceService && pVoiceProfile && pLine)
             {
-                if( AnscEqualString(ParamName, "EchoCancellationTail", TRUE) )
+                if (strcmp(ParamName, "EchoCancellationTail") == 0)
                 {
                     *pValue = pLine->LineVoiceProcessingObj.EchoCancellationTail;
                     bStatus = TRUE;
@@ -1719,12 +1719,12 @@ BOOL VoiceProcessing_GetParamIntValue(ANSC_HANDLE hInsContext, char* ParamName, 
 
             if (pVoiceService && pVoiceProfile && pLine)
             {
-                if( AnscEqualString(ParamName, "ReceiveGain", TRUE) )
+                if (strcmp(ParamName, "ReceiveGain") == 0)
                 {
                     * pInt = pLine->LineVoiceProcessingObj.ReceiveGain;
                     bStatus = TRUE;
                 }
-                else if( AnscEqualString(ParamName, "TransmitGain", TRUE) )
+                else if (strcmp(ParamName, "TransmitGain") == 0)
                 {
                     * pInt = pLine->LineVoiceProcessingObj.TransmitGain;
                     bStatus = TRUE;
@@ -1802,7 +1802,7 @@ BOOL VoiceProcessing_SetParamIntValue(ANSC_HANDLE hInsContext, char* ParamName, 
                 uVpIndex = pVoiceProfile->InstanceNumber;
                 uLineIndex = pLine->InstanceNumber;
                 TelcoVoiceMgrDmlGetDataRelease(pTelcoVoiceMgrDmlData);
-                if( AnscEqualString(ParamName, "ReceiveGain", TRUE) )
+                if (strcmp(ParamName, "ReceiveGain") == 0)
                 {
                     if(ANSC_STATUS_SUCCESS == TelcoVoiceMgrDmlSetReceiveGain(uVsIndex,
                                                                     uVpIndex,
@@ -1818,7 +1818,7 @@ BOOL VoiceProcessing_SetParamIntValue(ANSC_HANDLE hInsContext, char* ParamName, 
                         }
                     }
                 }
-                else if( AnscEqualString(ParamName, "TransmitGain", TRUE) )
+                else if (strcmp(ParamName, "TransmitGain") == 0)
                 {
                     if(ANSC_STATUS_SUCCESS == TelcoVoiceMgrDmlSetTransmitGain(uVsIndex,
                                                                     uVpIndex,
@@ -1899,12 +1899,12 @@ BOOL VoiceProcessing_GetParamBoolValue(ANSC_HANDLE hInsContext, char* ParamName,
 
             if (pVoiceService && pVoiceProfile && pLine)
             {
-                if( AnscEqualString(ParamName, "EchoCancellationEnable", TRUE))
+                if (strcmp(ParamName, "EchoCancellationEnable") == 0)
                 {
                     *pBool = pLine->LineVoiceProcessingObj.EchoCancellationEnable;
                     bStatus = TRUE;
                 }
-                else if( AnscEqualString(ParamName, "EchoCancellationInUse", TRUE))
+                else if (strcmp(ParamName, "EchoCancellationInUse") == 0)
                 {
                     *pBool = pLine->LineVoiceProcessingObj.EchoCancellationInUse;
                     bStatus = TRUE;
@@ -2343,7 +2343,7 @@ BOOL Stats_GetParamBoolValue(ANSC_HANDLE hInsContext, char* ParamName, BOOL* pBo
 
     if (pLine && pBool)
     {
-        if( AnscEqualString(ParamName, "ResetStatistics", TRUE) )
+        if (strcmp(ParamName, "ResetStatistics") == 0)
         {
             /*Always return FALSE when read the ResetStatistics param*/
             *pBool = FALSE;
@@ -2417,7 +2417,7 @@ BOOL Stats_SetParamBoolValue(ANSC_HANDLE hInsContext, char* ParamName, BOOL bVal
                 uVpIndex = pVoiceProfile->InstanceNumber;
                 uLineIndex = pLine->InstanceNumber;
                 TelcoVoiceMgrDmlGetDataRelease(pTelcoVoiceMgrDmlData);
-                if( AnscEqualString(ParamName, "ResetStatistics", TRUE) )
+                if (strcmp(ParamName, "ResetStatistics") == 0)
                 {
                     if(TRUE == bValue)
                     {
@@ -2509,107 +2509,107 @@ BOOL Stats_GetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, ULONG* p
                 {
                     bStatus = TRUE;
 
-                    if( AnscEqualString(ParamName, "AverageFarEndInterarrivalJitter", TRUE) )
+                    if (strcmp(ParamName, "AverageFarEndInterarrivalJitter") == 0)
                     {
                         *puLong = stVoiceStats.AverageFarEndInterarrivalJitter;
                     }
-                    else if( AnscEqualString(ParamName, "AverageReceiveInterarrivalJitter", TRUE) )
+                    else if (strcmp(ParamName, "AverageReceiveInterarrivalJitter") == 0)
                     {
                         *puLong = stVoiceStats.AverageReceiveInterarrivalJitter;
                     }
-                    else if( AnscEqualString(ParamName, "AverageRoundTripDelay", TRUE) )
+                    else if (strcmp(ParamName, "AverageRoundTripDelay") == 0)
                     {
                         *puLong = stVoiceStats.AverageRoundTripDelay;
                     }
-                    else if( AnscEqualString(ParamName, "BytesReceived", TRUE) )
+                    else if (strcmp(ParamName, "BytesReceived") == 0)
                     {
                         *puLong = stVoiceStats.BytesReceived;
                     }
-                    else if( AnscEqualString(ParamName, "BytesSent", TRUE) )
+                    else if (strcmp(ParamName, "BytesSent") == 0)
                     {
                         *puLong = stVoiceStats.BytesSent;
                     }
-                    else if( AnscEqualString(ParamName, "FarEndInterarrivalJitter", TRUE) )
+                    else if (strcmp(ParamName, "FarEndInterarrivalJitter") == 0)
                     {
                         *puLong = stVoiceStats.FarEndInterarrivalJitter;
                     }
-                    else if( AnscEqualString(ParamName, "FarEndPacketLossRate", TRUE) )
+                    else if (strcmp(ParamName, "FarEndPacketLossRate") == 0)
                     {
                         *puLong = stVoiceStats.FarEndPacketLossRate;
                     }
-                    else if( AnscEqualString(ParamName, "IncomingCallsAnswered", TRUE) )
+                    else if (strcmp(ParamName, "IncomingCallsAnswered") == 0)
                     {
                         *puLong = stVoiceStats.IncomingCallsAnswered;
                     }
-                    else if( AnscEqualString(ParamName, "IncomingCallsConnected", TRUE) )
+                    else if (strcmp(ParamName, "IncomingCallsConnected") == 0)
                     {
                         *puLong = stVoiceStats.IncomingCallsConnected;
                     }
-                    else if( AnscEqualString(ParamName, "IncomingCallsFailed", TRUE) )
+                    else if (strcmp(ParamName, "IncomingCallsFailed") == 0)
                     {
                         *puLong = stVoiceStats.IncomingCallsFailed;
                     }
-                    else if( AnscEqualString(ParamName, "IncomingCallsReceived", TRUE) )
+                    else if (strcmp(ParamName, "IncomingCallsReceived") == 0)
                     {
                         *puLong = stVoiceStats.IncomingCallsReceived;
                     }
-                    else if( AnscEqualString(ParamName, "OutgoingCallsAnswered", TRUE) )
+                    else if (strcmp(ParamName, "OutgoingCallsAnswered") == 0)
                     {
                         *puLong = stVoiceStats.OutgoingCallsAnswered;
                     }
-                    else if( AnscEqualString(ParamName, "OutgoingCallsAttempted", TRUE) )
+                    else if (strcmp(ParamName, "OutgoingCallsAttempted") == 0)
                     {
                         *puLong = stVoiceStats.OutgoingCallsAttempted;
                     }
-                    else if( AnscEqualString(ParamName, "OutgoingCallsConnected", TRUE) )
+                    else if (strcmp(ParamName, "OutgoingCallsConnected") == 0)
                     {
                         *puLong = stVoiceStats.OutgoingCallsConnected;
                     }
-                    else if( AnscEqualString(ParamName, "OutgoingCallsFailed", TRUE) )
+                    else if (strcmp(ParamName, "OutgoingCallsFailed") == 0)
                     {
                         *puLong = stVoiceStats.OutgoingCallsFailed;
                     }
-                    else if( AnscEqualString(ParamName, "PacketsLost", TRUE) )
+                    else if (strcmp(ParamName, "PacketsLost") == 0)
                     {
                         *puLong = stVoiceStats.PacketsLost;
                     }
-                    else if( AnscEqualString(ParamName, "PacketsReceived", TRUE) )
+                    else if (strcmp(ParamName, "PacketsReceived") == 0)
                     {
                         *puLong = stVoiceStats.PacketsReceived;
                     }
-                    else if( AnscEqualString(ParamName, "PacketsSent", TRUE) )
+                    else if (strcmp(ParamName, "PacketsSent") == 0)
                     {
                         *puLong = stVoiceStats.PacketsSent;
                     }
-                    else if( AnscEqualString(ParamName, "ReceiveInterarrivalJitter", TRUE) )
+                    else if (strcmp(ParamName, "ReceiveInterarrivalJitter") == 0)
                     {
                         *puLong = stVoiceStats.ReceiveInterarrivalJitter;
                     }
-                    else if( AnscEqualString(ParamName, "ReceivePacketLossRate", TRUE) )
+                    else if (strcmp(ParamName, "ReceivePacketLossRate") == 0)
                     {
                         *puLong = stVoiceStats.ReceivePacketLossRate;
                     }
-                    else if( AnscEqualString(ParamName, "RoundTripDelay", TRUE) )
+                    else if (strcmp(ParamName, "RoundTripDelay") == 0)
                     {
                         *puLong = stVoiceStats.RoundTripDelay;
                     }
-                    else if( AnscEqualString(ParamName, "Overruns", TRUE) )
+                    else if (strcmp(ParamName, "Overruns") == 0)
                     {
                         *puLong = stVoiceStats.Overruns;
                     }
-                    else if( AnscEqualString(ParamName, "Underruns", TRUE) )
+                    else if (strcmp(ParamName, "Underruns") == 0)
                     {
                         *puLong = stVoiceStats.Underruns;
                     }
-                    else if( AnscEqualString(ParamName, "CallsDropped", TRUE) )
+                    else if (strcmp(ParamName, "CallsDropped") == 0)
                     {
                         *puLong = stVoiceStats.CallsDropped;
                     }
-                    else if( AnscEqualString(ParamName, "TotalCallTime", TRUE) )
+                    else if (strcmp(ParamName, "TotalCallTime") == 0)
                     {
                         *puLong = stVoiceStats.TotalCallTime;
                     }
-                    else if( AnscEqualString(ParamName, "ServerDownTime", TRUE) )
+                    else if (strcmp(ParamName, "ServerDownTime") == 0)
                     {
                         *puLong = stVoiceStats.ServerDownTime;
                     }
@@ -2710,15 +2710,15 @@ BOOL CallingFeatures_GetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName
         return FALSE;
     }
 
-    if( AnscEqualString(ParamName, "MaxSessions", TRUE) )
+    if (strcmp(ParamName, "MaxSessions") == 0)
     {
         *pValue = pLine->LineCallingFeaturesObj.MaxSessions;
     }
-    else if( AnscEqualString(ParamName, "ConferenceCallingSessionCount", TRUE) )
+    else if (strcmp(ParamName, "ConferenceCallingSessionCount") == 0)
     {
         *pValue = pLine->LineCallingFeaturesObj.ConferenceCallingSessionCount;
     }
-    else if( AnscEqualString(ParamName, "CallForwardOnNoAnswerRingCount", TRUE) )
+    else if (strcmp(ParamName, "CallForwardOnNoAnswerRingCount") == 0)
     {
         *pValue = pLine->LineCallingFeaturesObj.CallForwardOnNoAnswerRingCount;
     }
@@ -2741,11 +2741,11 @@ LONG CallingFeatures_GetParamStringValue(ANSC_HANDLE hInsContext, char* ParamNam
         return -1;
     }
 
-    if( AnscEqualString(ParamName, "CallerIDName", TRUE) )
+    if (strcmp(ParamName, "CallerIDName") == 0)
     {
         AnscCopyString(pValue, pLine->LineCallingFeaturesObj.CallerIDName);
     }
-    else if( AnscEqualString(ParamName, "CallWaitingStatus", TRUE) )
+    else if (strcmp(ParamName, "CallWaitingStatus") == 0)
     {
         switch( pLine->LineCallingFeaturesObj.CallWaitingStatus )
         {
@@ -2774,7 +2774,7 @@ LONG CallingFeatures_GetParamStringValue(ANSC_HANDLE hInsContext, char* ParamNam
                 break;
         }
     }
-    else if( AnscEqualString(ParamName, "ConferenceCallingStatus", TRUE) )
+    else if (strcmp(ParamName, "ConferenceCallingStatus") == 0)
     {
         switch( pLine->LineCallingFeaturesObj.ConferenceCallingStatus )
         {
@@ -2807,15 +2807,15 @@ LONG CallingFeatures_GetParamStringValue(ANSC_HANDLE hInsContext, char* ParamNam
                 break;
         }
     }
-    else if( AnscEqualString(ParamName, "CallForwardOnBusyNumber", TRUE) )
+    else if (strcmp(ParamName, "CallForwardOnBusyNumber") == 0)
     {
         AnscCopyString(pValue, pLine->LineCallingFeaturesObj.CallForwardOnBusyNumber);
     }
-    else if( AnscEqualString(ParamName, "CallForwardUnconditionalNumber", TRUE) )
+    else if (strcmp(ParamName, "CallForwardUnconditionalNumber") == 0)
     {
         AnscCopyString(pValue, pLine->LineCallingFeaturesObj.CallForwardUnconditionalNumber);
     }
-    else if( AnscEqualString(ParamName, "CallForwardOnNoAnswerNumber", TRUE) )
+    else if (strcmp(ParamName, "CallForwardOnNoAnswerNumber") == 0)
     {
         AnscCopyString(pValue, pLine->LineCallingFeaturesObj.CallForwardOnNoAnswerNumber);
     }
@@ -2871,87 +2871,87 @@ BOOL CallingFeatures_GetParamBoolValue(ANSC_HANDLE hInsContext, char* ParamName,
     }
     
     CcspTraceWarning(("%s::ParamName:%s\n", __FUNCTION__, ParamName));
-    if( AnscEqualString(ParamName, "CallerIDEnable", TRUE) )
+    if (strcmp(ParamName, "CallerIDEnable") == 0)
     {
         *pBool = pLine->LineCallingFeaturesObj.CallerIDEnable;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "AnonymousCallBlockEnable", TRUE) )
+    else if (strcmp(ParamName, "AnonymousCallBlockEnable") == 0)
     {
         *pBool = pLine->LineCallingFeaturesObj.AnonymousCallBlockEnable;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "AnonymousCalEnable", TRUE) )
+    else if (strcmp(ParamName, "AnonymousCalEnable") == 0)
     {
         *pBool = pLine->LineCallingFeaturesObj.AnonymousCalEnable;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "DoNotDisturbEnable", TRUE) )
+    else if (strcmp(ParamName, "DoNotDisturbEnable") == 0)
     {
         *pBool =  pLine->LineCallingFeaturesObj.DoNotDisturbEnable;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "CallReturnEnable", TRUE) )
+    else if (strcmp(ParamName, "CallReturnEnable") == 0)
     {
         *pBool = pLine->LineCallingFeaturesObj.CallReturnEnable;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "RepeatDialEnable", TRUE) )
+    else if (strcmp(ParamName, "RepeatDialEnable") == 0)
     {
         *pBool = pLine->LineCallingFeaturesObj.RepeatDialEnable;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "CallForwardOnNoAnswerEnable", TRUE) )
+    else if (strcmp(ParamName, "CallForwardOnNoAnswerEnable") == 0)
     {
         *pBool = pLine->LineCallingFeaturesObj.CallForwardOnNoAnswerEnable;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "CallTransferEnable", TRUE) )
+    else if (strcmp(ParamName, "CallTransferEnable") == 0)
     {
         *pBool = pLine->LineCallingFeaturesObj.CallTransferEnable;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "MessageWaiting", TRUE) )
+    else if (strcmp(ParamName, "MessageWaiting") == 0)
     {
         *pBool = pLine->LineCallingFeaturesObj.MessageWaiting;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "CallForwardUnconditionalEnable", TRUE) )
+    else if (strcmp(ParamName, "CallForwardUnconditionalEnable") == 0)
     {
         *pBool = pLine->LineCallingFeaturesObj.CallForwardUnconditionalEnable;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "CallerIDNameEnable", TRUE) )
+    else if (strcmp(ParamName, "CallerIDNameEnable") == 0)
     {
         *pBool = pLine->LineCallingFeaturesObj.CallerIDNameEnable;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "CallForwardOnBusyEnable", TRUE) )
+    else if (strcmp(ParamName, "CallForwardOnBusyEnable") == 0)
     {
         *pBool = pLine->LineCallingFeaturesObj.CallForwardOnBusyEnable;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "CallWaitingEnable", TRUE) )
+    else if (strcmp(ParamName, "CallWaitingEnable") == 0)
     {
         *pBool = pLine->LineCallingFeaturesObj.CallWaitingEnable;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "MWIEnable", TRUE) )
+    else if (strcmp(ParamName, "MWIEnable") == 0)
     {
         *pBool = pLine->LineCallingFeaturesObj.MWIEnable;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "X_RDK-Central_COM_ConferenceCallingEnable", TRUE) )
+    else if (strcmp(ParamName, "X_RDK-Central_COM_ConferenceCallingEnable") == 0)
     {
         * pBool = pLine->LineCallingFeaturesObj.ConferenceCallingEnable;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "X_RDK-Central_COM_HoldEnable", TRUE) )
+    else if (strcmp(ParamName, "X_RDK-Central_COM_HoldEnable") == 0)
     {
         * pBool = pLine->LineCallingFeaturesObj.HoldEnable;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "X_RDK-Central_COM_PhoneCallerIDEnable", TRUE) )
+    else if (strcmp(ParamName, "X_RDK-Central_COM_PhoneCallerIDEnable") == 0)
     {
         * pBool = pLine->LineCallingFeaturesObj.PhoneCallerIDEnable;
         ret = TRUE;
@@ -3023,7 +3023,7 @@ BOOL CallingFeatures_SetParamBoolValue(ANSC_HANDLE hInsContext, char* ParamName,
                 uVpIndex = pVoiceProfile->InstanceNumber;
                 uLineIndex = pLine->InstanceNumber;
                 TelcoVoiceMgrDmlGetDataRelease(pTelcoVoiceMgrDmlData);
-                if( AnscEqualString(ParamName, "CallWaitingEnable", TRUE) )
+                if (strcmp(ParamName, "CallWaitingEnable") == 0)
                 {
                     eFeature = VOICE_CALLING_FEATURE_CALL_WAITING;
                     if(ANSC_STATUS_SUCCESS == TelcoVoiceMgrDmlSetLineCallingFeatures(uVsIndex,
@@ -3041,7 +3041,7 @@ BOOL CallingFeatures_SetParamBoolValue(ANSC_HANDLE hInsContext, char* ParamName,
                         }
                     }
                 }
-                else if( AnscEqualString(ParamName, "MWIEnable", TRUE) )
+                else if (strcmp(ParamName, "MWIEnable") == 0)
                 {
                     eFeature = VOICE_CALLING_FEATURE_MSG_WAIT_INDICATOR;
                     if(ANSC_STATUS_SUCCESS == TelcoVoiceMgrDmlSetLineCallingFeatures(uVsIndex,
@@ -3059,7 +3059,7 @@ BOOL CallingFeatures_SetParamBoolValue(ANSC_HANDLE hInsContext, char* ParamName,
                         }
                     }
                 }
-                else if( AnscEqualString(ParamName, "X_RDK-Central_COM_ConferenceCallingEnable", TRUE) )
+                else if (strcmp(ParamName, "X_RDK-Central_COM_ConferenceCallingEnable") == 0)
                 {
                     eFeature = VOICE_CALLING_FEATURE_CONF_CALL;
                     if(ANSC_STATUS_SUCCESS == TelcoVoiceMgrDmlSetLineCallingFeatures(uVsIndex,
@@ -3077,7 +3077,7 @@ BOOL CallingFeatures_SetParamBoolValue(ANSC_HANDLE hInsContext, char* ParamName,
                         }
                     }
                 }
-                else if( AnscEqualString(ParamName, "X_RDK-Central_COM_HoldEnable", TRUE) )
+                else if (strcmp(ParamName, "X_RDK-Central_COM_HoldEnable") == 0)
                 {
                     eFeature = VOICE_CALLING_FEATURE_HOLD;
                     if(ANSC_STATUS_SUCCESS == TelcoVoiceMgrDmlSetLineCallingFeatures(uVsIndex,
@@ -3095,7 +3095,7 @@ BOOL CallingFeatures_SetParamBoolValue(ANSC_HANDLE hInsContext, char* ParamName,
                         }
                     }
                 }
-                else if( AnscEqualString(ParamName, "X_RDK-Central_COM_PhoneCallerIDEnable", TRUE) )
+                else if (strcmp(ParamName, "X_RDK-Central_COM_PhoneCallerIDEnable") == 0)
                 {
                     eFeature = VOICE_CALLING_FEATURE_CALLER_ID;
                     if(ANSC_STATUS_SUCCESS == TelcoVoiceMgrDmlSetLineCallingFeatures(uVsIndex,
@@ -3269,7 +3269,7 @@ LONG LineSIP_GetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, char*
                 }
                 if (pVoiceService && pVoiceProfile && pLine)
                 {
-                    if( AnscEqualString(ParamName, "AuthUserName", TRUE) )
+                    if (strcmp(ParamName, "AuthUserName") == 0)
                     {
                         snprintf(buf, sizeof(buf), "%s", pLine->LineSipObj.AuthUserName);
                         if ( AnscSizeOfString(buf) < *pUlSize)
@@ -3283,12 +3283,12 @@ LONG LineSIP_GetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, char*
                             ret = 1;
                         }
                     }
-                    else if( AnscEqualString(ParamName, "AuthPassword", TRUE) )
+                    else if (strcmp(ParamName, "AuthPassword") == 0)
                     {
                         //Avoid returning password in dmcli get.
                         ret = 0;
                     }
-                    else if( AnscEqualString(ParamName, "URI", TRUE) )
+                    else if (strcmp(ParamName, "URI") == 0)
                     {
                         snprintf(buf, sizeof(buf), "%s", pLine->LineSipObj.URI);
                         if ( AnscSizeOfString(buf) < *pUlSize)
@@ -3373,7 +3373,7 @@ BOOL LineSIP_SetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, char*
                     uVpIndex = pVoiceProfile->InstanceNumber;
                     uLineIndex = pLine->InstanceNumber;
                     TelcoVoiceMgrDmlGetDataRelease(pTelcoVoiceMgrDmlData);
-                    if( AnscEqualString(ParamName, "AuthUserName", TRUE) )
+                    if (strcmp(ParamName, "AuthUserName") == 0)
                     {
                         if(ANSC_STATUS_SUCCESS == TelcoVoiceMgrDmlSetLineSIPAuthCredentials(uVsIndex,
                                                                     uVpIndex,
@@ -3390,7 +3390,7 @@ BOOL LineSIP_SetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, char*
                             }
                         }
                     }
-                    else if( AnscEqualString(ParamName, "AuthPassword", TRUE) )
+                    else if (strcmp(ParamName, "AuthPassword") == 0)
                     {
                         if(ANSC_STATUS_SUCCESS == TelcoVoiceMgrDmlSetLineSIPAuthCredentials(uVsIndex,
                                                                     uVpIndex,
@@ -3407,7 +3407,7 @@ BOOL LineSIP_SetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, char*
                             }
                         }
                     }
-                    else if( AnscEqualString(ParamName, "URI", TRUE) )
+                    else if (strcmp(ParamName, "URI") == 0)
                     {
                         if(ANSC_STATUS_SUCCESS == TelcoVoiceMgrDmlSetLineSipURI(uVsIndex,
                                                                     uVpIndex,
@@ -3469,12 +3469,12 @@ BOOL Event_GetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, ULONG* p
 {
     BOOL ret = FALSE;
 
-    if( AnscEqualString(ParamName, "Event_GetParamUlongValue", TRUE))
+    if (strcmp(ParamName, "Event_GetParamUlongValue") == 0)
     {
         *pValue = 0;
         ret = TRUE;
     }
-    if( AnscEqualString(ParamName, "RingID", TRUE))
+    if (strcmp(ParamName, "RingID") == 0)
     {
         *pValue = 0;
         ret = TRUE;
@@ -3517,7 +3517,7 @@ BOOL Event_GetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, ULONG* p
 BOOL Event_SetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, char* pValue, ULONG* pUlSize)
 {
     
-    if( AnscEqualString(ParamName, "Alias", TRUE) )
+    if (strcmp(ParamName, "Alias") == 0)
     {
         return TRUE;
     }
@@ -3562,12 +3562,12 @@ BOOL Event_SetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, char* pV
 LONG Event_GetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, char* pValue, ULONG* pUlSize)
 {
     LONG ret = -1;
-    if( AnscEqualString(ParamName, "Alias", TRUE) )
+    if (strcmp(ParamName, "Alias") == 0)
     {
         AnscCopyString(pValue, "");
         return 0;
     }
-    else if( AnscEqualString(ParamName, "Function", TRUE) )
+    else if (strcmp(ParamName, "Function") == 0)
     {
         AnscCopyString(pValue, "");
         return 0;
@@ -3606,7 +3606,7 @@ LONG Event_GetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, char* p
 BOOL Event_SetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, char* pString)
 {
     BOOL ret = FALSE;
-    if( AnscEqualString(ParamName, "Alias", TRUE) )
+    if (strcmp(ParamName, "Alias") == 0)
     {
         ret = TRUE;
     }
@@ -3655,17 +3655,17 @@ BOOL Description_GetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, UL
 {
     BOOL ret = FALSE;
 
-    if( AnscEqualString(ParamName, "EntryID", TRUE))
+    if (strcmp(ParamName, "EntryID") == 0)
     {
         *pValue = 0;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName,"RingPattern", TRUE))
+    else if (strcmp(ParamName, "RingPattern") == 0)
     {
         *pValue = 0;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName,"RingEnable", TRUE))
+    else if (strcmp(ParamName, "RingEnable") == 0)
     {
         *pValue = 0;
         ret = TRUE;
@@ -3679,7 +3679,7 @@ BOOL Description_GetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, UL
 BOOL Description_GetParamBoolValue(ANSC_HANDLE hInsContext, char* ParamName, BOOL* pBool)
 {
     BOOL ret = FALSE;
-    if( AnscEqualString(ParamName, "RingEnable", TRUE))
+    if (strcmp(ParamName, "RingEnable") == 0)
     {
         *pBool = TRUE;
         ret = TRUE;
@@ -3728,17 +3728,17 @@ BOOL Description_SetParamBoolValue(ANSC_HANDLE hInsContext, char* ParamName, BOO
 LONG Description_GetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, char* pValue, ULONG* pUlSize)
 {
     LONG ret = -1;
-    if( AnscEqualString(ParamName, "Alias", TRUE) )
+    if (strcmp(ParamName, "Alias") == 0)
     {
         AnscCopyString(pValue, "");
         return 0;
     }
-    else if( AnscEqualString(ParamName, "RingName", TRUE) )
+    else if (strcmp(ParamName, "RingName") == 0)
     {
         AnscCopyString(pValue, "");
         return 0;
     }
-    else if( AnscEqualString(ParamName, "RingFile", TRUE) )
+    else if (strcmp(ParamName, "RingFile") == 0)
     {
         AnscCopyString(pValue, "");
         return 0;
@@ -3780,17 +3780,17 @@ BOOL List_GetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, ULONG* pV
 {
     BOOL ret = FALSE;
 
-    if( AnscEqualString(ParamName, "EntryID", TRUE))
+    if (strcmp(ParamName, "EntryID") == 0)
     {
         *pValue = 0;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName,"BitRate", TRUE))
+    else if (strcmp(ParamName, "BitRate") == 0)
     {
         *pValue = 0;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName,"Priority", TRUE))
+    else if (strcmp(ParamName, "Priority") == 0)
     {
         *pValue = 0;
         ret = TRUE;
@@ -3828,11 +3828,11 @@ return:     TRUE if succeeded.
 BOOL List_GetParamBoolValue(ANSC_HANDLE hInsContext, char* ParamName, BOOL* pBool)
 {
         BOOL ret = FALSE;
-        if( AnscEqualString(ParamName, "SilenceSuppression", TRUE))
+        if (strcmp(ParamName, "SilenceSuppression") == 0)
         {
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "Enable", TRUE))
+        else if (strcmp(ParamName, "Enable") == 0)
         {
             ret = TRUE;
         }
@@ -3878,7 +3878,7 @@ BOOL List_SetParamBoolValue(ANSC_HANDLE hInsContext, char* ParamName, BOOL bValu
 BOOL List_SetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, int iValue)
 {
     BOOL ret = FALSE;
-    if( AnscEqualString(ParamName, "Priority", TRUE) )
+    if (strcmp(ParamName, "Priority") == 0)
     {
         ret = TRUE;
     }
@@ -3922,17 +3922,17 @@ BOOL List_SetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, int iValu
 LONG List_GetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, char* pValue, ULONG* pUlSize)
 {
     LONG ret = -1;
-    if( AnscEqualString(ParamName, "Alias", TRUE) )
+    if (strcmp(ParamName, "Alias") == 0)
     {
         AnscCopyString(pValue, "");
         return 0;
     }
-    else if( AnscEqualString(ParamName, "Codec", TRUE) )
+    else if (strcmp(ParamName, "Codec") == 0)
     {
         AnscCopyString(pValue, "");
         return 0;
     }
-    else if( AnscEqualString(ParamName, "PacketizationPeriod", TRUE) )
+    else if (strcmp(ParamName, "PacketizationPeriod") == 0)
     {
         AnscCopyString(pValue, "");
         return 0;
@@ -3971,11 +3971,11 @@ LONG List_GetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, char* pV
 BOOL List_SetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, char* pString)
 {
     BOOL ret = FALSE;
-    if( AnscEqualString(ParamName, "PacketizationPeriod", TRUE) )
+    if (strcmp(ParamName, "PacketizationPeriod") == 0)
     {
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         ret = TRUE;
     }
@@ -4020,15 +4020,15 @@ BOOL Pattern_GetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, ULONG*
 {
     BOOL ret = FALSE;
 
-    if( AnscEqualString(ParamName, "Duration", TRUE))
+    if (strcmp(ParamName, "Duration") == 0)
     {
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName,"NextEntryID", TRUE))
+    else if (strcmp(ParamName, "NextEntryID") == 0)
     {
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName,"EntryID", TRUE))
+    else if (strcmp(ParamName, "EntryID") == 0)
     {
         ret = TRUE;
     }
@@ -4066,15 +4066,15 @@ BOOL Pattern_GetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, ULONG*
 BOOL Pattern_SetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, ULONG uValue)
 {
     BOOL ret = FALSE;
-    if( AnscEqualString(ParamName, "EntryID", TRUE) )
+    if (strcmp(ParamName, "EntryID") == 0)
     {
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Duration", TRUE) )
+    else if (strcmp(ParamName, "Duration") == 0)
     {
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "NextEntryID", TRUE) )
+    else if (strcmp(ParamName, "NextEntryID") == 0)
     {
         ret = TRUE;
     }
@@ -4118,7 +4118,7 @@ BOOL Pattern_SetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, ULONG 
 LONG Pattern_GetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, char* pValue, ULONG* pUlSize)
 {
     ULONG ret = 1;
-    if( AnscEqualString(ParamName, "Alias", TRUE) )
+    if (strcmp(ParamName, "Alias") == 0)
     {
         AnscCopyString(pValue, "");
         return 0;
@@ -4158,7 +4158,7 @@ LONG Pattern_GetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, char*
 BOOL Pattern_GetParamBoolValue(ANSC_HANDLE hInsContext, char* ParamName, BOOL* pBool)
 {
         BOOL ret = FALSE;
-        if( AnscEqualString(ParamName, "RingerOn", TRUE))
+        if (strcmp(ParamName, "RingerOn") == 0)
         {
             ret = TRUE;
         }
@@ -4196,7 +4196,7 @@ BOOL Pattern_GetParamBoolValue(ANSC_HANDLE hInsContext, char* ParamName, BOOL* p
 BOOL Pattern_SetParamBoolValue(ANSC_HANDLE hInsContext, char* ParamName, BOOL bValue)
 {
     BOOL ret = FALSE;
-    if( AnscEqualString(ParamName, "RingerOn", TRUE) )
+    if (strcmp(ParamName, "RingerOn") == 0)
     {
         ret = FALSE;
     }
@@ -4233,11 +4233,11 @@ return:     TRUE if succeeded.
 BOOL LineCodec_GetParamBoolValue(ANSC_HANDLE hInsContext, char* ParamName, BOOL* pBool)
 {
         BOOL ret = FALSE;
-        if( AnscEqualString(ParamName, "TransmitSilenceSuppression", TRUE))
+        if (strcmp(ParamName, "TransmitSilenceSuppression") == 0)
         {
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "ReceiveSilenceSuppression", TRUE))
+        else if (strcmp(ParamName, "ReceiveSilenceSuppression") == 0)
         {
             ret = TRUE;
         }
@@ -4277,17 +4277,17 @@ BOOL LineCodec_GetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, ULON
 {
     BOOL ret = FALSE;
 
-    if( AnscEqualString(ParamName, "TransmitBitRate", TRUE))
+    if (strcmp(ParamName, "TransmitBitRate") == 0)
     {
         *pValue = 0;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName,"ReceiveBitRate", TRUE))
+    else if (strcmp(ParamName, "ReceiveBitRate") == 0)
     {
         *pValue = 0;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName,"TransmitPacketizationPeriod", TRUE))
+    else if (strcmp(ParamName, "TransmitPacketizationPeriod") == 0)
     {
         *pValue = 0;
         ret = TRUE;
@@ -4332,12 +4332,12 @@ BOOL LineCodec_GetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, ULON
 LONG LineCodec_GetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, char* pValue, ULONG* pUlSize)
 {
     LONG ret = -1;
-    if( AnscEqualString(ParamName, "TransmitCodec", TRUE) )
+    if (strcmp(ParamName, "TransmitCodec") == 0)
     {
         AnscCopyString(pValue, "");
         return 0;
     }
-    else if( AnscEqualString(ParamName, "ReceiveCodec", TRUE) )
+    else if (strcmp(ParamName, "ReceiveCodec") == 0)
     {
         AnscCopyString(pValue, "");
         return 0;
@@ -4376,15 +4376,15 @@ LONG LineCodec_GetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, cha
 BOOL EventSubscribe_SetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, char* pString)
 {
     BOOL ret = FALSE;
-    if( AnscEqualString(ParamName, "Alias", TRUE) )
+    if (strcmp(ParamName, "Alias") == 0)
     {
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "AuthUserName", TRUE) )
+    else if (strcmp(ParamName, "AuthUserName") == 0)
     {
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "AuthPassword", TRUE) )
+    else if (strcmp(ParamName, "AuthPassword") == 0)
     {
         ret = TRUE;
     }
@@ -4428,22 +4428,22 @@ BOOL EventSubscribe_SetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName
 LONG EventSubscribe_GetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, char* pValue, ULONG* pUlSize)
 {
     LONG ret = -1;
-    if( AnscEqualString(ParamName, "Alias", TRUE) )
+    if (strcmp(ParamName, "Alias") == 0)
     {
         AnscCopyString(pValue, "");
         ret  = 0;
     }
-    else if( AnscEqualString(ParamName, "Event", TRUE) )
+    else if (strcmp(ParamName, "Event") == 0)
     {
         AnscCopyString(pValue, "");
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "AuthUserName", TRUE) )
+    else if (strcmp(ParamName, "AuthUserName") == 0)
     {
         AnscCopyString(pValue, "");
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "AuthPassword", TRUE) )
+    else if (strcmp(ParamName, "AuthPassword") == 0)
     {
         AnscCopyString(pValue, "");
         ret = 0;
@@ -4486,17 +4486,17 @@ LONG EventSubscribe_GetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName
 BOOL Session_GetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, ULONG* puLong)
 {
     BOOL ret = FALSE;
-    if( AnscEqualString(ParamName, "SessionDuration", TRUE) )
+    if (strcmp(ParamName, "SessionDuration") == 0)
     {
         *puLong = 0;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "FarEndUDPPort", TRUE) )
+    else if (strcmp(ParamName, "FarEndUDPPort") == 0)
     {
         *puLong = 0;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "LocalUDPPort", TRUE) )
+    else if (strcmp(ParamName, "LocalUDPPort") == 0)
     {
         *puLong = 0;
         ret = TRUE;
@@ -4543,12 +4543,12 @@ LONG Session_GetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, char*
 {
     LONG ret = -1;
 
-    if( AnscEqualString(ParamName, "SessionStartTime", TRUE) )
+    if (strcmp(ParamName, "SessionStartTime") == 0)
     {
         AnscCopyString(pValue, "");
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "FarEndIPAddress", TRUE) )
+    else if (strcmp(ParamName, "FarEndIPAddress") == 0)
     {
         AnscCopyString(pValue, "");
         ret = 0;
@@ -4564,7 +4564,7 @@ LONG LineMGCP_GetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, char
 {
     LONG ret = -1;
     PTELCOVOICEMGR_DML_LINE_SESSION pSession = NULL;
-    if( AnscEqualString(ParamName, "LineName", TRUE) )
+    if (strcmp(ParamName, "LineName") == 0)
     {
         AnscCopyString(pValue, "");
         ret = 0;
@@ -4585,12 +4585,12 @@ BOOL LineMGCP_SetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, char
 LONG LineH323_GetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, char* pValue, ULONG* pUlSize)
 {
     LONG ret = -1;
-    if( AnscEqualString(ParamName, "LineName", TRUE) )
+    if (strcmp(ParamName, "LineName") == 0)
     {
         AnscCopyString(pValue, "");
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "H323ID", TRUE) )
+    else if (strcmp(ParamName, "H323ID") == 0)
     {
         AnscCopyString(pValue, "");
         ret = 0;

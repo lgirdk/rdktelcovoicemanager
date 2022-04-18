@@ -73,12 +73,12 @@ ULONG TelcoVoiceMgrDml_ClkSync_GetParamStringValue(ANSC_HANDLE hInsContext, char
 
     PDML_VOICESERVICE_CLOCKSYNC pHEAD = &(pDmlVoiceService->ClockSynchronization_obj);
 
-    if( AnscEqualString(ParamName, "Description", TRUE) )
+    if (strcmp(ParamName, "Description") == 0)
     {
         AnscCopyString(pValue,pHEAD->Description);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "CurrentSource", TRUE) )
+    else if (strcmp(ParamName, "CurrentSource") == 0)
     {
         AnscCopyString(pValue,pHEAD->CurrentSource);
         ret = 0;
@@ -153,7 +153,7 @@ BOOL TelcoVoiceMgrDml_ClkSync_SetParamStringValue(ANSC_HANDLE hInsContext, char*
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "CurrentSource", TRUE) )
+    if (strcmp(ParamName, "CurrentSource") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.ClockSynchronization.CurrentSource",uVsIndex);
 
@@ -219,7 +219,7 @@ BOOL TelcoVoiceMgrDml_ClkSync_GetParamBoolValue(ANSC_HANDLE hInsContext, char* P
 
     PDML_VOICESERVICE_CLOCKSYNC pHEAD = &(pDmlVoiceService->ClockSynchronization_obj);
 
-    if( AnscEqualString(ParamName, "AutoRevert", TRUE) )
+    if (strcmp(ParamName, "AutoRevert") == 0)
     {
         *pBool = pHEAD->AutoRevert;
         ret = TRUE;
@@ -295,7 +295,7 @@ BOOL TelcoVoiceMgrDml_ClkSync_SetParamBoolValue(ANSC_HANDLE hInsContext, char* P
     TELCOVOICEMGR_UNLOCK()
 
 
-    if( AnscEqualString(ParamName, "AutoRevert", TRUE) )
+    if (strcmp(ParamName, "AutoRevert") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.ClockSynchronization.AutoRevert",uVsIndex);
 
@@ -501,7 +501,7 @@ BOOL TelcoVoiceMgrDml_ClkSync_ClkSourceList_GetParamUlongValue(ANSC_HANDLE hInsC
 
     PDML_VOICESERVICE_CLOCKSYNC_CLOCKSOURCE pHEAD = &(pHEADCtrl->dml);
 
-    if( AnscEqualString(ParamName, "Order", TRUE) )
+    if (strcmp(ParamName, "Order") == 0)
     {
         *puLong = pHEAD->Order;
         ret = TRUE;
@@ -582,7 +582,7 @@ BOOL TelcoVoiceMgrDml_ClkSync_ClkSourceList_SetParamUlongValue(ANSC_HANDLE hInsC
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "Order", TRUE) )
+    if (strcmp(ParamName, "Order") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.ClockSynchronization.ClockSource.%d.Order",uVsIndex,uClkSourceIndex);
 
@@ -654,12 +654,12 @@ ULONG TelcoVoiceMgrDml_ClkSync_ClkSourceList_GetParamStringValue(ANSC_HANDLE hIn
 
     PDML_VOICESERVICE_CLOCKSYNC_CLOCKSOURCE pHEAD = &(pHEADCtrl->dml);
 
-    if( AnscEqualString(ParamName, "Interface", TRUE) )
+    if (strcmp(ParamName, "Interface") == 0)
     {
         AnscCopyString(pValue,pHEAD->Interface);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         AnscCopyString(pValue,pHEAD->Alias);
         ret = 0;
@@ -740,7 +740,7 @@ BOOL TelcoVoiceMgrDml_ClkSync_ClkSourceList_SetParamStringValue(ANSC_HANDLE hIns
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "Interface", TRUE) )
+    if (strcmp(ParamName, "Interface") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.ClockSynchronization.ClockSource.%d.Interface",uVsIndex,uClkSourceIndex);
 
@@ -755,7 +755,7 @@ BOOL TelcoVoiceMgrDml_ClkSync_ClkSourceList_SetParamStringValue(ANSC_HANDLE hIns
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         TELCOVOICEMGR_LOCK_OR_EXIT()
 
@@ -814,7 +814,7 @@ BOOL TelcoVoiceMgrDml_ClkSync_ClkSourceList_GetParamBoolValue(ANSC_HANDLE hInsCo
 
     PDML_VOICESERVICE_CLOCKSYNC_CLOCKSOURCE pHEAD = &(pHEADCtrl->dml);
 
-    if( AnscEqualString(ParamName, "Enable", TRUE) )
+    if (strcmp(ParamName, "Enable") == 0)
     {
         *pBool = pHEAD->Enable;
         ret = TRUE;
@@ -895,7 +895,7 @@ BOOL TelcoVoiceMgrDml_ClkSync_ClkSourceList_SetParamBoolValue(ANSC_HANDLE hInsCo
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "Enable", TRUE) )
+    if (strcmp(ParamName, "Enable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.ClockSynchronization.ClockSource.%d.Enable",uVsIndex,uClkSourceIndex);
 
