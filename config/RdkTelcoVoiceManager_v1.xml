@@ -2897,7 +2897,7 @@
                                 <parameter>
                                     <name>Description</name>
                                     <type>string(32)</type>
-                                    <syntax>string­</syntax>
+                                    <syntax>string</syntax>
                                 </parameter>
                             </parameters>
                             <objects>
