@@ -170,17 +170,17 @@ LONG PhyInterface_GetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, 
         return ret;
     }
 
-    if( AnscEqualString(ParamName, "Alias", TRUE) )
+    if (strcmp(ParamName, "Alias") == 0)
     {
         AnscCopyString(pValue,pDmlPhyInterface->Alias);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "PhyPort", TRUE) )
+    else if (strcmp(ParamName, "PhyPort") == 0)
     {
         AnscCopyString(pValue,pDmlPhyInterface->PhyPort);
         ret = 0;
     } 
-    else if( AnscEqualString(ParamName, "Description", TRUE) )
+    else if (strcmp(ParamName, "Description") == 0)
     {
         AnscCopyString(pValue,pDmlPhyInterface->Description);
         ret = 0;
@@ -242,7 +242,7 @@ BOOL PhyInterface_GetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, U
         return ret;
     }
     
-    if( AnscEqualString(ParamName, "InterfaceID", TRUE))
+    if (strcmp(ParamName, "InterfaceID") == 0)
     {
         *pValue = pDmlPhyInterface->InterfaceID;
         ret = TRUE;
@@ -307,7 +307,7 @@ BOOL PhyInterfaceTests_GetParamBoolValue(ANSC_HANDLE hInsContext, char* ParamNam
     PTELCOVOICEMGR_DML_PHYINTERFACE_TESTS pDmlPhyInterfaceTests = &(pDmlPhyInterface->PhyInterfaceTestsObj);
     if(pDmlPhyInterfaceTests != NULL)
     {
-        if( AnscEqualString(ParamName, "PhoneConnectivity", TRUE))
+        if (strcmp(ParamName, "PhoneConnectivity") == 0)
         {
             *pBool = pDmlPhyInterfaceTests->PhoneConnectivity;
             ret = TRUE;
@@ -383,7 +383,7 @@ BOOL PhyInterfaceTests_SetParamStringValue(ANSC_HANDLE hInsContext, char* ParamN
             uVsIndex = pDmlVoiceService->InstanceNumber;
             uPhyIndex =  pDmlPhyInterface->InstanceNumber;
             TelcoVoiceMgrDmlGetDataRelease(pTelcoVoiceMgrDmlData);
-            if( AnscEqualString(ParamName, "TestSelector", TRUE) )
+            if (strcmp(ParamName, "TestSelector") == 0)
             {
                 if(!strcmp(pString, "PhoneConnectivityTest"))
                 {
@@ -508,7 +508,7 @@ BOOL PhyInterfaceTests_SetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamNa
             uPhyIndex =  pDmlPhyInterface->InstanceNumber;
             TelcoVoiceMgrDmlGetDataRelease(pTelcoVoiceMgrDmlData);
 
-            if( AnscEqualString(ParamName, "TestState", TRUE) )
+            if (strcmp(ParamName, "TestState") == 0)
             {
                 if(TelcoVoiceMgrDmlSetTestState(uVsIndex, uPhyIndex, uValue) == ANSC_STATUS_SUCCESS)
                 {
@@ -589,7 +589,7 @@ BOOL PhyInterface_SetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, 
     if(pDmlPhyInterfaceTests != NULL)
     {
 
-        if( AnscEqualString(ParamName, "Alias", TRUE) )
+        if (strcmp(ParamName, "Alias") == 0)
         {
             //TODO
             ret = TRUE;
@@ -663,7 +663,7 @@ LONG PhyInterfaceTests_GetParamStringValue(ANSC_HANDLE hInsContext, char* ParamN
     PTELCOVOICEMGR_DML_PHYINTERFACE_TESTS pDmlPhyInterfaceTests = &(pDmlPhyInterface->PhyInterfaceTestsObj);
     if(pDmlPhyInterfaceTests != NULL)
     {
-        if( AnscEqualString(ParamName, "TestSelector", TRUE) )
+        if (strcmp(ParamName, "TestSelector") == 0)
         {
                  
             if(pDmlPhyInterfaceTests->TestSelector == PHYINTERFACE_TESTSELECTOR_PHONE_CONNECTIVITY_TEST)
@@ -697,7 +697,7 @@ LONG PhyInterfaceTests_GetParamStringValue(ANSC_HANDLE hInsContext, char* ParamN
                 ret = 0;
             }   
         }
-        else if( AnscEqualString(ParamName, "X_RDK_TestResult", TRUE) )
+        else if (strcmp(ParamName, "X_RDK_TestResult") == 0)
         {
             AnscCopyString(pValue,pDmlPhyInterfaceTests->X_RDK_TestResult);
             ret = 0;
@@ -770,7 +770,7 @@ BOOL PhyInterfaceTests_GetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamNa
     if(pDmlPhyInterfaceTests != NULL)
     {
 
-        if( AnscEqualString(ParamName, "TestState", TRUE) )
+        if (strcmp(ParamName, "TestState") == 0)
         {
             *pValue = pDmlPhyInterfaceTests->TestState;
             ret = TRUE;

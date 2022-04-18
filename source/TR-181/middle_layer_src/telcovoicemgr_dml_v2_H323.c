@@ -231,7 +231,7 @@ BOOL TelcoVoiceMgrDml_H323_ClientList_GetParamUlongValue(ANSC_HANDLE hInsContext
     uH323ClientIndex = pHEAD->uInstanceNumber;
 
 
-    if( AnscEqualString(ParamName, "Status", TRUE) )
+    if (strcmp(ParamName, "Status") == 0)
     {
         //Fetch status from voice stack
         hal_param_t req_param;
@@ -249,7 +249,7 @@ BOOL TelcoVoiceMgrDml_H323_ClientList_GetParamUlongValue(ANSC_HANDLE hInsContext
             ret = FALSE;
         }
     }
-    else if( AnscEqualString(ParamName, "MaxSessions", TRUE) )
+    else if (strcmp(ParamName, "MaxSessions") == 0)
     {
         *puLong = pHEAD->MaxSessions;
         ret = TRUE;
@@ -330,7 +330,7 @@ BOOL TelcoVoiceMgrDml_H323_ClientList_SetParamUlongValue(ANSC_HANDLE hInsContext
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "MaxSessions", TRUE) )
+    if (strcmp(ParamName, "MaxSessions") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.H323.Client.%d.MaxSessions",uVsIndex,uClientIndex);
 
@@ -402,27 +402,27 @@ ULONG TelcoVoiceMgrDml_H323_ClientList_GetParamStringValue(ANSC_HANDLE hInsConte
 
     PDML_H323_CLIENT pHEAD = &(pH323ClientCtrl->dml);
 
-    if( AnscEqualString(ParamName, "SendersID", TRUE) )
+    if (strcmp(ParamName, "SendersID") == 0)
     {
         AnscCopyString(pValue,pHEAD->SendersID);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Network", TRUE) )
+    else if (strcmp(ParamName, "Network") == 0)
     {
         AnscCopyString(pValue,pHEAD->Network);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "H323ID", TRUE) )
+    else if (strcmp(ParamName, "H323ID") == 0)
     {
         AnscCopyString(pValue,pHEAD->H323ID);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "AuthPassword", TRUE) )
+    else if (strcmp(ParamName, "AuthPassword") == 0)
     {
         AnscCopyString(pValue,pHEAD->AuthPassword);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         AnscCopyString(pValue,pHEAD->Alias);
         ret = 0;
@@ -503,7 +503,7 @@ BOOL TelcoVoiceMgrDml_H323_ClientList_SetParamStringValue(ANSC_HANDLE hInsContex
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "SendersID", TRUE) )
+    if (strcmp(ParamName, "SendersID") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.H323.Client.%d.SendersID",uVsIndex,uClientIndex);
 
@@ -518,7 +518,7 @@ BOOL TelcoVoiceMgrDml_H323_ClientList_SetParamStringValue(ANSC_HANDLE hInsContex
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Network", TRUE) )
+    else if (strcmp(ParamName, "Network") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.H323.Client.%d.Network",uVsIndex,uClientIndex);
 
@@ -533,7 +533,7 @@ BOOL TelcoVoiceMgrDml_H323_ClientList_SetParamStringValue(ANSC_HANDLE hInsContex
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "H323ID", TRUE) )
+    else if (strcmp(ParamName, "H323ID") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.H323.Client.%d.H323ID",uVsIndex,uClientIndex);
 
@@ -548,7 +548,7 @@ BOOL TelcoVoiceMgrDml_H323_ClientList_SetParamStringValue(ANSC_HANDLE hInsContex
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "AuthPassword", TRUE) )
+    else if (strcmp(ParamName, "AuthPassword") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.H323.Client.%d.AuthPassword",uVsIndex,uClientIndex);
 
@@ -563,7 +563,7 @@ BOOL TelcoVoiceMgrDml_H323_ClientList_SetParamStringValue(ANSC_HANDLE hInsContex
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         TELCOVOICEMGR_LOCK_OR_EXIT()
 
@@ -624,17 +624,17 @@ BOOL TelcoVoiceMgrDml_H323_ClientList_GetParamBoolValue(ANSC_HANDLE hInsContext,
 
     PDML_H323_CLIENT pHEAD = &(pH323ClientCtrl->dml);
 
-    if( AnscEqualString(ParamName, "QuiescentMode", TRUE) )
+    if (strcmp(ParamName, "QuiescentMode") == 0)
     {
         *pBool = pHEAD->QuiescentMode;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "H235Authentication", TRUE) )
+    else if (strcmp(ParamName, "H235Authentication") == 0)
     {
         *pBool = pHEAD->H235Authentication;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Enable", TRUE) )
+    else if (strcmp(ParamName, "Enable") == 0)
     {
         *pBool = pHEAD->Enable;
         ret = TRUE;
@@ -716,7 +716,7 @@ BOOL TelcoVoiceMgrDml_H323_ClientList_SetParamBoolValue(ANSC_HANDLE hInsContext,
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "QuiescentMode", TRUE) )
+    if (strcmp(ParamName, "QuiescentMode") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.H323.Client.%d.QuiescentMode",uVsIndex,uClientIndex);
 
@@ -731,7 +731,7 @@ BOOL TelcoVoiceMgrDml_H323_ClientList_SetParamBoolValue(ANSC_HANDLE hInsContext,
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "H235Authentication", TRUE) )
+    else if (strcmp(ParamName, "H235Authentication") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.H323.Client.%d.H235Authentication",uVsIndex,uClientIndex);
 
@@ -746,7 +746,7 @@ BOOL TelcoVoiceMgrDml_H323_ClientList_SetParamBoolValue(ANSC_HANDLE hInsContext,
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Enable", TRUE) )
+    else if (strcmp(ParamName, "Enable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.H323.Client.%d.Enable",uVsIndex,uClientIndex);
 
@@ -1045,12 +1045,12 @@ BOOL TelcoVoiceMgrDml_H323_NetworkList_GetParamUlongValue(ANSC_HANDLE hInsContex
 
     uH323NetworkIndex = pHEAD->uInstanceNumber;
 
-    if( AnscEqualString(ParamName, "TimeToLive", TRUE) )
+    if (strcmp(ParamName, "TimeToLive") == 0)
     {
         *puLong = pHEAD->TimeToLive;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Status", TRUE) )
+    else if (strcmp(ParamName, "Status") == 0)
     {
         //Fetch status from voice stack
         hal_param_t req_param;
@@ -1068,27 +1068,27 @@ BOOL TelcoVoiceMgrDml_H323_NetworkList_GetParamUlongValue(ANSC_HANDLE hInsContex
             ret = FALSE;
         }
     }
-    else if( AnscEqualString(ParamName, "NonVoiceBandwidthReservedUpstream", TRUE) )
+    else if (strcmp(ParamName, "NonVoiceBandwidthReservedUpstream") == 0)
     {
         *puLong = pHEAD->NonVoiceBandwidthReservedUpstream;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "NonVoiceBandwidthReservedDownstream", TRUE) )
+    else if (strcmp(ParamName, "NonVoiceBandwidthReservedDownstream") == 0)
     {
         *puLong = pHEAD->NonVoiceBandwidthReservedDownstream;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "MaxSessions", TRUE) )
+    else if (strcmp(ParamName, "MaxSessions") == 0)
     {
         *puLong = pHEAD->MaxSessions;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "GatekeeperPort", TRUE) )
+    else if (strcmp(ParamName, "GatekeeperPort") == 0)
     {
         *puLong = pHEAD->GatekeeperPort;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "DSCPMark", TRUE) )
+    else if (strcmp(ParamName, "DSCPMark") == 0)
     {
         *puLong = pHEAD->DSCPMark;
         ret = TRUE;
@@ -1170,7 +1170,7 @@ BOOL TelcoVoiceMgrDml_H323_NetworkList_SetParamUlongValue(ANSC_HANDLE hInsContex
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "TimeToLive", TRUE) )
+    if (strcmp(ParamName, "TimeToLive") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.H323.Network.%d.TimeToLive",uVsIndex,uNetworkIndex);
 
@@ -1185,7 +1185,7 @@ BOOL TelcoVoiceMgrDml_H323_NetworkList_SetParamUlongValue(ANSC_HANDLE hInsContex
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "NonVoiceBandwidthReservedUpstream", TRUE) )
+    else if (strcmp(ParamName, "NonVoiceBandwidthReservedUpstream") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.H323.Network.%d.NonVoiceBandwidthReservedUpstream",uVsIndex,uNetworkIndex);
 
@@ -1200,7 +1200,7 @@ BOOL TelcoVoiceMgrDml_H323_NetworkList_SetParamUlongValue(ANSC_HANDLE hInsContex
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "NonVoiceBandwidthReservedDownstream", TRUE) )
+    else if (strcmp(ParamName, "NonVoiceBandwidthReservedDownstream") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.H323.Network.%d.NonVoiceBandwidthReservedDownstream",uVsIndex,uNetworkIndex);
 
@@ -1215,7 +1215,7 @@ BOOL TelcoVoiceMgrDml_H323_NetworkList_SetParamUlongValue(ANSC_HANDLE hInsContex
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "MaxSessions", TRUE) )
+    else if (strcmp(ParamName, "MaxSessions") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.H323.Network.%d.MaxSessions",uVsIndex,uNetworkIndex);
 
@@ -1230,7 +1230,7 @@ BOOL TelcoVoiceMgrDml_H323_NetworkList_SetParamUlongValue(ANSC_HANDLE hInsContex
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "GatekeeperPort", TRUE) )
+    else if (strcmp(ParamName, "GatekeeperPort") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.H323.Network.%d.GatekeeperPort",uVsIndex,uNetworkIndex);
 
@@ -1245,7 +1245,7 @@ BOOL TelcoVoiceMgrDml_H323_NetworkList_SetParamUlongValue(ANSC_HANDLE hInsContex
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "DSCPMark", TRUE) )
+    else if (strcmp(ParamName, "DSCPMark") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.H323.Network.%d.DSCPMark",uVsIndex,uNetworkIndex);
 
@@ -1317,32 +1317,32 @@ ULONG TelcoVoiceMgrDml_H323_NetworkList_GetParamStringValue(ANSC_HANDLE hInsCont
 
     PDML_H323_NETWORK pHEAD = &(pH323NetworkCtrl->dml);
 
-    if( AnscEqualString(ParamName, "VoIPProfile", TRUE) )
+    if (strcmp(ParamName, "VoIPProfile") == 0)
     {
         AnscCopyString(pValue,pHEAD->VoIPProfile);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "STUNServer", TRUE) )
+    else if (strcmp(ParamName, "STUNServer") == 0)
     {
         AnscCopyString(pValue,pHEAD->STUNServer);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "GatekeeperID", TRUE) )
+    else if (strcmp(ParamName, "GatekeeperID") == 0)
     {
         AnscCopyString(pValue,pHEAD->GatekeeperID);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Gatekeeper", TRUE) )
+    else if (strcmp(ParamName, "Gatekeeper") == 0)
     {
         AnscCopyString(pValue,pHEAD->Gatekeeper);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "CodecList", TRUE) )
+    else if (strcmp(ParamName, "CodecList") == 0)
     {
         AnscCopyString(pValue,pHEAD->CodecList);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         AnscCopyString(pValue,pHEAD->Alias);
         ret = 0;
@@ -1424,7 +1424,7 @@ BOOL TelcoVoiceMgrDml_H323_NetworkList_SetParamStringValue(ANSC_HANDLE hInsConte
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "VoIPProfile", TRUE) )
+    if (strcmp(ParamName, "VoIPProfile") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.H323.Network.%d.VoIPProfile",uVsIndex,uNetworkIndex);
 
@@ -1439,7 +1439,7 @@ BOOL TelcoVoiceMgrDml_H323_NetworkList_SetParamStringValue(ANSC_HANDLE hInsConte
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "STUNServer", TRUE) )
+    else if (strcmp(ParamName, "STUNServer") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.H323.Network.%d.STUNServer",uVsIndex,uNetworkIndex);
 
@@ -1454,7 +1454,7 @@ BOOL TelcoVoiceMgrDml_H323_NetworkList_SetParamStringValue(ANSC_HANDLE hInsConte
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "GatekeeperID", TRUE) )
+    else if (strcmp(ParamName, "GatekeeperID") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.H323.Network.%d.GatekeeperID",uVsIndex,uNetworkIndex);
 
@@ -1469,7 +1469,7 @@ BOOL TelcoVoiceMgrDml_H323_NetworkList_SetParamStringValue(ANSC_HANDLE hInsConte
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Gatekeeper", TRUE) )
+    else if (strcmp(ParamName, "Gatekeeper") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.H323.Network.%d.Gatekeeper",uVsIndex,uNetworkIndex);
 
@@ -1484,7 +1484,7 @@ BOOL TelcoVoiceMgrDml_H323_NetworkList_SetParamStringValue(ANSC_HANDLE hInsConte
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "CodecList", TRUE) )
+    else if (strcmp(ParamName, "CodecList") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.H323.Network.%d.CodecList",uVsIndex,uNetworkIndex);
 
@@ -1499,7 +1499,7 @@ BOOL TelcoVoiceMgrDml_H323_NetworkList_SetParamStringValue(ANSC_HANDLE hInsConte
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         TELCOVOICEMGR_LOCK_OR_EXIT()
 
@@ -1559,12 +1559,12 @@ BOOL TelcoVoiceMgrDml_H323_NetworkList_GetParamIntValue(ANSC_HANDLE hInsContext,
 
     PDML_H323_NETWORK pHEAD = &(pH323NetworkCtrl->dml);
 
-    if( AnscEqualString(ParamName, "VLANIDMark", TRUE) )
+    if (strcmp(ParamName, "VLANIDMark") == 0)
     {
         *pInt = pHEAD->VLANIDMark;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "EthernetPriorityMark", TRUE) )
+    else if (strcmp(ParamName, "EthernetPriorityMark") == 0)
     {
         *pInt = pHEAD->EthernetPriorityMark;
         ret = TRUE;
@@ -1646,7 +1646,7 @@ BOOL TelcoVoiceMgrDml_H323_NetworkList_SetParamIntValue(ANSC_HANDLE hInsContext,
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "VLANIDMark", TRUE) )
+    if (strcmp(ParamName, "VLANIDMark") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.H323.Network.%d.VLANIDMark",uVsIndex,uNetworkIndex);
 
@@ -1661,7 +1661,7 @@ BOOL TelcoVoiceMgrDml_H323_NetworkList_SetParamIntValue(ANSC_HANDLE hInsContext,
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "EthernetPriorityMark", TRUE) )
+    else if (strcmp(ParamName, "EthernetPriorityMark") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.H323.Network.%d.EthernetPriorityMark",uVsIndex,uNetworkIndex);
 
@@ -1725,17 +1725,17 @@ BOOL TelcoVoiceMgrDml_H323_NetworkList_GetParamBoolValue(ANSC_HANDLE hInsContext
 
     PDML_H323_NETWORK pHEAD = &(pH323NetworkCtrl->dml);
 
-    if( AnscEqualString(ParamName, "STUNEnable", TRUE) )
+    if (strcmp(ParamName, "STUNEnable") == 0)
     {
         *pBool = pHEAD->STUNEnable;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "QuiescentMode", TRUE) )
+    else if (strcmp(ParamName, "QuiescentMode") == 0)
     {
         *pBool = pHEAD->QuiescentMode;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Enable", TRUE) )
+    else if (strcmp(ParamName, "Enable") == 0)
     {
         *pBool = pHEAD->Enable;
         ret = TRUE;
@@ -1816,7 +1816,7 @@ BOOL TelcoVoiceMgrDml_H323_NetworkList_SetParamBoolValue(ANSC_HANDLE hInsContext
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "STUNEnable", TRUE) )
+    if (strcmp(ParamName, "STUNEnable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.H323.Network.%d.STUNEnable",uVsIndex,uNetworkIndex);
 
@@ -1831,7 +1831,7 @@ BOOL TelcoVoiceMgrDml_H323_NetworkList_SetParamBoolValue(ANSC_HANDLE hInsContext
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "QuiescentMode", TRUE) )
+    else if (strcmp(ParamName, "QuiescentMode") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.H323.Network.%d.QuiescentMode",uVsIndex,uNetworkIndex);
 
@@ -1846,7 +1846,7 @@ BOOL TelcoVoiceMgrDml_H323_NetworkList_SetParamBoolValue(ANSC_HANDLE hInsContext
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Enable", TRUE) )
+    else if (strcmp(ParamName, "Enable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.H323.Network.%d.Enable",uVsIndex,uNetworkIndex);
 
