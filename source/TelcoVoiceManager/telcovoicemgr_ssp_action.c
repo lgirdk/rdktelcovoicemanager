@@ -71,14 +71,13 @@
 #include "telcovoicemgr_dml_plugin_main.h"
 #include "dslh_dmagnt_interface.h"
 #include "ccsp_trace.h"
+#include "dm_pack_create_func.h"
 
 PDSLH_CPE_CONTROLLER_OBJECT     pDslhCpeController        = NULL;
 PCOMPONENT_COMMON_VOICEMANAGER  g_pComponent_COMMON_voicemanager  = NULL;
 PCCSP_CCD_INTERFACE             pSsdCcdIf                 = (PCCSP_CCD_INTERFACE        )NULL;
 PDSLH_LCB_INTERFACE             pDslhLcbIf                = (PDSLH_LCB_INTERFACE        )NULL;
 extern char                     g_Subsystem[32];
-
-#define  DATAMODEL_XML_FILE           "/usr/rdk/voicemanager/RdkTelcoVoiceManager.xml"
 
 extern  ANSC_HANDLE                        bus_handle;
 extern  ULONG                              g_ulAllocatedSizePeak;
@@ -191,11 +190,11 @@ ANSC_STATUS ssp_engage()
     }
 
     returnStatus =
-        pDslhCpeController->RegisterCcspDataModel
+        pDslhCpeController->RegisterCcspDataModel2
             (
                 (ANSC_HANDLE)pDslhCpeController,
                 CrName, /* CCSP_DBUS_INTERFACE_CR,*/              /* CCSP CR ID */
-                DATAMODEL_XML_FILE,                     /* Data Model XML file. Can be empty if only base data model supported. */
+                DMPackCreateDataModelXML,               /* Data Model XML file. Can be empty if only base data model supported. */
                 COMPONENT_NAME_VOICEMANAGER,            /* Component Name    */
                 COMPONENT_VERSION_VOICEMANAGER,         /* Component Version */
                 COMPONENT_PATH_VOICEMANAGER,            /* Component Path    */
