@@ -178,112 +178,112 @@ BOOL Capabilities_GetParamBoolValue(ANSC_HANDLE hInsContext, char* ParamName, BO
 
     if(pDmlCapabilities != NULL)
     {
-        if( AnscEqualString(ParamName, "RTCP", TRUE))
+        if (strcmp(ParamName, "RTCP") == 0)
         {
             *pBool = pDmlCapabilities->RTCP;
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "RTPRedundancy", TRUE))
+        else if (strcmp(ParamName, "RTPRedundancy") == 0)
         {
             *pBool = pDmlCapabilities->RTPRedundancy;
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "SRTP", TRUE))
+        else if (strcmp(ParamName, "SRTP") == 0)
         {
             *pBool = pDmlCapabilities->SRTP;
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "DSCPCoupled", TRUE))
+        else if (strcmp(ParamName, "DSCPCoupled") == 0)
         {
             *pBool = pDmlCapabilities->DSCPCoupled;
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "EthernetTaggingCoupled", TRUE))
+        else if (strcmp(ParamName, "EthernetTaggingCoupled") == 0)
         {
             *pBool = pDmlCapabilities->EthernetTaggingCoupled;
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "PSTNSoftSwitchOver", TRUE))
+        else if (strcmp(ParamName, "PSTNSoftSwitchOver") == 0)
         {
             *pBool = pDmlCapabilities->PSTNSoftSwitchOver;
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "FaxT38", TRUE))
+        else if (strcmp(ParamName, "FaxT38") == 0)
         {
             *pBool = pDmlCapabilities->FaxT38;
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "FaxPassThrough", TRUE))
+        else if (strcmp(ParamName, "FaxPassThrough") == 0)
         {
             *pBool = pDmlCapabilities->FaxPassThrough;
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "ModemPassThrough", TRUE))
+        else if (strcmp(ParamName, "ModemPassThrough") == 0)
         {
             *pBool = pDmlCapabilities->ModemPassThrough;
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "ToneDescriptionsEditable", TRUE))
+        else if (strcmp(ParamName, "ToneDescriptionsEditable") == 0)
         {
             *pBool = pDmlCapabilities->ToneDescriptionsEditable;
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "PatternBasedToneGeneration", TRUE))
+        else if (strcmp(ParamName, "PatternBasedToneGeneration") == 0)
         {
             *pBool = pDmlCapabilities->PatternBasedToneGeneration;
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "FileBasedToneGeneration", TRUE))
+        else if (strcmp(ParamName, "FileBasedToneGeneration") == 0)
         {
             *pBool = pDmlCapabilities->FileBasedToneGeneration;
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "ToneGeneration", TRUE))
+        else if (strcmp(ParamName, "ToneGeneration") == 0)
         {
             *pBool = pDmlCapabilities->ToneGeneration;
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "RingDescriptionsEditable", TRUE))
+        else if (strcmp(ParamName, "RingDescriptionsEditable") == 0)
         {
             *pBool = pDmlCapabilities->RingDescriptionsEditable;
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "PatternBasedRingGeneration", TRUE))
+        else if (strcmp(ParamName, "PatternBasedRingGeneration") == 0)
         {
             *pBool = pDmlCapabilities->PatternBasedRingGeneration;
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "RingPatternEditable", TRUE))
+        else if (strcmp(ParamName, "RingPatternEditable") == 0)
         {
             *pBool = pDmlCapabilities->RingPatternEditable;
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "FileBasedRingGeneration", TRUE))
+        else if (strcmp(ParamName, "FileBasedRingGeneration") == 0)
         {
             *pBool = pDmlCapabilities->FileBasedRingGeneration;
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "RingGeneration", TRUE))
+        else if (strcmp(ParamName, "RingGeneration") == 0)
         {
             *pBool = pDmlCapabilities->RingGeneration;
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "DigitMap", TRUE))
+        else if (strcmp(ParamName, "DigitMap") == 0)
         {
             *pBool = pDmlCapabilities->DigitMap;
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "NumberingPlan", TRUE))
+        else if (strcmp(ParamName, "NumberingPlan") == 0)
         {
             *pBool = pDmlCapabilities->NumberingPlan;
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "ButtonMap", TRUE))
+        else if (strcmp(ParamName, "ButtonMap") == 0)
         {
             *pBool = pDmlCapabilities->ButtonMap;
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "VoicePortTests", TRUE))
+        else if (strcmp(ParamName, "VoicePortTests") == 0)
         {
             *pBool = pDmlCapabilities->VoicePortTests;
             ret = TRUE;
@@ -355,22 +355,22 @@ BOOL Capabilities_GetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, U
 
     if(pDmlCapabilities != NULL)
     {
-        if( AnscEqualString(ParamName, "MaxProfileCount", TRUE))
+        if (strcmp(ParamName, "MaxProfileCount") == 0)
         {
             *pValue = pDmlCapabilities->MaxProfileCount;
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "MaxLineCount", TRUE))
+        else if (strcmp(ParamName, "MaxLineCount") == 0)
         {
             *pValue = pDmlCapabilities->MaxLineCount;
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "MaxSessionsPerLine", TRUE))
+        else if (strcmp(ParamName, "MaxSessionsPerLine") == 0)
         {
             *pValue = pDmlCapabilities->MaxSessionsPerLine;
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "MaxSessionCount", TRUE))
+        else if (strcmp(ParamName, "MaxSessionCount") == 0)
         {
             *pValue = pDmlCapabilities->MaxSessionCount;
             ret = TRUE;
@@ -448,32 +448,32 @@ LONG Capabilities_GetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, 
     if(pDmlCapabilities != NULL)
     {
 
-        if( AnscEqualString(ParamName, "SignalingProtocols", TRUE) )
+        if (strcmp(ParamName, "SignalingProtocols") == 0)
         {
             AnscCopyString(pValue,pDmlCapabilities->SignalingProtocols);
             ret = 0;
         }
-        else if( AnscEqualString(ParamName, "Regions", TRUE) )
+        else if (strcmp(ParamName, "Regions") == 0)
         {
             AnscCopyString(pValue,pDmlCapabilities->Regions);
             ret = 0;
         }
-        else if( AnscEqualString(ParamName, "SRTPKeyingMethods", TRUE) )
+        else if (strcmp(ParamName, "SRTPKeyingMethods") == 0)
         {
             AnscCopyString(pValue,pDmlCapabilities->SRTPKeyingMethods);
             ret = 0;
         }
-        else if( AnscEqualString(ParamName, "SRTPEncryptionKeySizes", TRUE) )
+        else if (strcmp(ParamName, "SRTPEncryptionKeySizes") == 0)
         {
             AnscCopyString(pValue,pDmlCapabilities->SRTPEncryptionKeySizes);
             ret = 0;
         }
-        else if( AnscEqualString(ParamName, "ToneFileFormats", TRUE) )
+        else if (strcmp(ParamName, "ToneFileFormats") == 0)
         {
             AnscCopyString(pValue,pDmlCapabilities->ToneFileFormats);
             ret = 0;
         }
-        else if( AnscEqualString(ParamName, "RingFileFormats", TRUE) )
+        else if (strcmp(ParamName, "RingFileFormats") == 0)
         {
             AnscCopyString(pValue,pDmlCapabilities->RingFileFormats);
             ret = 0;
@@ -545,12 +545,12 @@ BOOL CapabilitiesSIP_GetParamBoolValue(ANSC_HANDLE hInsContext, char* ParamName,
 
     if(pDmlCapabilitiesSIP != NULL)
     {
-        if( AnscEqualString(ParamName, "EventSubscription", TRUE))
+        if (strcmp(ParamName, "EventSubscription") == 0)
         {
             *pBool = pDmlCapabilitiesSIP->EventSubscription;
             ret = TRUE;
         }
-        else if( AnscEqualString(ParamName, "ResponseMap", TRUE))
+        else if (strcmp(ParamName, "ResponseMap") == 0)
         {
             *pBool = pDmlCapabilitiesSIP->ResponseMap;
             ret = TRUE;
@@ -627,7 +627,7 @@ LONG CapabilitiesSIP_GetParamStringValue(ANSC_HANDLE hInsContext, char* ParamNam
 
     if(pDmlCapabilitiesSIP != NULL)
     {
-        if( AnscEqualString(ParamName, "Role", TRUE) )
+        if (strcmp(ParamName, "Role") == 0)
         {
             if(pDmlCapabilitiesSIP->Role == SIP_ROLE_USER_AGENT)
             {
@@ -649,42 +649,42 @@ LONG CapabilitiesSIP_GetParamStringValue(ANSC_HANDLE hInsContext, char* ParamNam
                 CcspTraceWarning(("%s::Unknown ParamName :%s\n", __FUNCTION__, ParamName));
             }
         }
-        else if( AnscEqualString(ParamName, "Extensions", TRUE) )
+        else if (strcmp(ParamName, "Extensions") == 0)
         {
             AnscCopyString(pValue,pDmlCapabilitiesSIP->Extensions);
             ret = 0;
         }
-        else if( AnscEqualString(ParamName, "Transports", TRUE) )
+        else if (strcmp(ParamName, "Transports") == 0)
         {
             AnscCopyString(pValue,pDmlCapabilitiesSIP->Transports);
             ret = 0;
         }
-        else if( AnscEqualString(ParamName, "URISchemes", TRUE) )
+        else if (strcmp(ParamName, "URISchemes") == 0)
         {
             AnscCopyString(pValue,pDmlCapabilitiesSIP->URISchemes);
             ret = 0;
         }
-        else if( AnscEqualString(ParamName, "TLSAuthenticationProtocols", TRUE) )
+        else if (strcmp(ParamName, "TLSAuthenticationProtocols") == 0)
         {
             AnscCopyString(pValue,pDmlCapabilitiesSIP->TLSAuthenticationProtocols);
             ret = 0;
         }
-        else if( AnscEqualString(ParamName, "TLSAuthenticationKeySizes", TRUE) )
+        else if (strcmp(ParamName, "TLSAuthenticationKeySizes") == 0)
         {
             AnscCopyString(pValue,pDmlCapabilitiesSIP->TLSAuthenticationKeySizes);
             ret = 0;
         }
-        else if( AnscEqualString(ParamName, "TLSEncryptionKeySizes", TRUE) )
+        else if (strcmp(ParamName, "TLSEncryptionKeySizes") == 0)
         {
             AnscCopyString(pValue,pDmlCapabilitiesSIP->TLSEncryptionKeySizes);
             ret = 0;
         }
-        else if( AnscEqualString(ParamName, "TLSKeyExchangeProtocols", TRUE) )
+        else if (strcmp(ParamName, "TLSKeyExchangeProtocols") == 0)
         {
             AnscCopyString(pValue,pDmlCapabilitiesSIP->TLSKeyExchangeProtocols);
             ret = 0;
         }
-        else if( AnscEqualString(ParamName, "TLSEncryptionProtocols", TRUE) )
+        else if (strcmp(ParamName, "TLSEncryptionProtocols") == 0)
         {
             AnscCopyString(pValue,pDmlCapabilitiesSIP->TLSEncryptionProtocols);
             ret = 0;
@@ -762,7 +762,7 @@ LONG CapabilitiesMGCP_GetParamStringValue(ANSC_HANDLE hInsContext, char* ParamNa
     if(pDmlCapabilitiesMGCP != NULL)
     {
 
-        if( AnscEqualString(ParamName, "Extensions", TRUE) )
+        if (strcmp(ParamName, "Extensions") == 0)
         {
             AnscCopyString(pValue,pDmlCapabilitiesMGCP->Extensions);
             ret = 0;
@@ -833,7 +833,7 @@ BOOL CapabilitiesH323_GetParamBoolValue(ANSC_HANDLE hInsContext, char* ParamName
     if(pDmlCapabilitiesH323 != NULL)
     {
 
-        if( AnscEqualString(ParamName, "FastStart", TRUE))
+        if (strcmp(ParamName, "FastStart") == 0)
         {
             *pBool = pDmlCapabilitiesH323->FastStart;
             ret = TRUE;
@@ -910,7 +910,7 @@ LONG CapabilitiesH323_GetParamStringValue(ANSC_HANDLE hInsContext, char* ParamNa
 
     if(pDmlCapabilitiesH323 != NULL)
     {
-        if( AnscEqualString(ParamName, "H235AuthenticationMethods", TRUE) )
+        if (strcmp(ParamName, "H235AuthenticationMethods") == 0)
         {
             AnscCopyString(pValue,pDmlCapabilitiesH323->H235AuthenticationMethods);
             ret = 0;
@@ -963,7 +963,7 @@ BOOL CapabilitiesCodecs_GetParamBoolValue(ANSC_HANDLE hInsContext, char* ParamNa
         {
             PTELCOVOICEMGR_DML_CAPABILITIES_CODECS pDmlCapCodecs = &(pDmlCapCodecList->dml);
 
-            if( AnscEqualString(ParamName, "SilenceSuppression", TRUE))
+            if (strcmp(ParamName, "SilenceSuppression") == 0)
             {
                 *pBool = pDmlCapCodecs->SilenceSuppression;
                 ret = TRUE;
@@ -1026,17 +1026,17 @@ LONG CapabilitiesCodecs_GetParamStringValue(ANSC_HANDLE hInsContext, char* Param
         if(pTelcoVoiceMgrDmlData != NULL)
         {
             PTELCOVOICEMGR_DML_CAPABILITIES_CODECS pDmlCapCodecs = &(pDmlCapCodecList->dml);
-            if( AnscEqualString(ParamName, "Alias", TRUE) )
+            if (strcmp(ParamName, "Alias") == 0)
             {
                 AnscCopyString(pValue, pDmlCapCodecs->Alias);
                 ret = 0;
             }
-            else if( AnscEqualString(ParamName, "Codec", TRUE) )
+            else if (strcmp(ParamName, "Codec") == 0)
             {
                 AnscCopyString(pValue, pDmlCapCodecs->Codec);
                 ret = 0;
             }
-            else if( AnscEqualString(ParamName, "PacketizationPeriod", TRUE) )
+            else if (strcmp(ParamName, "PacketizationPeriod") == 0)
             {
                 AnscCopyString(pValue, pDmlCapCodecs->PacketizationPeriod);
                 ret = 0;
@@ -1093,7 +1093,7 @@ BOOL CapabilitiesCodecs_SetParamStringValue(ANSC_HANDLE hInsContext, char* Param
         if(pTelcoVoiceMgrDmlData != NULL)
         {
             PTELCOVOICEMGR_DML_CAPABILITIES_CODECS pDmlCapCodecs = &(pDmlCapCodecList->dml);
-            if( AnscEqualString(ParamName, "Alias", TRUE) )
+            if (strcmp(ParamName, "Alias") == 0)
             {
                 AnscCopyString(pDmlCapCodecs->Alias,pString);
                 CcspTraceDebug(("%s:%d:: Copy Alias Done\n", __FUNCTION__, __LINE__));
@@ -1147,12 +1147,12 @@ BOOL CapabilitiesCodecs_GetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamN
         if(pTelcoVoiceMgrDmlData != NULL)
         {
             PTELCOVOICEMGR_DML_CAPABILITIES_CODECS pDmlCapCodecs = &(pDmlCapCodecList->dml);
-            if( AnscEqualString(ParamName, "EntryID", TRUE))
+            if (strcmp(ParamName, "EntryID") == 0)
             {
                 *pValue=pDmlCapCodecs->EntryID;
                 ret = TRUE;
             }
-            else if( AnscEqualString(ParamName, "BitRate", TRUE))
+            else if (strcmp(ParamName, "BitRate") == 0)
             {
                 *pValue = pDmlCapCodecs->BitRate;
                 ret = TRUE;
