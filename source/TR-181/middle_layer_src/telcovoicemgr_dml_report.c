@@ -122,7 +122,7 @@ X_RDK_Report_VoiceService_SetParamUlongValue
     PDML_X_RDK_REPORT_VOICE_SERVICE  pVoiceServiceReport   = (PDML_X_RDK_REPORT_VOICE_SERVICE)pMyObject->pVoiceServiceReport;
 
     /* check the parameter name and set the corresponding value */
-    if(AnscEqualString(ParamName, "ReportingPeriod", TRUE))
+    if (strcmp(ParamName, "ReportingPeriod") == 0)
     {
         pVoiceServiceReport->bReportingPeriodChanged = TRUE;
         pVoiceServiceReport->ReportingPeriod = uValue;
@@ -183,7 +183,7 @@ X_RDK_Report_VoiceService_GetParamStringValue
     PDML_X_RDK_REPORT_VOICE_SERVICE  pVoiceServiceReport   = (PDML_X_RDK_REPORT_VOICE_SERVICE)pMyObject->pVoiceServiceReport;
 
     /* check the parameter name and set the corresponding value */
-    if(AnscEqualString(ParamName, "Schema", TRUE))
+    if (strcmp(ParamName, "Schema") == 0)
     {
         /* collect value */
         int bufsize = VoiceServiceReportGetSchemaBufferSize();
@@ -208,7 +208,7 @@ X_RDK_Report_VoiceService_GetParamStringValue
     }
 
     /* check the parameter name and set the corresponding value */
-    if(AnscEqualString(ParamName, "SchemaID", TRUE))
+    if (strcmp(ParamName, "SchemaID") == 0)
     {
         /* collect value */
         int bufsize = VoiceServiceReportGetSchemaIDBufferSize();
@@ -327,7 +327,7 @@ X_RDK_Report_VoiceService_SetParamBoolValue
     PTELCOVOICE_CONTEXT_LINK_OBJECT         pMyObject             = (PTELCOVOICE_CONTEXT_LINK_OBJECT)g_pTelcoVoiceBEManager->hServices;
     PDML_X_RDK_REPORT_VOICE_SERVICE  pVoiceServiceReport   = (PDML_X_RDK_REPORT_VOICE_SERVICE)pMyObject->pVoiceServiceReport;
 
-    if(AnscEqualString(ParamName, "Enabled", TRUE))
+    if (strcmp(ParamName, "Enabled") == 0)
     {
         pVoiceServiceReport->Enabled = bValue;
         pVoiceServiceReport->bEnableChanged = TRUE;
@@ -588,7 +588,7 @@ X_RDK_Report_VoiceService_Default_SetParamUlongValue
     PDML_X_RDK_REPORT_VOICE_SERVICE_DEFAULT    pVoiceServiceReportDflt  = (PDML_X_RDK_REPORT_VOICE_SERVICE_DEFAULT)pVoiceServiceReport->pVoiceServiceDefaultReport;
 
     /* check the parameter name and set the corresponding value */
-    if(AnscEqualString(ParamName, "OverrideTTL", TRUE))
+    if (strcmp(ParamName, "OverrideTTL") == 0)
     {
         pVoiceServiceReportDflt->OverrideTTL = uValue;
         VoiceServiceReportSetDefaultOverrideTTL (uValue);
@@ -596,7 +596,7 @@ X_RDK_Report_VoiceService_Default_SetParamUlongValue
     }
 
     /* check the parameter name and set the corresponding value */
-    if(AnscEqualString(ParamName, "ReportingPeriod", TRUE))
+    if (strcmp(ParamName, "ReportingPeriod") == 0)
     {
         if(!VoiceServiceReportValidateReportingPeriod(uValue))
         {

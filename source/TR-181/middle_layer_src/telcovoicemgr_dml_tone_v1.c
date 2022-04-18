@@ -102,7 +102,7 @@ ANSC_HANDLE ToneEvent_GetEntry(ANSC_HANDLE hInsContext, ULONG nIndex, ULONG* pIn
 BOOL ToneEvent_SetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, ULONG uValue)
 {
     BOOL ret = FALSE;
-    if( AnscEqualString(ParamName, "ToneID", TRUE))
+    if (strcmp(ParamName, "ToneID") == 0)
     {
         ret = TRUE;
     }
@@ -136,7 +136,7 @@ BOOL ToneEvent_SetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, ULON
 BOOL ToneEvent_SetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, char* pString)
 {
     BOOL ret = FALSE;
-    if( AnscEqualString(ParamName, "Alias", TRUE) )
+    if (strcmp(ParamName, "Alias") == 0)
     {
         return TRUE;
     }
@@ -176,11 +176,11 @@ BOOL ToneEvent_SetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, cha
 LONG ToneEvent_GetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, char* pValue, ULONG* pUlSize)
 {
     ULONG ret = 1;
-    if( AnscEqualString(ParamName, "Alias", TRUE) )
+    if (strcmp(ParamName, "Alias") == 0)
     {
         return 0;
     }
-    else if( AnscEqualString(ParamName, "Function", TRUE) )
+    else if (strcmp(ParamName, "Function") == 0)
     {
         return 0;
     }
@@ -215,7 +215,7 @@ BOOL ToneEvent_GetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, ULON
 {
     BOOL ret = FALSE;
 
-    if( AnscEqualString(ParamName, "ToneID", TRUE))
+    if (strcmp(ParamName, "ToneID") == 0)
     {
         ret = TRUE;
     }
@@ -303,15 +303,15 @@ BOOL ToneDescription_GetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName
 {
     BOOL ret = FALSE;
 
-    if( AnscEqualString(ParamName, "EntryID", TRUE))
+    if (strcmp(ParamName, "EntryID") == 0)
     {
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "TonePattern", TRUE))
+    else if (strcmp(ParamName, "TonePattern") == 0)
     {
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "ToneRepetitions", TRUE))
+    else if (strcmp(ParamName, "ToneRepetitions") == 0)
     {
         ret = TRUE;
     }
@@ -345,7 +345,7 @@ BOOL ToneDescription_GetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName
 BOOL ToneDescription_SetParamBoolValue(ANSC_HANDLE hInsContext, char* ParamName, BOOL bValue)
 {
     BOOL ret = FALSE;
-    if( AnscEqualString(ParamName, "ToneEnable", TRUE) )
+    if (strcmp(ParamName, "ToneEnable") == 0)
     {
         ret = FALSE;
     }
@@ -385,19 +385,19 @@ BOOL ToneDescription_SetParamBoolValue(ANSC_HANDLE hInsContext, char* ParamName,
 LONG ToneDescription_GetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, char* pValue, ULONG* pUlSize)
 {
     ULONG ret = 1;
-    if( AnscEqualString(ParamName, "Alias", TRUE) )
+    if (strcmp(ParamName, "Alias") == 0)
     {
         return 0;
     }
-    else if( AnscEqualString(ParamName, "ToneName", TRUE) )
+    else if (strcmp(ParamName, "ToneName") == 0)
     {
         return 0;
     }
-    else if( AnscEqualString(ParamName, "ToneFile", TRUE) )
+    else if (strcmp(ParamName, "ToneFile") == 0)
     {
         return 0;
     }
-    else if( AnscEqualString(ParamName, "ToneText", TRUE) )
+    else if (strcmp(ParamName, "ToneText") == 0)
     {
         return 0;
     }
@@ -431,11 +431,11 @@ LONG ToneDescription_GetParamStringValue(ANSC_HANDLE hInsContext, char* ParamNam
 BOOL ToneDescription_SetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, ULONG uValue)
 {
     BOOL ret = FALSE;
-    if( AnscEqualString(ParamName, "TonePattern", TRUE))
+    if (strcmp(ParamName, "TonePattern") == 0)
     {
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "ToneRepetitions", TRUE))
+    else if (strcmp(ParamName, "ToneRepetitions") == 0)
     {
         ret = TRUE;
     }
@@ -469,19 +469,19 @@ BOOL ToneDescription_SetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName
 BOOL ToneDescription_SetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, char* pString)
 {
     BOOL ret = FALSE;
-    if( AnscEqualString(ParamName, "Alias", TRUE) )
+    if (strcmp(ParamName, "Alias") == 0)
     {
         return TRUE;
     }
-    else if( AnscEqualString(ParamName, "ToneName", TRUE) )
+    else if (strcmp(ParamName, "ToneName") == 0)
     {
         return TRUE;
     }
-    else if( AnscEqualString(ParamName, "ToneFile", TRUE) )
+    else if (strcmp(ParamName, "ToneFile") == 0)
     {
         return TRUE;
     }
-    else if( AnscEqualString(ParamName, "ToneText", TRUE) )
+    else if (strcmp(ParamName, "ToneText") == 0)
     {
         return TRUE;
     }
@@ -569,35 +569,35 @@ BOOL TonePattern_GetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, UL
 {
     BOOL ret = FALSE;
 
-    if( AnscEqualString(ParamName, "EntryID", TRUE))
+    if (strcmp(ParamName, "EntryID") == 0)
     {
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName,"Frequency1", TRUE))
+    else if (strcmp(ParamName, "Frequency1") == 0)
     {
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName,"Frequency2", TRUE))
+    else if (strcmp(ParamName, "Frequency2") == 0)
     {
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName,"Frequency3", TRUE))
+    else if (strcmp(ParamName, "Frequency3") == 0)
     {
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName,"Frequency4", TRUE))
+    else if (strcmp(ParamName, "Frequency4") == 0)
     {
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName,"ModulationFrequency", TRUE))
+    else if (strcmp(ParamName, "ModulationFrequency") == 0)
     {
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName,"Duration", TRUE))
+    else if (strcmp(ParamName, "Duration") == 0)
     {
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName,"NextEntryID", TRUE))
+    else if (strcmp(ParamName, "NextEntryID") == 0)
     {
         ret = TRUE;
     }
@@ -632,11 +632,11 @@ BOOL TonePattern_GetParamBoolValue(ANSC_HANDLE hInsContext, char* ParamName, BOO
 {
     BOOL ret = FALSE;
 
-    if( AnscEqualString(ParamName, "ToneOn", TRUE))
+    if (strcmp(ParamName, "ToneOn") == 0)
     {
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "X_RDK_FactoryReset", TRUE))
+    else if (strcmp(ParamName, "X_RDK_FactoryReset") == 0)
     {
         ret = TRUE;
     }
@@ -677,7 +677,7 @@ BOOL TonePattern_GetParamBoolValue(ANSC_HANDLE hInsContext, char* ParamName, BOO
 LONG TonePattern_GetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, char* pValue, ULONG* pUlSize)
 {
     ULONG ret = 1;
-    if( AnscEqualString(ParamName, "Alias", TRUE) )
+    if (strcmp(ParamName, "Alias") == 0)
     {
         return 0;
     }
@@ -712,23 +712,23 @@ LONG TonePattern_GetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, c
 BOOL TonePattern_GetParamIntValue(ANSC_HANDLE hInsContext, char* ParamName, int* pInt)
 {
     BOOL ret = FALSE;
-    if( AnscEqualString(ParamName, "Power1", TRUE) )
+    if (strcmp(ParamName, "Power1") == 0)
     {
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Power2", TRUE) )
+    else if (strcmp(ParamName, "Power2") == 0)
     {
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Power3", TRUE) )
+    else if (strcmp(ParamName, "Power3") == 0)
     {
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Power4", TRUE) )
+    else if (strcmp(ParamName, "Power4") == 0)
     {
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "ModulationPower", TRUE) )
+    else if (strcmp(ParamName, "ModulationPower") == 0)
     {
         ret = TRUE;
     }
@@ -762,23 +762,23 @@ BOOL TonePattern_GetParamIntValue(ANSC_HANDLE hInsContext, char* ParamName, int*
 BOOL TonePattern_SetParamIntValue(ANSC_HANDLE hInsContext, char* ParamName, int iValue)
 {
     BOOL ret = FALSE;
-    if( AnscEqualString(ParamName, "Power1", TRUE) )
+    if (strcmp(ParamName, "Power1") == 0)
     {
         ret = FALSE;
     }
-    else if( AnscEqualString(ParamName, "Power2", TRUE) )
+    else if (strcmp(ParamName, "Power2") == 0)
     {
         ret = FALSE;
     }
-    else if( AnscEqualString(ParamName, "Power3", TRUE) )
+    else if (strcmp(ParamName, "Power3") == 0)
     {
         ret = FALSE;
     }
-    else if( AnscEqualString(ParamName, "Power4", TRUE) )
+    else if (strcmp(ParamName, "Power4") == 0)
     {
         ret = FALSE;
     }
-    else if( AnscEqualString(ParamName, "ModulationPower", TRUE) )
+    else if (strcmp(ParamName, "ModulationPower") == 0)
     {
         ret = FALSE;
     }
@@ -813,43 +813,43 @@ BOOL TonePattern_SetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, UL
 {
     BOOL ret = FALSE;
 
-    if( AnscEqualString(ParamName, "EntryID", TRUE))
+    if (strcmp(ParamName, "EntryID") == 0)
     {
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "ToneRepetitions", TRUE))
+    else if (strcmp(ParamName, "ToneRepetitions") == 0)
     {
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Frequency1", TRUE))
+    else if (strcmp(ParamName, "Frequency1") == 0)
     {
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Frequency2", TRUE))
+    else if (strcmp(ParamName, "Frequency2") == 0)
     {
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Frequency3", TRUE))
+    else if (strcmp(ParamName, "Frequency3") == 0)
     {
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Frequency4", TRUE))
+    else if (strcmp(ParamName, "Frequency4") == 0)
     {
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "ModulationFrequency", TRUE))
+    else if (strcmp(ParamName, "ModulationFrequency") == 0)
     {
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "ModulationPower", TRUE))
+    else if (strcmp(ParamName, "ModulationPower") == 0)
     {
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Duration", TRUE))
+    else if (strcmp(ParamName, "Duration") == 0)
     {
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "NextEntryID", TRUE))
+    else if (strcmp(ParamName, "NextEntryID") == 0)
     {
         ret = TRUE;
     }
@@ -884,7 +884,7 @@ BOOL ToneDescription_GetParamBoolValue(ANSC_HANDLE hInsContext, char* ParamName,
 {
     BOOL ret = FALSE;
 
-    if( AnscEqualString(ParamName, "ToneEnable", TRUE))
+    if (strcmp(ParamName, "ToneEnable") == 0)
     {
         ret = TRUE;
     }
