@@ -68,12 +68,12 @@ BOOL TelcoVoiceMgrDml_CallControl_GetParamUlongValue(ANSC_HANDLE hInsContext, ch
 
     PDML_CALLCONTROL pHEAD = &(pDmlVoiceService->CallControl_obj);
 
-    if( AnscEqualString(ParamName, "MaxNumberOfLines", TRUE) )
+    if (strcmp(ParamName, "MaxNumberOfLines") == 0)
     {
         *puLong = pHEAD->MaxNumberOfLines;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "MaxNumberOfExtensions", TRUE) )
+    else if (strcmp(ParamName, "MaxNumberOfExtensions") == 0)
     {
         *puLong = pHEAD->MaxNumberOfExtensions;
         ret = TRUE;
@@ -148,7 +148,7 @@ BOOL TelcoVoiceMgrDml_CallControl_SetParamUlongValue(ANSC_HANDLE hInsContext, ch
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "MaxNumberOfLines", TRUE) )
+    if (strcmp(ParamName, "MaxNumberOfLines") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.MaxNumberOfLines",uVsIndex);
 
@@ -163,7 +163,7 @@ BOOL TelcoVoiceMgrDml_CallControl_SetParamUlongValue(ANSC_HANDLE hInsContext, ch
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "MaxNumberOfExtensions", TRUE) )
+    else if (strcmp(ParamName, "MaxNumberOfExtensions") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.MaxNumberOfExtensions",uVsIndex);
 
@@ -393,7 +393,7 @@ BOOL TelcoVoiceMgrDml_CallControl_LineList_GetParamUlongValue(ANSC_HANDLE hInsCo
 
     uCCLineIndex = pHEAD->uInstanceNumber;
 
-    if( AnscEqualString(ParamName, "Status", TRUE) )
+    if (strcmp(ParamName, "Status") == 0)
     {
 
         if(ANSC_STATUS_SUCCESS == TelcoVoiceMgrDmlGetLineStatus(uVsIndex, TELCOVOICEMGR_DML_NUMBER_OF_VOIP_PROFILE,
@@ -404,12 +404,12 @@ BOOL TelcoVoiceMgrDml_CallControl_LineList_GetParamUlongValue(ANSC_HANDLE hInsCo
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Origin", TRUE) )
+    else if (strcmp(ParamName, "Origin") == 0)
     {
         *puLong = pHEAD->Origin;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "CallStatus", TRUE) )
+    else if (strcmp(ParamName, "CallStatus") == 0)
     {
         //Fetch status from voice stack
         if(ANSC_STATUS_SUCCESS == TelcoVoiceMgrDmlGetLineCallState(uVsIndex, TELCOVOICEMGR_DML_NUMBER_OF_VOIP_PROFILE,
@@ -483,22 +483,22 @@ ULONG TelcoVoiceMgrDml_CallControl_LineList_GetParamStringValue(ANSC_HANDLE hIns
 
     PDML_CALLCONTROL_LINE pHEAD = &(pCallCtrlLineCtrl->dml);
 
-    if( AnscEqualString(ParamName, "Provider", TRUE) )
+    if (strcmp(ParamName, "Provider") == 0)
     {
         AnscCopyString(pValue,pHEAD->Provider);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "DirectoryNumber", TRUE) )
+    else if (strcmp(ParamName, "DirectoryNumber") == 0)
     {
         AnscCopyString(pValue,pHEAD->DirectoryNumber);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "CallingFeatures", TRUE) )
+    else if (strcmp(ParamName, "CallingFeatures") == 0)
     {
         AnscCopyString(pValue,pHEAD->CallingFeatures);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         AnscCopyString(pValue,pHEAD->Alias);
         ret = 0;
@@ -579,7 +579,7 @@ BOOL TelcoVoiceMgrDml_CallControl_LineList_SetParamStringValue(ANSC_HANDLE hInsC
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "Provider", TRUE) )
+    if (strcmp(ParamName, "Provider") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.Line.%d.Provider",uVsIndex,uLineIndex);
 
@@ -594,7 +594,7 @@ BOOL TelcoVoiceMgrDml_CallControl_LineList_SetParamStringValue(ANSC_HANDLE hInsC
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "DirectoryNumber", TRUE) )
+    else if (strcmp(ParamName, "DirectoryNumber") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.Line.%d.DirectoryNumber",uVsIndex,uLineIndex);
 
@@ -611,7 +611,7 @@ BOOL TelcoVoiceMgrDml_CallControl_LineList_SetParamStringValue(ANSC_HANDLE hInsC
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "CallingFeatures", TRUE) )
+    else if (strcmp(ParamName, "CallingFeatures") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.Line.%d.CallingFeatures",uVsIndex,uLineIndex);
 
@@ -626,7 +626,7 @@ BOOL TelcoVoiceMgrDml_CallControl_LineList_SetParamStringValue(ANSC_HANDLE hInsC
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         TELCOVOICEMGR_LOCK_OR_EXIT()
 
@@ -686,12 +686,12 @@ BOOL TelcoVoiceMgrDml_CallControl_LineList_GetParamBoolValue(ANSC_HANDLE hInsCon
 
     PDML_CALLCONTROL_LINE pHEAD = &(pCallCtrlLineCtrl->dml);
 
-    if( AnscEqualString(ParamName, "QuiescentMode", TRUE) )
+    if (strcmp(ParamName, "QuiescentMode") == 0)
     {
         *pBool = pHEAD->QuiescentMode;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Enable", TRUE) )
+    else if (strcmp(ParamName, "Enable") == 0)
     {
         *pBool = pHEAD->Enable;
         ret = TRUE;
@@ -772,7 +772,7 @@ BOOL TelcoVoiceMgrDml_CallControl_LineList_SetParamBoolValue(ANSC_HANDLE hInsCon
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "QuiescentMode", TRUE) )
+    if (strcmp(ParamName, "QuiescentMode") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.Line.%d.QuiescentMode",uVsIndex,uLineIndex);
 
@@ -787,7 +787,7 @@ BOOL TelcoVoiceMgrDml_CallControl_LineList_SetParamBoolValue(ANSC_HANDLE hInsCon
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Enable", TRUE) )
+    else if (strcmp(ParamName, "Enable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.Line.%d.Enable",uVsIndex,uLineIndex);
 
@@ -928,27 +928,27 @@ BOOL TelcoVoiceMgrDml_CallControl_LineList_stats_InCalls_GetParamUlongValue(ANSC
 
     PDML_CALLCONTROL_STATS_INCALLS  pHEAD = &(pDmlCallCtrlLine->Stats.IncomingCalls);
 
-    if( AnscEqualString(ParamName, "TotalCallTime", TRUE) )
+    if (strcmp(ParamName, "TotalCallTime") == 0)
     {
         *puLong = pHEAD->TotalCallTime;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "CallsReceived", TRUE) )
+    else if (strcmp(ParamName, "CallsReceived") == 0)
     {
         *puLong = pHEAD->CallsReceived;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "CallsFailed", TRUE) )
+    else if (strcmp(ParamName, "CallsFailed") == 0)
     {
         *puLong = pHEAD->CallsFailed;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "CallsDropped", TRUE) )
+    else if (strcmp(ParamName, "CallsDropped") == 0)
     {
         *puLong = pHEAD->CallsDropped;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "CallsConnected", TRUE) )
+    else if (strcmp(ParamName, "CallsConnected") == 0)
     {
         *puLong = pHEAD->CallsConnected;
         ret = TRUE;
@@ -1006,27 +1006,27 @@ BOOL TelcoVoiceMgrDml_CallControl_LineList_stats_OutCalls_GetParamUlongValue(ANS
 
     PDML_CALLCONTROL_STATS_OUTCALLS  pHEAD = &(pDmlCallCtrlLine->Stats.OutgoingCalls);
 
-    if( AnscEqualString(ParamName, "TotalCallTime", TRUE) )
+    if (strcmp(ParamName, "TotalCallTime") == 0)
     {
         *puLong = pHEAD->TotalCallTime;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "CallsFailed", TRUE) )
+    else if (strcmp(ParamName, "CallsFailed") == 0)
     {
         *puLong = pHEAD->CallsFailed;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "CallsDropped", TRUE) )
+    else if (strcmp(ParamName, "CallsDropped") == 0)
     {
         *puLong = pHEAD->CallsDropped;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "CallsConnected", TRUE) )
+    else if (strcmp(ParamName, "CallsConnected") == 0)
     {
         *puLong = pHEAD->CallsConnected;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "CallsAttempted", TRUE) )
+    else if (strcmp(ParamName, "CallsAttempted") == 0)
     {
         *puLong = pHEAD->CallsAttempted;
         ret = TRUE;
@@ -1085,27 +1085,27 @@ BOOL TelcoVoiceMgrDml_CallControl_LineList_stats_RTP_GetParamUlongValue(ANSC_HAN
 
     PDML_CALLCONTROL_STATS_RTP  pHEAD = &(pDmlCallCtrlLine->Stats.RTP);
 
-    if( AnscEqualString(ParamName, "PacketsSent", TRUE) )
+    if (strcmp(ParamName, "PacketsSent") == 0)
     {
         *puLong = pHEAD->PacketsSent;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "PacketsReceived", TRUE) )
+    else if (strcmp(ParamName, "PacketsReceived") == 0)
     {
         *puLong = pHEAD->PacketsReceived;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "PacketsLost", TRUE) )
+    else if (strcmp(ParamName, "PacketsLost") == 0)
     {
         *puLong = pHEAD->PacketsLost;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "BytesSent", TRUE) )
+    else if (strcmp(ParamName, "BytesSent") == 0)
     {
         *puLong = pHEAD->BytesSent;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "BytesReceived", TRUE) )
+    else if (strcmp(ParamName, "BytesReceived") == 0)
     {
         *puLong = pHEAD->BytesReceived;
         ret = TRUE;
@@ -1162,12 +1162,12 @@ BOOL TelcoVoiceMgrDml_CallControl_LineList_stats_DSP_GetParamUlongValue(ANSC_HAN
 
     PDML_CALLCONTROL_STATS_DSP  pHEAD = &(pDmlCallCtrlLine->Stats.DSP);
 
-    if( AnscEqualString(ParamName, "Underruns", TRUE) )
+    if (strcmp(ParamName, "Underruns") == 0)
     {
         *puLong = pHEAD->Underruns;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Overruns", TRUE) )
+    else if (strcmp(ParamName, "Overruns") == 0)
     {
         *puLong = pHEAD->Overruns;
         ret = TRUE;
@@ -1387,7 +1387,7 @@ BOOL TelcoVoiceMgrDml_CallControl_ExtensionList_GetParamUlongValue(ANSC_HANDLE h
 
     uCCExtIndex = pHEAD->uInstanceNumber;
 
-    if( AnscEqualString(ParamName, "Status", TRUE) )
+    if (strcmp(ParamName, "Status") == 0)
     {
         //Fetch status from voice stack
         hal_param_t req_param;
@@ -1405,12 +1405,12 @@ BOOL TelcoVoiceMgrDml_CallControl_ExtensionList_GetParamUlongValue(ANSC_HANDLE h
             ret = FALSE;
         }
     }
-    else if( AnscEqualString(ParamName, "Origin", TRUE) )
+    else if (strcmp(ParamName, "Origin") == 0)
     {
         *puLong = pHEAD->Origin;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "ConferenceCallingStatus", TRUE) )
+    else if (strcmp(ParamName, "ConferenceCallingStatus") == 0)
     {
         //Fetch status from voice stack
         hal_param_t req_param;
@@ -1428,12 +1428,12 @@ BOOL TelcoVoiceMgrDml_CallControl_ExtensionList_GetParamUlongValue(ANSC_HANDLE h
             ret = FALSE;
         }
     }
-    else if( AnscEqualString(ParamName, "ConferenceCallingSessionCount", TRUE) )
+    else if (strcmp(ParamName, "ConferenceCallingSessionCount") == 0)
     {
         *puLong = pHEAD->ConferenceCallingSessionCount;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "CallWaitingStatus", TRUE) )
+    else if (strcmp(ParamName, "CallWaitingStatus") == 0)
     {
         //Fetch status from voice stack
         hal_param_t req_param;
@@ -1450,7 +1450,7 @@ BOOL TelcoVoiceMgrDml_CallControl_ExtensionList_GetParamUlongValue(ANSC_HANDLE h
             ret = FALSE;
         }
     }
-    else if( AnscEqualString(ParamName, "CallStatus", TRUE) )
+    else if (strcmp(ParamName, "CallStatus") == 0)
     {
         //Fetch status from voice stack
         hal_param_t req_param;
@@ -1526,37 +1526,37 @@ ULONG TelcoVoiceMgrDml_CallControl_ExtensionList_GetParamStringValue(ANSC_HANDLE
 
     PDML_CALLCONTROL_EXTENSION pHEAD = &(pCallCtrlExtCtrl->dml);
 
-    if( AnscEqualString(ParamName, "VoiceMail", TRUE) )
+    if (strcmp(ParamName, "VoiceMail") == 0)
     {
         AnscCopyString(pValue,pHEAD->VoiceMail);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Provider", TRUE) )
+    else if (strcmp(ParamName, "Provider") == 0)
     {
         AnscCopyString(pValue,pHEAD->Provider);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "NumberingPlan", TRUE) )
+    else if (strcmp(ParamName, "NumberingPlan") == 0)
     {
         AnscCopyString(pValue,pHEAD->NumberingPlan);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Name", TRUE) )
+    else if (strcmp(ParamName, "Name") == 0)
     {
         AnscCopyString(pValue,pHEAD->Name);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "ExtensionNumber", TRUE) )
+    else if (strcmp(ParamName, "ExtensionNumber") == 0)
     {
         AnscCopyString(pValue,pHEAD->ExtensionNumber);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "CallingFeatures", TRUE) )
+    else if (strcmp(ParamName, "CallingFeatures") == 0)
     {
         AnscCopyString(pValue,pHEAD->CallingFeatures);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         AnscCopyString(pValue,pHEAD->Alias);
         ret = 0;
@@ -1637,7 +1637,7 @@ BOOL TelcoVoiceMgrDml_CallControl_ExtensionList_SetParamStringValue(ANSC_HANDLE 
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "VoiceMail", TRUE) )
+    if (strcmp(ParamName, "VoiceMail") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.Extension.%d.VoiceMail",uVsIndex,uExtensionIndex);
 
@@ -1652,7 +1652,7 @@ BOOL TelcoVoiceMgrDml_CallControl_ExtensionList_SetParamStringValue(ANSC_HANDLE 
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Provider", TRUE) )
+    else if (strcmp(ParamName, "Provider") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.Extension.%d.Provider",uVsIndex,uExtensionIndex);
 
@@ -1667,7 +1667,7 @@ BOOL TelcoVoiceMgrDml_CallControl_ExtensionList_SetParamStringValue(ANSC_HANDLE 
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "NumberingPlan", TRUE) )
+    else if (strcmp(ParamName, "NumberingPlan") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.Extension.%d.NumberingPlan",uVsIndex,uExtensionIndex);
 
@@ -1682,7 +1682,7 @@ BOOL TelcoVoiceMgrDml_CallControl_ExtensionList_SetParamStringValue(ANSC_HANDLE 
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Name", TRUE) )
+    else if (strcmp(ParamName, "Name") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.Extension.%d.Name",uVsIndex,uExtensionIndex);
 
@@ -1697,7 +1697,7 @@ BOOL TelcoVoiceMgrDml_CallControl_ExtensionList_SetParamStringValue(ANSC_HANDLE 
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "ExtensionNumber", TRUE) )
+    else if (strcmp(ParamName, "ExtensionNumber") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.Extension.%d.ExtensionNumber",uVsIndex,uExtensionIndex);
 
@@ -1712,7 +1712,7 @@ BOOL TelcoVoiceMgrDml_CallControl_ExtensionList_SetParamStringValue(ANSC_HANDLE 
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "CallingFeatures", TRUE) )
+    else if (strcmp(ParamName, "CallingFeatures") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.Extension.%d.CallingFeatures",uVsIndex,uExtensionIndex);
 
@@ -1727,7 +1727,7 @@ BOOL TelcoVoiceMgrDml_CallControl_ExtensionList_SetParamStringValue(ANSC_HANDLE 
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         TELCOVOICEMGR_LOCK_OR_EXIT()
 
@@ -1787,12 +1787,12 @@ BOOL TelcoVoiceMgrDml_CallControl_ExtensionList_GetParamBoolValue(ANSC_HANDLE hI
 
     PDML_CALLCONTROL_EXTENSION pHEAD = &(pCallCtrlExtCtrl->dml);
 
-    if( AnscEqualString(ParamName, "QuiescentMode", TRUE) )
+    if (strcmp(ParamName, "QuiescentMode") == 0)
     {
         *pBool = pHEAD->QuiescentMode;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Enable", TRUE) )
+    else if (strcmp(ParamName, "Enable") == 0)
     {
         *pBool = pHEAD->Enable;
         ret = TRUE;
@@ -1873,7 +1873,7 @@ BOOL TelcoVoiceMgrDml_CallControl_ExtensionList_SetParamBoolValue(ANSC_HANDLE hI
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "QuiescentMode", TRUE) )
+    if (strcmp(ParamName, "QuiescentMode") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.Extension.%d.QuiescentMode",uVsIndex,uExtensionIndex);
 
@@ -1888,7 +1888,7 @@ BOOL TelcoVoiceMgrDml_CallControl_ExtensionList_SetParamBoolValue(ANSC_HANDLE hI
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Enable", TRUE) )
+    else if (strcmp(ParamName, "Enable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.Extension.%d.Enable",uVsIndex,uExtensionIndex);
 
@@ -2026,27 +2026,27 @@ BOOL TelcoVoiceMgrDml_CallControl_ExtensionList_Stats_InCalls_GetParamUlongValue
 
     PDML_CALLCONTROL_STATS_INCALLS pHEAD = &(pDmlCallCtrlExt->Stats.IncomingCalls);
 
-    if( AnscEqualString(ParamName, "TotalCallTime", TRUE) )
+    if (strcmp(ParamName, "TotalCallTime") == 0)
     {
         *puLong = pHEAD->TotalCallTime;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "CallsReceived", TRUE) )
+    else if (strcmp(ParamName, "CallsReceived") == 0)
     {
         *puLong = pHEAD->CallsReceived;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "CallsFailed", TRUE) )
+    else if (strcmp(ParamName, "CallsFailed") == 0)
     {
         *puLong = pHEAD->CallsFailed;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "CallsDropped", TRUE) )
+    else if (strcmp(ParamName, "CallsDropped") == 0)
     {
         *puLong = pHEAD->CallsDropped;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "CallsConnected", TRUE) )
+    else if (strcmp(ParamName, "CallsConnected") == 0)
     {
         *puLong = pHEAD->CallsConnected;
         ret = TRUE;
@@ -2105,27 +2105,27 @@ BOOL TelcoVoiceMgrDml_CallControl_ExtensionList_Stats_OutCalls_GetParamUlongValu
 
     PDML_CALLCONTROL_STATS_OUTCALLS pHEAD = &(pDmlCallCtrlExt->Stats.OutgoingCalls);
 
-    if( AnscEqualString(ParamName, "TotalCallTime", TRUE) )
+    if (strcmp(ParamName, "TotalCallTime") == 0)
     {
         *puLong = pHEAD->TotalCallTime;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "CallsFailed", TRUE) )
+    else if (strcmp(ParamName, "CallsFailed") == 0)
     {
         *puLong = pHEAD->CallsFailed;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "CallsDropped", TRUE) )
+    else if (strcmp(ParamName, "CallsDropped") == 0)
     {
         *puLong = pHEAD->CallsDropped;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "CallsConnected", TRUE) )
+    else if (strcmp(ParamName, "CallsConnected") == 0)
     {
         *puLong = pHEAD->CallsConnected;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "CallsAttempted", TRUE) )
+    else if (strcmp(ParamName, "CallsAttempted") == 0)
     {
         *puLong = pHEAD->CallsAttempted;
         ret = TRUE;
@@ -2183,27 +2183,27 @@ BOOL TelcoVoiceMgrDml_CallControl_ExtensionList_Stats_RTP_GetParamUlongValue(ANS
 
     PDML_CALLCONTROL_STATS_RTP pHEAD = &(pDmlCallCtrlExt->Stats.RTP);
 
-    if( AnscEqualString(ParamName, "PacketsSent", TRUE) )
+    if (strcmp(ParamName, "PacketsSent") == 0)
     {
         *puLong = pHEAD->PacketsSent;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "PacketsReceived", TRUE) )
+    else if (strcmp(ParamName, "PacketsReceived") == 0)
     {
         *puLong = pHEAD->PacketsReceived;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "PacketsLost", TRUE) )
+    else if (strcmp(ParamName, "PacketsLost") == 0)
     {
         *puLong = pHEAD->PacketsLost;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "BytesSent", TRUE) )
+    else if (strcmp(ParamName, "BytesSent") == 0)
     {
         *puLong = pHEAD->BytesSent;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "BytesReceived", TRUE) )
+    else if (strcmp(ParamName, "BytesReceived") == 0)
     {
         *puLong = pHEAD->BytesReceived;
         ret = TRUE;
@@ -2263,12 +2263,12 @@ BOOL TelcoVoiceMgrDml_CallControl_ExtensionList_Stats_DSP_GetParamUlongValue(ANS
 
     PDML_CALLCONTROL_STATS_DSP pHEAD = &(pDmlCallCtrlExt->Stats.DSP);
 
-    if( AnscEqualString(ParamName, "Underruns", TRUE) )
+    if (strcmp(ParamName, "Underruns") == 0)
     {
         *puLong = pHEAD->Underruns;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Overruns", TRUE) )
+    else if (strcmp(ParamName, "Overruns") == 0)
     {
         *puLong = pHEAD->Overruns;
         ret = TRUE;
@@ -2467,12 +2467,12 @@ BOOL TelcoVoiceMgrDml_CallControl_GroupList_GetParamUlongValue(ANSC_HANDLE hInsC
 
     PDML_CALLCONTROL_GROUP pHEAD = &(pCallCtrlGrpCtrl->dml);
 
-    if( AnscEqualString(ParamName, "RingType", TRUE) )
+    if (strcmp(ParamName, "RingType") == 0)
     {
         *puLong = pHEAD->RingType;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "RingTimeout", TRUE) )
+    else if (strcmp(ParamName, "RingTimeout") == 0)
     {
         *puLong = pHEAD->RingTimeout;
         ret = TRUE;
@@ -2553,7 +2553,7 @@ BOOL TelcoVoiceMgrDml_CallControl_GroupList_SetParamUlongValue(ANSC_HANDLE hInsC
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "RingType", TRUE) )
+    if (strcmp(ParamName, "RingType") == 0)
     {
         char enumValue[][STR_LEN_32]={"Simultaneous","Hierarchical","Cyclic"};
 
@@ -2570,7 +2570,7 @@ BOOL TelcoVoiceMgrDml_CallControl_GroupList_SetParamUlongValue(ANSC_HANDLE hInsC
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "RingTimeout", TRUE) )
+    else if (strcmp(ParamName, "RingTimeout") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.Group.%d.RingTimeout",uVsIndex,uGroupIndex);
 
@@ -2642,12 +2642,12 @@ ULONG TelcoVoiceMgrDml_CallControl_GroupList_GetParamStringValue(ANSC_HANDLE hIn
 
     PDML_CALLCONTROL_GROUP pHEAD = &(pCallCtrlGrpCtrl->dml);
 
-    if( AnscEqualString(ParamName, "Extensions", TRUE) )
+    if (strcmp(ParamName, "Extensions") == 0)
     {
         AnscCopyString(pValue,pHEAD->Extensions);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         AnscCopyString(pValue,pHEAD->Alias);
         ret = 0;
@@ -2728,7 +2728,7 @@ BOOL TelcoVoiceMgrDml_CallControl_GroupList_SetParamStringValue(ANSC_HANDLE hIns
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "Extensions", TRUE) )
+    if (strcmp(ParamName, "Extensions") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.Group.%d.Extensions",uVsIndex,uGroupIndex);
 
@@ -2743,7 +2743,7 @@ BOOL TelcoVoiceMgrDml_CallControl_GroupList_SetParamStringValue(ANSC_HANDLE hIns
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         TELCOVOICEMGR_LOCK_OR_EXIT()
 
@@ -3017,27 +3017,27 @@ BOOL TelcoVoiceMgrDml_CallControl_MailboxList_GetParamUlongValue(ANSC_HANDLE hIn
 
     PDML_CALLCONTROL_MAILBOX pHEAD = &(pCallCtrlMailBoxCtrl->dml);
 
-    if( AnscEqualString(ParamName, "SMTPServerPort", TRUE) )
+    if (strcmp(ParamName, "SMTPServerPort") == 0)
     {
         *puLong = pHEAD->SMTPServerPort;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "SMTPAuthenticationType", TRUE) )
+    else if (strcmp(ParamName, "SMTPAuthenticationType") == 0)
     {
         *puLong = pHEAD->SMTPAuthenticationType;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "MinSize", TRUE) )
+    else if (strcmp(ParamName, "MinSize") == 0)
     {
         *puLong = pHEAD->MinSize;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "MaxMsg", TRUE) )
+    else if (strcmp(ParamName, "MaxMsg") == 0)
     {
         *puLong = pHEAD->MaxMsg;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "MaxMessageTime", TRUE) )
+    else if (strcmp(ParamName, "MaxMessageTime") == 0)
     {
         *puLong = pHEAD->MaxMessageTime;
         ret = TRUE;
@@ -3118,7 +3118,7 @@ BOOL TelcoVoiceMgrDml_CallControl_MailboxList_SetParamUlongValue(ANSC_HANDLE hIn
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "SMTPServerPort", TRUE) )
+    if (strcmp(ParamName, "SMTPServerPort") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.Mailbox.%d.SMTPServerPort",uVsIndex,uMailboxIndex);
 
@@ -3133,7 +3133,7 @@ BOOL TelcoVoiceMgrDml_CallControl_MailboxList_SetParamUlongValue(ANSC_HANDLE hIn
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "SMTPAuthenticationType", TRUE) )
+    else if (strcmp(ParamName, "SMTPAuthenticationType") == 0)
     {
         char enumValue[][STR_LEN_32]={"None","SSL","TLS","Auto"};
 
@@ -3150,7 +3150,7 @@ BOOL TelcoVoiceMgrDml_CallControl_MailboxList_SetParamUlongValue(ANSC_HANDLE hIn
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "MinSize", TRUE) )
+    else if (strcmp(ParamName, "MinSize") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.Mailbox.%d.MinSize",uVsIndex,uMailboxIndex);
 
@@ -3165,7 +3165,7 @@ BOOL TelcoVoiceMgrDml_CallControl_MailboxList_SetParamUlongValue(ANSC_HANDLE hIn
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "MaxMsg", TRUE) )
+    else if (strcmp(ParamName, "MaxMsg") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.Mailbox.%d.MaxMsg",uVsIndex,uMailboxIndex);
 
@@ -3180,7 +3180,7 @@ BOOL TelcoVoiceMgrDml_CallControl_MailboxList_SetParamUlongValue(ANSC_HANDLE hIn
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "MaxMessageTime", TRUE) )
+    else if (strcmp(ParamName, "MaxMessageTime") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.Mailbox.%d.MaxMessageTime",uVsIndex,uMailboxIndex);
 
@@ -3252,27 +3252,27 @@ ULONG TelcoVoiceMgrDml_CallControl_MailboxList_GetParamStringValue(ANSC_HANDLE h
 
     PDML_CALLCONTROL_MAILBOX pHEAD = &(pCallCtrlMailBoxCtrl->dml);
 
-    if( AnscEqualString(ParamName, "SMTPUser", TRUE) )
+    if (strcmp(ParamName, "SMTPUser") == 0)
     {
         AnscCopyString(pValue,pHEAD->SMTPUser);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "SMTPServerAddress", TRUE) )
+    else if (strcmp(ParamName, "SMTPServerAddress") == 0)
     {
         AnscCopyString(pValue,pHEAD->SMTPServerAddress);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "SMTPPassword", TRUE) )
+    else if (strcmp(ParamName, "SMTPPassword") == 0)
     {
         AnscCopyString(pValue,pHEAD->SMTPPassword);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "SMTPFrom", TRUE) )
+    else if (strcmp(ParamName, "SMTPFrom") == 0)
     {
         AnscCopyString(pValue,pHEAD->SMTPFrom);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         AnscCopyString(pValue,pHEAD->Alias);
         ret = 0;
@@ -3354,7 +3354,7 @@ BOOL TelcoVoiceMgrDml_CallControl_MailboxList_SetParamStringValue(ANSC_HANDLE hI
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "SMTPUser", TRUE) )
+    if (strcmp(ParamName, "SMTPUser") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.Mailbox.%d.SMTPUser",uVsIndex,uMailboxIndex);
 
@@ -3369,7 +3369,7 @@ BOOL TelcoVoiceMgrDml_CallControl_MailboxList_SetParamStringValue(ANSC_HANDLE hI
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "SMTPServerAddress", TRUE) )
+    else if (strcmp(ParamName, "SMTPServerAddress") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.Mailbox.%d.SMTPServerAddress",uVsIndex,uMailboxIndex);
 
@@ -3384,7 +3384,7 @@ BOOL TelcoVoiceMgrDml_CallControl_MailboxList_SetParamStringValue(ANSC_HANDLE hI
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "SMTPPassword", TRUE) )
+    else if (strcmp(ParamName, "SMTPPassword") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.Mailbox.%d.SMTPPassword",uVsIndex,uMailboxIndex);
 
@@ -3399,7 +3399,7 @@ BOOL TelcoVoiceMgrDml_CallControl_MailboxList_SetParamStringValue(ANSC_HANDLE hI
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "SMTPFrom", TRUE) )
+    else if (strcmp(ParamName, "SMTPFrom") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.Mailbox.%d.SMTPFrom",uVsIndex,uMailboxIndex);
 
@@ -3414,7 +3414,7 @@ BOOL TelcoVoiceMgrDml_CallControl_MailboxList_SetParamStringValue(ANSC_HANDLE hI
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         TELCOVOICEMGR_LOCK_OR_EXIT()
 
@@ -3474,7 +3474,7 @@ BOOL TelcoVoiceMgrDml_CallControl_MailboxList_GetParamBoolValue(ANSC_HANDLE hIns
 
     PDML_CALLCONTROL_MAILBOX pHEAD = &(pCallCtrlMailBoxCtrl->dml);
 
-    if( AnscEqualString(ParamName, "Enable", TRUE) )
+    if (strcmp(ParamName, "Enable") == 0)
     {
         *pBool = pHEAD->Enable;
         ret = TRUE;
@@ -3555,7 +3555,7 @@ BOOL TelcoVoiceMgrDml_CallControl_MailboxList_SetParamBoolValue(ANSC_HANDLE hIns
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "Enable", TRUE) )
+    if (strcmp(ParamName, "Enable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.Mailbox.%d.Enable",uVsIndex,uMailboxIndex);
 
@@ -3835,12 +3835,12 @@ BOOL TelcoVoiceMgrDml_CallControl_IncomingMapList_GetParamUlongValue(ANSC_HANDLE
 
     PDML_CALLCONTROL_INCOMINGMAP pHEAD = &(pCallCtrlInMapCtrl->dml);
 
-    if( AnscEqualString(ParamName, "Timeout", TRUE) )
+    if (strcmp(ParamName, "Timeout") == 0)
     {
         *puLong = pHEAD->Timeout;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Order", TRUE) )
+    else if (strcmp(ParamName, "Order") == 0)
     {
         *puLong = pHEAD->Order;
         ret = TRUE;
@@ -3922,7 +3922,7 @@ BOOL TelcoVoiceMgrDml_CallControl_IncomingMapList_SetParamUlongValue(ANSC_HANDLE
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "Timeout", TRUE) )
+    if (strcmp(ParamName, "Timeout") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.IncomingMap.%d.Timeout",uVsIndex,uInMapIndex);
 
@@ -3937,7 +3937,7 @@ BOOL TelcoVoiceMgrDml_CallControl_IncomingMapList_SetParamUlongValue(ANSC_HANDLE
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Order", TRUE) )
+    else if (strcmp(ParamName, "Order") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.IncomingMap.%d.Order",uVsIndex,uInMapIndex);
 
@@ -4008,17 +4008,17 @@ ULONG TelcoVoiceMgrDml_CallControl_IncomingMapList_GetParamStringValue(ANSC_HAND
 
     PDML_CALLCONTROL_INCOMINGMAP pHEAD = &(pCallCtrlInMapCtrl->dml);
 
-    if( AnscEqualString(ParamName, "Line", TRUE) )
+    if (strcmp(ParamName, "Line") == 0)
     {
         AnscCopyString(pValue,pHEAD->Line);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Extension", TRUE) )
+    else if (strcmp(ParamName, "Extension") == 0)
     {
         AnscCopyString(pValue,pHEAD->Extension);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         AnscCopyString(pValue,pHEAD->Alias);
         ret = 0;
@@ -4099,7 +4099,7 @@ BOOL TelcoVoiceMgrDml_CallControl_IncomingMapList_SetParamStringValue(ANSC_HANDL
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "Line", TRUE) )
+    if (strcmp(ParamName, "Line") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.IncomingMap.%d.Line",uVsIndex,uInMapIndex);
 
@@ -4114,7 +4114,7 @@ BOOL TelcoVoiceMgrDml_CallControl_IncomingMapList_SetParamStringValue(ANSC_HANDL
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Extension", TRUE) )
+    else if (strcmp(ParamName, "Extension") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.IncomingMap.%d.Extension",uVsIndex,uInMapIndex);
 
@@ -4129,7 +4129,7 @@ BOOL TelcoVoiceMgrDml_CallControl_IncomingMapList_SetParamStringValue(ANSC_HANDL
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
             TELCOVOICEMGR_LOCK_OR_EXIT()
 
@@ -4189,7 +4189,7 @@ BOOL TelcoVoiceMgrDml_CallControl_IncomingMapList_GetParamBoolValue(ANSC_HANDLE 
 
     PDML_CALLCONTROL_INCOMINGMAP pHEAD = &(pCallCtrlInMapCtrl->dml);
 
-    if( AnscEqualString(ParamName, "Enable", TRUE) )
+    if (strcmp(ParamName, "Enable") == 0)
     {
         *pBool = pHEAD->Enable;
         ret = TRUE;
@@ -4270,7 +4270,7 @@ BOOL TelcoVoiceMgrDml_CallControl_IncomingMapList_SetParamBoolValue(ANSC_HANDLE 
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "Enable", TRUE) )
+    if (strcmp(ParamName, "Enable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.IncomingMap.%d.Enable",uVsIndex,uInMapIndex);
 
@@ -4549,7 +4549,7 @@ BOOL TelcoVoiceMgrDml_CallControl_OutgoingMapList_GetParamUlongValue(ANSC_HANDLE
 
     PDML_CALLCONTROL_OUTGOINGMAP pHEAD = &(pCallCtrlOutMapCtrl->dml);
 
-    if( AnscEqualString(ParamName, "Order", TRUE) )
+    if (strcmp(ParamName, "Order") == 0)
     {
         *puLong = pHEAD->Order;
         ret = TRUE;
@@ -4630,7 +4630,7 @@ BOOL TelcoVoiceMgrDml_CallControl_OutgoingMapList_SetParamUlongValue(ANSC_HANDLE
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "Order", TRUE) )
+    if (strcmp(ParamName, "Order") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.OutgoingMap.%d.Order",uVsIndex,uOutMapIndex);
 
@@ -4701,22 +4701,22 @@ ULONG TelcoVoiceMgrDml_CallControl_OutgoingMapList_GetParamStringValue(ANSC_HAND
 
     PDML_CALLCONTROL_OUTGOINGMAP pHEAD = &(pCallCtrlOutMapCtrl->dml);
 
-    if( AnscEqualString(ParamName, "Line", TRUE) )
+    if (strcmp(ParamName, "Line") == 0)
     {
         AnscCopyString(pValue,pHEAD->Line);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Extension", TRUE) )
+    else if (strcmp(ParamName, "Extension") == 0)
     {
         AnscCopyString(pValue,pHEAD->Extension);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "CLIPNoScreeningNumber", TRUE) )
+    else if (strcmp(ParamName, "CLIPNoScreeningNumber") == 0)
     {
         AnscCopyString(pValue,pHEAD->CLIPNoScreeningNumber);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         AnscCopyString(pValue,pHEAD->Alias);
         ret = 0;
@@ -4793,7 +4793,7 @@ BOOL TelcoVoiceMgrDml_CallControl_OutgoingMapList_SetParamStringValue(ANSC_HANDL
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "Line", TRUE) )
+    if (strcmp(ParamName, "Line") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.OutgoingMap.%d.Line",uVsIndex,uOutMapIndex);
 
@@ -4808,7 +4808,7 @@ BOOL TelcoVoiceMgrDml_CallControl_OutgoingMapList_SetParamStringValue(ANSC_HANDL
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Extension", TRUE) )
+    else if (strcmp(ParamName, "Extension") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.OutgoingMap.%d.Extension",uVsIndex,uOutMapIndex);
 
@@ -4823,7 +4823,7 @@ BOOL TelcoVoiceMgrDml_CallControl_OutgoingMapList_SetParamStringValue(ANSC_HANDL
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "CLIPNoScreeningNumber", TRUE) )
+    else if (strcmp(ParamName, "CLIPNoScreeningNumber") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.OutgoingMap.%d.CLIPNoScreeningNumber",uVsIndex,uOutMapIndex);
 
@@ -4838,7 +4838,7 @@ BOOL TelcoVoiceMgrDml_CallControl_OutgoingMapList_SetParamStringValue(ANSC_HANDL
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         TELCOVOICEMGR_LOCK_OR_EXIT()
 
@@ -4898,7 +4898,7 @@ BOOL TelcoVoiceMgrDml_CallControl_OutgoingMapList_GetParamBoolValue(ANSC_HANDLE 
 
     PDML_CALLCONTROL_OUTGOINGMAP pHEAD = &(pCallCtrlOutMapCtrl->dml);
 
-    if( AnscEqualString(ParamName, "Enable", TRUE) )
+    if (strcmp(ParamName, "Enable") == 0)
     {
         *pBool = pHEAD->Enable;
         ret = TRUE;
@@ -4979,7 +4979,7 @@ BOOL TelcoVoiceMgrDml_CallControl_OutgoingMapList_SetParamBoolValue(ANSC_HANDLE 
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "Enable", TRUE) )
+    if (strcmp(ParamName, "Enable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.OutgoingMap.%d.Enable",uVsIndex,uOutMapIndex);
 
@@ -5258,27 +5258,27 @@ BOOL TelcoVoiceMgrDml_CallControl_NumberingPlanList_GetParamUlongValue(ANSC_HAND
 
     PDML_CALLCONTROL_NUMBERINGPLAN pHEAD = &(pCallCtrlNumPlanCtrl->dml);
 
-    if( AnscEqualString(ParamName, "PrefixInfoMaxEntries", TRUE) )
+    if (strcmp(ParamName, "PrefixInfoMaxEntries") == 0)
     {
         *puLong = pHEAD->PrefixInfoMaxEntries;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "MinimumNumberOfDigits", TRUE) )
+    else if (strcmp(ParamName, "MinimumNumberOfDigits") == 0)
     {
         *puLong = pHEAD->MinimumNumberOfDigits;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "MaximumNumberOfDigits", TRUE) )
+    else if (strcmp(ParamName, "MaximumNumberOfDigits") == 0)
     {
         *puLong = pHEAD->MaximumNumberOfDigits;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "InterDigitTimerStd", TRUE) )
+    else if (strcmp(ParamName, "InterDigitTimerStd") == 0)
     {
         *puLong = pHEAD->InterDigitTimerStd;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "InterDigitTimerOpen", TRUE) )
+    else if (strcmp(ParamName, "InterDigitTimerOpen") == 0)
     {
         *puLong = pHEAD->InterDigitTimerOpen;
         ret = TRUE;
@@ -5359,7 +5359,7 @@ BOOL TelcoVoiceMgrDml_CallControl_NumberingPlanList_SetParamUlongValue(ANSC_HAND
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "MinimumNumberOfDigits", TRUE) )
+    if (strcmp(ParamName, "MinimumNumberOfDigits") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.NumberingPlan.%d.MinimumNumberOfDigits",uVsIndex,uNumPlanIndex);
 
@@ -5374,7 +5374,7 @@ BOOL TelcoVoiceMgrDml_CallControl_NumberingPlanList_SetParamUlongValue(ANSC_HAND
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "MaximumNumberOfDigits", TRUE) )
+    else if (strcmp(ParamName, "MaximumNumberOfDigits") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.NumberingPlan.%d.MaximumNumberOfDigits",uVsIndex,uNumPlanIndex);
 
@@ -5389,7 +5389,7 @@ BOOL TelcoVoiceMgrDml_CallControl_NumberingPlanList_SetParamUlongValue(ANSC_HAND
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "InterDigitTimerStd", TRUE) )
+    else if (strcmp(ParamName, "InterDigitTimerStd") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.NumberingPlan.%d.InterDigitTimerStd",uVsIndex,uNumPlanIndex);
 
@@ -5404,7 +5404,7 @@ BOOL TelcoVoiceMgrDml_CallControl_NumberingPlanList_SetParamUlongValue(ANSC_HAND
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "InterDigitTimerOpen", TRUE) )
+    else if (strcmp(ParamName, "InterDigitTimerOpen") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.NumberingPlan.%d.InterDigitTimerOpen",uVsIndex,uNumPlanIndex);
 
@@ -5475,17 +5475,17 @@ ULONG TelcoVoiceMgrDml_CallControl_NumberingPlanList_GetParamStringValue(ANSC_HA
 
     PDML_CALLCONTROL_NUMBERINGPLAN pHEAD = &(pCallCtrlNumPlanCtrl->dml);
 
-    if( AnscEqualString(ParamName, "TerminationDigit", TRUE) )
+    if (strcmp(ParamName, "TerminationDigit") == 0)
     {
         AnscCopyString(pValue,pHEAD->TerminationDigit);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "InvalidNumberTone", TRUE) )
+    else if (strcmp(ParamName, "InvalidNumberTone") == 0)
     {
         AnscCopyString(pValue,pHEAD->InvalidNumberTone);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         AnscCopyString(pValue,pHEAD->Alias);
         ret = 0;
@@ -5566,7 +5566,7 @@ BOOL TelcoVoiceMgrDml_CallControl_NumberingPlanList_SetParamStringValue(ANSC_HAN
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "TerminationDigit", TRUE) )
+    if (strcmp(ParamName, "TerminationDigit") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.NumberingPlan.%d.TerminationDigit",uVsIndex,uNumPlanIndex);
 
@@ -5581,7 +5581,7 @@ BOOL TelcoVoiceMgrDml_CallControl_NumberingPlanList_SetParamStringValue(ANSC_HAN
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "InvalidNumberTone", TRUE) )
+    else if (strcmp(ParamName, "InvalidNumberTone") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.NumberingPlan.%d.InvalidNumberTone",uVsIndex,uNumPlanIndex);
 
@@ -5596,7 +5596,7 @@ BOOL TelcoVoiceMgrDml_CallControl_NumberingPlanList_SetParamStringValue(ANSC_HAN
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         TELCOVOICEMGR_LOCK_OR_EXIT()
 
@@ -5871,22 +5871,22 @@ BOOL TelcoVoiceMgrDml_CallControl_NumberingPlanList_PrefixInfoList_GetParamUlong
 
     PDML_CALLCONTROL_NUMBERINGPLAN_PREFIXINFO pHEAD = &(pCallCtrlNUmPlanPreInfoCtrl->dml);
 
-    if( AnscEqualString(ParamName, "PrefixMinNumberOfDigits", TRUE) )
+    if (strcmp(ParamName, "PrefixMinNumberOfDigits") == 0)
     {
         *puLong = pHEAD->PrefixMinNumberOfDigits;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "PrefixMaxNumberOfDigits", TRUE) )
+    else if (strcmp(ParamName, "PrefixMaxNumberOfDigits") == 0)
     {
         *puLong = pHEAD->PrefixMaxNumberOfDigits;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "PosOfDigitsToRemove", TRUE) )
+    else if (strcmp(ParamName, "PosOfDigitsToRemove") == 0)
     {
         *puLong = pHEAD->PosOfDigitsToRemove;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "NumberOfDigitsToRemove", TRUE) )
+    else if (strcmp(ParamName, "NumberOfDigitsToRemove") == 0)
     {
         *puLong = pHEAD->NumberOfDigitsToRemove;
         ret = TRUE;
@@ -5977,7 +5977,7 @@ BOOL TelcoVoiceMgrDml_CallControl_NumberingPlanList_PrefixInfoList_SetParamUlong
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "PrefixMinNumberOfDigits", TRUE) )
+    if (strcmp(ParamName, "PrefixMinNumberOfDigits") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.NumberingPlan.%d.PrefixInfo.%d.PrefixMinNumberOfDigits",uVsIndex,uNumPlanIndex,uPrefixInfoIndex);
 
@@ -5992,7 +5992,7 @@ BOOL TelcoVoiceMgrDml_CallControl_NumberingPlanList_PrefixInfoList_SetParamUlong
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "PrefixMaxNumberOfDigits", TRUE) )
+    else if (strcmp(ParamName, "PrefixMaxNumberOfDigits") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.NumberingPlan.%d.PrefixInfo.%d.PrefixMaxNumberOfDigits",uVsIndex,uNumPlanIndex,uPrefixInfoIndex);
 
@@ -6007,7 +6007,7 @@ BOOL TelcoVoiceMgrDml_CallControl_NumberingPlanList_PrefixInfoList_SetParamUlong
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "PosOfDigitsToRemove", TRUE) )
+    else if (strcmp(ParamName, "PosOfDigitsToRemove") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.NumberingPlan.%d.PrefixInfo.%d.PosOfDigitsToRemove",uVsIndex,uNumPlanIndex,uPrefixInfoIndex);
 
@@ -6022,7 +6022,7 @@ BOOL TelcoVoiceMgrDml_CallControl_NumberingPlanList_PrefixInfoList_SetParamUlong
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "NumberOfDigitsToRemove", TRUE) )
+    else if (strcmp(ParamName, "NumberOfDigitsToRemove") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.NumberingPlan.%d.PrefixInfo.%d.NumberOfDigitsToRemove",uVsIndex,uNumPlanIndex,uPrefixInfoIndex);
 
@@ -6093,27 +6093,27 @@ ULONG TelcoVoiceMgrDml_CallControl_NumberingPlanList_PrefixInfoList_GetParamStri
 
     PDML_CALLCONTROL_NUMBERINGPLAN_PREFIXINFO pHEAD = &(pCallCtrlNUmPlanPreInfoCtrl->dml);
 
-    if( AnscEqualString(ParamName, "PrefixRange", TRUE) )
+    if (strcmp(ParamName, "PrefixRange") == 0)
     {
         AnscCopyString(pValue,pHEAD->PrefixRange);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "FacilityActionArgument", TRUE) )
+    else if (strcmp(ParamName, "FacilityActionArgument") == 0)
     {
         AnscCopyString(pValue,pHEAD->FacilityActionArgument);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "FacilityAction", TRUE) )
+    else if (strcmp(ParamName, "FacilityAction") == 0)
     {
         AnscCopyString(pValue,pHEAD->FacilityAction);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "DialTone", TRUE) )
+    else if (strcmp(ParamName, "DialTone") == 0)
     {
         AnscCopyString(pValue,pHEAD->DialTone);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         AnscCopyString(pValue,pHEAD->Alias);
         ret = 0;
@@ -6204,7 +6204,7 @@ BOOL TelcoVoiceMgrDml_CallControl_NumberingPlanList_PrefixInfoList_SetParamStrin
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "PrefixRange", TRUE) )
+    if (strcmp(ParamName, "PrefixRange") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.NumberingPlan.%d.PrefixInfo.%d.PrefixRange",uVsIndex,uNumPlanIndex,uPrefixInfoIndex);
 
@@ -6219,7 +6219,7 @@ BOOL TelcoVoiceMgrDml_CallControl_NumberingPlanList_PrefixInfoList_SetParamStrin
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "FacilityActionArgument", TRUE) )
+    else if (strcmp(ParamName, "FacilityActionArgument") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.NumberingPlan.%d.PrefixInfo.%d.FacilityActionArgument",uVsIndex,uNumPlanIndex,uPrefixInfoIndex);
 
@@ -6234,7 +6234,7 @@ BOOL TelcoVoiceMgrDml_CallControl_NumberingPlanList_PrefixInfoList_SetParamStrin
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "FacilityAction", TRUE) )
+    else if (strcmp(ParamName, "FacilityAction") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.NumberingPlan.%d.PrefixInfo.%d.FacilityAction",uVsIndex,uNumPlanIndex,uPrefixInfoIndex);
 
@@ -6249,7 +6249,7 @@ BOOL TelcoVoiceMgrDml_CallControl_NumberingPlanList_PrefixInfoList_SetParamStrin
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "DialTone", TRUE) )
+    else if (strcmp(ParamName, "DialTone") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.NumberingPlan.%d.PrefixInfo.%d.DialTone",uVsIndex,uNumPlanIndex,uPrefixInfoIndex);
 
@@ -6264,7 +6264,7 @@ BOOL TelcoVoiceMgrDml_CallControl_NumberingPlanList_PrefixInfoList_SetParamStrin
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         TELCOVOICEMGR_LOCK_OR_EXIT()
 
@@ -6324,7 +6324,7 @@ BOOL TelcoVoiceMgrDml_CallControl_NumberingPlanList_PrefixInfoList_GetParamBoolV
 
     PDML_CALLCONTROL_NUMBERINGPLAN_PREFIXINFO pHEAD = &(pCallCtrlNUmPlanPreInfoCtrl->dml);
 
-    if( AnscEqualString(ParamName, "Enable", TRUE) )
+    if (strcmp(ParamName, "Enable") == 0)
     {
         *pBool = pHEAD->Enable;
         ret = TRUE;
@@ -6415,7 +6415,7 @@ BOOL TelcoVoiceMgrDml_CallControl_NumberingPlanList_PrefixInfoList_SetParamBoolV
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "Enable", TRUE) )
+    if (strcmp(ParamName, "Enable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.NumberingPlan.%d.PrefixInfo.%d.Enable",uVsIndex,uNumPlanIndex,uPrefixInfoIndex);
 
@@ -6692,17 +6692,17 @@ BOOL TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_GetParamUlongValue(ANS
 
     PDML_CALLCONTROL_CALLINGFEATURES_SET pHEAD = &(pCallFeaturesSetCtrl->dml);
 
-    if( AnscEqualString(ParamName, "LineMessagesWaiting", TRUE) )
+    if (strcmp(ParamName, "LineMessagesWaiting") == 0)
     {
         *puLong = pHEAD->LineMessagesWaiting;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "CallForwardOnNoAnswerRingTimeout", TRUE) )
+    else if (strcmp(ParamName, "CallForwardOnNoAnswerRingTimeout") == 0)
     {
         *puLong = pHEAD->CallForwardOnNoAnswerRingTimeout;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "CallForwardOnBusyRingTimeout", TRUE) )
+    else if (strcmp(ParamName, "CallForwardOnBusyRingTimeout") == 0)
     {
         *puLong = pHEAD->CallForwardOnBusyRingTimeout;
         ret = TRUE;
@@ -6783,7 +6783,7 @@ BOOL TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_SetParamUlongValue(ANS
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "CallForwardOnNoAnswerRingTimeout", TRUE) )
+    if (strcmp(ParamName, "CallForwardOnNoAnswerRingTimeout") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.CallingFeatures.Set.%d.CallForwardOnNoAnswerRingTimeout",uVsIndex,uSetIndex);
 
@@ -6798,7 +6798,7 @@ BOOL TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_SetParamUlongValue(ANS
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "CallForwardOnBusyRingTimeout", TRUE) )
+    else if (strcmp(ParamName, "CallForwardOnBusyRingTimeout") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.CallingFeatures.Set.%d.CallForwardOnBusyRingTimeout",uVsIndex,uSetIndex);
 
@@ -6872,22 +6872,22 @@ ULONG TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_GetParamStringValue(A
 
     PDML_CALLCONTROL_CALLINGFEATURES_SET pHEAD = &(pCallFeaturesSetCtrl->dml);
 
-    if( AnscEqualString(ParamName, "CallForwardUnconditionalNumber", TRUE) )
+    if (strcmp(ParamName, "CallForwardUnconditionalNumber") == 0)
     {
         AnscCopyString(pValue,pHEAD->CallForwardUnconditionalNumber);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "CallForwardOnNoAnswerNumber", TRUE) )
+    else if (strcmp(ParamName, "CallForwardOnNoAnswerNumber") == 0)
     {
         AnscCopyString(pValue,pHEAD->CallForwardOnNoAnswerNumber);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "CallForwardOnBusyNumber", TRUE) )
+    else if (strcmp(ParamName, "CallForwardOnBusyNumber") == 0)
     {
         AnscCopyString(pValue,pHEAD->CallForwardOnBusyNumber);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         AnscCopyString(pValue,pHEAD->Alias);
         ret = 0;
@@ -6968,7 +6968,7 @@ BOOL TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_SetParamStringValue(AN
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "CallForwardUnconditionalNumber", TRUE) )
+    if (strcmp(ParamName, "CallForwardUnconditionalNumber") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.CallingFeatures.Set.%d.CallForwardUnconditionalNumber",uVsIndex,uSetIndex);
 
@@ -6983,7 +6983,7 @@ BOOL TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_SetParamStringValue(AN
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "CallForwardOnNoAnswerNumber", TRUE) )
+    else if (strcmp(ParamName, "CallForwardOnNoAnswerNumber") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.CallingFeatures.Set.%d.CallForwardOnNoAnswerNumber",uVsIndex,uSetIndex);
 
@@ -6998,7 +6998,7 @@ BOOL TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_SetParamStringValue(AN
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "CallForwardOnBusyNumber", TRUE) )
+    else if (strcmp(ParamName, "CallForwardOnBusyNumber") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.CallingFeatures.Set.%d.CallForwardOnBusyNumber",uVsIndex,uSetIndex);
 
@@ -7013,7 +7013,7 @@ BOOL TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_SetParamStringValue(AN
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         TELCOVOICEMGR_LOCK_OR_EXIT()
 
@@ -7073,117 +7073,117 @@ BOOL TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_GetParamBoolValue(ANSC
 
     PDML_CALLCONTROL_CALLINGFEATURES_SET pHEAD = &(pCallFeaturesSetCtrl->dml);
 
-    if( AnscEqualString(ParamName, "X_RDK-Central_COM_PhoneCallerIDEnable", TRUE) )
+    if (strcmp(ParamName, "X_RDK-Central_COM_PhoneCallerIDEnable") == 0)
     {
         *pBool = pHEAD->X_RDK_Central_COM_PhoneCallerIDEnable;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "X_RDK-Central_COM_HoldEnable", TRUE) )
+    else if (strcmp(ParamName, "X_RDK-Central_COM_HoldEnable") == 0)
     {
         *pBool = pHEAD->X_RDK_Central_COM_HoldEnable;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "X_RDK-Central_COM_ConferenceCallingEnable", TRUE) )
+    else if (strcmp(ParamName, "X_RDK-Central_COM_ConferenceCallingEnable") == 0)
     {
         *pBool = pHEAD->X_RDK_Central_COM_ConferenceCallingEnable;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "VoiceMailEnable", TRUE) )
+    else if (strcmp(ParamName, "VoiceMailEnable") == 0)
     {
         *pBool = pHEAD->VoiceMailEnable;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "VMWIEnable", TRUE) )
+    else if (strcmp(ParamName, "VMWIEnable") == 0)
     {
         *pBool = pHEAD->VMWIEnable;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "SecretForwarderEnable", TRUE) )
+    else if (strcmp(ParamName, "SecretForwarderEnable") == 0)
     {
         *pBool = pHEAD->SecretForwarderEnable;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "RepeatDialEnable", TRUE) )
+    else if (strcmp(ParamName, "RepeatDialEnable") == 0)
     {
         *pBool = pHEAD->RepeatDialEnable;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "MWIEnable", TRUE) )
+    else if (strcmp(ParamName, "MWIEnable") == 0)
     {
         *pBool = pHEAD->MWIEnable;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "IIFCEnable", TRUE) )
+    else if (strcmp(ParamName, "IIFCEnable") == 0)
     {
         *pBool = pHEAD->IIFCEnable;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "FollowMeEnable", TRUE) )
+    else if (strcmp(ParamName, "FollowMeEnable") == 0)
     {
         *pBool = pHEAD->FollowMeEnable;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "DoNotDisturbEnable", TRUE) )
+    else if (strcmp(ParamName, "DoNotDisturbEnable") == 0)
     {
         *pBool = pHEAD->DoNotDisturbEnable;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "CCBSEnable", TRUE) )
+    else if (strcmp(ParamName, "CCBSEnable") == 0)
     {
         *pBool = pHEAD->CCBSEnable;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "CallWaitingEnable", TRUE) )
+    else if (strcmp(ParamName, "CallWaitingEnable") == 0)
     {
         *pBool = pHEAD->CallWaitingEnable;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "CallTransferEnable", TRUE) )
+    else if (strcmp(ParamName, "CallTransferEnable") == 0)
     {
         *pBool = pHEAD->CallTransferEnable;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "CallPickUpEnable", TRUE) )
+    else if (strcmp(ParamName, "CallPickUpEnable") == 0)
     {
         *pBool = pHEAD->CallPickUpEnable;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "CallForwardUnconditionalEnable", TRUE) )
+    else if (strcmp(ParamName, "CallForwardUnconditionalEnable") == 0)
     {
         *pBool = pHEAD->CallForwardUnconditionalEnable;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "CallForwardOnNoAnswerEnable", TRUE) )
+    else if (strcmp(ParamName, "CallForwardOnNoAnswerEnable") == 0)
     {
         *pBool = pHEAD->CallForwardOnNoAnswerEnable;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "CallForwardOnBusyEnable", TRUE) )
+    else if (strcmp(ParamName, "CallForwardOnBusyEnable") == 0)
     {
         *pBool = pHEAD->CallForwardOnBusyEnable;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "CallerIDNameEnable", TRUE) )
+    else if (strcmp(ParamName, "CallerIDNameEnable") == 0)
     {
         *pBool = pHEAD->CallerIDNameEnable;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "CallerIDEnable", TRUE) )
+    else if (strcmp(ParamName, "CallerIDEnable") == 0)
     {
         *pBool = pHEAD->CallerIDEnable;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "BlockForwardEnable", TRUE) )
+    else if (strcmp(ParamName, "BlockForwardEnable") == 0)
     {
         *pBool = pHEAD->BlockForwardEnable;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "AnonymousCallRejectionEnable", TRUE) )
+    else if (strcmp(ParamName, "AnonymousCallRejectionEnable") == 0)
     {
         *pBool = pHEAD->AnonymousCallRejectionEnable;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "AnonymousCallEnable", TRUE) )
+    else if (strcmp(ParamName, "AnonymousCallEnable") == 0)
     {
         *pBool = pHEAD->AnonymousCallEnable;
         ret = TRUE;
@@ -7264,7 +7264,7 @@ BOOL TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_SetParamBoolValue(ANSC
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "X_RDK-Central_COM_PhoneCallerIDEnable", TRUE) )
+    if (strcmp(ParamName, "X_RDK-Central_COM_PhoneCallerIDEnable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.CallingFeatures.Set.%d.X_RDK-Central_COM_PhoneCallerIDEnable",uVsIndex,uSetIndex);
 
@@ -7281,7 +7281,7 @@ BOOL TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_SetParamBoolValue(ANSC
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "X_RDK-Central_COM_HoldEnable", TRUE) )
+    else if (strcmp(ParamName, "X_RDK-Central_COM_HoldEnable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.CallingFeatures.Set.%d.X_RDK-Central_COM_HoldEnable",uVsIndex,uSetIndex);
 
@@ -7298,7 +7298,7 @@ BOOL TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_SetParamBoolValue(ANSC
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "X_RDK-Central_COM_ConferenceCallingEnable", TRUE) )
+    else if (strcmp(ParamName, "X_RDK-Central_COM_ConferenceCallingEnable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.CallingFeatures.Set.%d.X_RDK-Central_COM_ConferenceCallingEnable",uVsIndex,uSetIndex);
 
@@ -7315,7 +7315,7 @@ BOOL TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_SetParamBoolValue(ANSC
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "VoiceMailEnable", TRUE) )
+    else if (strcmp(ParamName, "VoiceMailEnable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.CallingFeatures.Set.%d.VoiceMailEnable",uVsIndex,uSetIndex);
 
@@ -7330,7 +7330,7 @@ BOOL TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_SetParamBoolValue(ANSC
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "VMWIEnable", TRUE) )
+    else if (strcmp(ParamName, "VMWIEnable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.CallingFeatures.Set.%d.VMWIEnable",uVsIndex,uSetIndex);
 
@@ -7345,7 +7345,7 @@ BOOL TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_SetParamBoolValue(ANSC
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "SecretForwarderEnable", TRUE) )
+    else if (strcmp(ParamName, "SecretForwarderEnable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.CallingFeatures.Set.%d.SecretForwarderEnable",uVsIndex,uSetIndex);
 
@@ -7360,7 +7360,7 @@ BOOL TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_SetParamBoolValue(ANSC
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "RepeatDialEnable", TRUE) )
+    else if (strcmp(ParamName, "RepeatDialEnable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.CallingFeatures.Set.%d.RepeatDialEnable",uVsIndex,uSetIndex);
 
@@ -7375,7 +7375,7 @@ BOOL TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_SetParamBoolValue(ANSC
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "MWIEnable", TRUE) )
+    else if (strcmp(ParamName, "MWIEnable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.CallingFeatures.Set.%d.MWIEnable",uVsIndex,uSetIndex);
 
@@ -7392,7 +7392,7 @@ BOOL TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_SetParamBoolValue(ANSC
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "IIFCEnable", TRUE) )
+    else if (strcmp(ParamName, "IIFCEnable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.CallingFeatures.Set.%d.IIFCEnable",uVsIndex,uSetIndex);
 
@@ -7407,7 +7407,7 @@ BOOL TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_SetParamBoolValue(ANSC
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "FollowMeEnable", TRUE) )
+    else if (strcmp(ParamName, "FollowMeEnable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.CallingFeatures.Set.%d.FollowMeEnable",uVsIndex,uSetIndex);
 
@@ -7422,7 +7422,7 @@ BOOL TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_SetParamBoolValue(ANSC
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "DoNotDisturbEnable", TRUE) )
+    else if (strcmp(ParamName, "DoNotDisturbEnable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.CallingFeatures.Set.%d.DoNotDisturbEnable",uVsIndex,uSetIndex);
 
@@ -7437,7 +7437,7 @@ BOOL TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_SetParamBoolValue(ANSC
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "CCBSEnable", TRUE) )
+    else if (strcmp(ParamName, "CCBSEnable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.CallingFeatures.Set.%d.CCBSEnable",uVsIndex,uSetIndex);
 
@@ -7452,7 +7452,7 @@ BOOL TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_SetParamBoolValue(ANSC
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "CallWaitingEnable", TRUE) )
+    else if (strcmp(ParamName, "CallWaitingEnable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.CallingFeatures.Set.%d.CallWaitingEnable",uVsIndex,uSetIndex);
 
@@ -7469,7 +7469,7 @@ BOOL TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_SetParamBoolValue(ANSC
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "CallTransferEnable", TRUE) )
+    else if (strcmp(ParamName, "CallTransferEnable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.CallingFeatures.Set.%d.CallTransferEnable",uVsIndex,uSetIndex);
 
@@ -7484,7 +7484,7 @@ BOOL TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_SetParamBoolValue(ANSC
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "CallPickUpEnable", TRUE) )
+    else if (strcmp(ParamName, "CallPickUpEnable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.CallingFeatures.Set.%d.CallPickUpEnable",uVsIndex,uSetIndex);
 
@@ -7499,7 +7499,7 @@ BOOL TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_SetParamBoolValue(ANSC
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "CallForwardUnconditionalEnable", TRUE) )
+    else if (strcmp(ParamName, "CallForwardUnconditionalEnable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.CallingFeatures.Set.%d.CallForwardUnconditionalEnable",uVsIndex,uSetIndex);
 
@@ -7514,7 +7514,7 @@ BOOL TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_SetParamBoolValue(ANSC
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "CallForwardOnNoAnswerEnable", TRUE) )
+    else if (strcmp(ParamName, "CallForwardOnNoAnswerEnable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.CallingFeatures.Set.%d.CallForwardOnNoAnswerEnable",uVsIndex,uSetIndex);
 
@@ -7529,7 +7529,7 @@ BOOL TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_SetParamBoolValue(ANSC
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "CallForwardOnBusyEnable", TRUE) )
+    else if (strcmp(ParamName, "CallForwardOnBusyEnable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.CallingFeatures.Set.%d.CallForwardOnBusyEnable",uVsIndex,uSetIndex);
 
@@ -7544,7 +7544,7 @@ BOOL TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_SetParamBoolValue(ANSC
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "CallerIDNameEnable", TRUE) )
+    else if (strcmp(ParamName, "CallerIDNameEnable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.CallingFeatures.Set.%d.CallerIDNameEnable",uVsIndex,uSetIndex);
 
@@ -7559,7 +7559,7 @@ BOOL TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_SetParamBoolValue(ANSC
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "CallerIDEnable", TRUE) )
+    else if (strcmp(ParamName, "CallerIDEnable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.CallingFeatures.Set.%d.CallerIDEnable",uVsIndex,uSetIndex);
 
@@ -7574,7 +7574,7 @@ BOOL TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_SetParamBoolValue(ANSC
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "BlockForwardEnable", TRUE) )
+    else if (strcmp(ParamName, "BlockForwardEnable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.CallingFeatures.Set.%d.BlockForwardEnable",uVsIndex,uSetIndex);
 
@@ -7589,7 +7589,7 @@ BOOL TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_SetParamBoolValue(ANSC
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "AnonymousCallRejectionEnable", TRUE) )
+    else if (strcmp(ParamName, "AnonymousCallRejectionEnable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.CallingFeatures.Set.%d.AnonymousCallRejectionEnable",uVsIndex,uSetIndex);
 
@@ -7604,7 +7604,7 @@ BOOL TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_SetParamBoolValue(ANSC
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "AnonymousCallEnable", TRUE) )
+    else if (strcmp(ParamName, "AnonymousCallEnable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.CallingFeatures.Set.%d.AnonymousCallEnable",uVsIndex,uSetIndex);
 
@@ -7890,27 +7890,27 @@ ULONG TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_CFTList_GetParamStrin
 
     PDML_CALLCONTROL_CALLINGFEATURES_SET_CFT pHEAD = &(pCallCtrlCFSetCFLCtrl->dml);
 
-    if( AnscEqualString(ParamName, "StartTime", TRUE) )
+    if (strcmp(ParamName, "StartTime") == 0)
     {
         AnscCopyString(pValue,pHEAD->StartTime);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "ForwardedToNumber", TRUE) )
+    else if (strcmp(ParamName, "ForwardedToNumber") == 0)
     {
         AnscCopyString(pValue,pHEAD->ForwardedToNumber);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "EndTime", TRUE) )
+    else if (strcmp(ParamName, "EndTime") == 0)
     {
         AnscCopyString(pValue,pHEAD->EndTime);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Day", TRUE) )
+    else if (strcmp(ParamName, "Day") == 0)
     {
         AnscCopyString(pValue, "Monday");
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         AnscCopyString(pValue,pHEAD->Alias);
         ret = 0;
@@ -8001,7 +8001,7 @@ BOOL TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_CFTList_SetParamString
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "StartTime", TRUE) )
+    if (strcmp(ParamName, "StartTime") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.CallingFeatures.Set.%d.CFT.%d.StartTime",uVsIndex,uSetIndex,uCFTIndex);
 
@@ -8016,7 +8016,7 @@ BOOL TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_CFTList_SetParamString
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "ForwardedToNumber", TRUE) )
+    else if (strcmp(ParamName, "ForwardedToNumber") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.CallingFeatures.Set.%d.CFT.%d.ForwardedToNumber",uVsIndex,uSetIndex,uCFTIndex);
 
@@ -8031,7 +8031,7 @@ BOOL TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_CFTList_SetParamString
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "EndTime", TRUE) )
+    else if (strcmp(ParamName, "EndTime") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.CallingFeatures.Set.%d.CFT.%d.EndTime",uVsIndex,uSetIndex,uCFTIndex);
 
@@ -8046,7 +8046,7 @@ BOOL TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_CFTList_SetParamString
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Day", TRUE) )
+    else if (strcmp(ParamName, "Day") == 0)
     {
         char enumValue[][STR_LEN_32]={"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday","All"};
 
@@ -8063,7 +8063,7 @@ BOOL TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_CFTList_SetParamString
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         TELCOVOICEMGR_LOCK_OR_EXIT()
 
@@ -8122,7 +8122,7 @@ BOOL TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_CFTList_GetParamBoolVa
 
     PDML_CALLCONTROL_CALLINGFEATURES_SET_CFT pHEAD = &(pCallCtrlCFSetCFLCtrl->dml);
 
-    if( AnscEqualString(ParamName, "Enable", TRUE) )
+    if (strcmp(ParamName, "Enable") == 0)
     {
         *pBool = pHEAD->Enable;
         ret = TRUE;
@@ -8213,7 +8213,7 @@ BOOL TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_CFTList_SetParamBoolVa
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "Enable", TRUE) )
+    if (strcmp(ParamName, "Enable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.CallingFeatures.Set.%d.CFT.%d.Enable",uVsIndex,uSetIndex,uCFTIndex);
 
@@ -8497,17 +8497,17 @@ ULONG TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_SCFList_GetParamStrin
 
     PDML_CALLCONTROL_CALLINGFEATURES_SET_SCF pHEAD = &(pCallCtrlCFSetSCFCtrl->dml);
 
-    if( AnscEqualString(ParamName, "ForwardedToNumber", TRUE) )
+    if (strcmp(ParamName, "ForwardedToNumber") == 0)
     {
         AnscCopyString(pValue,pHEAD->ForwardedToNumber);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "CallingNumber", TRUE) )
+    else if (strcmp(ParamName, "CallingNumber") == 0)
     {
         AnscCopyString(pValue,pHEAD->CallingNumber);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         AnscCopyString(pValue,pHEAD->Alias);
         ret = 0;
@@ -8598,7 +8598,7 @@ BOOL TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_SCFList_SetParamString
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "ForwardedToNumber", TRUE) )
+    if (strcmp(ParamName, "ForwardedToNumber") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.CallingFeatures.Set.%d.SCF.%d.ForwardedToNumber",uVsIndex,uSetIndex,uSCFIndex);
 
@@ -8613,7 +8613,7 @@ BOOL TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_SCFList_SetParamString
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "CallingNumber", TRUE) )
+    else if (strcmp(ParamName, "CallingNumber") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.CallingFeatures.Set.%d.SCF.%d.CallingNumber",uVsIndex,uSetIndex,uSCFIndex);
 
@@ -8628,7 +8628,7 @@ BOOL TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_SCFList_SetParamString
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         TELCOVOICEMGR_LOCK_OR_EXIT()
 
@@ -8688,7 +8688,7 @@ BOOL TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_SCFList_GetParamBoolVa
 
     PDML_CALLCONTROL_CALLINGFEATURES_SET_SCF pHEAD = &(pCallCtrlCFSetSCFCtrl->dml);
 
-    if( AnscEqualString(ParamName, "Enable", TRUE) )
+    if (strcmp(ParamName, "Enable") == 0)
     {
         *pBool = pHEAD->Enable;
         ret = TRUE;
@@ -8779,7 +8779,7 @@ BOOL TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_SCFList_SetParamBoolVa
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "Enable", TRUE) )
+    if (strcmp(ParamName, "Enable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.CallingFeatures.Set.%d.SCF.%d.Enable",uVsIndex,uSetIndex,uSCFIndex);
 
@@ -9064,12 +9064,12 @@ ULONG TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_SCREJList_GetParamStr
 
     PDML_CALLCONTROL_CALLINGFEATURES_SET_SCREJ pHEAD = &(pCallCtrlCFSetSCFCtrl->dml);
 
-    if( AnscEqualString(ParamName, "CallingNumber", TRUE) )
+    if (strcmp(ParamName, "CallingNumber") == 0)
     {
         AnscCopyString(pValue,pHEAD->CallingNumber);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         AnscCopyString(pValue,pHEAD->Alias);
         ret = 0;
@@ -9160,7 +9160,7 @@ BOOL TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_SCREJList_SetParamStri
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "CallingNumber", TRUE) )
+    if (strcmp(ParamName, "CallingNumber") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.CallingFeatures.Set.%d.SCREJ.%d.CallingNumber",uVsIndex,uSetIndex,uSCREJIndex);
 
@@ -9175,7 +9175,7 @@ BOOL TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_SCREJList_SetParamStri
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         TELCOVOICEMGR_LOCK_OR_EXIT()
 
@@ -9234,7 +9234,7 @@ BOOL TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_SCREJList_GetParamBool
 
     PDML_CALLCONTROL_CALLINGFEATURES_SET_SCREJ pHEAD = &(pCallCtrlCFSetSCFCtrl->dml);
 
-    if( AnscEqualString(ParamName, "Enable", TRUE) )
+    if (strcmp(ParamName, "Enable") == 0)
     {
         *pBool = pHEAD->Enable;
         ret = TRUE;
@@ -9325,7 +9325,7 @@ BOOL TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_SCREJList_SetParamBool
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "Enable", TRUE) )
+    if (strcmp(ParamName, "Enable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.CallingFeatures.Set.%d.SCREJ.%d.Enable",uVsIndex,uSetIndex,uSCREJIndex);
 
@@ -9603,12 +9603,12 @@ BOOL TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_FollowMeList_GetParamU
 
     PDML_CALLCONTROL_CALLINGFEATURES_SET_FOLLOWME pHEAD = &(pCallCtrlCFSetFMCtrl->dml);
 
-    if( AnscEqualString(ParamName, "Order", TRUE) )
+    if (strcmp(ParamName, "Order") == 0)
     {
         *puLong = pHEAD->Order;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Delay", TRUE) )
+    else if (strcmp(ParamName, "Delay") == 0)
     {
         *puLong = pHEAD->Delay;
         ret = TRUE;
@@ -9699,7 +9699,7 @@ BOOL TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_FollowMeList_SetParamU
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "Order", TRUE) )
+    if (strcmp(ParamName, "Order") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.CallingFeatures.Set.%d.FollowMe.%d.Order",uVsIndex,uSetIndex,uFollowMeIndex);
 
@@ -9714,7 +9714,7 @@ BOOL TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_FollowMeList_SetParamU
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Delay", TRUE) )
+    else if (strcmp(ParamName, "Delay") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.CallingFeatures.Set.%d.FollowMe.%d.Delay",uVsIndex,uSetIndex,uFollowMeIndex);
 
@@ -9785,12 +9785,12 @@ ULONG TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_FollowMeList_GetParam
 
     PDML_CALLCONTROL_CALLINGFEATURES_SET_FOLLOWME pHEAD = &(pCallCtrlCFSetFMCtrl->dml);
 
-    if( AnscEqualString(ParamName, "Number", TRUE) )
+    if (strcmp(ParamName, "Number") == 0)
     {
         AnscCopyString(pValue,pHEAD->Number);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         AnscCopyString(pValue,pHEAD->Alias);
         ret = 0;
@@ -9881,7 +9881,7 @@ BOOL TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_FollowMeList_SetParamS
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "Number", TRUE) )
+    if (strcmp(ParamName, "Number") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.CallingFeatures.Set.%d.FollowMe.%d.Number",uVsIndex,uSetIndex,uFollowMeIndex);
 
@@ -9896,7 +9896,7 @@ BOOL TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_FollowMeList_SetParamS
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         TELCOVOICEMGR_LOCK_OR_EXIT()
 
@@ -9955,7 +9955,7 @@ BOOL TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_FollowMeList_GetParamB
 
     PDML_CALLCONTROL_CALLINGFEATURES_SET_FOLLOWME pHEAD = &(pCallCtrlCFSetFMCtrl->dml);
 
-    if( AnscEqualString(ParamName, "Enable", TRUE) )
+    if (strcmp(ParamName, "Enable") == 0)
     {
         *pBool = pHEAD->Enable;
         ret = TRUE;
@@ -10046,7 +10046,7 @@ BOOL TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_FollowMeList_SetParamB
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "Enable", TRUE) )
+    if (strcmp(ParamName, "Enable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.CallingFeatures.Set.%d.FollowMe.%d.Enable",uVsIndex,uSetIndex,uFollowMeIndex);
 
@@ -10184,7 +10184,7 @@ BOOL TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_Voice2Mail_GetParamUlo
 
     PDML_CALLCONTROL_CALLINGFEATURES_SET_VOICE2MAIL pHEAD = &(pDmlCallCtrlCFSetCtrl->Voice2Mail);
 
-    if( AnscEqualString(ParamName, "MaxMessageLength", TRUE) )
+    if (strcmp(ParamName, "MaxMessageLength") == 0)
     {
         *puLong = pHEAD->MaxMessageLength;
         ret = TRUE;
@@ -10268,7 +10268,7 @@ BOOL TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_Voice2Mail_SetParamUlo
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "MaxMessageLength", TRUE) )
+    if (strcmp(ParamName, "MaxMessageLength") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.CallingFeatures.Set.%d.Voice2Mail.MaxMessageLength",uVsIndex,uSetIndex);
 
@@ -10342,7 +10342,7 @@ ULONG TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_Voice2Mail_GetParamSt
 
     PDML_CALLCONTROL_CALLINGFEATURES_SET_VOICE2MAIL pHEAD = &(pDmlCallCtrlCFSetCtrl->Voice2Mail);
 
-    if( AnscEqualString(ParamName, "EMailAddress", TRUE) )
+    if (strcmp(ParamName, "EMailAddress") == 0)
     {
         AnscCopyString(pValue,pHEAD->EMailAddress);
         ret = 0;
@@ -10425,7 +10425,7 @@ BOOL TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_Voice2Mail_SetParamStr
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "EMailAddress", TRUE) )
+    if (strcmp(ParamName, "EMailAddress") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.CallingFeatures.Set.%d.Voice2Mail.EMailAddress",uVsIndex,uSetIndex);
 
@@ -10491,17 +10491,17 @@ BOOL TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_Voice2Mail_GetParamBoo
 
     PDML_CALLCONTROL_CALLINGFEATURES_SET_VOICE2MAIL pHEAD = &(pDmlCallCtrlCFSetCtrl->Voice2Mail);
 
-    if( AnscEqualString(ParamName, "KeepLocal", TRUE) )
+    if (strcmp(ParamName, "KeepLocal") == 0)
     {
         *pBool = pHEAD->KeepLocal;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Enable", TRUE) )
+    else if (strcmp(ParamName, "Enable") == 0)
     {
         *pBool = pHEAD->Enable;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Attach", TRUE) )
+    else if (strcmp(ParamName, "Attach") == 0)
     {
         *pBool = pHEAD->Attach;
         ret = TRUE;
@@ -10584,7 +10584,7 @@ BOOL TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_Voice2Mail_SetParamBoo
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "KeepLocal", TRUE) )
+    if (strcmp(ParamName, "KeepLocal") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.CallingFeatures.Set.%d.Voice2Mail.KeepLocal",uVsIndex,uSetIndex);
 
@@ -10599,7 +10599,7 @@ BOOL TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_Voice2Mail_SetParamBoo
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Enable", TRUE) )
+    else if (strcmp(ParamName, "Enable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.CallingFeatures.Set.%d.Voice2Mail.Enable",uVsIndex,uSetIndex);
 
@@ -10614,7 +10614,7 @@ BOOL TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_Voice2Mail_SetParamBoo
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Attach", TRUE) )
+    else if (strcmp(ParamName, "Attach") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.CallingFeatures.Set.%d.Voice2Mail.Attach",uVsIndex,uSetIndex);
 
