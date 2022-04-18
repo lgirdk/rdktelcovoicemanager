@@ -73,12 +73,12 @@ ULONG TelcoVoiceMgrDml_ReservedPorts_GetParamStringValue(ANSC_HANDLE hInsContext
 
     PDML_RESERVEDPORTS pHEAD = &(pDmlVoiceService->ReservedPorts);
 
-    if( AnscEqualString(ParamName, "WANPortRange", TRUE) )
+    if (strcmp(ParamName, "WANPortRange") == 0)
     {
         AnscCopyString(pValue,pHEAD->WANPortRange);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "LANPortRange", TRUE) )
+    else if (strcmp(ParamName, "LANPortRange") == 0)
     {
         AnscCopyString(pValue,pHEAD->LANPortRange);
         ret = 0;
@@ -154,7 +154,7 @@ BOOL TelcoVoiceMgrDml_ReservedPorts_SetParamStringValue(ANSC_HANDLE hInsContext,
     TELCOVOICEMGR_UNLOCK()
 
 
-    if( AnscEqualString(ParamName, "WANPortRange", TRUE) )
+    if (strcmp(ParamName, "WANPortRange") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.ReservedPorts.WANPortRange",uVsIndex);
 
@@ -169,7 +169,7 @@ BOOL TelcoVoiceMgrDml_ReservedPorts_SetParamStringValue(ANSC_HANDLE hInsContext,
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "LANPortRange", TRUE) )
+    else if (strcmp(ParamName, "LANPortRange") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.ReservedPorts.LANPortRange",uVsIndex);
 
