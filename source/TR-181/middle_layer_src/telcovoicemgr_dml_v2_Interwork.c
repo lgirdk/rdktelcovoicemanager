@@ -228,12 +228,12 @@ BOOL TelcoVoiceMgrDml_InterworkList_GetParamUlongValue(ANSC_HANDLE hInsContext, 
 
     uInterworkIndex = pHEAD->uInstanceNumber;
 
-    if( AnscEqualString(ParamName, "UserConnectionMode", TRUE) )
+    if (strcmp(ParamName, "UserConnectionMode") == 0)
     {
         *puLong = pHEAD->UserConnectionMode;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Status", TRUE) )
+    else if (strcmp(ParamName, "Status") == 0)
     {
         //Fetch status from voice stack
         hal_param_t req_param;
@@ -250,7 +250,7 @@ BOOL TelcoVoiceMgrDml_InterworkList_GetParamUlongValue(ANSC_HANDLE hInsContext, 
             ret = FALSE;
         }
     }
-    else if( AnscEqualString(ParamName, "OperationalStatus", TRUE) )
+    else if (strcmp(ParamName, "OperationalStatus") == 0)
     {
         //Fetch status from voice stack
         hal_param_t req_param;
@@ -267,22 +267,22 @@ BOOL TelcoVoiceMgrDml_InterworkList_GetParamUlongValue(ANSC_HANDLE hInsContext, 
             ret = FALSE;
         }
     }
-    else if( AnscEqualString(ParamName, "NetworkConnectionMode", TRUE) )
+    else if (strcmp(ParamName, "NetworkConnectionMode") == 0)
     {
         *puLong = pHEAD->NetworkConnectionMode;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "NetworkAuthenticationChallengeMode", TRUE) )
+    else if (strcmp(ParamName, "NetworkAuthenticationChallengeMode") == 0)
     {
         *puLong = pHEAD->NetworkAuthChallengeMode;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "InterworkingRuleSetInterval", TRUE) )
+    else if (strcmp(ParamName, "InterworkingRuleSetInterval") == 0)
     {
         *puLong = pHEAD->InterworkingRuleSetInterval;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "FirewallRuleSetInterval", TRUE) )
+    else if (strcmp(ParamName, "FirewallRuleSetInterval") == 0)
     {
         *puLong = pHEAD->FirewallRuleSetInterval;
         ret = TRUE;
@@ -364,7 +364,7 @@ BOOL TelcoVoiceMgrDml_InterworkList_SetParamUlongValue(ANSC_HANDLE hInsContext, 
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "UserConnectionMode", TRUE) )
+    if (strcmp(ParamName, "UserConnectionMode") == 0)
     {
         char enumValue[][STR_LEN_32]={"Static","RegisterDynamic","RegisterLearn"};
 
@@ -381,7 +381,7 @@ BOOL TelcoVoiceMgrDml_InterworkList_SetParamUlongValue(ANSC_HANDLE hInsContext, 
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "NetworkConnectionMode", TRUE) )
+    else if (strcmp(ParamName, "NetworkConnectionMode") == 0)
     {
         char enumValue[][STR_LEN_32]={"Static","RegisterDynamic","RegisterLearn","RegisterStatic"};
 
@@ -398,7 +398,7 @@ BOOL TelcoVoiceMgrDml_InterworkList_SetParamUlongValue(ANSC_HANDLE hInsContext, 
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "NetworkAuthenticationChallengeMode", TRUE) )
+    else if (strcmp(ParamName, "NetworkAuthenticationChallengeMode") == 0)
     {
         char enumValue[][STR_LEN_32]={"PassThru","RespondLocal","Hop-by-Hop"};
 
@@ -415,7 +415,7 @@ BOOL TelcoVoiceMgrDml_InterworkList_SetParamUlongValue(ANSC_HANDLE hInsContext, 
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "InterworkingRuleSetInterval", TRUE) )
+    else if (strcmp(ParamName, "InterworkingRuleSetInterval") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Interwork.%d.InterworkingRuleSetInterval",uVsIndex,uInterworkIndex);
 
@@ -430,7 +430,7 @@ BOOL TelcoVoiceMgrDml_InterworkList_SetParamUlongValue(ANSC_HANDLE hInsContext, 
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "FirewallRuleSetInterval", TRUE) )
+    else if (strcmp(ParamName, "FirewallRuleSetInterval") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Interwork.%d.FirewallRuleSetInterval",uVsIndex,uInterworkIndex);
 
@@ -502,57 +502,57 @@ ULONG TelcoVoiceMgrDml_InterworkList_GetParamStringValue(ANSC_HANDLE hInsContext
 
     PDML_INTERWORK pHEAD = &(pInterworkCtrl->dml);
 
-    if( AnscEqualString(ParamName, "ProxyServer", TRUE) )
+    if (strcmp(ParamName, "ProxyServer") == 0)
     {
         AnscCopyString(pValue,pHEAD->ProxyServer);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "OperationalStatusReason", TRUE) )
+    else if (strcmp(ParamName, "OperationalStatusReason") == 0)
     {
         AnscCopyString(pValue,pHEAD->OperationalStatusReason);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Networks", TRUE) )
+    else if (strcmp(ParamName, "Networks") == 0)
     {
         AnscCopyString(pValue,pHEAD->Networks);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "NetworkIPAddress", TRUE) )
+    else if (strcmp(ParamName, "NetworkIPAddress") == 0)
     {
         AnscCopyString(pValue,pHEAD->NetworkIPAddress);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "InterworkName", TRUE) )
+    else if (strcmp(ParamName, "InterworkName") == 0)
     {
         AnscCopyString(pValue,pHEAD->InterworkName);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "InterworkingRuleSetURI", TRUE) )
+    else if (strcmp(ParamName, "InterworkingRuleSetURI") == 0)
     {
         AnscCopyString(pValue,pHEAD->InterworkingRuleSetURI);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "InterworkingRuleSetTime", TRUE) )
+    else if (strcmp(ParamName, "InterworkingRuleSetTime") == 0)
     {
         AnscCopyString(pValue,pHEAD->InterworkingRuleSetTime);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "FirewallRuleSetURI", TRUE) )
+    else if (strcmp(ParamName, "FirewallRuleSetURI") == 0)
     {
         AnscCopyString(pValue,pHEAD->FirewallRuleSetURI);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "FirewallRuleSetTime", TRUE) )
+    else if (strcmp(ParamName, "FirewallRuleSetTime") == 0)
     {
         AnscCopyString(pValue,pHEAD->FirewallRuleSetTime);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "E164Client", TRUE) )
+    else if (strcmp(ParamName, "E164Client") == 0)
     {
         AnscCopyString(pValue,pHEAD->E164Client);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         AnscCopyString(pValue,pHEAD->Alias);
         ret = 0;
@@ -633,7 +633,7 @@ BOOL TelcoVoiceMgrDml_InterworkList_SetParamStringValue(ANSC_HANDLE hInsContext,
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "ProxyServer", TRUE) )
+    if (strcmp(ParamName, "ProxyServer") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Interwork.%d.ProxyServer",uVsIndex,uInterworkIndex);
 
@@ -648,7 +648,7 @@ BOOL TelcoVoiceMgrDml_InterworkList_SetParamStringValue(ANSC_HANDLE hInsContext,
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Networks", TRUE) )
+    else if (strcmp(ParamName, "Networks") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Interwork.%d.Networks",uVsIndex,uInterworkIndex);
 
@@ -663,7 +663,7 @@ BOOL TelcoVoiceMgrDml_InterworkList_SetParamStringValue(ANSC_HANDLE hInsContext,
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "InterworkName", TRUE) )
+    else if (strcmp(ParamName, "InterworkName") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Interwork.%d.InterworkName",uVsIndex,uInterworkIndex);
 
@@ -678,7 +678,7 @@ BOOL TelcoVoiceMgrDml_InterworkList_SetParamStringValue(ANSC_HANDLE hInsContext,
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "InterworkingRuleSetURI", TRUE) )
+    else if (strcmp(ParamName, "InterworkingRuleSetURI") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Interwork.%d.InterworkingRuleSetURI",uVsIndex,uInterworkIndex);
 
@@ -693,7 +693,7 @@ BOOL TelcoVoiceMgrDml_InterworkList_SetParamStringValue(ANSC_HANDLE hInsContext,
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "InterworkingRuleSetTime", TRUE) )
+    else if (strcmp(ParamName, "InterworkingRuleSetTime") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Interwork.%d.InterworkingRuleSetTime",uVsIndex,uInterworkIndex);
 
@@ -708,7 +708,7 @@ BOOL TelcoVoiceMgrDml_InterworkList_SetParamStringValue(ANSC_HANDLE hInsContext,
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "FirewallRuleSetURI", TRUE) )
+    else if (strcmp(ParamName, "FirewallRuleSetURI") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Interwork.%d.FirewallRuleSetURI",uVsIndex,uInterworkIndex);
 
@@ -723,7 +723,7 @@ BOOL TelcoVoiceMgrDml_InterworkList_SetParamStringValue(ANSC_HANDLE hInsContext,
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "FirewallRuleSetTime", TRUE) )
+    else if (strcmp(ParamName, "FirewallRuleSetTime") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Interwork.%d.FirewallRuleSetTime",uVsIndex,uInterworkIndex);
 
@@ -738,7 +738,7 @@ BOOL TelcoVoiceMgrDml_InterworkList_SetParamStringValue(ANSC_HANDLE hInsContext,
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "E164Client", TRUE) )
+    else if (strcmp(ParamName, "E164Client") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Interwork.%d.E164Client",uVsIndex,uInterworkIndex);
 
@@ -753,7 +753,7 @@ BOOL TelcoVoiceMgrDml_InterworkList_SetParamStringValue(ANSC_HANDLE hInsContext,
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         TELCOVOICEMGR_LOCK_OR_EXIT()
 
@@ -813,17 +813,17 @@ BOOL TelcoVoiceMgrDml_InterworkList_GetParamBoolValue(ANSC_HANDLE hInsContext, c
 
     PDML_INTERWORK pHEAD = &(pInterworkCtrl->dml);
 
-    if( AnscEqualString(ParamName, "QuiescentMode", TRUE) )
+    if (strcmp(ParamName, "QuiescentMode") == 0)
     {
         *pBool = pHEAD->QuiescentMode;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Enable", TRUE) )
+    else if (strcmp(ParamName, "Enable") == 0)
     {
         *pBool = pHEAD->Enable;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "E164Mode", TRUE) )
+    else if (strcmp(ParamName, "E164Mode") == 0)
     {
         *pBool = pHEAD->E164Mode;
         ret = TRUE;
@@ -904,7 +904,7 @@ BOOL TelcoVoiceMgrDml_InterworkList_SetParamBoolValue(ANSC_HANDLE hInsContext, c
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "QuiescentMode", TRUE) )
+    if (strcmp(ParamName, "QuiescentMode") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Interwork.%d.QuiescentMode",uVsIndex,uInterworkIndex);
 
@@ -919,7 +919,7 @@ BOOL TelcoVoiceMgrDml_InterworkList_SetParamBoolValue(ANSC_HANDLE hInsContext, c
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Enable", TRUE) )
+    else if (strcmp(ParamName, "Enable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Interwork.%d.Enable",uVsIndex,uInterworkIndex);
 
@@ -934,7 +934,7 @@ BOOL TelcoVoiceMgrDml_InterworkList_SetParamBoolValue(ANSC_HANDLE hInsContext, c
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "E164Mode", TRUE) )
+    else if (strcmp(ParamName, "E164Mode") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Interwork.%d.E164Mode",uVsIndex,uInterworkIndex);
 
@@ -1223,17 +1223,17 @@ ULONG TelcoVoiceMgrDml_InterworkList_UIList_GetParamStringValue(ANSC_HANDLE hIns
 
     PDML_INTERWORK_USERINTERFACE pHEAD = &(pHEADCtrl->dml);
 
-    if( AnscEqualString(ParamName, "Registrar", TRUE) )
+    if (strcmp(ParamName, "Registrar") == 0)
     {
         AnscCopyString(pValue,pHEAD->Registrar);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Network", TRUE) )
+    else if (strcmp(ParamName, "Network") == 0)
     {
         AnscCopyString(pValue,pHEAD->Network);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         AnscCopyString(pValue,pHEAD->Alias);
         ret = 0;
@@ -1324,7 +1324,7 @@ BOOL TelcoVoiceMgrDml_InterworkList_UIList_SetParamStringValue(ANSC_HANDLE hInsC
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "Registrar", TRUE) )
+    if (strcmp(ParamName, "Registrar") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Interwork.%d.UserInterface.%d.Registrar",uVsIndex,uInterworkIndex,uUIIndex);
 
@@ -1339,7 +1339,7 @@ BOOL TelcoVoiceMgrDml_InterworkList_UIList_SetParamStringValue(ANSC_HANDLE hInsC
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Network", TRUE) )
+    else if (strcmp(ParamName, "Network") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Interwork.%d.UserInterface.%d.Network",uVsIndex,uInterworkIndex,uUIIndex);
 
@@ -1354,7 +1354,7 @@ BOOL TelcoVoiceMgrDml_InterworkList_UIList_SetParamStringValue(ANSC_HANDLE hInsC
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         TELCOVOICEMGR_LOCK_OR_EXIT()
 
@@ -1413,7 +1413,7 @@ BOOL TelcoVoiceMgrDml_InterworkList_UIList_GetParamBoolValue(ANSC_HANDLE hInsCon
 
     PDML_INTERWORK_USERINTERFACE pHEAD = &(pHEADCtrl->dml);
 
-    if( AnscEqualString(ParamName, "Enable", TRUE) )
+    if (strcmp(ParamName, "Enable") == 0)
     {
         *pBool = pHEAD->Enable;
         ret = TRUE;
@@ -1504,7 +1504,7 @@ BOOL TelcoVoiceMgrDml_InterworkList_UIList_SetParamBoolValue(ANSC_HANDLE hInsCon
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "Enable", TRUE) )
+    if (strcmp(ParamName, "Enable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Interwork.%d.UserInterface.%d.Enable",uVsIndex,uInterworkIndex,uUIIndex);
 
@@ -1783,7 +1783,7 @@ BOOL TelcoVoiceMgrDml_InterworkList_MapList_GetParamUlongValue(ANSC_HANDLE hInsC
 
     PDML_INTERWORK_MAP pHEAD = &(pHEADCtrl->dml);
 
-    if( AnscEqualString(ParamName, "Priority", TRUE) )
+    if (strcmp(ParamName, "Priority") == 0)
     {
         *puLong = pHEAD->Priority;
         ret = TRUE;
@@ -1874,7 +1874,7 @@ BOOL TelcoVoiceMgrDml_InterworkList_MapList_SetParamUlongValue(ANSC_HANDLE hInsC
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "Priority", TRUE) )
+    if (strcmp(ParamName, "Priority") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Interwork.%d.Map.%d.Priority",uVsIndex,uInterworkIndex,uMapIndex);
 
@@ -1971,17 +1971,17 @@ ULONG TelcoVoiceMgrDml_InterworkList_MapList_GetParamStringValue(ANSC_HANDLE hIn
 
     uInterworkMapIndex = pHEAD->uInstanceNumber;
 
-    if( AnscEqualString(ParamName, "UserConnection", TRUE) )
+    if (strcmp(ParamName, "UserConnection") == 0)
     {
         AnscCopyString(pValue,pHEAD->UserConnection);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "StatusDescription", TRUE) )
+    else if (strcmp(ParamName, "StatusDescription") == 0)
     {
         AnscCopyString(pValue,pHEAD->StatusDescription);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Status", TRUE) )
+    else if (strcmp(ParamName, "Status") == 0)
     {
         //Fetch status from voice stack
         hal_param_t req_param;
@@ -1999,27 +1999,27 @@ ULONG TelcoVoiceMgrDml_InterworkList_MapList_GetParamStringValue(ANSC_HANDLE hIn
             ret = 1;
         }
     }
-    else if( AnscEqualString(ParamName, "Origin", TRUE) )
+    else if (strcmp(ParamName, "Origin") == 0)
     {
         //AnscCopyString(pValue,pHEAD->Origin);
         //ret = 0;
     }
-    else if( AnscEqualString(ParamName, "NetworkConnection", TRUE) )
+    else if (strcmp(ParamName, "NetworkConnection") == 0)
     {
         AnscCopyString(pValue,pHEAD->NetworkConnection);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "LastTime", TRUE) )
+    else if (strcmp(ParamName, "LastTime") == 0)
     {
         AnscCopyString(pValue,pHEAD->LastTime);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "DigitMap", TRUE) )
+    else if (strcmp(ParamName, "DigitMap") == 0)
     {
         AnscCopyString(pValue,pHEAD->DigitMap);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         AnscCopyString(pValue,pHEAD->Alias);
         ret = 0;
@@ -2111,7 +2111,7 @@ BOOL TelcoVoiceMgrDml_InterworkList_MapList_SetParamStringValue(ANSC_HANDLE hIns
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "UserConnection", TRUE) )
+    if (strcmp(ParamName, "UserConnection") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Interwork.%d.Map.%d.UserConnection",uVsIndex,uInterworkIndex,uMapIndex);
 
@@ -2126,7 +2126,7 @@ BOOL TelcoVoiceMgrDml_InterworkList_MapList_SetParamStringValue(ANSC_HANDLE hIns
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "NetworkConnection", TRUE) )
+    else if (strcmp(ParamName, "NetworkConnection") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Interwork.%d.Map.%d.NetworkConnection",uVsIndex,uInterworkIndex,uMapIndex);
 
@@ -2141,7 +2141,7 @@ BOOL TelcoVoiceMgrDml_InterworkList_MapList_SetParamStringValue(ANSC_HANDLE hIns
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "DigitMap", TRUE) )
+    else if (strcmp(ParamName, "DigitMap") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Interwork.%d.Map.%d.DigitMap",uVsIndex,uInterworkIndex,uMapIndex);
 
@@ -2156,7 +2156,7 @@ BOOL TelcoVoiceMgrDml_InterworkList_MapList_SetParamStringValue(ANSC_HANDLE hIns
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         TELCOVOICEMGR_LOCK_OR_EXIT()
 
@@ -2216,12 +2216,12 @@ BOOL TelcoVoiceMgrDml_InterworkList_MapList_GetParamBoolValue(ANSC_HANDLE hInsCo
 
     PDML_INTERWORK_MAP pHEAD = &(pHEADCtrl->dml);
 
-    if( AnscEqualString(ParamName, "DigitMapEnable", TRUE) )
+    if (strcmp(ParamName, "DigitMapEnable") == 0)
     {
         *pBool = pHEAD->DigitMapEnable;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Enable", TRUE) )
+    else if (strcmp(ParamName, "Enable") == 0)
     {
         *pBool = pHEAD->Enable;
         ret = TRUE;
@@ -2312,7 +2312,7 @@ BOOL TelcoVoiceMgrDml_InterworkList_MapList_SetParamBoolValue(ANSC_HANDLE hInsCo
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "DigitMapEnable", TRUE) )
+    if (strcmp(ParamName, "DigitMapEnable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Interwork.%d.Map.%d.DigitMapEnable",uVsIndex,uInterworkIndex,uMapIndex);
 
@@ -2327,7 +2327,7 @@ BOOL TelcoVoiceMgrDml_InterworkList_MapList_SetParamBoolValue(ANSC_HANDLE hInsCo
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Enable", TRUE) )
+    else if (strcmp(ParamName, "Enable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.Interwork.%d.Map.%d.Enable",uVsIndex,uInterworkIndex,uMapIndex);
 
