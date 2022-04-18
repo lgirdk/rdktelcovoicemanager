@@ -231,7 +231,7 @@ BOOL TelcoVoiceMgrDml_DECT_BaseList_GetParamUlongValue(ANSC_HANDLE hInsContext, 
 
     uDectBaseIndex = pHEAD->uInstanceNumber;
 
-    if( AnscEqualString(ParamName, "Status", TRUE) )
+    if (strcmp(ParamName, "Status") == 0)
     {
         //Fetch status from voice stack
         hal_param_t req_param;
@@ -248,22 +248,22 @@ BOOL TelcoVoiceMgrDml_DECT_BaseList_GetParamUlongValue(ANSC_HANDLE hInsContext, 
             ret = FALSE;
         }
     }
-    else if( AnscEqualString(ParamName, "Standard", TRUE) )
+    else if (strcmp(ParamName, "Standard") == 0)
     {
         *puLong = pHEAD->Standard;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "RFPowerControl", TRUE) )
+    else if (strcmp(ParamName, "RFPowerControl") == 0)
     {
         *puLong = pHEAD->RFPowerControl;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "MaxSupportedPP", TRUE) )
+    else if (strcmp(ParamName, "MaxSupportedPP") == 0)
     {
         *puLong = pHEAD->MaxSupportedPP;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "EncryptionType", TRUE) )
+    else if (strcmp(ParamName, "EncryptionType") == 0)
     {
         *puLong = pHEAD->EncryptionType;
         ret = TRUE;
@@ -344,7 +344,7 @@ BOOL TelcoVoiceMgrDml_DECT_BaseList_SetParamUlongValue(ANSC_HANDLE hInsContext, 
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "RFPowerControl", TRUE) )
+    if (strcmp(ParamName, "RFPowerControl") == 0)
     {
         char enumValue[][STR_LEN_32]={"Normal","Reduced"};
 
@@ -361,7 +361,7 @@ BOOL TelcoVoiceMgrDml_DECT_BaseList_SetParamUlongValue(ANSC_HANDLE hInsContext, 
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "MaxSupportedPP", TRUE) )
+    else if (strcmp(ParamName, "MaxSupportedPP") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, HAL_DML_VOICESERVICE_DECT_BASE"MaxSupportedPP",uVsIndex,uBaseIndex);
 
@@ -434,42 +434,42 @@ ULONG TelcoVoiceMgrDml_DECT_BaseList_GetParamStringValue(ANSC_HANDLE hInsContext
 
     PDML_DECT_BASE pHEAD = &(pDectBaseCtrl->dml);
 
-    if( AnscEqualString(ParamName, "ToneEventProfile", TRUE) )
+    if (strcmp(ParamName, "ToneEventProfile") == 0)
     {
         AnscCopyString(pValue,pHEAD->ToneEventProfile);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "RFPI", TRUE) )
+    else if (strcmp(ParamName, "RFPI") == 0)
     {
         AnscCopyString(pValue,pHEAD->RFPI);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "PIN", TRUE) )
+    else if (strcmp(ParamName, "PIN") == 0)
     {
         AnscCopyString(pValue,pHEAD->PIN);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Name", TRUE) )
+    else if (strcmp(ParamName, "Name") == 0)
     {
         AnscCopyString(pValue,pHEAD->Name);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "HardwareVersion", TRUE) )
+    else if (strcmp(ParamName, "HardwareVersion") == 0)
     {
         AnscCopyString(pValue,pHEAD->HardwareVersion);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "FirmwareVersion", TRUE) )
+    else if (strcmp(ParamName, "FirmwareVersion") == 0)
     {
         AnscCopyString(pValue,pHEAD->FirmwareVersion);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "EepromVersion", TRUE) )
+    else if (strcmp(ParamName, "EepromVersion") == 0)
     {
         AnscCopyString(pValue,pHEAD->EepromVersion);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         AnscCopyString(pValue,pHEAD->Alias);
         ret = 0;
@@ -551,7 +551,7 @@ BOOL TelcoVoiceMgrDml_DECT_BaseList_SetParamStringValue(ANSC_HANDLE hInsContext,
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "ToneEventProfile", TRUE) )
+    if (strcmp(ParamName, "ToneEventProfile") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, HAL_DML_VOICESERVICE_DECT_BASE"ToneEventProfile",uVsIndex,uBaseIndex);
 
@@ -566,7 +566,7 @@ BOOL TelcoVoiceMgrDml_DECT_BaseList_SetParamStringValue(ANSC_HANDLE hInsContext,
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "PIN", TRUE) )
+    else if (strcmp(ParamName, "PIN") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, HAL_DML_VOICESERVICE_DECT_BASE"PIN",uVsIndex,uBaseIndex);
 
@@ -581,7 +581,7 @@ BOOL TelcoVoiceMgrDml_DECT_BaseList_SetParamStringValue(ANSC_HANDLE hInsContext,
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         TELCOVOICEMGR_LOCK_OR_EXIT()
 
@@ -640,27 +640,27 @@ BOOL TelcoVoiceMgrDml_DECT_BaseList_GetParamBoolValue(ANSC_HANDLE hInsContext, c
 
     PDML_DECT_BASE pHEAD = &(pDectBaseCtrl->dml);
 
-    if( AnscEqualString(ParamName, "SubscriptionEnable", TRUE) )
+    if (strcmp(ParamName, "SubscriptionEnable") == 0)
     {
         *pBool = pHEAD->SubscriptionEnable;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "RepeaterSupportEnabled", TRUE) )
+    else if (strcmp(ParamName, "RepeaterSupportEnabled") == 0)
     {
         *pBool = pHEAD->RepeaterSupportEnabled;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "NEMOEnable", TRUE) )
+    else if (strcmp(ParamName, "NEMOEnable") == 0)
     {
         *pBool = pHEAD->NEMOEnable;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "CipheringEnable", TRUE) )
+    else if (strcmp(ParamName, "CipheringEnable") == 0)
     {
         *pBool = pHEAD->CipheringEnable;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Enable", TRUE) )
+    else if (strcmp(ParamName, "Enable") == 0)
     {
         *pBool = pHEAD->Enable;
         ret = TRUE;
@@ -741,7 +741,7 @@ BOOL TelcoVoiceMgrDml_DECT_BaseList_SetParamBoolValue(ANSC_HANDLE hInsContext, c
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "SubscriptionEnable", TRUE) )
+    if (strcmp(ParamName, "SubscriptionEnable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, HAL_DML_VOICESERVICE_DECT_BASE"SubscriptionEnable",uVsIndex,uBaseIndex);
 
@@ -756,7 +756,7 @@ BOOL TelcoVoiceMgrDml_DECT_BaseList_SetParamBoolValue(ANSC_HANDLE hInsContext, c
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "NEMOEnable", TRUE) )
+    else if (strcmp(ParamName, "NEMOEnable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, HAL_DML_VOICESERVICE_DECT_BASE"NEMOEnable",uVsIndex,uBaseIndex);
 
@@ -771,7 +771,7 @@ BOOL TelcoVoiceMgrDml_DECT_BaseList_SetParamBoolValue(ANSC_HANDLE hInsContext, c
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "CipheringEnable", TRUE) )
+    else if (strcmp(ParamName, "CipheringEnable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, HAL_DML_VOICESERVICE_DECT_BASE"CipheringEnable",uVsIndex,uBaseIndex);
 
@@ -786,7 +786,7 @@ BOOL TelcoVoiceMgrDml_DECT_BaseList_SetParamBoolValue(ANSC_HANDLE hInsContext, c
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Enable", TRUE) )
+    else if (strcmp(ParamName, "Enable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, HAL_DML_VOICESERVICE_DECT_BASE"Enable",uVsIndex,uBaseIndex);
 
@@ -926,27 +926,27 @@ BOOL TelcoVoiceMgrDml_DECT_BaseList_Stats_GetParamUlongValue(ANSC_HANDLE hInsCon
 
     PDML_DECT_BASE_STATS pHEAD = &(pDectBase->Stats);
 
-    if( AnscEqualString(ParamName, "SyncFailures", TRUE) )
+    if (strcmp(ParamName, "SyncFailures") == 0)
     {
         *puLong = pHEAD->SyncFailures;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "PayloadFieldErrors", TRUE) )
+    else if (strcmp(ParamName, "PayloadFieldErrors") == 0)
     {
         *puLong = pHEAD->PayloadFieldErrors;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Handovers", TRUE) )
+    else if (strcmp(ParamName, "Handovers") == 0)
     {
         *puLong = pHEAD->Handovers;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "HandoverFailures", TRUE) )
+    else if (strcmp(ParamName, "HandoverFailures") == 0)
     {
         *puLong = pHEAD->HandoverFailures;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "ControlFieldErrors", TRUE) )
+    else if (strcmp(ParamName, "ControlFieldErrors") == 0)
     {
         *puLong = pHEAD->ControlFieldErrors;
         ret = TRUE;
@@ -1167,7 +1167,7 @@ BOOL TelcoVoiceMgrDml_DECT_PortableList_GetParamUlongValue(ANSC_HANDLE hInsConte
 
     uDectPortableIndex = pHEAD->uInstanceNumber;
 
-    if( AnscEqualString(ParamName, "Status", TRUE) )
+    if (strcmp(ParamName, "Status") == 0)
     {
         //Fetch status from voice stack
         hal_param_t req_param;
@@ -1184,7 +1184,7 @@ BOOL TelcoVoiceMgrDml_DECT_PortableList_GetParamUlongValue(ANSC_HANDLE hInsConte
             ret = FALSE;
         }
     }
-    else if( AnscEqualString(ParamName, "RegistrationStatus", TRUE) )
+    else if (strcmp(ParamName, "RegistrationStatus") == 0)
     {
         //Fetch status from voice stack
         hal_param_t req_param;
@@ -1201,17 +1201,17 @@ BOOL TelcoVoiceMgrDml_DECT_PortableList_GetParamUlongValue(ANSC_HANDLE hInsConte
             ret = FALSE;
         }
     }
-    else if( AnscEqualString(ParamName, "PortableType", TRUE) )
+    else if (strcmp(ParamName, "PortableType") == 0)
     {
         *puLong = pHEAD->PortableType;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Control", TRUE) )
+    else if (strcmp(ParamName, "Control") == 0)
     {
         *puLong = pHEAD->Control;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "IPUILength", TRUE) )
+    else if (strcmp(ParamName, "IPUILength") == 0)
     {
         *puLong = pHEAD->IPUILength;
         ret = TRUE;
@@ -1291,7 +1291,7 @@ BOOL TelcoVoiceMgrDml_DECT_PortableList_SetParamUlongValue(ANSC_HANDLE hInsConte
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "Control", TRUE) )
+    if (strcmp(ParamName, "Control") == 0)
     {
         char enumValue[][STR_LEN_32]={"Unregister","Disable"};
 
@@ -1364,57 +1364,57 @@ ULONG TelcoVoiceMgrDml_DECT_PortableList_GetParamStringValue(ANSC_HANDLE hInsCon
 
     PDML_DECT_PORTABLE pHEAD = &(pDectPortableCtrl->dml);
 
-    if( AnscEqualString(ParamName, "SubscriptionTime", TRUE) )
+    if (strcmp(ParamName, "SubscriptionTime") == 0)
     {
         AnscCopyString(pValue,pHEAD->SubscriptionTime);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "SoftwareVersion", TRUE) )
+    else if (strcmp(ParamName, "SoftwareVersion") == 0)
     {
         AnscCopyString(pValue,pHEAD->SoftwareVersion);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "PARK", TRUE) )
+    else if (strcmp(ParamName, "PARK") == 0)
     {
         AnscCopyString(pValue,pHEAD->PARK);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "OperatorName", TRUE) )
+    else if (strcmp(ParamName, "OperatorName") == 0)
     {
         AnscCopyString(pValue,pHEAD->OperatorName);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "LastUpdateDateTime", TRUE) )
+    else if (strcmp(ParamName, "LastUpdateDateTime") == 0)
     {
         AnscCopyString(pValue,pHEAD->LastUpdateDateTime);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "IPUI", TRUE) )
+    else if (strcmp(ParamName, "IPUI") == 0)
     {
         AnscCopyString(pValue,pHEAD->IPUI);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "IPEI", TRUE) )
+    else if (strcmp(ParamName, "IPEI") == 0)
     {
         AnscCopyString(pValue,pHEAD->IPEI);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "HardwareVersion", TRUE) )
+    else if (strcmp(ParamName, "HardwareVersion") == 0)
     {
         AnscCopyString(pValue,pHEAD->HardwareVersion);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "CodecList", TRUE) )
+    else if (strcmp(ParamName, "CodecList") == 0)
     {
         AnscCopyString(pValue,pHEAD->CodecList);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "BaseAttachedTo", TRUE) )
+    else if (strcmp(ParamName, "BaseAttachedTo") == 0)
     {
         AnscCopyString(pValue,pHEAD->BaseAttachedTo);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         AnscCopyString(pValue,pHEAD->Alias);
         ret = 0;
@@ -1495,7 +1495,7 @@ BOOL TelcoVoiceMgrDml_DECT_PortableList_SetParamStringValue(ANSC_HANDLE hInsCont
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "OperatorName", TRUE) )
+    if (strcmp(ParamName, "OperatorName") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, HAL_DML_VOICESERVICE_DECT_PORTABLE"OperatorName",uVsIndex,uPortableIndex);
 
@@ -1510,7 +1510,7 @@ BOOL TelcoVoiceMgrDml_DECT_PortableList_SetParamStringValue(ANSC_HANDLE hInsCont
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "CodecList", TRUE) )
+    else if (strcmp(ParamName, "CodecList") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, HAL_DML_VOICESERVICE_DECT_PORTABLE"CodecList",uVsIndex,uPortableIndex);
 
@@ -1525,7 +1525,7 @@ BOOL TelcoVoiceMgrDml_DECT_PortableList_SetParamStringValue(ANSC_HANDLE hInsCont
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         TELCOVOICEMGR_LOCK_OR_EXIT()
 
@@ -1583,12 +1583,12 @@ BOOL TelcoVoiceMgrDml_DECT_PortableList_GetParamBoolValue(ANSC_HANDLE hInsContex
 
     PDML_DECT_PORTABLE pHEAD = &(pDectPortableCtrl->dml);
 
-    if( AnscEqualString(ParamName, "SoftwareUpgrade", TRUE) )
+    if (strcmp(ParamName, "SoftwareUpgrade") == 0)
     {
         *pBool = pHEAD->SoftwareUpgrade;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Enable", TRUE) )
+    else if (strcmp(ParamName, "Enable") == 0)
     {
         *pBool = pHEAD->Enable;
         ret = TRUE;
@@ -1669,7 +1669,7 @@ BOOL TelcoVoiceMgrDml_DECT_PortableList_SetParamBoolValue(ANSC_HANDLE hInsContex
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "Enable", TRUE) )
+    if (strcmp(ParamName, "Enable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, HAL_DML_VOICESERVICE_DECT_PORTABLE"Enable",uVsIndex,uPortableIndex);
 

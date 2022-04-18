@@ -229,12 +229,12 @@ BOOL TelcoVoiceMgrDml_ISDN_BRIList_GetParamUlongValue(ANSC_HANDLE hInsContext, c
 
     uISDNBriIndex = pHEAD->uInstanceNumber;
 
-    if( AnscEqualString(ParamName, "TEINegotiation", TRUE) )
+    if (strcmp(ParamName, "TEINegotiation") == 0)
     {
         *puLong = pHEAD->TEINegotiation;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Status", TRUE) )
+    else if (strcmp(ParamName, "Status") == 0)
     {
         //Fetch status from voice stack
         hal_param_t req_param;
@@ -252,27 +252,27 @@ BOOL TelcoVoiceMgrDml_ISDN_BRIList_GetParamUlongValue(ANSC_HANDLE hInsContext, c
             ret = FALSE;
         }
     }
-    else if( AnscEqualString(ParamName, "StaticTEI", TRUE) )
+    else if (strcmp(ParamName, "StaticTEI") == 0)
     {
         *puLong = pHEAD->StaticTEI;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "ProtocolEmulation", TRUE) )
+    else if (strcmp(ParamName, "ProtocolEmulation") == 0)
     {
         *puLong = pHEAD->ProtocolEmulation;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Protocol", TRUE) )
+    else if (strcmp(ParamName, "Protocol") == 0)
     {
         *puLong = pHEAD->Protocol;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "MaxNumBChannels", TRUE) )
+    else if (strcmp(ParamName, "MaxNumBChannels") == 0)
     {
         *puLong = pHEAD->MaxNumBChannels;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "ApplicationInterface", TRUE) )
+    else if (strcmp(ParamName, "ApplicationInterface") == 0)
     {
         *puLong = pHEAD->ApplicationInterface;
         ret = TRUE;
@@ -353,7 +353,7 @@ BOOL TelcoVoiceMgrDml_ISDN_BRIList_SetParamUlongValue(ANSC_HANDLE hInsContext, c
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "TEINegotiation", TRUE) )
+    if (strcmp(ParamName, "TEINegotiation") == 0)
     {
         char enumValue[][STR_LEN_16]= {"Static","Dynamic"};
 
@@ -370,7 +370,7 @@ BOOL TelcoVoiceMgrDml_ISDN_BRIList_SetParamUlongValue(ANSC_HANDLE hInsContext, c
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "StaticTEI", TRUE) )
+    else if (strcmp(ParamName, "StaticTEI") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.ISDN.BRI.%d.StaticTEI",uVsIndex,uBriIndex);
 
@@ -385,7 +385,7 @@ BOOL TelcoVoiceMgrDml_ISDN_BRIList_SetParamUlongValue(ANSC_HANDLE hInsContext, c
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "ProtocolEmulation", TRUE) )
+    else if (strcmp(ParamName, "ProtocolEmulation") == 0)
     {
         char enumValue[][STR_LEN_16]= {"TE","NT"};
 
@@ -402,7 +402,7 @@ BOOL TelcoVoiceMgrDml_ISDN_BRIList_SetParamUlongValue(ANSC_HANDLE hInsContext, c
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Protocol", TRUE) )
+    else if (strcmp(ParamName, "Protocol") == 0)
     {
         char enumValue[][STR_LEN_16]= {"EuroISDN","NI-1","NI-2","5ESS","NTT","VN3","VN4","Q.SIG"};
 
@@ -419,7 +419,7 @@ BOOL TelcoVoiceMgrDml_ISDN_BRIList_SetParamUlongValue(ANSC_HANDLE hInsContext, c
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "MaxNumBChannels", TRUE) )
+    else if (strcmp(ParamName, "MaxNumBChannels") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.ISDN.BRI.%d.MaxNumBChannels",uVsIndex,uBriIndex);
 
@@ -434,7 +434,7 @@ BOOL TelcoVoiceMgrDml_ISDN_BRIList_SetParamUlongValue(ANSC_HANDLE hInsContext, c
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "ApplicationInterface", TRUE) )
+    else if (strcmp(ParamName, "ApplicationInterface") == 0)
     {
         char enumValue[][STR_LEN_16]= {"VoIP","VoATM","Data"};
 
@@ -507,32 +507,32 @@ ULONG TelcoVoiceMgrDml_ISDN_BRIList_GetParamStringValue(ANSC_HANDLE hInsContext,
 
     PDML_ISDN_BRI pHEAD = &(pIsdnBriCtrl->dml);
 
-    if( AnscEqualString(ParamName, "ToneEventProfile", TRUE) )
+    if (strcmp(ParamName, "ToneEventProfile") == 0)
     {
         AnscCopyString(pValue,pHEAD->ToneEventProfile);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "OutboundOnlyBChannels", TRUE) )
+    else if (strcmp(ParamName, "OutboundOnlyBChannels") == 0)
     {
         AnscCopyString(pValue,pHEAD->OutboundOnlyBChannels);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Name", TRUE) )
+    else if (strcmp(ParamName, "Name") == 0)
     {
         AnscCopyString(pValue,pHEAD->Name);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "InboundOnlyBChannels", TRUE) )
+    else if (strcmp(ParamName, "InboundOnlyBChannels") == 0)
     {
         AnscCopyString(pValue,pHEAD->InboundOnlyBChannels);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "BidirectionalBChannels", TRUE) )
+    else if (strcmp(ParamName, "BidirectionalBChannels") == 0)
     {
         AnscCopyString(pValue,pHEAD->BidirectionalBChannels);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         AnscCopyString(pValue,pHEAD->Alias);
         ret = 0;
@@ -613,7 +613,7 @@ BOOL TelcoVoiceMgrDml_ISDN_BRIList_SetParamStringValue(ANSC_HANDLE hInsContext, 
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "ToneEventProfile", TRUE) )
+    if (strcmp(ParamName, "ToneEventProfile") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.ISDN.BRI.%d.ToneEventProfile",uVsIndex,uBriIndex);
 
@@ -628,7 +628,7 @@ BOOL TelcoVoiceMgrDml_ISDN_BRIList_SetParamStringValue(ANSC_HANDLE hInsContext, 
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "OutboundOnlyBChannels", TRUE) )
+    else if (strcmp(ParamName, "OutboundOnlyBChannels") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.ISDN.BRI.%d.OutboundOnlyBChannels",uVsIndex,uBriIndex);
 
@@ -643,7 +643,7 @@ BOOL TelcoVoiceMgrDml_ISDN_BRIList_SetParamStringValue(ANSC_HANDLE hInsContext, 
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "InboundOnlyBChannels", TRUE) )
+    else if (strcmp(ParamName, "InboundOnlyBChannels") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.ISDN.BRI.%d.InboundOnlyBChannels",uVsIndex,uBriIndex);
 
@@ -658,7 +658,7 @@ BOOL TelcoVoiceMgrDml_ISDN_BRIList_SetParamStringValue(ANSC_HANDLE hInsContext, 
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "BidirectionalBChannels", TRUE) )
+    else if (strcmp(ParamName, "BidirectionalBChannels") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.ISDN.BRI.%d.InboundOnlyBChannels",uVsIndex,uBriIndex);
 
@@ -673,7 +673,7 @@ BOOL TelcoVoiceMgrDml_ISDN_BRIList_SetParamStringValue(ANSC_HANDLE hInsContext, 
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         TELCOVOICEMGR_LOCK_OR_EXIT()
 
@@ -733,32 +733,32 @@ BOOL TelcoVoiceMgrDml_ISDN_BRIList_GetParamBoolValue(ANSC_HANDLE hInsContext, ch
 
     PDML_ISDN_BRI pHEAD = &(pIsdnBriCtrl->dml);
 
-    if( AnscEqualString(ParamName, "PowerSourceOne", TRUE) )
+    if (strcmp(ParamName, "PowerSourceOne") == 0)
     {
         *pBool = pHEAD->PowerSourceOne;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "PermanentLayer2", TRUE) )
+    else if (strcmp(ParamName, "PermanentLayer2") == 0)
     {
         *pBool = pHEAD->PermanentLayer2;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "PermanentLayer1", TRUE) )
+    else if (strcmp(ParamName, "PermanentLayer1") == 0)
     {
         *pBool = pHEAD->PermanentLayer1;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "LifeLineHold", TRUE) )
+    else if (strcmp(ParamName, "LifeLineHold") == 0)
     {
         *pBool = pHEAD->LifeLineHold;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "LapdDisconnectionTimeout", TRUE) )
+    else if (strcmp(ParamName, "LapdDisconnectionTimeout") == 0)
     {
         *pBool = pHEAD->LapdDisconnectionTimeout;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Enable", TRUE) )
+    else if (strcmp(ParamName, "Enable") == 0)
     {
         *pBool = pHEAD->Enable;
         ret = TRUE;
@@ -839,7 +839,7 @@ BOOL TelcoVoiceMgrDml_ISDN_BRIList_SetParamBoolValue(ANSC_HANDLE hInsContext, ch
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "PowerSourceOne", TRUE) )
+    if (strcmp(ParamName, "PowerSourceOne") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.ISDN.BRI.%d.PowerSourceOne",uVsIndex,uBriIndex);
 
@@ -854,7 +854,7 @@ BOOL TelcoVoiceMgrDml_ISDN_BRIList_SetParamBoolValue(ANSC_HANDLE hInsContext, ch
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "PermanentLayer2", TRUE) )
+    else if (strcmp(ParamName, "PermanentLayer2") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.ISDN.BRI.%d.PermanentLayer2",uVsIndex,uBriIndex);
 
@@ -869,7 +869,7 @@ BOOL TelcoVoiceMgrDml_ISDN_BRIList_SetParamBoolValue(ANSC_HANDLE hInsContext, ch
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "PermanentLayer1", TRUE) )
+    else if (strcmp(ParamName, "PermanentLayer1") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.ISDN.BRI.%d.PermanentLayer1",uVsIndex,uBriIndex);
 
@@ -884,7 +884,7 @@ BOOL TelcoVoiceMgrDml_ISDN_BRIList_SetParamBoolValue(ANSC_HANDLE hInsContext, ch
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "LifeLineHold", TRUE) )
+    else if (strcmp(ParamName, "LifeLineHold") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.ISDN.BRI.%d.LifeLineHold",uVsIndex,uBriIndex);
 
@@ -899,7 +899,7 @@ BOOL TelcoVoiceMgrDml_ISDN_BRIList_SetParamBoolValue(ANSC_HANDLE hInsContext, ch
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "LapdDisconnectionTimeout", TRUE) )
+    else if (strcmp(ParamName, "LapdDisconnectionTimeout") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.ISDN.BRI.%d.LapdDisconnectionTimeout",uVsIndex,uBriIndex);
 
@@ -914,7 +914,7 @@ BOOL TelcoVoiceMgrDml_ISDN_BRIList_SetParamBoolValue(ANSC_HANDLE hInsContext, ch
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Enable", TRUE) )
+    else if (strcmp(ParamName, "Enable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.ISDN.BRI.%d.Enable",uVsIndex,uBriIndex);
 
@@ -1214,7 +1214,7 @@ BOOL TelcoVoiceMgrDml_ISDN_PRIList_GetParamUlongValue(ANSC_HANDLE hInsContext, c
 
     uISDNPriIndex = pHEAD->uInstanceNumber;
 
-    if( AnscEqualString(ParamName, "Status", TRUE) )
+    if (strcmp(ParamName, "Status") == 0)
     {
         //Fetch status from voice stack
         hal_param_t req_param;
@@ -1232,42 +1232,42 @@ BOOL TelcoVoiceMgrDml_ISDN_PRIList_GetParamUlongValue(ANSC_HANDLE hInsContext, c
             ret = FALSE;
         }
     }
-    else if( AnscEqualString(ParamName, "ProtocolEmulation", TRUE) )
+    else if (strcmp(ParamName, "ProtocolEmulation") == 0)
     {
         *puLong = pHEAD->ProtocolEmulation;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Protocol", TRUE) )
+    else if (strcmp(ParamName, "Protocol") == 0)
     {
         *puLong = pHEAD->Protocol;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "PhysicalInterfaceType", TRUE) )
+    else if (strcmp(ParamName, "PhysicalInterfaceType") == 0)
     {
         *puLong = pHEAD->PhysicalInterfaceType;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "MaxNumBChannels", TRUE) )
+    else if (strcmp(ParamName, "MaxNumBChannels") == 0)
     {
         *puLong = pHEAD->MaxNumBChannels;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Linecode", TRUE) )
+    else if (strcmp(ParamName, "Linecode") == 0)
     {
         *puLong = pHEAD->Linecode;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "ESF", TRUE) )
+    else if (strcmp(ParamName, "ESF") == 0)
     {
         *puLong = pHEAD->ESF;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "ClockMode", TRUE) )
+    else if (strcmp(ParamName, "ClockMode") == 0)
     {
         *puLong = pHEAD->ClockMode;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "ApplicationInterface", TRUE) )
+    else if (strcmp(ParamName, "ApplicationInterface") == 0)
     {
         *puLong = pHEAD->ApplicationInterface;
         ret = TRUE;
@@ -1348,7 +1348,7 @@ BOOL TelcoVoiceMgrDml_ISDN_PRIList_SetParamUlongValue(ANSC_HANDLE hInsContext, c
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "ProtocolEmulation", TRUE) )
+    if (strcmp(ParamName, "ProtocolEmulation") == 0)
     {
         char enumValue[][STR_LEN_16]= {"TE","NT"};
 
@@ -1365,7 +1365,7 @@ BOOL TelcoVoiceMgrDml_ISDN_PRIList_SetParamUlongValue(ANSC_HANDLE hInsContext, c
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Protocol", TRUE) )
+    else if (strcmp(ParamName, "Protocol") == 0)
     {
         char enumValue[][STR_LEN_16]= {"EuroISDN","NI-1","NI-2","4ESS","5ESS","NTT","Q.SIG"};
 
@@ -1382,7 +1382,7 @@ BOOL TelcoVoiceMgrDml_ISDN_PRIList_SetParamUlongValue(ANSC_HANDLE hInsContext, c
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "PhysicalInterfaceType", TRUE) )
+    else if (strcmp(ParamName, "PhysicalInterfaceType") == 0)
     {
         char enumValue[][STR_LEN_16]= {"T1","E1"};
 
@@ -1399,7 +1399,7 @@ BOOL TelcoVoiceMgrDml_ISDN_PRIList_SetParamUlongValue(ANSC_HANDLE hInsContext, c
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "MaxNumBChannels", TRUE) )
+    else if (strcmp(ParamName, "MaxNumBChannels") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.ISDN.PRI.%d.MaxNumBChannels",uVsIndex,uPriIndex);
 
@@ -1414,7 +1414,7 @@ BOOL TelcoVoiceMgrDml_ISDN_PRIList_SetParamUlongValue(ANSC_HANDLE hInsContext, c
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Linecode", TRUE) )
+    else if (strcmp(ParamName, "Linecode") == 0)
     {
         char enumValue[][STR_LEN_16]= {"ami","hdb3","b8zs"};
 
@@ -1431,7 +1431,7 @@ BOOL TelcoVoiceMgrDml_ISDN_PRIList_SetParamUlongValue(ANSC_HANDLE hInsContext, c
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "ESF", TRUE) )
+    else if (strcmp(ParamName, "ESF") == 0)
     {
         char enumValue[][STR_LEN_16]= {"None","DF","MF","EMF","SF","ESF","AutoDetect"};
 
@@ -1448,7 +1448,7 @@ BOOL TelcoVoiceMgrDml_ISDN_PRIList_SetParamUlongValue(ANSC_HANDLE hInsContext, c
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "ClockMode", TRUE) )
+    else if (strcmp(ParamName, "ClockMode") == 0)
     {
         char enumValue[][STR_LEN_16]= {"Master","Slave"};
 
@@ -1465,7 +1465,7 @@ BOOL TelcoVoiceMgrDml_ISDN_PRIList_SetParamUlongValue(ANSC_HANDLE hInsContext, c
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "ApplicationInterface", TRUE) )
+    else if (strcmp(ParamName, "ApplicationInterface") == 0)
     {
         char enumValue[][STR_LEN_16]= {"VoIP","VoATM","Data"};
 
@@ -1538,32 +1538,32 @@ ULONG TelcoVoiceMgrDml_ISDN_PRIList_GetParamStringValue(ANSC_HANDLE hInsContext,
 
     PDML_ISDN_PRI pHEAD = &(pIsdnPriCtrl->dml);
 
-    if( AnscEqualString(ParamName, "ToneEventProfile", TRUE) )
+    if (strcmp(ParamName, "ToneEventProfile") == 0)
     {
         AnscCopyString(pValue,pHEAD->ToneEventProfile);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "OutboundOnlyBChannels", TRUE) )
+    else if (strcmp(ParamName, "OutboundOnlyBChannels") == 0)
     {
         AnscCopyString(pValue,pHEAD->OutboundOnlyBChannels);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Name", TRUE) )
+    else if (strcmp(ParamName, "Name") == 0)
     {
         AnscCopyString(pValue,pHEAD->Name);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "InboundOnlyBChannels", TRUE) )
+    else if (strcmp(ParamName, "InboundOnlyBChannels") == 0)
     {
         AnscCopyString(pValue,pHEAD->InboundOnlyBChannels);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "BidirectionalBChannels", TRUE) )
+    else if (strcmp(ParamName, "BidirectionalBChannels") == 0)
     {
         AnscCopyString(pValue,pHEAD->BidirectionalBChannels);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         AnscCopyString(pValue,pHEAD->Alias);
         ret = 0;
@@ -1644,7 +1644,7 @@ BOOL TelcoVoiceMgrDml_ISDN_PRIList_SetParamStringValue(ANSC_HANDLE hInsContext, 
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "ToneEventProfile", TRUE) )
+    if (strcmp(ParamName, "ToneEventProfile") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.ISDN.PRI.%d.ToneEventProfile",uVsIndex,uPriIndex);
 
@@ -1659,7 +1659,7 @@ BOOL TelcoVoiceMgrDml_ISDN_PRIList_SetParamStringValue(ANSC_HANDLE hInsContext, 
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "OutboundOnlyBChannels", TRUE) )
+    else if (strcmp(ParamName, "OutboundOnlyBChannels") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.ISDN.PRI.%d.OutboundOnlyBChannels",uVsIndex,uPriIndex);
 
@@ -1674,7 +1674,7 @@ BOOL TelcoVoiceMgrDml_ISDN_PRIList_SetParamStringValue(ANSC_HANDLE hInsContext, 
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "InboundOnlyBChannels", TRUE) )
+    else if (strcmp(ParamName, "InboundOnlyBChannels") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.ISDN.PRI.%d.InboundOnlyBChannels",uVsIndex,uPriIndex);
 
@@ -1689,7 +1689,7 @@ BOOL TelcoVoiceMgrDml_ISDN_PRIList_SetParamStringValue(ANSC_HANDLE hInsContext, 
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "BidirectionalBChannels", TRUE) )
+    else if (strcmp(ParamName, "BidirectionalBChannels") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.ISDN.PRI.%d.BidirectionalBChannels",uVsIndex,uPriIndex);
 
@@ -1704,7 +1704,7 @@ BOOL TelcoVoiceMgrDml_ISDN_PRIList_SetParamStringValue(ANSC_HANDLE hInsContext, 
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         TELCOVOICEMGR_LOCK_OR_EXIT()
 
@@ -1763,12 +1763,12 @@ BOOL TelcoVoiceMgrDml_ISDN_PRIList_GetParamBoolValue(ANSC_HANDLE hInsContext, ch
 
     PDML_ISDN_PRI pHEAD = &(pIsdnPriCtrl->dml);
 
-    if( AnscEqualString(ParamName, "PermanentLayer2", TRUE) )
+    if (strcmp(ParamName, "PermanentLayer2") == 0)
     {
         *pBool = pHEAD->PermanentLayer2;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Enable", TRUE) )
+    else if (strcmp(ParamName, "Enable") == 0)
     {
         *pBool = pHEAD->Enable;
         ret = TRUE;
@@ -1849,7 +1849,7 @@ BOOL TelcoVoiceMgrDml_ISDN_PRIList_SetParamBoolValue(ANSC_HANDLE hInsContext, ch
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "PermanentLayer2", TRUE) )
+    if (strcmp(ParamName, "PermanentLayer2") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.ISDN.PRI.%d.PermanentLayer2",uVsIndex,uPriIndex);
 
@@ -1864,7 +1864,7 @@ BOOL TelcoVoiceMgrDml_ISDN_PRIList_SetParamBoolValue(ANSC_HANDLE hInsContext, ch
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Enable", TRUE) )
+    else if (strcmp(ParamName, "Enable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.ISDN.PRI.%d.Enable",uVsIndex,uPriIndex);
 
