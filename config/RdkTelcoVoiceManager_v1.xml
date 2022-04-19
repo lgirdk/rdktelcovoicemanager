@@ -1868,7 +1868,6 @@
                                             </parameter>
                                         </parameters>
                                         <objects>
-                                        </objects>
                                         <object>
                                             <name>Button</name>
                                             <objectType>dynamicTable</objectType>
@@ -1926,6 +1925,7 @@
                                                 </parameter>
                                             </parameters>
                                         </object>
+                                        </objects>
                                     </object>
                                     <object>
                                         <name>FaxT38</name>
