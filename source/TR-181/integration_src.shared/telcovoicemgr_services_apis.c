@@ -20,6 +20,7 @@
 
 #include <assert.h>
 #include "ansc_status.h"
+#include <arpa/inet.h> /* for inet_pton */
 #include "telcovoicemgr_dml_hal.h"
 #include <sysevent/sysevent.h>
 #include "ccsp_trace.h"
@@ -32,6 +33,15 @@
 #else
 #include "telcovoicemgr_services_apis_v1.h"
 #endif //FEATURE_RDKB_VOICE_DM_TR104_V2
+
+/** Macro to determine if a string parameter is empty or not */
+#define IS_EMPTY_STRING(s)    ((s == NULL) || (*s == '\0'))
+
+/** Some defines for selecting which address family (IPv4 or IPv6) we want.
+ *  Note: are bits for use in bitmasks (not integers)
+ */
+#define AF_SELECT_IPV4       0x0001
+#define AF_SELECT_IPV6       0x0002
 
 #define  VOICE_STATUS_STOPPED         "Stopped"
 #define  VOICE_STATUS_STARTING        "Starting"
@@ -94,6 +104,192 @@ static TELCOVOICEMGR_VOICE_IP_LINK_STATE gLinkState = VOICE_HAL_IP_LINK_STATE_DO
 
 static ANSC_STATUS TelcoVoiceMgrDmlGetDnsServers(char *dns_server_address);
 
+/***************************************************************************
+ * @brief API used to check the incoming ip address is a valid one
+ * @param ipvx ip address family either v4 or v6
+ * @param addr string contains ip address
+ * @return TRUE if its a valid IP address else returned false.
+ ****************************************************************************/
+static BOOL IsZeroIpvxAddress(uint32_t ipvx, const char *addr)
+{
+    if (IS_EMPTY_STRING(addr))
+    {
+        return TRUE;
+    }
+
+   /*
+    * Technically, the ::/0 is not an all zero address, but it is used by our
+    * routing code to specify the default route.  See Wikipedia IPv6_address
+    */
+   if (((ipvx & AF_SELECT_IPV4) && !strcmp(addr, "0.0.0.0")) ||
+       ((ipvx & AF_SELECT_IPV6) &&
+           (!strcmp(addr, "0:0:0:0:0:0:0:0") ||
+            !strcmp(addr, "::") ||
+            !strcmp(addr, "::/128") ||
+            !strcmp(addr, "::/0")))  )
+   {
+        return TRUE;
+   }
+
+   return FALSE;
+}
+
+/***************************************************************************
+ * @brief API used to parse ipv6 prefix address
+ * @param prefixAddr ipv6 prefix address
+ * @param address string contains ip address
+ * @param plen holds length of the prefix address
+ * @return TRUE if its a valid IP address else returned false.
+ ****************************************************************************/
+static int ParsePrefixAddress(const char *prefixAddr, char *address, uint32_t *plen)
+{
+   int ret = RETURN_OK;
+   char *tmpBuf;
+   char *separator;
+   uint32_t len;
+
+   if (prefixAddr == NULL || address == NULL || plen == NULL)
+   {
+      return RETURN_ERR;
+   }
+
+   *address = '\0';
+   *plen    = 128;
+
+   len = strlen(prefixAddr);
+
+   if ((tmpBuf = malloc(len+1)) == NULL)
+   {
+      CcspTraceError(("%s %d - alloc of %d bytes failed",__FUNCTION__,__LINE__, len));
+      ret = RETURN_ERR;
+   }
+   else
+   {
+      memset(tmpBuf, 0, len+1);
+      snprintf(tmpBuf,strlen(prefixAddr), "%s", prefixAddr);
+      separator = strchr(tmpBuf, '/');
+      if (separator != NULL)
+      {
+         /* break the string into two strings */
+         *separator = 0;
+         separator++;
+         while ((isspace(*separator)) && (*separator != 0))
+         {
+            /* skip white space after comma */
+            separator++;
+         }
+
+         *plen = atoi(separator);
+      }
+
+      if (strlen(tmpBuf) < BUF_LEN_40 && *plen <= 128)
+      {
+         strncpy(address, tmpBuf, strlen(tmpBuf) + 1);
+      }
+      else
+      {
+         ret = RETURN_ERR;
+      }
+      free(tmpBuf);
+   }
+
+   return ret;
+}
+
+/***************************************************************************
+ * @brief API used to check the incoming ipv address is a valid.
+ * @param af indicates address family
+ * @param address string contains ip address
+ * @return TRUE if its a valid IP address else returned false.
+ ****************************************************************************/
+static BOOL IsValidIpAddress(int32_t af, const char* address)
+{
+    if ( IS_EMPTY_STRING(address) ) return FALSE;
+    if (af == AF_INET6)
+    {
+        if(IsZeroIpvxAddress(AF_SELECT_IPV6,address))
+        {
+            return TRUE;
+        }
+
+        struct in6_addr in6Addr;
+        uint32_t plen;
+        char   addr[IP_ADDR_LENGTH];
+        if (ParsePrefixAddress(address, addr, &plen) != ANSC_STATUS_SUCCESS)
+        {
+            CcspTraceInfo(("Invalid ipv6 address=%s", address));
+            return FALSE;
+        }
+
+        if (inet_pton(AF_INET6, addr, &in6Addr) <= 0)
+        {
+            CcspTraceInfo(("Invalid ipv6 address=%s", address));
+            return FALSE;
+        }
+
+        return TRUE;
+    }
+    else
+    {
+        if (af == AF_INET)
+        {
+            struct in_addr ipv4Addr;
+            if (inet_pton(AF_INET, address, &ipv4Addr) <= 0)
+            {
+               CcspTraceInfo(("Invalid ipv4 address=%s\n", address));
+               return FALSE;
+            }
+        }
+        else
+        {
+            return FALSE;
+        }
+    }
+}
+
+/***************************************************************************
+ * @brief API used to validate port and ip within firewall rule
+ * @param port port to be validated
+ * @param ipAddress string contains ip address to be validated
+ * @param ipAddressFamily holds address family ipv4/v6
+ * @return ANSC_STATUS_SUCCESS if its a valid IP address and port.
+ ****************************************************************************/
+static ANSC_STATUS validate_firewall_rule(ULONG port, char *ipAddress, char *ipAddressFamily)
+{
+    if(!ipAddress || !ipAddressFamily)
+    {
+        CcspTraceWarning(("%s Null Value passed\n", __FUNCTION__));
+        return ANSC_STATUS_FAILURE;       
+    }
+    if((port < 0) || (port > 65535))
+    {
+        CcspTraceWarning(("%s Invalid Port\n", __FUNCTION__));
+        return ANSC_STATUS_FAILURE;         
+    }
+    if( !strcmp(ipAddressFamily, STR_IPV4) )
+    {
+        if(!(IsValidIpAddress(AF_INET, ipAddress)))
+        {
+            CcspTraceError(("%s - Invalid IpAddress\n",__FUNCTION__));
+            return ANSC_STATUS_FAILURE;
+        }
+    }
+    else if( !strcmp(ipAddressFamily, STR_IPV6) )
+    {
+        if(!(IsValidIpAddress(AF_INET6, ipAddress)))
+        {
+            CcspTraceError(("%s - Invalid IpAddress\n",__FUNCTION__));
+            return ANSC_STATUS_FAILURE;
+        }
+    }
+    else
+    {
+        CcspTraceError(("%s - Invalid IpAddressFamily\n",__FUNCTION__));
+        return ANSC_STATUS_FAILURE;      
+    }
+    return ANSC_STATUS_SUCCESS;  
+}
+
 /* generate_voice_firewall_sysevent_string : */
 /**
 * @description : Generic Function to parse the Firewall Rule Data obtained from the subscribe event callback
@@ -118,6 +314,7 @@ static ANSC_STATUS TelcoVoiceMgrDmlGetDnsServers(char *dns_server_address);
 */
 
 static ANSC_STATUS generate_voice_firewall_sysevent_string(char* firewallData,
+                   char *ipAddressFamily,
                    ULONG sipSkbMark,
                    ULONG rtpSkbMark,
                    ULONG sipDscpMark,
@@ -140,11 +337,15 @@ static ANSC_STATUS generate_voice_firewall_sysevent_string(char* firewallData,
     char tmpDscpMarkBuffer[BUF_LEN_512] = {0};
     char tmpOutBoundProxyBuffer[BUF_LEN_512] = {0};
     char tmpRtpPinholeBuffer[BUF_LEN_512] = {0};
-
     uint16_t skbLen = 0;
     uint16_t dscpLen = 0;
     uint16_t pinholeLen = 0;
     uint16_t outbtLen = 0;
+    uint16_t len = 0;
+    unsigned long uPort = 0;
+    char tempAddr[IP_ADDR_LENGTH] = {0};
+
+    ANSC_STATUS ret = ANSC_STATUS_FAILURE;
 
     if(!firewallData || !ethernetPriorityBuffer || !dscpBuffer || !sipOutBoundProxyBuffer ||!rtpPinholeBuffer)
     {
@@ -181,7 +382,12 @@ static ANSC_STATUS generate_voice_firewall_sysevent_string(char* firewallData,
                         // Parse IpAddress from firewall rule data string
                         memset(ipAddr, 0, sizeof(ipAddr));
                         snprintf(ipAddr, sizeof(ipAddr), "%s", pTokenSub);
-                        if((!strcmp(protocol, "sip")) && (enable))
+                        //Validate port and ipAddress
+                        uPort = strtoul(port,NULL,10);
+                        memset(tempAddr, 0, sizeof(tempAddr));
+                        snprintf(tempAddr, sizeof(tempAddr), "%s", ipAddr);
+                        ret = validate_firewall_rule(uPort, tempAddr, ipAddressFamily);
+                        if((!strcmp(protocol, "sip")) && (enable) && (ret == ANSC_STATUS_SUCCESS))
                         {
                             if(tmpSkbMarkBuffer[0] == '\0')
                             {
@@ -205,7 +411,7 @@ static ANSC_STATUS generate_voice_firewall_sysevent_string(char* firewallData,
                                 }
                             }
                         }
-                        else if((!strcmp(protocol, "rtp")) && (enable))
+                        else if((!strcmp(protocol, "rtp")) && (enable) && (ret == ANSC_STATUS_SUCCESS))
                         {
                             if(tmpSkbMarkBuffer[0] == '\0')
                             {
@@ -2729,6 +2935,7 @@ ANSC_STATUS TelcoVoiceMgrDmlSetX_RDK_FirewallRuleData(char * FirewallRuleData, U
         memset(sipOutBoundProxyBuffer, 0, sizeof(sipOutBoundProxyBuffer));
         memset(rtpPinholeBuffer, 0, sizeof(rtpPinholeBuffer));
         if(generate_voice_firewall_sysevent_string(FirewallRuleData,
+                        ipAddrFamily,
                         sipSkbMark,
                         rtpSkbMark,
                         sipDscpMark,

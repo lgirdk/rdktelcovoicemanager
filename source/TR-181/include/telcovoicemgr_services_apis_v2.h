@@ -77,6 +77,7 @@
 #define  BUF_LEN_16                          16
 #define  BUF_LEN_512                         512
 #define  BUF_LEN_256                         256
+#define  BUF_LEN_40                          40
 #define  BUF_LEN_1024                        1024
 #define  BUF_LEN_2048                        2048
 #define  MAXLENGTH_DIGITMAP                  BUF_LEN_2048

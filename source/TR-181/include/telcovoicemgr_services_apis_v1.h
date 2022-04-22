@@ -66,6 +66,7 @@
 #define BUF_LEN_1024                        1024
 #define BUF_LEN_2048                        2048
 #define MAXLENGTH_DIGITMAP                  BUF_LEN_2048
+#define BUF_LEN_40                          40
 
 #define  TELCOVOICEMGR_DML_NUMBER_OF_VOICE_SERVICES      1
 #define  TELCOVOICEMGR_DML_NUMBER_OF_PHY_INTERFACE       1
