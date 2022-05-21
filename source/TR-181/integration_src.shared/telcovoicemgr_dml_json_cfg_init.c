@@ -76,6 +76,8 @@ static ANSC_STATUS initialise_line_calling_features(uint32_t uiService, uint32_t
 static json_object *jInitMsg = NULL;
 static hal_param_t initParam;
 
+char gVOICE_CONFIG_DEFAULT_NAME[MAX_FILENAME_LENGTH];
+
 /* TelcoVoiceJsonCfgSetDmDefaults: */
 /**
 * @description Checks for the presence of a 'current.json' file.
