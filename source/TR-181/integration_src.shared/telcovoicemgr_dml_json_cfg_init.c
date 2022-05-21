@@ -77,7 +77,6 @@ static ANSC_STATUS initialise_line_calling_features(uint32_t uiService, uint32_t
 static json_object *jInitMsg = NULL;
 static hal_param_t initParam;
 
-
 #ifdef FEATURE_RDKB_VOICE_DM_TR104_V2
 /* TR104V2 functionalities */
 static int ReferToAnEncryptedParam(char *name);
@@ -90,6 +89,8 @@ static ANSC_STATUS jsonCfgDecryptAndSavePassword(char *fullName,cJSON *item);
 static ANSC_STATUS jsonCfgSetInitMark(char *fullName,cJSON *item);
 static ANSC_STATUS jsonCfgSysEventSetVoiceToken(char *fullName,cJSON *item);
 #endif
+char gVOICE_CONFIG_DEFAULT_NAME[MAX_FILENAME_LENGTH];
+
 /* TelcoVoiceJsonCfgSetDmDefaults: */
 /**
 * @description Checks for the presence of a 'current.json' file.
