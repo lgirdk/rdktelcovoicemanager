@@ -90,6 +90,9 @@ static ANSC_STATUS jsonCfgDecryptAndSavePassword(char *fullName,cJSON *item);
 static ANSC_STATUS jsonCfgSetInitMark(char *fullName,cJSON *item);
 static ANSC_STATUS jsonCfgSysEventSetVoiceToken(char *fullName,cJSON *item);
 #endif
+
+char gVOICE_CONFIG_DEFAULT_NAME[MAX_FILENAME_LENGTH];
+
 /* TelcoVoiceJsonCfgSetDmDefaults: */
 /**
 * @description Checks for the presence of a 'current.json' file.

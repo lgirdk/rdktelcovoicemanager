@@ -24,7 +24,7 @@
 
 static libpd_instance_t client_instance;
 extern ANSC_HANDLE bus_handle;
-char deviceMAC[32];
+extern char deviceMAC[32];
 
 #ifdef ENABLE_SESHAT
 /*----------------------------------------------------------------------------*/
