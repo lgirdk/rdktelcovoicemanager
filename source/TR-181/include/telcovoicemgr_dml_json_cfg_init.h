@@ -39,7 +39,7 @@
 #include <stdbool.h>
 #include <cjson/cJSON.h>
 
-char gVOICE_CONFIG_DEFAULT_NAME[MAX_FILENAME_LENGTH];
+extern char gVOICE_CONFIG_DEFAULT_NAME[MAX_FILENAME_LENGTH];
 
 /* checksum:  */
 /**
@@ -211,7 +211,7 @@ enum _TT {
     TT_CallingFeatures,
     TT_VoiceProcessing,
     TT_UNKNOWN
-} TEXT_TYPES;
+};
 enum _TT getTextType(char *text);
 int storeServices(char *pParse, cJSON *jsonObj);
 int storeVoiceProfile();
