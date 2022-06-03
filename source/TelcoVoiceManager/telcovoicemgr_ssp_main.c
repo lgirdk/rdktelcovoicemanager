@@ -450,10 +450,7 @@ int main(int argc, char* argv[])
 
     //rdk_logger_init("/fss/gw/lib/debug.ini");
     rdk_logger_init(DEBUG_INI_NAME);
-    if (syscfg_init() < 0)
-    {
-        return 1;
-    }
+
     voicemgr_sysevent_init();
     voicemgr_create_nw_monitor();
 
