@@ -18,6 +18,7 @@
  */
 
 #include "ansc_platform.h"
+#include "ansc_string_util.h"
 #include "telcovoicemgr_dml_backendmgr.h"
 #include "telcovoicemgr_dml_services_v1.h"
 #include "telcovoicemgr_services_apis_v1.h"
@@ -844,7 +845,7 @@ BOOL X_RDK_Debug_SetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, c
             else if (strcmp(ParamName, "LogServer") == 0)
             {
                 //Security Vulnerability Check
-                if( TRUE != TelcoVoiceMgrAnscValidateInputString(pString) )
+                if (AnscValidStringCheck2(pString, "<>%`|'") != TRUE)
                 {
                     return FALSE;
                 }
