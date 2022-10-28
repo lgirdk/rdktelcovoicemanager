@@ -703,7 +703,7 @@ uint32_t deleteObject(char *fullName)
     {
         /* RDK log error and give up */
         CcspTraceError(("Failed to open JSON current file %s\n",
-            VOICE_CONFIG_DEFAULT_PATH VOICE_CONFIG_CURRENT_NAME));
+            VOICE_CONFIG_CURRENT_PATH VOICE_CONFIG_CURRENT_NAME));
         return (-1);
     }
 
@@ -799,7 +799,7 @@ uint32_t storeObject(char *nName, uint32_t vs,  uint32_t vp, uint32_t li,  uint3
     {
         /* RDK log error and give up */
         CcspTraceError(("Failed to open JSON current file %s\n",
-            VOICE_CONFIG_DEFAULT_PATH VOICE_CONFIG_CURRENT_NAME));
+            VOICE_CONFIG_CURRENT_PATH VOICE_CONFIG_CURRENT_NAME));
         return (-1);
     }
 
