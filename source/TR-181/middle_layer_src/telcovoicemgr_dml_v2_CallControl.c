@@ -393,21 +393,14 @@ BOOL TelcoVoiceMgrDml_CallControl_LineList_GetParamUlongValue(ANSC_HANDLE hInsCo
 
     uCCLineIndex = pHEAD->uInstanceNumber;
 
-    TELCOVOICEMGR_UNLOCK()
-
     if (strcmp(ParamName, "Status") == 0)
     {
 
         if(ANSC_STATUS_SUCCESS == TelcoVoiceMgrDmlGetLineStatus(uVsIndex, TELCOVOICEMGR_DML_NUMBER_OF_VOIP_PROFILE,
                                              uCCLineIndex, &lineStatus))
         {
-            TELCOVOICEMGR_LOCK_OR_EXIT()
-
             pHEAD->Status = lineStatus;
             *puLong = pHEAD->Status;
-
-            TELCOVOICEMGR_UNLOCK()
-
             ret = TRUE;
         }
     }
@@ -422,13 +415,8 @@ BOOL TelcoVoiceMgrDml_CallControl_LineList_GetParamUlongValue(ANSC_HANDLE hInsCo
         if(ANSC_STATUS_SUCCESS == TelcoVoiceMgrDmlGetLineCallState(uVsIndex, TELCOVOICEMGR_DML_NUMBER_OF_VOIP_PROFILE,
                                              uCCLineIndex, &callStatus))
         {
-            TELCOVOICEMGR_LOCK_OR_EXIT()
-
             pHEAD->CallStatus = callStatus;
             *puLong = pHEAD->CallStatus;
-
-            TELCOVOICEMGR_UNLOCK()
-
             ret = TRUE;
         }
         else
@@ -441,6 +429,8 @@ BOOL TelcoVoiceMgrDml_CallControl_LineList_GetParamUlongValue(ANSC_HANDLE hInsCo
     {
         CcspTraceWarning(("%s: Unsupported parameter '%s'\n", __func__,ParamName));
     }
+
+    TELCOVOICEMGR_UNLOCK()
 
     return ret;
 }

@@ -658,9 +658,6 @@ BOOL Line_GetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, ULONG* pV
     PTELCOVOICEMGR_DML_PROFILE pVoiceProfile = NULL;
     PTELCOVOICEMGR_DML_VOICESERVICE pVoiceService = NULL;
     ULONG ret = 1;
-    ULONG uVsIndex = 0;
-    ULONG uVpIndex = 0;
-    ULONG uVlIndex = 0;
     TELCOVOICEMGR_CALL_STATE_ENUM  callState = VOICE_CALL_STATE_IDLE;
     TELCOVOICEMGR_LINE_STATUS_ENUM lineStatus = VOICE_LINE_STATE_DISABLED;
 
@@ -683,23 +680,14 @@ BOOL Line_GetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, ULONG* pV
 
             if (pVoiceService && pVoiceProfile && pLine)
             {
-                uVsIndex = pVoiceService->InstanceNumber;
-                uVpIndex = pVoiceProfile->InstanceNumber;
-                uVlIndex = pLine->InstanceNumber;
-                TelcoVoiceMgrDmlGetDataRelease(pTelcoVoiceMgrDmlData);
-
                 if (strcmp(ParamName, "CallState") == 0)
                 {
-                    if(ANSC_STATUS_SUCCESS == TelcoVoiceMgrDmlGetLineCallState(uVsIndex, uVpIndex, uVlIndex, &callState))
+                    if(ANSC_STATUS_SUCCESS == TelcoVoiceMgrDmlGetLineCallState(pVoiceService->InstanceNumber, pVoiceProfile->InstanceNumber, 
+                                                  pLine->InstanceNumber, &callState))
                     {
-                        TELCOVOICEMGR_DML_DATA* pTelcoVoiceMgrDmlData = TelcoVoiceMgrDmlGetDataLocked();
-                        if(pTelcoVoiceMgrDmlData != NULL)
-                        {
-                            pLine->CallState = callState;
-                            *pValue = pLine->CallState;
-                            TelcoVoiceMgrDmlGetDataRelease(pTelcoVoiceMgrDmlData);
-                            ret = TRUE;
-                        }
+                        pLine->CallState = callState;
+                        *pValue = pLine->CallState;
+                        ret = TRUE;
                     }
                 }
                 else if (strcmp(ParamName, "Enable") == 0)
@@ -709,16 +697,12 @@ BOOL Line_GetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, ULONG* pV
                 }
                 else if (strcmp(ParamName, "Status") == 0)
                 {
-                    if(ANSC_STATUS_SUCCESS == TelcoVoiceMgrDmlGetLineStatus(uVsIndex, uVpIndex, uVlIndex, &lineStatus))
+                    if(ANSC_STATUS_SUCCESS == TelcoVoiceMgrDmlGetLineStatus(pVoiceService->InstanceNumber, pVoiceProfile->InstanceNumber, 
+                                                  pLine->InstanceNumber, &lineStatus))
                     {
-                        TELCOVOICEMGR_DML_DATA* pTelcoVoiceMgrDmlData = TelcoVoiceMgrDmlGetDataLocked();
-                        if(pTelcoVoiceMgrDmlData != NULL)
-                        {
-                            pLine->Status = lineStatus;
-                            *pValue = pLine->Status;
-                            TelcoVoiceMgrDmlGetDataRelease(pTelcoVoiceMgrDmlData);
-                            ret = TRUE;
-                        }
+                        pLine->Status = lineStatus;
+                        *pValue = pLine->Status;
+                        ret = TRUE;
                     }
                 }
                 else if (strcmp(ParamName, "RingVolumeStatus") == 0)
@@ -732,11 +716,8 @@ BOOL Line_GetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, ULONG* pV
                     ret = FALSE;
                 }
             }
-            else
-            {
-                CcspTraceWarning(("%s::Invalid Object\n", __FUNCTION__));
-                TelcoVoiceMgrDmlGetDataRelease(pTelcoVoiceMgrDmlData);
-            }
+
+            TelcoVoiceMgrDmlGetDataRelease(pTelcoVoiceMgrDmlData);
         }
     }
 
