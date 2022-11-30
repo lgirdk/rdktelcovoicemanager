@@ -369,6 +369,11 @@ BOOL VoiceService_GetParamBoolValue(ANSC_HANDLE hInsContext, char* ParamName, BO
         *pBool = pHEAD->X_RDK_DisableLoopCurrentUntilRegistered;
         ret = TRUE;
     }
+    else if( AnscEqualString(ParamName, "X_RDK_OngoingEmergencyCall", TRUE) )
+    {
+        *pBool = pHEAD->X_RDK_OngoingEmergencyCall;
+        ret = TRUE;
+    }
     else
     {
         CcspTraceWarning(("%s: Unsupported parameter '%s'\n", __func__,ParamName));

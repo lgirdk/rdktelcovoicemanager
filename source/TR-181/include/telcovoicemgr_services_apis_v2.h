@@ -3053,6 +3053,7 @@ typedef struct _TELCOVOICEMGR_DML_VOICESERVICE
     TELCOVOICEMGR_VOICE_ENABLE_ENUM         X_RDK_Enable;
     TELCOVOICEMGR_VOICE_STATUS_ENUM         X_RDK_Status;
     BOOL                                    X_RDK_FactoryReset;
+    BOOL                                    X_RDK_OngoingEmergencyCall;
     TELCOVOICEMGR_DML_X_RDK_DEBUG           X_RDK_DebugObj;
     DML_VOICESERVICE_CAPABILITIES           Capabilities;
     DML_RESERVEDPORTS                       ReservedPorts;

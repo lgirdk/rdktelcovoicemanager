@@ -1215,6 +1215,7 @@
         { "$ref": "#/definitions/voiceServiceX_RDK_Status" },
         { "$ref": "#/definitions/voiceServiceX_RDK_FactoryReset" },
         { "$ref": "#/definitions/voiceServiceX_RDK_DnsServers" },
+        { "$ref": "#/definitions/voiceServiceX_RDK_OngoingEmergencyCall" },
         { "$ref": "#/definitions/voiceServiceX_RDK_Debug" },
         { "$ref": "#/definitions/voiceServiceX_RDK_DebugCCTKTraceGroup" },
         { "$ref": "#/definitions/voiceServiceX_RDK_DebugCCTKTraceLevel" },
@@ -1907,6 +1908,24 @@
         },
         "value": {
           "type": "string"
+        }
+      }
+    },
+    "voiceServiceX_RDK_OngoingEmergencyCall": {
+      "description": "Status of OngoingEmergencyCall.(Access = Read-Only)",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^Device\\.Services\\.VoiceService\\.\\d+\\.X_RDK_OngoingEmergencyCall$"
+        },
+        "type": {
+          "type": "string",
+          "const": "boolean"
+        },
+        "value": {
+          "type": "boolean"
         }
       }
     },

@@ -219,6 +219,17 @@ ANSC_STATUS Map_hal_dml_voiceService(DML_VOICE_SERVICE_LIST_T* pVoiceServiceList
     {
         // Do nothing
     }
+    else if( strstr(ParamName, "X_RDK_OngoingEmergencyCall"))
+    {
+       if(strcmp(pValue, "true") == 0 || strcmp(pValue, "1") == 0)
+       {
+           pVoiceService->X_RDK_OngoingEmergencyCall = true;
+       }
+       else
+       {
+           pVoiceService->X_RDK_OngoingEmergencyCall = false;
+       }
+    }    
     else if( strstr(ParamName, "X_RDK_BoundIfName"))
     {
        strncpy(pVoiceService->X_RDK_BoundIfName, pValue,strlen(pValue)+1);

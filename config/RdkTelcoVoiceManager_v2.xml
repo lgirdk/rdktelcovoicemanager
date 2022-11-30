@@ -195,6 +195,11 @@
               <syntax>bool</syntax>
               <writable>true</writable>
             </parameter>
+            <parameter>
+              <name>X_RDK_OngoingEmergencyCall</name>
+              <type>boolean</type>
+              <syntax>bool</syntax>
+            </parameter>
          </parameters>
     <objects>
         <object>
