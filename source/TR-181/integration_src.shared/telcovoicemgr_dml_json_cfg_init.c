@@ -1550,7 +1550,11 @@ static int32_t jsonCfgSetSipEthernetPriorityMark(uint32_t service, uint32_t prof
 {
     fprintf(stderr,"\n%s(%d) - service[%d], profile[%d], value[%d]", __func__, __LINE__,service,profile,value);
     TelcoVoiceMgrInitMark(service, profile, value, SIP, PARAM_NAME_ETHERNET_PRIORITY_MARK);
-
+    memset(&initParam, 0, sizeof(initParam));
+    snprintf(initParam.name, sizeof(initParam), SIP_TABLE_NAME"%s", service, profile, PARAM_NAME_ETHERNET_PRIORITY_MARK);
+    snprintf(initParam.value, sizeof(initParam.value), "%d", value);
+    initParam.type = PARAM_UNSIGNED_INTEGER;
+    json_hal_add_param(jInitMsg, SET_REQUEST_MESSAGE, &initParam);
     return 0;
 }
 static int32_t jsonCfgSetOutboundProxy(uint32_t service, uint32_t profile, const char * value)
@@ -1782,6 +1786,11 @@ static int32_t jsonCfgSetRtpEthernetPriorityMark(uint32_t service,uint32_t profi
 {
     fprintf(stderr,"\n%s(%d) - service[%d], profile[%d], value[%d]", __func__, __LINE__,service,profile,value);
     TelcoVoiceMgrInitMark(service, profile, value, RTP, PARAM_NAME_ETHERNET_PRIORITY_MARK);
+    memset(&initParam, 0, sizeof(initParam));
+    snprintf(initParam.name, sizeof(initParam), RTP_TABLE_NAME"%s", service, profile, PARAM_NAME_ETHERNET_PRIORITY_MARK);
+    snprintf(initParam.value, sizeof(initParam.value), "%d", value);
+    initParam.type = PARAM_UNSIGNED_INTEGER;
+    json_hal_add_param(jInitMsg, SET_REQUEST_MESSAGE, &initParam);
     return 0;
 }
 
