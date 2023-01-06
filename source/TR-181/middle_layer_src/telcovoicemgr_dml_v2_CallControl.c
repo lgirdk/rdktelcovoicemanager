@@ -2007,7 +2007,7 @@ BOOL TelcoVoiceMgrDml_CallControl_ExtensionList_SetParamBoolValue(ANSC_HANDLE hI
         {
             TELCOVOICEMGR_LOCK_OR_EXIT()
 
-            AnscCopyString(pHEAD->QuiescentMode,bValue);
+            pHEAD->QuiescentMode = bValue;
 
             TELCOVOICEMGR_UNLOCK()
 
@@ -2022,7 +2022,7 @@ BOOL TelcoVoiceMgrDml_CallControl_ExtensionList_SetParamBoolValue(ANSC_HANDLE hI
         {
             TELCOVOICEMGR_LOCK_OR_EXIT()
 
-            AnscCopyString(pHEAD->Enable,bValue);
+            pHEAD->Enable = bValue;
 
             TELCOVOICEMGR_UNLOCK()
 
