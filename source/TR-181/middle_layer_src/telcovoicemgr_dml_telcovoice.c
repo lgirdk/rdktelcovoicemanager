@@ -101,7 +101,7 @@ X_RDK_TelcoVoice_GetParamStringValue
 {
     PTELCOVOICEMGR_DATAMODEL_TELCOVOICE       pMyObject     = (PTELCOVOICEMGR_DATAMODEL_TELCOVOICE)g_pTelcoVoiceBEManager->hTelcoVoice;
 
-    if( AnscEqualString(ParamName, "Data", TRUE) )
+    if (strcmp(ParamName, "Data") == 0)
     {
         /* Data value should be empty for all get */
         snprintf(pValue, pUlSize, "%s", "");
@@ -160,7 +160,7 @@ X_RDK_TelcoVoice_SetParamStringValue
 {
     PTELCOVOICEMGR_DATAMODEL_TELCOVOICE       pMyObject     = (PTELCOVOICEMGR_DATAMODEL_TELCOVOICE)g_pTelcoVoiceBEManager->hTelcoVoice;
 
-    if( AnscEqualString(ParamName, "Data", TRUE) )
+    if (strcmp(ParamName, "Data") == 0)
     {
         char *webConf = NULL;
         int webSize = 0;

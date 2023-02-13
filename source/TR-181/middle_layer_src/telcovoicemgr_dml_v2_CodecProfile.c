@@ -214,17 +214,17 @@ ULONG TelcoVoiceMgrDml_CodecProfileList_GetParamStringValue(ANSC_HANDLE hInsCont
 
     PDML_CODECPROFILE pHEAD = &(pHEADCtrl->dml);
 
-    if( AnscEqualString(ParamName, "PacketizationPeriod", TRUE) )
+    if (strcmp(ParamName, "PacketizationPeriod") == 0)
     {
         AnscCopyString(pValue,pHEAD->PacketizationPeriod);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Codec", TRUE) )
+    else if (strcmp(ParamName, "Codec") == 0)
     {
         AnscCopyString(pValue,pHEAD->Codec);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         AnscCopyString(pValue,pHEAD->Alias);
         ret = 0;
@@ -304,7 +304,7 @@ BOOL TelcoVoiceMgrDml_CodecProfileList_SetParamStringValue(ANSC_HANDLE hInsConte
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "PacketizationPeriod", TRUE) )
+    if (strcmp(ParamName, "PacketizationPeriod") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CodecProfile.%d.PacketizationPeriod",uVsIndex,uCodecProfileIndex);
 
@@ -329,7 +329,7 @@ BOOL TelcoVoiceMgrDml_CodecProfileList_SetParamStringValue(ANSC_HANDLE hInsConte
 
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         TELCOVOICEMGR_LOCK_OR_EXIT()
 
@@ -389,12 +389,12 @@ BOOL TelcoVoiceMgrDml_CodecProfileList_GetParamBoolValue(ANSC_HANDLE hInsContext
 
     PDML_CODECPROFILE pHEAD = &(pHEADCtrl->dml);
 
-    if( AnscEqualString(ParamName, "SilenceSuppression", TRUE) )
+    if (strcmp(ParamName, "SilenceSuppression") == 0)
     {
         *pBool = pHEAD->SilenceSuppression;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "Enable", TRUE) )
+    else if (strcmp(ParamName, "Enable") == 0)
     {
         *pBool = pHEAD->Enable;
         ret = TRUE;
@@ -475,7 +475,7 @@ BOOL TelcoVoiceMgrDml_CodecProfileList_SetParamBoolValue(ANSC_HANDLE hInsContext
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "SilenceSuppression", TRUE) )
+    if (strcmp(ParamName, "SilenceSuppression") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CodecProfile.%d.SilenceSuppression",uVsIndex,uCodecProfileIndex);
 
@@ -490,7 +490,7 @@ BOOL TelcoVoiceMgrDml_CodecProfileList_SetParamBoolValue(ANSC_HANDLE hInsContext
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Enable", TRUE) )
+    else if (strcmp(ParamName, "Enable") == 0)
     {
         snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CodecProfile.%d.Enable",uVsIndex,uCodecProfileIndex);
 

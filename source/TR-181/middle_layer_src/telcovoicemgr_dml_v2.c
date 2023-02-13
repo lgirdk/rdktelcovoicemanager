@@ -217,7 +217,7 @@ BOOL VoiceService_GetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, U
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "X_RDK_Status", TRUE) )
+    if (strcmp(ParamName, "X_RDK_Status") == 0)
     {
         if(TelcoVoiceMgrDmlGetVoiceProcessStatus(uVsIndex, &voiceStatus) == ANSC_STATUS_SUCCESS)
         {
@@ -228,7 +228,7 @@ BOOL VoiceService_GetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, U
             TELCOVOICEMGR_UNLOCK()
         }
     }
-    else if( AnscEqualString(ParamName, "X_RDK_Enable", TRUE) )
+    else if (strcmp(ParamName, "X_RDK_Enable") == 0)
     {
         TELCOVOICEMGR_LOCK_OR_EXIT()
         *puLong = pHEAD->X_RDK_Enable;
@@ -298,7 +298,7 @@ BOOL VoiceService_SetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, U
     
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "X_RDK_Enable", TRUE) )
+    if (strcmp(ParamName, "X_RDK_Enable") == 0)
     {
         TELCOVOICEMGR_VOICE_ENABLE_ENUM eState = uValue;
         if(TelcoVoiceMgrDmlSetVoiceProcessState(uVsIndex, eState) == ANSC_STATUS_SUCCESS)
@@ -359,12 +359,12 @@ BOOL VoiceService_GetParamBoolValue(ANSC_HANDLE hInsContext, char* ParamName, BO
 
     PTELCOVOICEMGR_DML_VOICESERVICE pHEAD = &(pHEADCtrl->dml);
 
-    if( AnscEqualString(ParamName, "X_RDK_FactoryReset", TRUE) )
+    if (strcmp(ParamName, "X_RDK_FactoryReset") == 0)
     {
         *pBool = FALSE;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "X_RDK_DisableLoopCurrentUntilRegistered", TRUE) )
+    else if (strcmp(ParamName, "X_RDK_DisableLoopCurrentUntilRegistered") == 0)
     {
         *pBool = pHEAD->X_RDK_DisableLoopCurrentUntilRegistered;
         ret = TRUE;
@@ -432,7 +432,7 @@ BOOL VoiceService_SetParamBoolValue(ANSC_HANDLE hInsContext, char* ParamName, BO
     uVsIndex = pVoiceService->InstanceNumber;
     ULONG VoiceState = pVoiceService->X_RDK_Enable;
     TELCOVOICEMGR_UNLOCK()
-    if( AnscEqualString(ParamName, "X_RDK_DisableLoopCurrentUntilRegistered", TRUE))
+    if (strcmp(ParamName, "X_RDK_DisableLoopCurrentUntilRegistered") == 0)
     {
         if (TelcoVoiceMgrDmlSetLoopCurrentDisabled(uVsIndex, bValue) == ANSC_STATUS_SUCCESS)
         {
@@ -445,7 +445,7 @@ BOOL VoiceService_SetParamBoolValue(ANSC_HANDLE hInsContext, char* ParamName, BO
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "X_RDK_FactoryReset", TRUE))
+    else if (strcmp(ParamName, "X_RDK_FactoryReset") == 0)
     {
         if(TRUE == bValue)
         {
@@ -512,27 +512,27 @@ ULONG VoiceService_GetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName,
 
     PTELCOVOICEMGR_DML_VOICESERVICE pHEAD = &(pHEADCtrl->dml);
 
-    if( AnscEqualString(ParamName, "X_RDK_IpAddressFamily", TRUE) )
+    if (strcmp(ParamName, "X_RDK_IpAddressFamily") == 0)
     {
         AnscCopyString(pValue,pHEAD->X_RDK_IpAddressFamily);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "X_RDK_BoundIpAddr", TRUE) )
+    else if (strcmp(ParamName, "X_RDK_BoundIpAddr") == 0)
     {
         AnscCopyString(pValue,pHEAD->X_RDK_BoundIpAddr);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "X_RDK_BoundIfName", TRUE) )
+    else if (strcmp(ParamName, "X_RDK_BoundIfName") == 0)
     {
         AnscCopyString(pValue,pHEAD->X_RDK_BoundIfName);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         AnscCopyString(pValue,pHEAD->Alias);
         ret = 0;
     }
-    else if( AnscEqualString(ParamName, "X_RDK_Firewall_Rule_Data", TRUE) )
+    else if (strcmp(ParamName, "X_RDK_Firewall_Rule_Data") == 0)
     {
         AnscCopyString(pValue,pHEAD->X_RDK_Firewall_Rule_Data);
         ret = 0;
@@ -601,7 +601,7 @@ BOOL VoiceService_SetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, 
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "X_RDK_BoundIfName", TRUE) )
+    if (strcmp(ParamName, "X_RDK_BoundIfName") == 0)
     {
         if(TelcoVoiceMgrDmlSetBoundIfname(pVoiceService->InstanceNumber, pString) == ANSC_STATUS_SUCCESS)
         {
@@ -614,7 +614,7 @@ BOOL VoiceService_SetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, 
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "X_RDK_IpAddressFamily", TRUE) )
+    else if (strcmp(ParamName, "X_RDK_IpAddressFamily") == 0)
     {
         if(TelcoVoiceMgrDmlSetIpAddressFamily(pVoiceService->InstanceNumber, pString) == ANSC_STATUS_SUCCESS)
         {
@@ -627,7 +627,7 @@ BOOL VoiceService_SetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, 
             ret = TRUE;
         }
     }
-    else if( AnscEqualString(ParamName, "Alias", TRUE) )
+    else if (strcmp(ParamName, "Alias") == 0)
     {
         TELCOVOICEMGR_LOCK_OR_EXIT()
 
