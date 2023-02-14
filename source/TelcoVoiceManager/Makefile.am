@@ -1,4 +1,3 @@
-
 ##########################################################################
  # If not stated otherwise in this file or this component's LICENSE file the
  # following copyright and licenses apply:
@@ -20,25 +19,15 @@
 
 bin_PROGRAMS = telcovoice_manager
 
-AM_CPPFLAGS = -I$(top_srcdir)/hal/include \
-                -I$(top_srcdir)/source/LogComponent \
-                -I=${includedir} \
-                -I=${includedir}/ccsp
-
-AM_LDFLAGS = -lwebconfig_framework
-
-
 telcovoice_manager_DEPENDENCIES = \
         $(EXTRA_DEPENDENCIES) \
 	${top_builddir}/source/TR-181/middle_layer_src/libCcsptelcovoice_manager_middle_layer_src.la \
 	${top_builddir}/source/TR-181/integration_src.shared/libCcsptelcovoice_manager_integration_src_shared.la
 
-telcovoice_manager_CFLAGS = -D_ANSC_LINUX -D_ANSC_USER -D_ANSC_LITTLE_ENDIAN_ -DFEATURE_SUPPORT_RDKLOG $(DBUS_CFLAGS) $(SYSTEMD_CFLAGS) -DVOICE_IPV6_SUPPORT
-telcovoice_manager_CPPFLAGS = -I$(top_srcdir)/source/TR-181/middle_layer_src -I$(top_srcdir)/source/TR-181/include $(CPPFLAGS)
-telcovoice_manager_LDFLAGS = -lccsp_common -lrdkloggers -lsyscfg -lsysevent $(DBUS_LIBS) $(SYSTEMD_LDFLAGS) -lwebconfig_framework
+telcovoice_manager_CFLAGS = -DFEATURE_SUPPORT_RDKLOG $(DBUS_CFLAGS) $(SYSTEMD_CFLAGS) -DVOICE_IPV6_SUPPORT
+telcovoice_manager_CPPFLAGS = -I$(top_srcdir)/source/TR-181/middle_layer_src -I$(top_srcdir)/source/TR-181/include
+telcovoice_manager_LDFLAGS = -lccsp_common -lrdkloggers -lsyscfg -lsysevent $(DBUS_LIBS) $(SYSTEMD_LDFLAGS) -lwebconfig_framework -lpthread
 
 telcovoice_manager_SOURCES = telcovoicemgr_ssp_action.c telcovoicemgr_ssp_messagebus_interface.c telcovoicemgr_ssp_main.c telcovoicemgr_controller.c telcovoicemgr_nw_monitor.c
 
-telcovoice_manager_LDADD =  $(telcovoice_manager_DEPENDENCIES)
-
-
+telcovoice_manager_LDADD = $(telcovoice_manager_DEPENDENCIES)
