@@ -2004,7 +2004,7 @@ BOOL TelcoVoiceMgrDml_TerminalList_ButtonMap_ButtonList_SetParamBoolValue(ANSC_H
         {
             TELCOVOICEMGR_LOCK_OR_EXIT()
 
-            AnscCopyString(pHEAD->UserAccess, bValue);
+            pHEAD->UserAccess = bValue;
 
             TELCOVOICEMGR_UNLOCK()
 
@@ -3306,7 +3306,7 @@ BOOL TelcoVoiceMgrDml_TerminalList_Ringer_PatternList_SetParamBoolValue(ANSC_HAN
         {
             TELCOVOICEMGR_LOCK_OR_EXIT()
 
-            AnscCopyString(pHEAD->RingerOn,bValue);
+            pHEAD->RingerOn = bValue;
 
             TELCOVOICEMGR_UNLOCK()
 
@@ -3321,7 +3321,7 @@ BOOL TelcoVoiceMgrDml_TerminalList_Ringer_PatternList_SetParamBoolValue(ANSC_HAN
         {
             TELCOVOICEMGR_LOCK_OR_EXIT()
 
-            AnscCopyString(pHEAD->Enable,bValue);
+            pHEAD->Enable = bValue;
 
             TELCOVOICEMGR_UNLOCK()
 

@@ -6449,7 +6449,7 @@ BOOL TelcoVoiceMgrDml_SIP_NetworkList_RespMapList_SetParamBoolValue(ANSC_HANDLE 
         {
             TELCOVOICEMGR_LOCK_OR_EXIT()
 
-            AnscCopyString(pHEAD->Enable,bValue);
+            pHEAD->Enable = bValue;
 
             TELCOVOICEMGR_UNLOCK()
 
