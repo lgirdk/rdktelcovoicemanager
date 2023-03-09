@@ -43,6 +43,8 @@
 #define JSON_RPC_FIELD_VALUE                "value"
 #define JSON_SUBSCRIBE_ON_CHANGE            "onChange"
 #define JSON_SUBSCRIBE_ON_CHANGE_SYNC_TIMEOUT "onChangeSyncTimeout"
+//Ticker timeout (60 x 250ms)
+#define HAL_SEND_AND_REPLY_TIMEOUT          "60"
 
 #define JSON_STR_TRUE                       "true"
 #define JSON_STR_FALSE                      "false"

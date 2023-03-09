@@ -39,6 +39,8 @@ static ANSC_STATUS get_voice_line_stats(const json_object *reply_msg, TELCOVOICE
 static ANSC_STATUS get_call_log_stats(const json_object *reply_msg, TELCOVOICEMGR_DML_VOICESERVICE_CALLLOG_STATS *stCallLogStats);
 #endif
 #define HALINIT  "Devices.Services.VoiceHalInit"
+
+
 /*******************************************************************************
  *                        LOCAL FUNCTION TYPES
  *******************************************************************************/
@@ -213,7 +215,7 @@ static ANSC_STATUS voice_process_get_info(hal_param_t *get_param)
 
     CcspTraceInfo(("%s - %d Json request message = %s \n", __FUNCTION__, __LINE__, json_object_to_json_string_ext(jrequest, JSON_C_TO_STRING_PRETTY)));
 
-    if (json_hal_client_send_and_get_reply(jrequest, &jreply_msg) != RETURN_OK)
+    if (json_hal_client_send_and_get_reply_with_timeout(jrequest, HAL_SEND_AND_REPLY_TIMEOUT, &jreply_msg) != RETURN_OK)
     {
         CcspTraceError(("%s - %d Failed to get reply for the json request \n", __FUNCTION__, __LINE__));
         FREE_JSON_OBJECT(jrequest);
@@ -252,7 +254,7 @@ ANSC_STATUS TelcoVoiceHal_GetLineStats(const char *param_name, TELCOVOICEMGR_DML
     json_object *jrequest = create_json_request_message(GET_REQUEST_MESSAGE, param_name, NULL_TYPE , NULL);
     CHECK(jrequest != NULL);
 
-    if (json_hal_client_send_and_get_reply(jrequest, &jreply_msg) != RETURN_OK)
+    if (json_hal_client_send_and_get_reply_with_timeout(jrequest, HAL_SEND_AND_REPLY_TIMEOUT, &jreply_msg) != RETURN_OK)
     {
         CcspTraceError(("%s - %d Failed to get reply for the json request \n", __FUNCTION__, __LINE__));
         FREE_JSON_OBJECT(jrequest);
@@ -286,7 +288,7 @@ ANSC_STATUS TelcoVoiceHal_GetCallLogStats(const char *param_name, TELCOVOICEMGR_
     json_object *jrequest = create_json_request_message(GET_REQUEST_MESSAGE, param_name, NULL_TYPE , NULL);
     CHECK(jrequest != NULL);
 
-    if (json_hal_client_send_and_get_reply(jrequest, &jreply_msg) != RETURN_OK)
+    if (json_hal_client_send_and_get_reply_with_timeout(jrequest, HAL_SEND_AND_REPLY_TIMEOUT, &jreply_msg) != RETURN_OK)
     {
         CcspTraceError(("%s - %d Failed to get reply for the json request \n", __FUNCTION__, __LINE__));
         FREE_JSON_OBJECT(jrequest);
@@ -593,7 +595,7 @@ ANSC_STATUS TelcoVoiceMgrHal_SendJsonRequest(json_object *jmsg)
     json_bool status = FALSE;
 
     CcspTraceInfo(("JSON Request message = %s \n", json_object_to_json_string_ext(jmsg, JSON_C_TO_STRING_PRETTY)));
-    if( json_hal_client_send_and_get_reply(jmsg, &jreply_msg) != RETURN_OK)
+    if( json_hal_client_send_and_get_reply_with_timeout(jmsg, HAL_SEND_AND_REPLY_TIMEOUT, &jreply_msg) != RETURN_OK)
     {
         CcspTraceError(("[%s][%d] RPC message failed \n", __FUNCTION__, __LINE__));
         FREE_JSON_OBJECT(jmsg);
@@ -689,7 +691,7 @@ ANSC_STATUS TelcoVoiceMgrHal_GetVoiceServices()
 
     CHECK(jrequest != NULL);
 
-    if (json_hal_client_send_and_get_reply(jrequest, &jreply_msg) != RETURN_OK)
+    if (json_hal_client_send_and_get_reply_with_timeout(jrequest, HAL_SEND_AND_REPLY_TIMEOUT, &jreply_msg) != RETURN_OK)
     {
         fprintf(stderr,"%s - %d Failed to get reply for the json request \n", __FUNCTION__, __LINE__);
         // Free json objects.
@@ -751,7 +753,7 @@ ANSC_STATUS TelcoVoiceMgrHal_GetCallLogData(PTELCOVOICEMGR_DML_VOICESERVICE pDml
 
     CHECK(jrequest != NULL);
 
-    if (json_hal_client_send_and_get_reply(jrequest, &jreply_msg) != RETURN_OK)
+    if (json_hal_client_send_and_get_reply_with_timeout(jrequest, HAL_SEND_AND_REPLY_TIMEOUT, &jreply_msg) != RETURN_OK)
     {
         fprintf(stderr,"%s - %d Failed to get reply for the json request \n", __FUNCTION__, __LINE__);
         // Free json objects.
@@ -803,7 +805,7 @@ ANSC_STATUS TelcoVoiceMgrHal_GetCapabilities(PTELCOVOICEMGR_DML_CAPABILITIES pCa
 
     CHECK(jrequest != NULL);
 
-    if (json_hal_client_send_and_get_reply(jrequest, &jreply_msg) != RETURN_OK)
+    if (json_hal_client_send_and_get_reply_with_timeout(jrequest, HAL_SEND_AND_REPLY_TIMEOUT, &jreply_msg) != RETURN_OK)
     {
         fprintf(stderr,"%s - %d Failed to get reply for the json request \n", __FUNCTION__, __LINE__);
         // Free json objects.
@@ -868,7 +870,7 @@ ANSC_STATUS TelcoVoiceMgrHal_GetVoiceProfile(DML_PROFILE_LIST_T* pVoiceProfileLi
 
     CHECK(jrequest != NULL);
 
-    if (json_hal_client_send_and_get_reply(jrequest, &jreply_msg) != RETURN_OK)
+    if (json_hal_client_send_and_get_reply_with_timeout(jrequest, HAL_SEND_AND_REPLY_TIMEOUT, &jreply_msg) != RETURN_OK)
     {
         fprintf(stderr,"%s - %d Failed to get reply for the json request \n", __FUNCTION__, __LINE__);
         // Free json objects.
@@ -931,7 +933,7 @@ ANSC_STATUS TelcoVoiceMgrHal_GetPhyInterface(DML_PHYINTERFACE_LIST_T* pPhyInterf
 
     CHECK(jrequest != NULL);
 
-    if (json_hal_client_send_and_get_reply(jrequest, &jreply_msg) != RETURN_OK)
+    if (json_hal_client_send_and_get_reply_with_timeout(jrequest, HAL_SEND_AND_REPLY_TIMEOUT, &jreply_msg) != RETURN_OK)
     {
         fprintf(stderr,"%s - %d Failed to get reply for the json request \n", __FUNCTION__, __LINE__);
         // Free json objects.
