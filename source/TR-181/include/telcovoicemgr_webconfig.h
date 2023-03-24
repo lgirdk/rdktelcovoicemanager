@@ -42,6 +42,7 @@
 #define BUFFER_LENGTH_32                32
 #define BUFFER_LENGTH_64                64
 #define BUFFER_LENGTH_128               128
+#define BUFFER_LENGTH_389               389
 #define BUFFER_LENGTH_256               256
 #define BUFFER_LENGTH_512               512
 #define BUFFER_LENGTH_1024              1024
@@ -185,13 +186,13 @@ typedef struct
     unsigned int            uiSipClientInstanceNumber;
     unsigned char           SIPClientEnable;
     unsigned char           IsSIPClientEnablePresent;
-    char                    SIPClientNetwork[BUFFER_LENGTH_64];
+    char                    SIPClientNetwork[BUFFER_LENGTH_256];
     unsigned char           IsSIPClientNetworkPresent;
-    char                    SIPAuthUserName[BUFFER_LENGTH_64];
+    char                    SIPAuthUserName[BUFFER_LENGTH_128];
     unsigned char           IsSIPAuthUserNamePresent;
-    char                    SIPAuthPassword[BUFFER_LENGTH_64];
+    char                    SIPAuthPassword[BUFFER_LENGTH_128];
     unsigned char           IsSIPAuthPasswordPresent;
-    char                    SIPURI[BUFFER_LENGTH_32];
+    char                    SIPURI[BUFFER_LENGTH_389];
     unsigned char           IsSIPURIPresent;
 } WebConfig_SipClientTable_t;
 
@@ -229,9 +230,9 @@ typedef struct
     unsigned char           IsPhoneCallerIDEnablePresent;
     char                    DirectoryNumber[BUFFER_LENGTH_32];
     unsigned char           IsDirectoryNumberPresent;
-    char                    LineProvider[BUFFER_LENGTH_32];
+    char                    LineProvider[BUFFER_LENGTH_256];
     unsigned char           IsLineProviderPresent;
-    char                    LineCallingFeatures[BUFFER_LENGTH_32];
+    char                    LineCallingFeatures[BUFFER_LENGTH_256];
     unsigned char           IsLineCallingFeaturesPresent;
     unsigned char           LineEnable;
     unsigned char           IsLineEnablePresent;
