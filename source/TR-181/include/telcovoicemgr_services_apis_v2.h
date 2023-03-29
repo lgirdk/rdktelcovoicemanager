@@ -2438,7 +2438,6 @@ typedef struct _DML_CALLLOG_SESSION_VOICEQUALITY
     CHAR        VoIPQualityIndicator[STR_LEN_256];
     CHAR        WorstVoIPQualityIndicatorsValues[STR_LEN_256];
     CHAR        WorstVoIPQualityIndicatorTimestamps[STR_LEN_256];
-    UINT        X_RDK_MOS;
 } DML_CALLLOG_SESSION_VOICEQUALITY,*PDML_CALLLOG_SESSION_VOICEQUALITY;
 
 typedef struct _DML_CALLLOG_SESSION_SOURCE
@@ -2455,6 +2454,13 @@ typedef struct _DML_CALLLOG_SESSION_DESTINATION
     DML_CALLLOG_SESSION_VOICEQUALITY    VoiceQuality;
 } DML_CALLLOG_SESSION_DESTINATION,*PDML_CALLLOG_SESSION_DESTINATION;
 
+typedef struct _DML_CALLLOG_SESSION_STATS
+{
+    ULONG      MOSCQScore;
+    ULONG      MOSLQScore;
+    ULONG      RFactor;
+} DML_CALLLOG_SESSION_STATS,*PDML_CALLLOG_SESSION_STATS;
+
 typedef  struct _DML_CALLLOG_SESSION
  {
     ULONG                           uInstanceNumber;
@@ -2466,6 +2472,7 @@ typedef  struct _DML_CALLLOG_SESSION
     CHAR                            SessionID[STR_LEN_16];
     DML_CALLLOG_SESSION_SOURCE      Source;
     DML_CALLLOG_SESSION_DESTINATION Destination;
+    DML_CALLLOG_SESSION_STATS       Stats;
  } DML_CALLLOG_SESSION,*PDML_CALLLOG_SESSION;
 
 typedef  struct _DML_CALLLOG_SESSION_CTRL

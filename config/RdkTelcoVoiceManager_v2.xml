@@ -4979,6 +4979,30 @@
                     </parameter>
                 </parameters>
                 <objects>
+                <object>
+                    <name>X_RDKCENTRAL-COM_Stats</name>
+                    <objectType>object</objectType>
+                    <functions>
+                        <func_GetParamUlongValue>TelcoVoiceMgrDml_CallLogList_SessionList_Stats_GetParamUlongValue</func_GetParamUlongValue>
+                    </functions>
+                    <parameters>
+                        <parameter>
+                            <name>MOSCQScore</name>
+                            <type>unsignedInt</type>
+                            <syntax>uint32</syntax>
+                        </parameter>
+                        <parameter>
+                            <name>MOSLQScore</name>
+                            <type>unsignedInt</type>
+                            <syntax>uint32</syntax>
+                        </parameter>
+                        <parameter>
+                            <name>RFactor</name>
+                            <type>unsignedInt</type>
+                            <syntax>uint32</syntax>
+                        </parameter>
+                    </parameters>
+                </object>
                <object>
                    <name>Source</name>
                    <objectType>object</objectType>
@@ -5209,11 +5233,6 @@
                                 <name>WorstVoIPQualityIndicatorTimestamps</name>
                                 <type>String(255)</type>
                                 <syntax>string</syntax>
-                            </parameter>
-                            <parameter>
-                                <name>X_RDK_MOS</name>
-                                <type>unsignedInt</type>
-                                <syntax>uint32</syntax>
                             </parameter>
                         </parameters>
                     </object>

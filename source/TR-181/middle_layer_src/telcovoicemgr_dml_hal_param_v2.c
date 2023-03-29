@@ -8639,7 +8639,25 @@ ANSC_STATUS Map_hal_dml_CallLog(PTELCOVOICEMGR_DML_VOICESERVICE pVoiceService, c
 
         pCallLogSession->pParentVoiceService = pVoiceService;
 
-        if( strstr(ParamName, "Source.RTP") )
+        if(( strstr(ParamName, "X_RDKCENTRAL-COM_Stats") ))
+        {
+            if( strstr(ParamName, "MOSCQScore") )
+            {
+                //VoiceService.{i}.CallLog.{i}.Session.{i}.X_RDKCENTRAL-COM_Stats.MOSCQScore
+                pCallLogSession->Stats.MOSCQScore = strtoul(pValue,&err, 10);
+            }
+            else if( strstr(ParamName, "MOSLQScore") )
+            {
+                //VoiceService.{i}.CallLog.{i}.Session.{i}.X_RDKCENTRAL-COM_Stats.MOSLQScore
+                pCallLogSession->Stats.MOSLQScore = strtoul(pValue,&err, 10);
+            }
+            else if( strstr(ParamName, "RFactor") )
+            {
+               //VoiceService.{i}.CallLog.{i}.Session.{i}.X_RDKCENTRAL-COM_Stats.RFactor
+                pCallLogSession->Stats.RFactor = strtoul(pValue,&err, 10);
+            }
+        }
+        else if( strstr(ParamName, "Source.RTP") )
         {
             PDML_CALLLOG_SESSION_SOURCE pCallLogSessionSrc = &(pCallLogSession->Source);
             //VoiceService.{i}.CallLog.{i}.Session.{i}.Source.
@@ -8881,11 +8899,6 @@ ANSC_STATUS Map_hal_dml_CallLog(PTELCOVOICEMGR_DML_VOICESERVICE pVoiceService, c
             {
                 //VoiceService.{i}.CallLog.{i}.Session.{i}.Source.VoiceQuality.VoIPQualityIndicator
                 strncpy(pCallLogSessSrcVoipVQ->VoIPQualityIndicator, pValue,strlen(pValue)+1);
-            }
-            else if( strstr(ParamName, "X_RDK_MOS") )
-            {
-                //VoiceService.{i}.CallLog.{i}.Session.{i}.Source.VoiceQuality.X_RDK_MOS
-                pCallLogSessSrcVoipVQ->X_RDK_MOS = strtoul(pValue,&err, 10);
             }
             else
             {

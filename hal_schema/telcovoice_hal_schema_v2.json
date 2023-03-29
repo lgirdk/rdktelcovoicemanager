@@ -556,6 +556,9 @@
         { "$ref": "#/definitions/voiceServiceCallLogSessionStart" },
         { "$ref": "#/definitions/voiceServiceCallLogSessionDuration" },
         { "$ref": "#/definitions/voiceServiceCallLogSessionSessionID" },
+        { "$ref": "#/definitions/voiceServiceCallLogSessionStatsMOSCQScore" },
+        { "$ref": "#/definitions/voiceServiceCallLogSessionStatsMOSLQScore" },
+        { "$ref": "#/definitions/voiceServiceCallLogSessionSessionRFactor" },
         { "$ref": "#/definitions/voiceServiceCallLogSessionSourceRTPFarEndIPAddress" },
         { "$ref": "#/definitions/voiceServiceCallLogSessionSourceRTPFarEndUDPPort" },
         { "$ref": "#/definitions/voiceServiceCallLogSessionSourceRTPLocalUDPPort" },
@@ -583,7 +586,6 @@
         { "$ref": "#/definitions/voiceServiceCallLogSessionSourceVoiceQualityVoIPQualityIndicator" },
         { "$ref": "#/definitions/voiceServiceCallLogSessionSourceVoiceQualityWorstVoIPQualityIndicatorsValues" },
         { "$ref": "#/definitions/voiceServiceCallLogSessionSourceVoiceQualityWorstVoIPQualityIndicatorTimestamps" },
-        { "$ref": "#/definitions/voiceServiceCallLogSessionSourceVoiceQualityX_RDK_MOS" },
         { "$ref": "#/definitions/voiceServiceCallLogSessionDestinationRTPFarEndIPAddress" },
         { "$ref": "#/definitions/voiceServiceCallLogSessionDestinationRTPFarEndUDPPort" },
         { "$ref": "#/definitions/voiceServiceCallLogSessionDestinationRTPLocalUDPPort" },
@@ -665,6 +667,7 @@
         { "$ref": "#/definitions/voiceService" },
         { "$ref": "#/definitions/voiceServiceCallLog" },
         { "$ref": "#/definitions/voiceServiceCallLogSession" },
+        { "$ref": "#/definitions/voiceServiceCallLogSessionX_RDKCENTRAL-COM_Stats" },
         { "$ref": "#/definitions/voiceServiceCallLogSessionSourceRTP" },
         { "$ref": "#/definitions/voiceServiceCallLogSessionSourceDSP" },
         { "$ref": "#/definitions/voiceServiceCallLogSessionSourceDSPReceiveCodec" },
@@ -13491,6 +13494,77 @@
         }
       }
     },
+    "voiceServiceCallLogSessionX_RDKCENTRAL-COM_Stats": {
+      "description": "The VoiceQuality of session. (Access = Read-Only)",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^Device\\.Services\\.VoiceService\\.\\d+\\.CallLog\\.\\d+\\.Session\\.\\d+\\.X_RDKCENTRAL-COM_Stats\\.$"
+        }
+      }
+    },
+    "voiceServiceCallLogSessionStatsMOSCQScore": {
+      "description": "unsigned integer (value 0 to 65535), representing the VoIP call MOSCQ value. (Access = Read-Only)",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^Device\\.Services\\.VoiceService\\.\\d+\\.CallLog\\.\\d+\\.Session\\.\\d+\\.X_RDKCENTRAL-COM_Stats\\.MOSCQScore$"
+        },
+        "type": {
+          "type": "string",
+          "const": "unsignedInt"
+        },
+        "value": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 65535
+        }
+      }
+    },
+    "voiceServiceCallLogSessionStatsMOSLQScore": {
+      "description": "unsigned integer (value 0 to 65535), representing the VoIP call MOSLQ value. (Access = Read-Only)",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^Device\\.Services\\.VoiceService\\.\\d+\\.CallLog\\.\\d+\\.Session\\.\\d+\\.X_RDKCENTRAL-COM_Stats\\.MOSLQScore$"
+        },
+        "type": {
+          "type": "string",
+          "const": "unsignedInt"
+        },
+        "value": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 65535
+        }
+      }
+    },
+    "voiceServiceCallLogSessionStatsRFactor": {
+      "description": "unsigned integer (value 0 to 65535), representing the VoIP call RFactor value. (Access = Read-Only)",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^Device\\.Services\\.VoiceService\\.\\d+\\.CallLog\\.\\d+\\.Session\\.\\d+\\.X_RDKCENTRAL-COM_Stats\\.RFactor$"
+        },
+        "type": {
+          "type": "string",
+          "const": "unsignedInt"
+        },
+        "value": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 65535
+        }
+      }
+    },
     "voiceServiceCallLogSessionSource": {
       "description": "The source of the session information within one call. (Access = Read-Only)",
       "type": "object",
@@ -14240,26 +14314,6 @@
         "value": {
           "type": "string",
           "maxLength": 256
-        }
-      }
-    },
-    "voiceServiceCallLogSessionSourceVoiceQualityX_RDK_MOS": {
-      "description": "unsigned integer (value 0 to 65535), representing the VoIP call MOS value. (Access = Read-Only)",
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "name": {
-          "type": "string",
-          "pattern": "^Device\\.Services\\.VoiceService\\.\\d+\\.CallLog\\.\\d+\\.Session\\.\\d+\\.Source\\.VoiceQuality\\.X_RDK_MOS$"
-        },
-        "type": {
-          "type": "string",
-          "const": "unsignedInt"
-        },
-        "value": {
-          "type": "integer",
-          "minimum": 0,
-          "maximum": 65535
         }
       }
     },

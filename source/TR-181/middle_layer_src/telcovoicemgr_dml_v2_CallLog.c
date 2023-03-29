@@ -2379,29 +2379,7 @@ ULONG TelcoVoiceMgrDml_CallLogList_SessionList_source_VoiceQuality_GetParamUlong
 
     TELCOVOICEMGR_UNLOCK()
 
-    if( AnscEqualString(ParamName, "X_RDK_MOS", TRUE) )
-    {
-        //Fetch status from voice stack
-        hal_param_t req_param;
-        memset(&req_param, 0, sizeof(req_param));
-        snprintf(req_param.name, sizeof(req_param.name), DML_VOICESERVICE_CALLLOG_SESSION_SOURCE_VOICEQUALITY"%s", uVsIndex, uCallLogIndex, uSessionIndex, ParamName);
-        if (ANSC_STATUS_SUCCESS == TelcoVoiceHal_GetSingleParameter(&req_param))
-        {
-            *puLong = strtoul(req_param.value,NULL,10);
-        }
-        else
-        {
-            CcspTraceError(("%s:%d:: Failed \n", __FUNCTION__, __LINE__));
-            *puLong = 0;
-        }
-        ret = TRUE;
-    }
-    else
-    {
-        CcspTraceWarning(("%s: Unsupported parameter '%s'\n", __func__,ParamName));
-    }
-
-    return ret;
+    return TRUE;
 }
 
 /**********************************************************************
@@ -3138,6 +3116,98 @@ ULONG TelcoVoiceMgrDml_CallLogList_SessionList_Dest_VoiceQuality_GetParamStringV
     }
 
     TELCOVOICEMGR_UNLOCK()
+
+    return ret;
+}
+
+/**********************************************************************
+
+    caller:     owner of this object
+
+    prototype:
+
+        BOOL TelcoVoiceMgrDml_CallLogList_SessionList_Stats_GetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, ULONG* puLong);
+
+    description:
+
+        This function is called to retrieve ULONG parameter value;
+
+    argument:   ANSC_HANDLE                 hInsContext,
+                The instance handle;
+
+                char*                       ParamName,
+                The parameter name;
+
+                ULONG*                      puLong
+                The buffer of returned ULONG value;
+
+    return:     TRUE if succeeded.
+
+**********************************************************************/
+
+BOOL TelcoVoiceMgrDml_CallLogList_SessionList_Stats_GetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, ULONG* puLong)
+{
+    BOOL ret = FALSE;
+    ULONG uVsIndex  = 0, uCallLogIndex = 0, uSessionIndex = 0;
+    PTELCOVOICEMGR_DML_VOICESERVICE pDmlVoiceService = NULL;
+    PDML_CALLLOG pDmlCallLog  = NULL;
+
+    if(ParamName == NULL || puLong == NULL)
+    {
+        CcspTraceWarning(("%s: Invalid Input Parameter [NULL]\n", __func__));
+        return ret;
+    }
+
+    TELCOVOICEMGR_LOCK_OR_EXIT()
+
+    PDML_CALLLOG_SESSION_CTRL_T pCallLogSessionCtrl = (PDML_CALLLOG_SESSION_CTRL_T)hInsContext;
+
+    PDML_CALLLOG_SESSION pDmlCallLogSession = &(pCallLogSessionCtrl->dml);
+
+    PDML_CALLLOG_SESSION_STATS pHEAD = &(pDmlCallLogSession->Stats);
+
+    pDmlVoiceService = (PTELCOVOICEMGR_DML_VOICESERVICE)pDmlCallLogSession->pParentVoiceService;
+    pDmlCallLog = (PDML_CALLLOG)pDmlCallLogSession->pParentCallLog;
+    uVsIndex = pDmlVoiceService->InstanceNumber;
+    uCallLogIndex = pDmlCallLog->uInstanceNumber;
+    uSessionIndex = pDmlCallLogSession->uInstanceNumber;
+
+    TELCOVOICEMGR_UNLOCK()
+
+    //Fetch status from voice stack
+    hal_param_t req_param;
+    memset(&req_param, 0, sizeof(req_param));
+    snprintf(req_param.name, sizeof(req_param.name), DML_VOICESERVICE_CALLLOG_SESSION_STATS_PARAM_NAME"%s", uVsIndex, uCallLogIndex, uSessionIndex, ParamName);
+
+    if (strcmp(ParamName, "MOSCQScore") == 0)
+    {
+        ret = TRUE;
+    }
+    else if (strcmp(ParamName, "MOSLQScore") == 0)
+    {
+        ret = TRUE;
+    }
+    else if (strcmp(ParamName, "RFactor") == 0)
+    {
+        ret = TRUE;
+    }
+    else
+    {
+        CcspTraceWarning(("%s: Unsupported parameter '%s'\n", __func__,ParamName));
+    }
+
+    if(ret == TRUE)
+    {
+        if (ANSC_STATUS_SUCCESS == TelcoVoiceHal_GetSingleParameter(&req_param))
+        {
+            *puLong = strtoul(req_param.value,NULL,10);
+        }
+        else
+        {
+            CcspTraceError(("%s:%d:: Failed \n", __FUNCTION__, __LINE__));
+            *puLong = 0;
+        }
+    }
 
     return ret;
 }

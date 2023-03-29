@@ -1283,6 +1283,8 @@ BOOL TelcoVoiceMgrDml_CallLogList_SessionList_Dest_DSP_TxCodec_GetParamBoolValue
 
 ULONG TelcoVoiceMgrDml_CallLogList_SessionList_Dest_VoiceQuality_GetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, char* pValue, ULONG* pulSize);
 
+BOOL TelcoVoiceMgrDml_CallLogList_SessionList_Stats_GetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, ULONG* puLong);
+
 BOOL TelcoVoiceMgrDml_VoipProfileList_IsUpdated(ANSC_HANDLE hInsContext);
 
 ULONG TelcoVoiceMgrDml_VoipProfileList_Synchronize(ANSC_HANDLE hInsContext);
