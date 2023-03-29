@@ -245,6 +245,8 @@ static BOOL IsValidIpAddress(int32_t af, const char* address)
             return FALSE;
         }
     }
+
+    return FALSE;
 }
 
 /***************************************************************************
@@ -2856,7 +2858,7 @@ ANSC_STATUS TelcoVoiceMgrDmlGetSeparateRuleLists(char *prevRtpRuleData, char*cur
     }
 
     // Prepare list of rules to be deleted
-    strncpy(tempBuff, prevRtpRuleData, sizeof(tempBuff));
+    strncpy(tempBuff, prevRtpRuleData, sizeof(tempBuff) - 1);
     pToken = strtok(tempBuff, ";");
     while( pToken != NULL )
     {

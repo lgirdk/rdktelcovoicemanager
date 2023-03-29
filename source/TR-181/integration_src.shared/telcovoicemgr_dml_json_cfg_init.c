@@ -736,15 +736,15 @@ static int32_t jsonCfgSetDigitMap(uint32_t service, uint32_t profile, char * map
     memset(&initParam, 0, sizeof(initParam));
     if(!strcmp(map_type, "X_RDK-Central_COM_DigitMap"))
     {
-       snprintf(initParam.name, sizeof(initParam), PROFILE_TABLE_NAME"%s", service, profile, "X_RDK-Central_COM_DigitMap");
+       snprintf(initParam.name, sizeof(initParam.name), PROFILE_TABLE_NAME"%s", service, profile, "X_RDK-Central_COM_DigitMap");
     }
     else if(!strcmp(map_type, "X_RDK-Central_COM_EmergencyDigitMap"))
     {
-       snprintf(initParam.name, sizeof(initParam), PROFILE_TABLE_NAME"%s", service, profile, "X_RDK-Central_COM_EmergencyDigitMap");  
+       snprintf(initParam.name, sizeof(initParam.name), PROFILE_TABLE_NAME"%s", service, profile, "X_RDK-Central_COM_EmergencyDigitMap");  
     }
     else if(!strcmp(map_type, "DigitMap"))
     {
-       snprintf(initParam.name, sizeof(initParam), PROFILE_TABLE_NAME"%s", service, profile, "DigitMap");
+       snprintf(initParam.name, sizeof(initParam.name), PROFILE_TABLE_NAME"%s", service, profile, "DigitMap");
     }
     else
     {
@@ -760,7 +760,7 @@ static int32_t jsonCfgSetSDigitTimer(uint32_t service, uint32_t profile, uint32_
 {
     fprintf(stderr,"\n%s(%d) - service[%d], profile[%d],value[%d]", __func__, __LINE__,service,profile,value);
     memset(&initParam, 0, sizeof(initParam));
-    snprintf(initParam.name, sizeof(initParam), PROFILE_TABLE_NAME"%s", service, profile, "X_RDK-Central_COM_SDigitTimer");
+    snprintf(initParam.name, sizeof(initParam.name), PROFILE_TABLE_NAME"%s", service, profile, "X_RDK-Central_COM_SDigitTimer");
     snprintf(initParam.value, sizeof(initParam.value), "%lu", value);
     initParam.type = PARAM_UNSIGNED_INTEGER;
     json_hal_add_param(jInitMsg, SET_REQUEST_MESSAGE, &initParam);
@@ -770,7 +770,7 @@ static int32_t jsonCfgSetZDigitTimer(uint32_t service, uint32_t profile,  uint32
 {
     fprintf(stderr,"\n%s(%d) - service[%d], profile[%d], value[%d]", __func__, __LINE__,service,profile,value);
     memset(&initParam, 0, sizeof(initParam));
-    snprintf(initParam.name, sizeof(initParam), PROFILE_TABLE_NAME"%s", service, profile, "X_RDK-Central_COM_ZDigitTimer");
+    snprintf(initParam.name, sizeof(initParam.name), PROFILE_TABLE_NAME"%s", service, profile, "X_RDK-Central_COM_ZDigitTimer");
     snprintf(initParam.value, sizeof(initParam.value), "%lu", value);
     initParam.type = PARAM_UNSIGNED_INTEGER;
     json_hal_add_param(jInitMsg, SET_REQUEST_MESSAGE, &initParam);
@@ -785,7 +785,7 @@ static int32_t jsonCfgSetTestState(uint32_t service, uint32_t phy_interface, cha
 #else
 #define FIELD_NAME "TestState"
 #endif
-    snprintf(initParam.name, sizeof(initParam), PHYINTERFACE_TABLE_NAME"%s", service, phy_interface, FIELD_NAME);
+    snprintf(initParam.name, sizeof(initParam.name), PHYINTERFACE_TABLE_NAME"%s", service, phy_interface, FIELD_NAME);
     snprintf(initParam.value, sizeof(initParam.value), "%s", value);
     initParam.type = PARAM_STRING;
     json_hal_add_param(jInitMsg, SET_REQUEST_MESSAGE, &initParam);
@@ -795,7 +795,7 @@ static int32_t jsonCfgSetTestSelector(uint32_t service, uint32_t phy_interface, 
 {
     fprintf(stderr,"\n%s(%d) - service[%d], phy_interface[%d], value[%s]", __func__, __LINE__,service,phy_interface,value);
     memset(&initParam, 0, sizeof(initParam));
-    snprintf(initParam.name, sizeof(initParam), PHYINTERFACE_TABLE_NAME"%s", service, phy_interface, "TestSelector");
+    snprintf(initParam.name, sizeof(initParam.name), PHYINTERFACE_TABLE_NAME"%s", service, phy_interface, "TestSelector");
     snprintf(initParam.value, sizeof(initParam.value), "%s", value);
     initParam.type = PARAM_STRING;
     json_hal_add_param(jInitMsg, SET_REQUEST_MESSAGE, &initParam);
@@ -805,7 +805,7 @@ static int32_t jsonCfgSetBoundIfName(uint32_t service, const char *value)
 {
     fprintf(stderr,"\n%s(%d) - service[%d], value[%s]", __func__, __LINE__,service,value);
     memset(&initParam, 0, sizeof(initParam));
-    snprintf(initParam.name, sizeof(initParam), VOICE_SERVICE_TABLE_NAME"%s", service, "X_RDK_BoundIfName");
+    snprintf(initParam.name, sizeof(initParam.name), VOICE_SERVICE_TABLE_NAME"%s", service, "X_RDK_BoundIfName");
     snprintf(initParam.value, sizeof(initParam.value), "%s", value);
     initParam.type = PARAM_STRING;
     json_hal_add_param(jInitMsg, SET_REQUEST_MESSAGE, &initParam);
@@ -816,7 +816,7 @@ static int32_t jsonCfgSetIpAddressFamily(uint32_t service, const char *value)
 {
     fprintf(stderr,"\n%s(%d) - service[%d], value[%s]", __func__, __LINE__,service,value);
     memset(&initParam, 0, sizeof(initParam));
-    snprintf(initParam.name, sizeof(initParam), VOICE_SERVICE_TABLE_NAME"%s", service, "X_RDK_IpAddressFamily");
+    snprintf(initParam.name, sizeof(initParam.name), VOICE_SERVICE_TABLE_NAME"%s", service, "X_RDK_IpAddressFamily");
     snprintf(initParam.value, sizeof(initParam.value), "%s", value);
     initParam.type = PARAM_STRING;
     json_hal_add_param(jInitMsg, SET_REQUEST_MESSAGE, &initParam);
@@ -828,7 +828,7 @@ static int32_t jsonCfgDoDisableLoopCurrent(uint32_t service, const char *value)
 {
     fprintf(stderr,"\n%s(%d) - service[%d],  value[%s]", __func__, __LINE__,service,value);
     memset(&initParam, 0, sizeof(initParam));
-    snprintf(initParam.name, sizeof(initParam), VOICE_SERVICE_TABLE_NAME"%s", service, "X_RDK_DisableLoopCurrentUntilRegistered");
+    snprintf(initParam.name, sizeof(initParam.name), VOICE_SERVICE_TABLE_NAME"%s", service, "X_RDK_DisableLoopCurrentUntilRegistered");
     snprintf(initParam.value, sizeof(initParam.value), "%s", value);
     initParam.type = PARAM_BOOLEAN;
     json_hal_add_param(jInitMsg, SET_REQUEST_MESSAGE, &initParam);
@@ -922,7 +922,7 @@ static int32_t jsonCfgSetCCTKTraceGroup(uint32_t service, const char *value)
 {
     fprintf(stderr,"\n%s(%d) - service[%d], value[%s]", __func__, __LINE__,service,value);
     memset(&initParam, 0, sizeof(initParam));
-    snprintf(initParam.name, sizeof(initParam), X_RDK_DEBUG_TABLE_NAME"%s", service, "CCTKTraceGroup");
+    snprintf(initParam.name, sizeof(initParam.name), X_RDK_DEBUG_TABLE_NAME"%s", service, "CCTKTraceGroup");
     snprintf(initParam.value, sizeof(initParam.value), "%s", value);
     initParam.type = PARAM_STRING;
     json_hal_add_param(jInitMsg, SET_REQUEST_MESSAGE, &initParam);
@@ -932,7 +932,7 @@ static int32_t jsonCfgSetCCTKTraceLevel(uint32_t service, const char *value)
 {
     fprintf(stderr,"\n%s(%d) - service[%d],  value[%s]", __func__, __LINE__,service,value);
     memset(&initParam, 0, sizeof(initParam));
-    snprintf(initParam.name, sizeof(initParam), X_RDK_DEBUG_TABLE_NAME"%s", service, "CCTKTraceLevel");
+    snprintf(initParam.name, sizeof(initParam.name), X_RDK_DEBUG_TABLE_NAME"%s", service, "CCTKTraceLevel");
     snprintf(initParam.value, sizeof(initParam.value), "%s", value);
     initParam.type = PARAM_STRING;
     json_hal_add_param(jInitMsg, SET_REQUEST_MESSAGE, &initParam);
@@ -942,7 +942,7 @@ static int32_t jsonCfgSetModuleLogLevels(uint32_t service, const char *value)
 {
     fprintf(stderr,"\n%s(%d) - service[%d],  value[%s]", __func__, __LINE__,service,value);
     memset(&initParam, 0, sizeof(initParam));
-    snprintf(initParam.name, sizeof(initParam), X_RDK_DEBUG_TABLE_NAME"%s", service, "ModuleLogLevels");
+    snprintf(initParam.name, sizeof(initParam.name), X_RDK_DEBUG_TABLE_NAME"%s", service, "ModuleLogLevels");
     snprintf(initParam.value, sizeof(initParam.value), "%s", value);
     initParam.type = PARAM_STRING;
     json_hal_add_param(jInitMsg, SET_REQUEST_MESSAGE, &initParam);
@@ -952,7 +952,7 @@ static int32_t jsonCfgSetLogServer(uint32_t service, const char *value)
 {
     fprintf(stderr,"\n%s(%d) - service[%d],value[%s]", __func__, __LINE__,service, value);
     memset(&initParam, 0, sizeof(initParam));
-    snprintf(initParam.name, sizeof(initParam), X_RDK_DEBUG_TABLE_NAME"%s", service, "LogServer");
+    snprintf(initParam.name, sizeof(initParam.name), X_RDK_DEBUG_TABLE_NAME"%s", service, "LogServer");
     snprintf(initParam.value, sizeof(initParam.value), "%s", value);
     initParam.type = PARAM_STRING;
     json_hal_add_param(jInitMsg, SET_REQUEST_MESSAGE, &initParam);
@@ -962,7 +962,7 @@ static int32_t jsonCfgSetLogServerPort(uint32_t service, uint32_t value)
 {
     fprintf(stderr,"\n%s(%d) - service[%d],value[%lu]", __func__, __LINE__,service,value);
     memset(&initParam, 0, sizeof(initParam));
-    snprintf(initParam.name, sizeof(initParam), X_RDK_DEBUG_TABLE_NAME"%s", service, "LogServerPort");
+    snprintf(initParam.name, sizeof(initParam.name), X_RDK_DEBUG_TABLE_NAME"%s", service, "LogServerPort");
     snprintf(initParam.value, sizeof(initParam.value), "%lu", value);
     initParam.type = PARAM_UNSIGNED_INTEGER;
     json_hal_add_param(jInitMsg, SET_REQUEST_MESSAGE, &initParam);
@@ -1301,9 +1301,9 @@ static int32_t jsonCfgSetDirectoryNumber(uint32_t service, uint32_t profile, uin
     fprintf(stderr,"\n%s(%d) - service[%d], profile[%d], value[%s]", __func__, __LINE__,service,profile,value);
     memset(&initParam, 0, sizeof(initParam));
 #ifdef FEATURE_RDKB_VOICE_DM_TR104_V2
-    snprintf(initParam.name, sizeof(initParam), LINE_TABLE_NAME"%s", service, line, "DirectoryNumber");
+    snprintf(initParam.name, sizeof(initParam.name), LINE_TABLE_NAME"%s", service, line, "DirectoryNumber");
 #else
-    snprintf(initParam.name, sizeof(initParam), LINE_TABLE_NAME"%s", service, profile, line, "DirectoryNumber");
+    snprintf(initParam.name, sizeof(initParam.name), LINE_TABLE_NAME"%s", service, profile, line, "DirectoryNumber");
 #endif
     snprintf(initParam.value, sizeof(initParam.value), "%s", value);
     initParam.type = PARAM_STRING;
@@ -1472,9 +1472,9 @@ int32_t jsonParseUserName(uint32_t service, uint32_t profile, uint32_t line, cha
     fprintf(stderr,"\n%s(%d) - service[%d], profile[%d], value[%s]", __func__, __LINE__,service,profile,value);
     memset(&initParam, 0, sizeof(initParam));
 #ifdef FEATURE_RDKB_VOICE_DM_TR104_V2
-    snprintf(initParam.name, sizeof(initParam), LINE_SIP_TABLE_NAME"%s", service, line, "RegisterURI");
+    snprintf(initParam.name, sizeof(initParam.name), LINE_SIP_TABLE_NAME"%s", service, line, "RegisterURI");
 #else
-    snprintf(initParam.name, sizeof(initParam), LINE_SIP_TABLE_NAME"%s", service, profile, line, "URI");
+    snprintf(initParam.name, sizeof(initParam.name), LINE_SIP_TABLE_NAME"%s", service, profile, line, "URI");
 #endif
     snprintf(initParam.value, sizeof(initParam.value), "%s", value);
     initParam.type = PARAM_STRING;
@@ -1562,7 +1562,7 @@ static int32_t jsonCfgSetOutboundProxy(uint32_t service, uint32_t profile, const
 {
     fprintf(stderr,"\n%s(%d) - service[%d], profile[%d], value[%s]", __func__, __LINE__,service,profile,value);
     memset(&initParam, 0, sizeof(initParam));
-    snprintf(initParam.name, sizeof(initParam), SIP_TABLE_NAME"%s", service, profile, "OutboundProxy");
+    snprintf(initParam.name, sizeof(initParam.name), SIP_TABLE_NAME"%s", service, profile, "OutboundProxy");
     snprintf(initParam.value, sizeof(initParam.value), "%s", value);
     initParam.type = PARAM_STRING;
     json_hal_add_param(jInitMsg, SET_REQUEST_MESSAGE, &initParam);
@@ -1573,7 +1573,7 @@ static int32_t jsonCfgSetOutboundProxyPort(uint32_t service, uint32_t profile, c
 {
     fprintf(stderr,"\n%s(%d) - service[%d], profile[%d], value[%d]", __func__, __LINE__,service,profile,value);
     memset(&initParam, 0, sizeof(initParam));
-    snprintf(initParam.name, sizeof(initParam), SIP_TABLE_NAME"%s", service, profile, "OutboundProxyPort");
+    snprintf(initParam.name, sizeof(initParam.name), SIP_TABLE_NAME"%s", service, profile, "OutboundProxyPort");
     snprintf(initParam.value, sizeof(initParam.value), "%lu", value);
     initParam.type = PARAM_UNSIGNED_INTEGER;
     json_hal_add_param(jInitMsg, SET_REQUEST_MESSAGE, &initParam);
@@ -1583,7 +1583,7 @@ static int32_t jsonCfgSetProxyServer(uint32_t service, uint32_t profile, const c
 {
     fprintf(stderr,"\n%s(%d) - service[%d], profile[%d], value[%s]", __func__, __LINE__,service,profile,value);
     memset(&initParam, 0, sizeof(initParam));
-    snprintf(initParam.name, sizeof(initParam), SIP_TABLE_NAME"%s", service, profile, "ProxyServer");
+    snprintf(initParam.name, sizeof(initParam.name), SIP_TABLE_NAME"%s", service, profile, "ProxyServer");
     snprintf(initParam.value, sizeof(initParam.value), "%s", value);
     initParam.type = PARAM_STRING;
     json_hal_add_param(jInitMsg, SET_REQUEST_MESSAGE, &initParam);
@@ -1593,7 +1593,7 @@ static int32_t jsonCfgSetProxyServerPort(uint32_t service, uint32_t profile, con
 {
     fprintf(stderr,"\n%s(%d) - service[%d], profile[%d], value[%d]", __func__, __LINE__,service,profile,value);
     memset(&initParam, 0, sizeof(initParam));
-    snprintf(initParam.name, sizeof(initParam), SIP_TABLE_NAME"%s", service, profile, "ProxyServerPort");
+    snprintf(initParam.name, sizeof(initParam.name), SIP_TABLE_NAME"%s", service, profile, "ProxyServerPort");
     snprintf(initParam.value, sizeof(initParam.value), "%lu", value);
     initParam.type = PARAM_UNSIGNED_INTEGER;
     json_hal_add_param(jInitMsg, SET_REQUEST_MESSAGE, &initParam);
@@ -1603,7 +1603,7 @@ static int32_t jsonCfgSetRegistrarServer(uint32_t service, uint32_t profile, con
 {
     fprintf(stderr,"\n%s(%d) - service[%d], profile[%d], value[%s]", __func__, __LINE__,service,profile,value);
     memset(&initParam, 0, sizeof(initParam));
-    snprintf(initParam.name, sizeof(initParam), SIP_TABLE_NAME"%s", service, profile, "RegistrarServer");
+    snprintf(initParam.name, sizeof(initParam.name), SIP_TABLE_NAME"%s", service, profile, "RegistrarServer");
     snprintf(initParam.value, sizeof(initParam.value), "%s", value);
     initParam.type = PARAM_STRING;
     json_hal_add_param(jInitMsg, SET_REQUEST_MESSAGE, &initParam);
@@ -1613,7 +1613,7 @@ static int32_t jsonCfgSetRegistrarServerPort(uint32_t service, uint32_t profile,
 {
     fprintf(stderr,"\n%s(%d) - service[%d], profile[%d], value[%d]", __func__, __LINE__,service,profile,value);
     memset(&initParam, 0, sizeof(initParam));
-    snprintf(initParam.name, sizeof(initParam), SIP_TABLE_NAME"%s", service, profile, "RegistrarServerPort");
+    snprintf(initParam.name, sizeof(initParam.name), SIP_TABLE_NAME"%s", service, profile, "RegistrarServerPort");
     snprintf(initParam.value, sizeof(initParam.value), "%lu", value);
     initParam.type = PARAM_UNSIGNED_INTEGER;
     json_hal_add_param(jInitMsg, SET_REQUEST_MESSAGE, &initParam);
@@ -1623,7 +1623,7 @@ static int32_t jsonCfgSetUserAgentDomain(uint32_t service, uint32_t profile, con
 {
     fprintf(stderr,"\n%s(%d) - service[%d], profile[%d], value[%s]", __func__, __LINE__,service,profile,value);
     memset(&initParam, 0, sizeof(initParam));
-    snprintf(initParam.name, sizeof(initParam), SIP_TABLE_NAME"%s", service, profile, "UserAgentDomain");
+    snprintf(initParam.name, sizeof(initParam.name), SIP_TABLE_NAME"%s", service, profile, "UserAgentDomain");
     snprintf(initParam.value, sizeof(initParam.value), "%s", value);
     initParam.type = PARAM_STRING;
     json_hal_add_param(jInitMsg, SET_REQUEST_MESSAGE, &initParam);
@@ -1633,7 +1633,7 @@ static int32_t jsonCfgSetConferencingUri(uint32_t service, uint32_t profile, con
 {
     fprintf(stderr,"\n%s(%d) - service[%d], profile[%d], value[%s]", __func__, __LINE__,service,profile,value);
     memset(&initParam, 0, sizeof(initParam));
-    snprintf(initParam.name, sizeof(initParam), SIP_TABLE_NAME"%s", service, profile, "X_RDK-Central_COM_ConferencingURI");
+    snprintf(initParam.name, sizeof(initParam.name), SIP_TABLE_NAME"%s", service, profile, "X_RDK-Central_COM_ConferencingURI");
     snprintf(initParam.value, sizeof(initParam.value), "%s", value);
     initParam.type = PARAM_STRING;
     json_hal_add_param(jInitMsg, SET_REQUEST_MESSAGE, &initParam);
@@ -1643,7 +1643,7 @@ static int32_t jsonCfgSetEnablePrackRequired(uint32_t service, uint32_t profile,
 {
     fprintf(stderr,"\n%s(%d) - service[%d], profile[%d], value[%d]", __func__, __LINE__,service,profile,value);
     memset(&initParam, 0, sizeof(initParam));
-    snprintf(initParam.name, sizeof(initParam), SIP_TABLE_NAME"%s", service, profile, "X_RDK_PRACKRequired");
+    snprintf(initParam.name, sizeof(initParam.name), SIP_TABLE_NAME"%s", service, profile, "X_RDK_PRACKRequired");
     if(value)
     {
        snprintf(initParam.value, sizeof(initParam.value), "%s", "true");
@@ -1660,7 +1660,7 @@ static int32_t jsonCfgSetEnableNetworkDisconnect(uint32_t service, uint32_t prof
 {
     fprintf(stderr,"\n%s(%d) - service[%d], profile[%d], value[%d]", __func__, __LINE__,service,profile,value);
     memset(&initParam, 0, sizeof(initParam));
-    snprintf(initParam.name, sizeof(initParam), SIP_TABLE_NAME"%s", service, profile, "X_RDK-Central_COM_NetworkDisconnect");
+    snprintf(initParam.name, sizeof(initParam.name), SIP_TABLE_NAME"%s", service, profile, "X_RDK-Central_COM_NetworkDisconnect");
     if(value)
     {
        snprintf(initParam.value, sizeof(initParam.value), "%s", "true");
@@ -1972,9 +1972,9 @@ static void jsonCfgDoVoiceProcessing(uint32_t service, uint32_t profile, uint32_
         {
             memset(&initParam, 0, sizeof(initParam));
 #ifndef FEATURE_RDKB_VOICE_DM_TR104_V2
-            snprintf(initParam.name, sizeof(initParam), LINE_VOICE_PROCESSING_TABLE_NAME"%s", service+1, profile+1, line+1, "ReceiveGain");
+            snprintf(initParam.name, sizeof(initParam.name), LINE_VOICE_PROCESSING_TABLE_NAME"%s", service+1, profile+1, line+1, "ReceiveGain");
 #else
-            snprintf(initParam.name, sizeof(initParam), LINE_VOICE_PROCESSING_TABLE_NAME"%s", service+1, line+1, "ReceiveGain");
+            snprintf(initParam.name, sizeof(initParam.name), LINE_VOICE_PROCESSING_TABLE_NAME"%s", service+1, line+1, "ReceiveGain");
 #endif
             snprintf(initParam.value, sizeof(initParam.value), "%d", procItem->valueint);
             initParam.type = PARAM_INTEGER;
@@ -1992,9 +1992,9 @@ static void jsonCfgDoVoiceProcessing(uint32_t service, uint32_t profile, uint32_
         {
             memset(&initParam, 0, sizeof(initParam));
 #ifndef FEATURE_RDKB_VOICE_DM_TR104_V2
-            snprintf(initParam.name, sizeof(initParam), LINE_VOICE_PROCESSING_TABLE_NAME"%s", service+1, profile+1, line+1, "TransmitGain");
+            snprintf(initParam.name, sizeof(initParam.name), LINE_VOICE_PROCESSING_TABLE_NAME"%s", service+1, profile+1, line+1, "TransmitGain");
 #else
-            snprintf(initParam.name, sizeof(initParam), LINE_VOICE_PROCESSING_TABLE_NAME"%s", service+1, line+1, "TransmitGain");
+            snprintf(initParam.name, sizeof(initParam.name), LINE_VOICE_PROCESSING_TABLE_NAME"%s", service+1, line+1, "TransmitGain");
 #endif
             snprintf(initParam.value, sizeof(initParam.value), "%d", procItem->valueint);
             initParam.type = PARAM_INTEGER;

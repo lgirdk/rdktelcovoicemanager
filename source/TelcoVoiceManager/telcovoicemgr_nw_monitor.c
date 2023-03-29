@@ -64,7 +64,7 @@
 #define SYSEVENT_FIREWALL_STATUS "firewall-status"
 #define SYSEVENT_FIREWALL_RESTART "firewall-restart"
 #define IP_ADDR_FAMILY_LENGTH 32
-#define BOUND_IF_NAME_LENGTH 32
+#define BOUND_IF_NAME_LENGTH 256
 
 #ifdef FEATURE_RDKB_VOICE_DM_TR104_V2
 // V2 Functionality to update SKB Mark

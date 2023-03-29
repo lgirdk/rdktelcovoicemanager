@@ -652,7 +652,7 @@ avro_writer_t prepare_rt_writer(void)
             CcspTraceInfo(("fread() failed\n"));
             return NULL;
         }
-
+        rt_schema_buffer[lsSize + 1] = '\0';
         CcspTraceInfo(("VOICE REPORT %s : LINE %d rt_schema_buffer = %p\n", __FUNCTION__, __LINE__, rt_schema_buffer));
         fclose(fp);
 

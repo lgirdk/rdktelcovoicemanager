@@ -167,7 +167,6 @@ ANSC_STATUS TelcoVoiceMgrDmlSetDefaultData(TELCOVOICEMGR_DML_DATA* pTelcoVoiceMg
                         {
                             pDmlVoiceProfile->LineList.pdata[uLineIndex] = (DML_LINE_CTRL_T*) AnscAllocateMemory(sizeof(DML_LINE_CTRL_T));
                             DML_LINE_CTRL_T* pLine = pDmlVoiceProfile->LineList.pdata[uLineIndex];
-                            pDmlLine = (PTELCOVOICEMGR_DML_LINE)AnscAllocateMemory( sizeof(TELCOVOICEMGR_DML_LINE));
                             pDmlLine = &(pLine->dml);
                             if ( !pDmlLine )
                             {

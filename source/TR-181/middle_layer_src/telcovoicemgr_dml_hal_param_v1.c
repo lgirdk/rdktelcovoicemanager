@@ -172,6 +172,8 @@ ANSC_STATUS Map_hal_dml_voiceProfile_ServiceProviderInfo(
         AnscTraceError(("%s:%d:: Invalid ParamName[%s] paramValue[%s].\n", __FUNCTION__, __LINE__, childName, pValue));
         return ANSC_STATUS_FAILURE;
     }
+
+    return ANSC_STATUS_FAILURE;
 }
 
 ANSC_STATUS Map_hal_dml_voiceProfile_SIP_EventSubscribe(
@@ -622,6 +624,7 @@ ANSC_STATUS Map_hal_dml_voiceProfileLine_SIP_EventSubscribe(
         return ANSC_STATUS_FAILURE;
     }
 
+    return ANSC_STATUS_FAILURE;
 }
 
 

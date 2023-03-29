@@ -56,7 +56,7 @@
 #define STR_IPV6                               "IPv6"
 
 #define IP_ADDR_FAMILY_LENGTH               32
-#define BOUND_IF_NAME_LENGTH                32
+#define BOUND_IF_NAME_LENGTH                256
 #define JSON_MAX_VAL_ARR_SIZE               256
 #define JSON_MAX_STR_ARR_SIZE               256
 #define IP_ADDR_LENGTH                      64
