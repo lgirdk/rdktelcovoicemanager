@@ -135,7 +135,7 @@ void voicemgr_create_nw_monitor()
         TelcoVoiceMgrDmlGetDataRelease(pTelcoVoiceMgrDmlData);
         return /* ANSC_STATUS_RESOURCES */;
     }
-    if(pDmlVoiceService->X_RDK_BoundIfName != NULL)
+    if(pDmlVoiceService->X_RDK_BoundIfName[0] != '\0')
     {
         CcspTraceWarning(("%s:%d:: boundIfName: %s\n", __FUNCTION__, __LINE__, pDmlVoiceService->X_RDK_BoundIfName));
         AnscCopyString(boundIfName, pDmlVoiceService->X_RDK_BoundIfName);

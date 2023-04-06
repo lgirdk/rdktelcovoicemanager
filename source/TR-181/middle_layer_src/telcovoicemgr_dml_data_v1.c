@@ -424,7 +424,7 @@ ANSC_STATUS TelcoVoiceMgrDmlAddNumberingplanPrefixInfo(DML_NUMBERINGPLAN_PREFIXI
             }
 
             //create new
-            pVoiceProfile_Numberingplan_PrefixInfo_List->pdata[PrefixInfo_index] = (DML_NUMBERINGPLAN_PREFIXINFO_CTRL_T*) AnscAllocateMemory(sizeof(DML_PHYINTERFACE_CTRL_T));
+            pVoiceProfile_Numberingplan_PrefixInfo_List->pdata[PrefixInfo_index] = (DML_NUMBERINGPLAN_PREFIXINFO_CTRL_T*) AnscAllocateMemory(sizeof(DML_NUMBERINGPLAN_PREFIXINFO_CTRL_T));
 
             //set default
             if(pVoiceProfile_Numberingplan_PrefixInfo_List->pdata[PrefixInfo_index] != NULL)
@@ -733,12 +733,12 @@ ANSC_STATUS TelcoVoiceMgrDmlAddVoiceProfileLineRingerEvent(DML_LINE_RINGER_EVENT
             }
 
             //create new
-            pVoiceProfile_Line_Ringer_Event_List->pdata[Event_index] = (DML_LINE_RINGER_PATTERN_CTRL_T*) AnscAllocateMemory(sizeof(DML_LINE_RINGER_PATTERN_CTRL_T));
+            pVoiceProfile_Line_Ringer_Event_List->pdata[Event_index] = (DML_LINE_RINGER_EVENT_CTRL_T*) AnscAllocateMemory(sizeof(DML_LINE_RINGER_EVENT_CTRL_T));
 
             //set default
             if(pVoiceProfile_Line_Ringer_Event_List->pdata[Event_index] != NULL)
             {
-                DML_LINE_RINGER_PATTERN_CTRL_T* pVoiceProfile_Line_Ringer_Event_Data = pVoiceProfile_Line_Ringer_Event_List->pdata[Event_index];
+                DML_LINE_RINGER_EVENT_CTRL_T* pVoiceProfile_Line_Ringer_Event_Data = pVoiceProfile_Line_Ringer_Event_List->pdata[Event_index];
                 pVoiceProfile_Line_Ringer_Event_Data->updated = false;
                 pVoiceProfile_Line_Ringer_Event = &(pVoiceProfile_Line_Ringer_Event_Data->dml);
                 if ( !pVoiceProfile_Line_Ringer_Event )

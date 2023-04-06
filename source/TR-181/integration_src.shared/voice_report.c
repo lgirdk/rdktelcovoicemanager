@@ -623,6 +623,12 @@ avro_writer_t prepare_rt_writer(void)
         /* seek through file and get file size*/
         fseek(fp, 0L, SEEK_END);
         lsSize = ftell(fp);
+        if(lsSize < 0)
+        {
+            fputs("lsSize attain Negative Value", stderr);
+            fclose(fp);
+            return writer;
+        }
         CcspTraceInfo(("VOICE REPORT %s : LINE %d \n", __FUNCTION__, __LINE__));
 
         /*back to the start of the file*/
@@ -772,7 +778,7 @@ static int harvester_report_voice_service(VoiceServiceReportData *head)
 
     avro_value_get_by_name(&adr, "header", &adrField, NULL);
     if (CHK_AVRO_ERR)
-        CcspTraceError(("%s __LINE__\n", avro_strerror(), __LINE__));
+        CcspTraceError(("%s __LINE__ %d\n", avro_strerror(), __LINE__));
     avro_value_get_by_name(&adrField, "uuid", &adrField, NULL);
     avro_value_set_branch(&adrField, 1, &optional);
     if (CHK_AVRO_ERR)
@@ -2247,23 +2253,21 @@ char *getDeviceMac()
 
     while (!strlen(deviceMAC))
     {
-        pthread_mutex_lock(&device_mac_mutex);
-
         char deviceMACValue[32] = {'\0'};
 
         if (strlen(deviceMAC))
         {
-            pthread_mutex_unlock(&device_mac_mutex);
             break;
         }
 
         if (CCSP_SUCCESS == sysevent_get(fd, token, "eth_wan_mac", deviceMACValue, sizeof(deviceMACValue)) == 0 && deviceMACValue[0] != '\0')
         {
+            pthread_mutex_lock(&device_mac_mutex);
             macToLower(deviceMACValue);
+            pthread_mutex_unlock(&device_mac_mutex);
             CcspTraceInfo(("deviceMAC is %s\n", deviceMAC));
         }
 
-        pthread_mutex_unlock(&device_mac_mutex);
     }
 
     //Close sysevent

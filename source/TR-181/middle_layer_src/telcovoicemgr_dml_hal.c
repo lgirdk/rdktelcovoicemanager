@@ -156,7 +156,12 @@ static json_object *create_json_request_message(eActionType request_type, const 
                 case PARAM_STRING:
                 {
                     strncpy(stParam.value,param_val,sizeof(stParam.value)-1);
-                    json_hal_add_param(jrequest, SET_REQUEST_MESSAGE, &stParam);
+                    if(json_hal_add_param(jrequest, SET_REQUEST_MESSAGE, &stParam) != RETURN_OK)
+                    {
+                        FREE_JSON_OBJECT(jrequest);
+                        CcspTraceError(("[%s][%d] json_hal_add_param failed \n", __FUNCTION__, __LINE__));
+                        return NULL;
+                    }
                     break;
                 }
                 default:
@@ -169,7 +174,12 @@ static json_object *create_json_request_message(eActionType request_type, const 
         case GET_REQUEST_MESSAGE:
             jrequest = json_hal_client_get_request_header(GET_PARAMETER_METHOD);
             strncpy(stParam.name, param_name, sizeof(stParam.name)-1);
-            json_hal_add_param(jrequest, GET_REQUEST_MESSAGE, &stParam);
+            if(json_hal_add_param(jrequest, GET_REQUEST_MESSAGE, &stParam) != RETURN_OK)
+            {
+                FREE_JSON_OBJECT(jrequest);
+                CcspTraceError(("[%s][%d] json_hal_add_param failed \n", __FUNCTION__, __LINE__));
+                return NULL;
+            }
             break;
     }
     return jrequest;
@@ -1126,9 +1136,12 @@ static void remove_substring(char *input_string,const char *to_remove)
   if((input_string == NULL) || (to_remove == NULL))
   {
     CcspTraceError(("[%s: %d] Null Param Passed\n", __FUNCTION__, __LINE__));
+    return;
   }
-  while( input_string = strstr(input_string, to_remove) )
+  while( (input_string = strstr(input_string, to_remove)) != NULL )
+  {
     memmove(input_string, input_string+strlen(to_remove), 1+strlen(input_string+strlen(to_remove)));
+  }
 }
 
 /* parse_and_update_rule */

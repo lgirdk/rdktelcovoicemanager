@@ -2446,7 +2446,7 @@ LONG RTCP_GetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, char* pV
             if (!pVoiceProfile || !pValue)
             {
                 CcspTraceError(("%s: NULL Pointer\n", __FUNCTION__));
-                ret = FALSE;
+                return 1;
             }
 
             if (strcmp(ParamName, "LocalCName") == 0)

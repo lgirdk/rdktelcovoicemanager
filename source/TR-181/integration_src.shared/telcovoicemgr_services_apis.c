@@ -263,7 +263,7 @@ static ANSC_STATUS validate_firewall_rule(ULONG port, char *ipAddress, char *ipA
         CcspTraceWarning(("%s Null Value passed\n", __FUNCTION__));
         return ANSC_STATUS_FAILURE;       
     }
-    if((port < 0) || (port > 65535))
+    if(port > 65535)
     {
         CcspTraceWarning(("%s Invalid Port\n", __FUNCTION__));
         return ANSC_STATUS_FAILURE;         

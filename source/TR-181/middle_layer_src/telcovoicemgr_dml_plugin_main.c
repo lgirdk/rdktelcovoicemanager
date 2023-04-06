@@ -1494,6 +1494,7 @@ void ANSC_EXPORT_API TELCOVOICEMGR_Unload(void)
         /* print error trace*/
         g_pTelcoVoiceBEManager = NULL;
     }
+
 }
 
 void ANSC_EXPORT_API COSA_MemoryCheck(void)
@@ -1504,15 +1505,7 @@ void ANSC_EXPORT_API COSA_MemoryCheck(void)
     /* unload the memory here */
 
     returnStatus  =  TelcoVoiceMgr_BackEndManagerRemove(g_pTelcoVoiceBEManager);
-
-    if ( returnStatus == ANSC_STATUS_SUCCESS )
-    {
-        g_pTelcoVoiceBEManager = NULL;
-    }
-    else
-    {
-        g_pTelcoVoiceBEManager = NULL;
-    }
+    g_pTelcoVoiceBEManager = NULL;
 
     COSA_MemoryUsage();
     COSA_MemoryTable();

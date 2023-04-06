@@ -95,6 +95,7 @@ ANSC_STATUS ssp_Mbi_MessageBusEngage(char *component_id, char *config_file, char
     if ( ! component_id || ! path )
     {
         CcspTraceError((" !!! ssp_Mbi_MessageBusEngage: component_id or path is NULL !!!\n"));
+        return ANSC_STATUS_FAILURE;
     }
 
     /* Connect to message bus */
@@ -184,7 +185,8 @@ int ssp_Mbi_Initialize(void *user_data)
 {
     ANSC_STATUS             returnStatus    = ANSC_STATUS_SUCCESS;
 
-    return ( returnStatus == ANSC_STATUS_SUCCESS ) ? 0 : 1;
+    //return ( returnStatus == ANSC_STATUS_SUCCESS ) ? 0 : 1;
+    return 0;
 }
 
 

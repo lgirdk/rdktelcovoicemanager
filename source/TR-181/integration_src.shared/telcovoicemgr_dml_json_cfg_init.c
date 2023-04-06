@@ -620,7 +620,14 @@ static int32_t voiceHalInitDmDefaults()
 
     fseek(fp, 0, SEEK_END); /*Move file pointer to the end of file.*/
 
-    pJsonConfig = malloc(defaultDMSize = ftell(fp)); /*Get the current position of the file pointer and get some memory.*/
+    /*Get the current position of the file pointer and get some memory.*/
+    defaultDMSize = ftell(fp);
+    if(defaultDMSize <= 0)
+    {
+        fclose(fp);
+        return -1;
+    }
+    pJsonConfig = malloc(defaultDMSize);
 
     if (NULL == pJsonConfig)
     {

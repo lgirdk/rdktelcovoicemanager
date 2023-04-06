@@ -110,7 +110,7 @@
 #define CHECK(expr)                                                \
     if (!(expr))                                                   \
     {                                                              \
-        CcspTraceError(("%s - %d Invalid parameter error \n!!!")); \
+        CcspTraceError(("%s - %d Invalid parameter error \n!!!", __FUNCTION__, __LINE__)); \
         return ANSC_STATUS_FAILURE;                                \
     }
 

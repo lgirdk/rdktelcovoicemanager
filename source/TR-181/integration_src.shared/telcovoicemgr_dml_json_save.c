@@ -804,7 +804,12 @@ uint32_t storeObject(char *nName, uint32_t vs,  uint32_t vp, uint32_t li,  uint3
     }
 
     fseek(fp, 0, SEEK_END); /*Move file pointer to the end of file.*/
-    currentDMSize = ftell(fp);
+    if((currentDMSize = ftell(fp)) <= 0)
+    {
+        CcspTraceError(("Invalid JSON file size\n"));
+        fclose(fp);
+        return (-1);
+    }
     pJsonConfig = malloc(currentDMSize+10); /*Get the current position of the file pointer and get some memory.*/
     if (NULL == pJsonConfig)
     {
@@ -1610,7 +1615,13 @@ int32_t createChecksumFile()
     }
 
     fseek(fpChksum, 0, SEEK_END); /*Move file pointer to the end of file.*/
-    pJsonConfig = malloc(confSize = ftell(fpChksum)); /*Get the current position of the file pointer and get some memory.*/
+    if((confSize = ftell(fpChksum)) <= 0)
+    {
+        CcspTraceError(("Invalid JSON defaults file size\n"));
+        fclose(fpChksum);
+        return -1;
+    }
+    pJsonConfig = malloc(confSize); /*Get the current position of the file pointer and get some memory.*/
     if (NULL == pJsonConfig)
     {
         CcspTraceError(("Failed to get memory for JSON file\n"));

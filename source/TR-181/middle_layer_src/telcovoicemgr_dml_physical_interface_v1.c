@@ -434,14 +434,15 @@ BOOL PhyInterfaceTests_SetParamStringValue(ANSC_HANDLE hInsContext, char* ParamN
             else
             {
                 CcspTraceWarning(("%s::Unknown ParamName :%s\n", __FUNCTION__, ParamName));
+                TelcoVoiceMgrDmlGetDataRelease(pTelcoVoiceMgrDmlData);
             }
         }   
     }
     else
     {
         CcspTraceError(("%s:%d:: pDmlPhyInterfaceTests: NULL\n", __FUNCTION__, __LINE__));
+        TelcoVoiceMgrDmlGetDataRelease(pTelcoVoiceMgrDmlData);
     }
-    TelcoVoiceMgrDmlGetDataRelease(pTelcoVoiceMgrDmlData);
     return ret;
 }
 
@@ -524,14 +525,16 @@ BOOL PhyInterfaceTests_SetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamNa
             else
             {
                 CcspTraceWarning(("%s::Unknown ParamName :%s\n", __FUNCTION__, ParamName));
+                TelcoVoiceMgrDmlGetDataRelease(pTelcoVoiceMgrDmlData);
             }
         }  
     }
     else
     {
         CcspTraceError(("%s:%d:: pDmlPhyInterfaceTests: NULL\n", __FUNCTION__, __LINE__));
+        TelcoVoiceMgrDmlGetDataRelease(pTelcoVoiceMgrDmlData);
     }
-    TelcoVoiceMgrDmlGetDataRelease(pTelcoVoiceMgrDmlData);
+
     return ret;
 }
 

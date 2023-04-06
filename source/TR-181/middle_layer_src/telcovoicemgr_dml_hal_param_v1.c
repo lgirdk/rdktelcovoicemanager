@@ -102,7 +102,7 @@ void select_child(char *pathStart, char *ptrEnd,  char **childName)
         return;
     }
     *childName = strtok(pathStart,".");
-    if ((*childName + strlen(*childName)) > ptrEnd)
+    if ((*childName != NULL) && ((*childName + strlen(*childName)) > ptrEnd))
     {
         *childName = NULL;
     }
