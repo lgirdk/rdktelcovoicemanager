@@ -204,7 +204,7 @@ BOOL TelcoVoiceMgr_Rbus_discover_components(char const *pModuleList)
     const char delimit[2] = " ";
     char *token;
 
-    strcpy(ModuleList,pModuleList);
+    strncpy(ModuleList, pModuleList, sizeof(ModuleList) - 1);
 
     /* get the first token */
     token = strtok(ModuleList, delimit);

@@ -1095,7 +1095,7 @@ BOOL CapabilitiesCodecs_SetParamStringValue(ANSC_HANDLE hInsContext, char* Param
             PTELCOVOICEMGR_DML_CAPABILITIES_CODECS pDmlCapCodecs = &(pDmlCapCodecList->dml);
             if (strcmp(ParamName, "Alias") == 0)
             {
-                AnscCopyString(pDmlCapCodecs->Alias,pString);
+                strncpy(pDmlCapCodecs->Alias, pString, sizeof(pDmlCapCodecs->Alias) - 1);
                 CcspTraceDebug(("%s:%d:: Copy Alias Done\n", __FUNCTION__, __LINE__));
                 ret = TRUE;
             }

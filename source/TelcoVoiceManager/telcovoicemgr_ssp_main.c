@@ -144,11 +144,11 @@ int  cmd_dispatch(int  command)
 
                 if ( g_Subsystem[0] != 0 )
                 {
-                    _ansc_sprintf(CName, "%s%s", g_Subsystem, COMPONENT_ID_TELCOVOICEMANAGER);
+                    snprintf(CName, sizeof(CName) - 1, "%s%s", g_Subsystem, COMPONENT_ID_TELCOVOICEMANAGER);
                 }
                 else
                 {
-                    _ansc_sprintf(CName, "%s", COMPONENT_ID_TELCOVOICEMANAGER);
+                    snprintf(CName, sizeof(CName) - 1, "%s", COMPONENT_ID_TELCOVOICEMANAGER);
                 }
 
                 ssp_Mbi_MessageBusEngage

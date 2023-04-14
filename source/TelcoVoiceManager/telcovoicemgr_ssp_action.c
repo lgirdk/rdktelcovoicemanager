@@ -183,11 +183,11 @@ ANSC_STATUS ssp_engage()
 
     if ( g_Subsystem[0] != 0 )
     {
-        _ansc_sprintf(CrName, "%s%s", g_Subsystem, CCSP_DBUS_INTERFACE_CR);
+        snprintf(CrName, sizeof(CrName) -1, "%s%s", g_Subsystem, CCSP_DBUS_INTERFACE_CR);
     }
     else
     {
-        _ansc_sprintf(CrName, "%s", CCSP_DBUS_INTERFACE_CR);
+        snprintf(CrName, sizeof(CrName) -1, "%s", CCSP_DBUS_INTERFACE_CR);
     }
 
     returnStatus =
@@ -224,13 +224,13 @@ ANSC_STATUS ssp_cancel()
 
     if ( g_Subsystem[0] != 0 )
     {
-        _ansc_sprintf(CrName, "%s%s", g_Subsystem, CCSP_DBUS_INTERFACE_CR);
-        _ansc_sprintf(CpName, "%s%s", g_Subsystem, COMPONENT_NAME_VOICEMANAGER);
+        snprintf(CrName, sizeof(CrName) - 1, "%s%s", g_Subsystem, CCSP_DBUS_INTERFACE_CR);
+        snprintf(CpName, sizeof(CpName) - 1,"%s%s", g_Subsystem, COMPONENT_NAME_VOICEMANAGER);
     }
     else
     {
-        _ansc_sprintf(CrName, "%s", CCSP_DBUS_INTERFACE_CR);
-        _ansc_sprintf(CpName, "%s", COMPONENT_NAME_VOICEMANAGER);
+        snprintf(CrName, sizeof(CrName) - 1, "%s", CCSP_DBUS_INTERFACE_CR);
+        snprintf(CpName, sizeof(CpName) - 1, "%s", COMPONENT_NAME_VOICEMANAGER);
     }
     /* unregister component */
     nRet = CcspBaseIf_unregisterComponent(bus_handle, CrName, CpName );  

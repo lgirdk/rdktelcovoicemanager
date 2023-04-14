@@ -1441,7 +1441,7 @@ int ANSC_EXPORT_API TELCOVOICEMGR_Init(ULONG uMaxVersionSupported, void* hCosaPl
 
         if ( tmpSubsystemPrefix = g_GetSubsystemPrefix(g_pDslhDmlAgent) )
         {
-            AnscCopyString(g_SubSysPrefix_Irep, tmpSubsystemPrefix);
+            strncpy(g_SubSysPrefix_Irep, tmpSubsystemPrefix, sizeof(g_SubSysPrefix_Irep) - 1);
         }
 
         /* retrieve the subsystem prefix */

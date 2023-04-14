@@ -88,16 +88,22 @@ static void get_parodus_url(char **url)
 static void get_seshat_url(char **url)
 {
     FILE *fp = fopen(DEVICE_PROPS_FILE, "r");
+    size_t len = 0;
 
     if (NULL != fp)
     {
         char str[255] = {'\0'};
-        while (fscanf(fp, "%s", str) != EOF)
+        while (fgets(str, sizeof(str), fp) != NULL)
         {
             char *value = NULL;
             if (value = strstr(str, "SESHAT_URL="))
             {
                 value = value + strlen("SESHAT_URL=");
+                len = strlen(value);
+                if(len > 0 && value[len - 1] == '\n')
+                {
+                    value[len - 1] = '\0';
+                }
                 *url = strdup(value);
                 CcspTraceInfo((" seshat_url is %s\n", *url));
             }
@@ -114,16 +120,22 @@ static void get_seshat_url(char **url)
 static void get_parodus_url(char **url)
 {
     FILE *fp = fopen(DEVICE_PROPS_FILE, "r");
+    size_t len = 0;
 
     if (NULL != fp)
     {
         char str[255] = {'\0'};
-        while (fscanf(fp, "%s", str) != EOF)
+        while (fgets(str, sizeof(str), fp) != NULL)
         {
             char *value = NULL;
             if (NULL != (value = strstr(str, "PARODUS_URL=")))
             {
                 value = value + strlen("PARODUS_URL=");
+                len = strlen(value);
+                if(len > 0 && value[len - 1] == '\n')
+                {
+                    value[len - 1] = '\0';
+                }
                 *url = strdup(value);
                 CcspTraceInfo((" parodus url is %s\n", *url));
             }
