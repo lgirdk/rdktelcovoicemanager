@@ -3729,7 +3729,7 @@
                     </parameter>
                     <parameter>
                         <name>Extensions</name>
-                        <type>String(255)</type>
+                        <type>String(2048)</type>
                         <syntax>string</syntax>
                         <writable>true</writable>
                     </parameter>

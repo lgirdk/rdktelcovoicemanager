@@ -96,12 +96,16 @@
 #define  TELCOVOICEMGR_DML_NUMBER_OF_LINE                1
 
 #define  STR_LEN_2                           2
+#define  STR_LEN_3                           3
 #define  STR_LEN_4                           4
 #define  STR_LEN_5                           5
+#define  STR_LEN_9                           9
+#define  STR_LEN_11                          11
 #define  STR_LEN_13                          13
 #define  STR_LEN_16                          16
 #define  STR_LEN_20                          20
 #define  STR_LEN_24                          24
+#define  STR_LEN_27                          27
 #define  STR_LEN_32                          32
 #define  STR_LEN_40                          40
 #define  STR_LEN_42                          42
@@ -110,6 +114,7 @@
 #define  STR_LEN_128                         128
 #define  STR_LEN_256                         256
 #define  STR_LEN_389                         389
+#define  STR_LEN_2048                        2048
 
  /***********************************
      Actual definition declaration
@@ -1076,7 +1081,7 @@ typedef struct _DML_POTS_RINGER
 
 typedef struct _DML_POTS
 {
-    CHAR                 Region[STR_LEN_2];
+    CHAR                 Region[STR_LEN_3];
     DML_POTS_RINGER      Ringer_Obj;
     DML_POTS_FXO_LIST_T  FXO;
     DML_POTS_FXS_LIST_T  FXS;
@@ -1101,9 +1106,9 @@ typedef struct _DML_DECT_BASE
     CHAR                      Name[STR_LEN_64];
     CHAR                      ToneEventProfile[STR_LEN_256];
     STANDARD_ENUM             Standard;
-    CHAR                      RFPI[STR_LEN_5];
+    CHAR                      RFPI[STR_LEN_11];
     UINT                      MaxSupportedPP;
-    CHAR                      PIN[STR_LEN_4];
+    CHAR                      PIN[STR_LEN_9];
     BOOL                      RepeaterSupportEnabled;
     BOOL                      NEMOEnable;
     BOOL                      SubscriptionEnable;
@@ -1125,10 +1130,10 @@ typedef struct _DML_DECT_PORTABLE
     CHAR                        Alias[STR_LEN_64];
     CHAR                        CodecList[STR_LEN_256];
     REGISTRATION_STATUS_ENUM    RegistrationStatus;
-    CHAR                        IPUI[STR_LEN_13];
+    CHAR                        IPUI[STR_LEN_27];
     UINT                        IPUILength;
-    CHAR                        IPEI[STR_LEN_5];
-    CHAR                        PARK[STR_LEN_5];
+    CHAR                        IPEI[STR_LEN_11];
+    CHAR                        PARK[STR_LEN_11];
     CHAR                        BaseAttachedTo[STR_LEN_256];
     PORTABLE_TYPE_ENUM          PortableType;
     CHAR                        SubscriptionTime[STR_LEN_24];
@@ -1756,7 +1761,7 @@ typedef  struct _DML_CALLCONTROL_GROUP
     ULONG                   uInstanceNumber;
     void*                   pParentVoiceService;
     CHAR                    Alias[STR_LEN_64];
-    CHAR                    Extensions[STR_LEN_256];
+    CHAR                    Extensions[STR_LEN_2048];
     GROUP_RINGTYPE_ENUM     RingType;
     UINT                    RingTimeout;
  } DML_CALLCONTROL_GROUP,*PDML_CALLCONTROL_GROUP;
@@ -1811,7 +1816,7 @@ typedef  struct _DML_CALLCONTROL_NUMBERINGPLAN
     UINT                                                MaximumNumberOfDigits;
     UINT                                                InterDigitTimerStd;
     UINT                                                InterDigitTimerOpen;
-    CHAR                                                TerminationDigit;
+    CHAR                                                TerminationDigit[STR_LEN_2];
     CHAR                                                InvalidNumberTone[STR_LEN_256];
     UINT                                                PrefixInfoMaxEntries;
     DML_CALLCONTROL_NUMBERINGPLAN_PREFIXINFO_LIST_T     PrefixInfo;

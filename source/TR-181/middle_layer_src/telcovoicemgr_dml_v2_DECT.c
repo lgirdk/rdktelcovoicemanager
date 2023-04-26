@@ -1673,7 +1673,7 @@ BOOL TelcoVoiceMgrDml_DECT_PortableList_SetParamBoolValue(ANSC_HANDLE hInsContex
     {
         snprintf(HalName, MAX_STR_LEN, HAL_DML_VOICESERVICE_DECT_PORTABLE"Enable",uVsIndex,uPortableIndex);
 
-        if (TelcoVoiceMgrHal_SetParamString(HalName,bValue) == ANSC_STATUS_SUCCESS)
+        if (TelcoVoiceMgrHal_SetParamBool(HalName,bValue) == ANSC_STATUS_SUCCESS)
         {
             TELCOVOICEMGR_LOCK_OR_EXIT()
 

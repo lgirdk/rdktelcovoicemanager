@@ -10708,8 +10708,7 @@
           "const": "string"
         },
         "value": {
-          "type": "string",
-          "maxLength": 256
+          "type": "string"
         }
       }
     },
