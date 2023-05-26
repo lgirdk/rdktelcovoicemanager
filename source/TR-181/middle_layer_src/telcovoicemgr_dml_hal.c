@@ -228,12 +228,7 @@ static ANSC_STATUS voice_process_get_info(hal_param_t *get_param)
     if (json_hal_client_send_and_get_reply_with_timeout(jrequest, HAL_SEND_AND_REPLY_TIMEOUT, &jreply_msg) != RETURN_OK)
     {
         CcspTraceError(("%s - %d Failed to get reply for the json request \n", __FUNCTION__, __LINE__));
-        FREE_JSON_OBJECT(jrequest);
-        if (jreply_msg)
-        {
-            FREE_JSON_OBJECT(jreply_msg);
-        }
-        return rc;
+        goto EXIT;
     }
 
     CHECK(jreply_msg != NULL);
@@ -242,15 +237,18 @@ static ANSC_STATUS voice_process_get_info(hal_param_t *get_param)
     if (json_hal_get_param(jreply_msg, JSON_RPC_PARAM_ARR_INDEX, GET_RESPONSE_MESSAGE, &resp_param) != RETURN_OK)
     {
         CcspTraceError(("%s - %d Failed to get required params from the response message \n", __FUNCTION__, __LINE__));
-        return rc;
+        goto EXIT;
     }
 
     strncpy(get_param->value, resp_param.value, sizeof(resp_param.value));
+    rc = ANSC_STATUS_SUCCESS;
+
+EXIT:
 
     // Free json objects.
     FREE_JSON_OBJECT(jrequest);
     FREE_JSON_OBJECT(jreply_msg);
-    return ANSC_STATUS_SUCCESS;
+    return rc;
 }
 
 ANSC_STATUS TelcoVoiceHal_GetLineStats(const char *param_name, TELCOVOICEMGR_DML_VOICESERVICE_STATS *pLineStats)
