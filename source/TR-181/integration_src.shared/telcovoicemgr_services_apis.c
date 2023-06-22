@@ -1889,11 +1889,11 @@ ANSC_STATUS TelcoVoiceMgrDmlSetLinkState(TELCOVOICEMGR_VOICE_IP_LINK_STATE linkS
 
 static ANSC_STATUS TelcoVoiceMgrDmlGetDnsServers(char *dns_server_address)
 {
-    char strValue[JSON_MAX_VAL_ARR_SIZE]={0};
-    char strName[JSON_MAX_STR_ARR_SIZE]={0};
-    char ipAddrFamily[IP_ADDR_FAMILY_LENGTH] = {0};
-    char dns_server_prim[48] = {0};
-    char dns_server_sec[48] = {0};
+    char ipAddrFamily[BUF_LEN_256] = {0};
+    char ipv4_dns_server_prim[48] = {0};
+    char ipv4_dns_server_sec[48] = {0};
+    char ipv6_dns_server_prim[48] = {0};
+    char ipv6_dns_server_sec[48] = {0};
     char ifName[32] = {0};
     char sysevent_param_name[32] = {0};
 
@@ -1902,33 +1902,92 @@ static ANSC_STATUS TelcoVoiceMgrDmlGetDnsServers(char *dns_server_address)
         return ANSC_STATUS_FAILURE;
     }
 
-    sysevent_get(sysevent_voice_fd, sysevent_voice_token, SYSEVENT_CURRENT_WAN_IFNAME, ifName, sizeof(ifName));
-    if ((sysevent_get(sysevent_voice_fd, sysevent_voice_token, SYSEVENT_FIELD_IPV6_DNS_PRIMARY, dns_server_prim, sizeof(dns_server_prim)) != 0) || (strlen(dns_server_prim) == 0))
+    TELCOVOICEMGR_DML_DATA* pTelcoVoiceMgrDmlData = TelcoVoiceMgrDmlGetDataLocked();
+    if(pTelcoVoiceMgrDmlData == NULL)
     {
-        //Look for Ipv4 Dns Server
-        snprintf(sysevent_param_name, sizeof(sysevent_param_name), SYSEVENT_IPV4_DNS_PRIMARY, ifName);
-        if ((sysevent_get(sysevent_voice_fd, sysevent_voice_token, sysevent_param_name, dns_server_prim, sizeof(dns_server_prim)) != 0) || (strlen(dns_server_prim) == 0))
-        {
-            //Set default
-            CcspTraceError(("[%s]::[%d] Set default Dns Server Address !!!! \n", __FUNCTION__,__LINE__));
-            snprintf(dns_server_prim, sizeof(dns_server_prim), "%s", "0.0.0.0");
-        }
+        CcspTraceError(("%s:%d:: TelcoVoiceMgrDmlGetDataLocked: Failed\n", __FUNCTION__, __LINE__));
+        return ANSC_STATUS_RESOURCES;
     }
 
-    if ((sysevent_get(sysevent_voice_fd, sysevent_voice_token, SYSEVENT_FIELD_IPV6_DNS_SECONDARY, dns_server_sec, sizeof(dns_server_sec)) != 0) || (strlen(dns_server_sec) == 0))
+    DML_VOICE_SERVICE_CTRL_T* pVoiceService = pTelcoVoiceMgrDmlData->Service.VoiceService.pdata[TELCOVOICEMGR_DML_NUMBER_OF_VOICE_SERVICES - 1];
+    PTELCOVOICEMGR_DML_VOICESERVICE  pDmlVoiceService = &(pVoiceService->dml);
+    if ( !pDmlVoiceService )
     {
+        CcspTraceError(("%s:%d:: pDmlVoiceService: NULL\n", __FUNCTION__, __LINE__));
+        TelcoVoiceMgrDmlGetDataRelease(pTelcoVoiceMgrDmlData);
+        return ANSC_STATUS_RESOURCES;
+    }
+
+    //Get current IP family
+    AnscCopyString(ipAddrFamily, pDmlVoiceService->X_RDK_IpAddressFamily);
+
+    TelcoVoiceMgrDmlGetDataRelease(pTelcoVoiceMgrDmlData);
+
+    //Get current WAN ifname
+    sysevent_get(sysevent_voice_fd, sysevent_voice_token, SYSEVENT_CURRENT_WAN_IFNAME, ifName, sizeof(ifName));
+
+    //Look for IPv4 Dns Server
+    {
+        snprintf(sysevent_param_name, sizeof(sysevent_param_name), SYSEVENT_IPV4_DNS_PRIMARY, ifName);
+        if ((sysevent_get(sysevent_voice_fd, sysevent_voice_token, sysevent_param_name, ipv4_dns_server_prim, sizeof(ipv4_dns_server_prim)) != 0) || (strlen(ipv4_dns_server_prim) == 0))
+        {
+            CcspTraceError(("[%s]::[%d] Get IPv4 primary Dns Server Address failed !!!! \n", __FUNCTION__,__LINE__));
+        }
+
         //Look for Ipv4 Dns Server
         memset(sysevent_param_name, 0, sizeof(sysevent_param_name));
         snprintf(sysevent_param_name, sizeof(sysevent_param_name), SYSEVENT_IPV4_DNS_SECONDARY, ifName);
-        if ((sysevent_get(sysevent_voice_fd, sysevent_voice_token, sysevent_param_name, dns_server_sec, sizeof(dns_server_sec)) != 0) || (strlen(dns_server_sec) == 0))
+        if ((sysevent_get(sysevent_voice_fd, sysevent_voice_token, sysevent_param_name, ipv4_dns_server_sec, sizeof(ipv4_dns_server_sec)) != 0) || (strlen(ipv4_dns_server_sec) == 0))
         {
-            //Set default
-            CcspTraceError(("[%s]::[%d] Set default Dns Server Address !!!! \n", __FUNCTION__,__LINE__));
-            snprintf(dns_server_sec, sizeof(dns_server_sec), "%s", "0.0.0.0");
+                CcspTraceError(("[%s]::[%d] Get IPv4 secondary Dns Server Address failed !!!! \n", __FUNCTION__,__LINE__));
         }
     }
 
-    snprintf(dns_server_address,JSON_MAX_VAL_ARR_SIZE,"%s,%s", dns_server_prim, dns_server_sec);
+    //Look for IPv6 Dns Server
+    {
+        if ((sysevent_get(sysevent_voice_fd, sysevent_voice_token, SYSEVENT_FIELD_IPV6_DNS_PRIMARY, ipv6_dns_server_prim, sizeof(ipv6_dns_server_prim)) != 0) || (strlen(ipv6_dns_server_prim) == 0))
+        {
+            CcspTraceError(("[%s]::[%d] Get IPv6 primary Dns Server Address failed !!!! \n", __FUNCTION__,__LINE__));
+        }
+
+        if ((sysevent_get(sysevent_voice_fd, sysevent_voice_token, SYSEVENT_FIELD_IPV6_DNS_SECONDARY, ipv6_dns_server_sec, sizeof(ipv6_dns_server_sec)) != 0) || (strlen(ipv6_dns_server_sec) == 0))
+        {
+            CcspTraceError(("[%s]::[%d] Get IPv6 secondary Dns Server Address failed !!!! \n", __FUNCTION__,__LINE__));
+        }
+    }
+
+    /*
+     * Retrieve primary and secondary DNS servers with a preference based on the IP family of the voice service.
+     */
+
+    int dns_len = 0;
+    if( strcmp(ipAddrFamily,STR_IPV4) == 0)
+    {
+        if(!IS_EMPTY_STRING(ipv4_dns_server_prim))
+        {
+            dns_len = snprintf(dns_server_address,BUF_LEN_256-1,"%s",ipv4_dns_server_prim);
+            if(!IS_EMPTY_STRING(ipv4_dns_server_sec)) snprintf(dns_server_address+dns_len,BUF_LEN_256-dns_len,",%s",ipv4_dns_server_sec);
+        }
+        else if(!IS_EMPTY_STRING(ipv6_dns_server_prim))
+        {
+            dns_len = snprintf(dns_server_address,BUF_LEN_256-1,"%s",ipv6_dns_server_prim);
+            if(!IS_EMPTY_STRING(ipv6_dns_server_sec)) snprintf(dns_server_address+dns_len,BUF_LEN_256-dns_len,",%s",ipv6_dns_server_sec);
+        }
+    }
+    else if(strcmp(ipAddrFamily,STR_IPV6) == 0 )
+    {
+        if(!IS_EMPTY_STRING(ipv6_dns_server_prim))
+        {
+            dns_len = snprintf(dns_server_address,BUF_LEN_256-1,"%s",ipv6_dns_server_prim);
+            if(!IS_EMPTY_STRING(ipv6_dns_server_sec)) snprintf(dns_server_address+dns_len,BUF_LEN_256-dns_len,",%s",ipv6_dns_server_sec);
+        }
+        else if(!IS_EMPTY_STRING(ipv4_dns_server_prim))
+        {
+            dns_len = snprintf(dns_server_address,BUF_LEN_256-1,"%s",ipv4_dns_server_prim);
+            if(!IS_EMPTY_STRING(ipv4_dns_server_sec)) snprintf(dns_server_address+dns_len,BUF_LEN_256-dns_len,",%s",ipv4_dns_server_sec);
+        }
+    }
+
     return ANSC_STATUS_SUCCESS;
 }
 
