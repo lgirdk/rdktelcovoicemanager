@@ -288,7 +288,7 @@ BOOL VoiceProfile_SetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, 
                         TELCOVOICEMGR_DML_DATA* pTelcoVoiceMgrDmlData = TelcoVoiceMgrDmlGetDataLocked();
                         if(pTelcoVoiceMgrDmlData != NULL)
                         {
-                            AnscCopyString(pVoiceProfile->X_RDK_DigitMap, pString);
+                            snprintf(pVoiceProfile->X_RDK_DigitMap, sizeof(pVoiceProfile->X_RDK_DigitMap),"%s", pString);
                             TelcoVoiceMgrDmlGetDataRelease(pTelcoVoiceMgrDmlData);
                             return TRUE;
                         }
@@ -301,7 +301,7 @@ BOOL VoiceProfile_SetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, 
                         TELCOVOICEMGR_DML_DATA* pTelcoVoiceMgrDmlData = TelcoVoiceMgrDmlGetDataLocked();
                         if(pTelcoVoiceMgrDmlData != NULL)
                         {
-                            AnscCopyString(pVoiceProfile->EmergencyDigitMap, pString);
+                            snprintf(pVoiceProfile->EmergencyDigitMap, sizeof(pVoiceProfile->EmergencyDigitMap),"%s", pString);
                             TelcoVoiceMgrDmlGetDataRelease(pTelcoVoiceMgrDmlData);
                             return TRUE;
                         }

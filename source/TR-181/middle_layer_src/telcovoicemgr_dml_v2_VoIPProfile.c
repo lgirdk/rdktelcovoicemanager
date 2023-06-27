@@ -597,7 +597,7 @@ BOOL TelcoVoiceMgrDml_VoipProfileList_SetParamStringValue(ANSC_HANDLE hInsContex
         {
             TELCOVOICEMGR_LOCK_OR_EXIT()
 
-            AnscCopyString(pHEAD->X_RDK_Central_COM_EmergencyDigitMap,pString);
+            snprintf(pHEAD->X_RDK_Central_COM_EmergencyDigitMap, sizeof(pHEAD->X_RDK_Central_COM_EmergencyDigitMap),"%s", pString);
 
             TELCOVOICEMGR_UNLOCK()
 
@@ -612,7 +612,7 @@ BOOL TelcoVoiceMgrDml_VoipProfileList_SetParamStringValue(ANSC_HANDLE hInsContex
         {
             TELCOVOICEMGR_LOCK_OR_EXIT()
 
-            AnscCopyString(pHEAD->X_RDK_Central_COM_DigitMap,pString);
+            snprintf(pHEAD->X_RDK_Central_COM_DigitMap, sizeof(pHEAD->X_RDK_Central_COM_DigitMap),"%s", pString);
 
             TELCOVOICEMGR_UNLOCK()
 
