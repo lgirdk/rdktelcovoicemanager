@@ -322,7 +322,7 @@ ANSC_STATUS TelcoVoiceMgrDmlSetDefaultData(TELCOVOICEMGR_DML_DATA* pTelcoVoiceMg
             pDmlVoiceService->CallLog->ulQuantity = 0;
 
             //Codec Profile
-            pDmlVoiceService->CodecProfile = (PDML_CODECPROFILE_LIST_T*) AnscAllocateMemory(sizeof(PDML_CODECPROFILE_LIST_T));
+            pDmlVoiceService->CodecProfile = (DML_CODECPROFILE_LIST_T*) AnscAllocateMemory(sizeof(DML_CODECPROFILE_LIST_T));
             if ( pDmlVoiceService->CodecProfile == NULL )
             {
                 returnStatus = ANSC_STATUS_RESOURCES;
