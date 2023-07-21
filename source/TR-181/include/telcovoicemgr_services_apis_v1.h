@@ -150,7 +150,7 @@ typedef struct {
   BOOL bRtpMarkRead;
   UINT sipSkbMark;
   UINT rtpSkbMark;
-  char aIpStateParamName[16];
+  char aIpStateParamName[BUF_LEN_40];
 }retSkbMarksStruct_t;
 
 typedef enum

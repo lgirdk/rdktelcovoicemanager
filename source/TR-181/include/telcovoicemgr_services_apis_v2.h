@@ -257,7 +257,7 @@ typedef struct _retSkbMarksStruct_t
   BOOL bRtpMarkRead;
   UINT sipSkbMark;
   UINT rtpSkbMark;
-  char aIpStateParamName[STR_LEN_16];
+  char aIpStateParamName[BUF_LEN_40];
 }retSkbMarksStruct_t;
 
 typedef enum _RINGFILEFORMATS_ENUM
