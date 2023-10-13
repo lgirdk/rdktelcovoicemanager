@@ -1044,6 +1044,8 @@
         { "$ref": "#/definitions/voiceServiceCallControlExtensionQuiescentMode" },
         { "$ref": "#/definitions/voiceServiceCallControlExtensionName" },
         { "$ref": "#/definitions/voiceServiceCallControlExtensionNumberingPlan" },
+        { "$ref": "#/definitions/voiceServiceCallControlExtensionX_RDK_FacilityAction" },
+        { "$ref": "#/definitions/voiceServiceCallControlExtensionX_RDK_FacilityActionArgument" },
         { "$ref": "#/definitions/voiceServiceCallControlExtensionCallingFeatures" },
         { "$ref": "#/definitions/voiceServiceCallControlExtensionVoiceMail" },
         { "$ref": "#/definitions/voiceServiceCallControlGroup" },
@@ -1390,6 +1392,9 @@
         { "$ref": "#/definitions/voiceServiceCallControlExtensionQuiescentMode" },
         { "$ref": "#/definitions/voiceServiceCallControlExtensionName" },
         { "$ref": "#/definitions/voiceServiceCallControlExtensionNumberingPlan" },
+        { "$ref": "#/definitions/voiceServiceCallControlExtensionX_RDK_FacilityAction" },
+        { "$ref": "#/definitions/voiceServiceCallControlExtensionX_RDK_FacilityActionArgument" },
+        { "$ref": "#/definitions/voiceServiceCallControlExtensionX_RDK_FacilityActionResult" },
         { "$ref": "#/definitions/voiceServiceCallControlExtensionCallingFeatures" },
         { "$ref": "#/definitions/voiceServiceCallControlExtensionCallWaitingStatus" },
         { "$ref": "#/definitions/voiceServiceCallControlExtensionConferenceCallingStatus" },
@@ -10210,6 +10215,63 @@
         }
       }
     },
+    "voiceServiceCallControlExtensionX_RDK_FacilityAction": {
+       "description": "The facility actions supported by this VoiceService. (Access = Read-Write)",
+       "type": "object",
+       "additionalProperties": false,
+       "properties": {
+         "name": {
+           "type": "string",
+           "pattern": "^Device\\.Services\\.VoiceService\\.\\d+\\.CallControl\\.Extension\\.\\d+\\.X_RDK_FacilityAction$"
+         },
+         "type": {
+           "type": "string",
+           "const": "string"
+         },
+         "value": {
+           "type": "string",
+           "maxLength": 64
+         }
+       }
+     },
+      "voiceServiceCallControlExtensionX_RDK_FacilityActionArgument": {
+       "description": "Optional argument associated with FacilityAction. (Access = Read-Write)",
+       "type": "object",
+       "additionalProperties": false,
+       "properties": {
+         "name": {
+           "type": "string",
+           "pattern": "^Device\\.Services\\.VoiceService\\.\\d+\\.CallControl\\.Extension\\.\\d+\\.X_RDK_FacilityActionArgument$"
+         },
+         "type": {
+           "type": "string",
+           "const": "string"
+         },
+         "value": {
+           "type": "string",
+           "maxLength": 256
+         }
+       }
+     },
+    "voiceServiceCallControlExtensionX_RDK_FacilityActionResult": {
+       "description": "Status of FacilityAction execution. (Access = Read-Only)",
+       "type": "object",
+       "additionalProperties": false,
+       "properties": {
+         "name": {
+           "type": "string",
+           "pattern": "^Device\\.Services\\.VoiceService\\.\\d+\\.CallControl\\.Extension\\.\\d+\\.X_RDK_FacilityActionResult$"
+         },
+         "type": {
+           "type": "string",
+           "const": "string"
+         },
+         "value": {
+           "type": "string",
+           "maxLength": 256
+         }
+       }
+     },
     "voiceServiceCallControlExtensionCallingFeatures": {
       "description": "Set of calling features to apply to this extension. (Access = Read-Write)",
       "type": "object",

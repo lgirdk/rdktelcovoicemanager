@@ -6549,6 +6549,44 @@ ANSC_STATUS Map_hal_dml_CallControl(PDML_VOICE_SERVICE_LIST_T pVoiceServiceList,
             //VoiceService.{i}.CallControl.Extension.{i}.NumberingPlan
             STRNCPY(pCallCtrlExt->NumberingPlan, pValue);
         }
+        else if( strstr(ParamName, "X_RDK_FacilityAction") )
+        {
+            //VoiceService.{i}.CallControl.Extension.{i}.X_RDK_FacilityAction
+            STRNCPY(pCallCtrlExt->X_RDK_FacilityAction, pValue);
+        }
+        else if( strstr(ParamName, "X_RDK_FacilityActionArgument") )
+        {
+            //VoiceService.{i}.CallControl.Extension.{i}.X_RDK_FacilityActionArgument
+            STRNCPY(pCallCtrlExt->X_RDK_FacilityActionArgument, pValue);
+        }
+        else if( strstr(ParamName, "X_RDK_FacilityActionResult") )
+        {
+            //VoiceService.{i}.CallControl.Extension.{i}.X_RDK_FacilityActionResult
+            if (strcmp(pValue, "Idle") == 0)
+            {
+                pCallCtrlExt->X_RDK_FacilityActionResult = FACILITY_ACTION_RES_IDLE;
+            }
+            if (strcmp(pValue, "InProgress") == 0)
+            {
+                pCallCtrlExt->X_RDK_FacilityActionResult = FACILITY_ACTION_RES_INPROGRESS;
+            }
+            if (strcmp(pValue, "Success") == 0)
+            {
+                pCallCtrlExt->X_RDK_FacilityActionResult = FACILITY_ACTION_RES_SUCCESS;
+            }
+            if (strcmp(pValue, "Error_Not_In_Reach") == 0)
+            {
+                pCallCtrlExt->X_RDK_FacilityActionResult = FACILITY_ACTION_RES_ERRNOTINREACH;
+            }
+            if (strcmp(pValue, "Error_TimeOut") == 0)
+            {
+                pCallCtrlExt->X_RDK_FacilityActionResult = FACILITY_ACTION_RES_ERRTIMEOUT;
+            }
+            else
+            {
+                AnscTraceError(("%s:%d:: Invalid ParamName[%s] paramValue[%s].\n", __FUNCTION__, __LINE__, ParamName, pValue));
+            }
+        }
         else if( strstr(ParamName, "CallingFeatures") )
         {
             //VoiceService.{i}.CallControl.Extension.{i}.CallingFeatures

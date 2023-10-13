@@ -1559,6 +1559,11 @@ BOOL TelcoVoiceMgrDml_CallControl_ExtensionList_GetParamUlongValue(ANSC_HANDLE h
         *puLong = pHEAD->ConferenceCallingSessionCount;
         ret = TRUE;
     }
+    else if (strcmp(ParamName, "X_RDK_FacilityActionResult") == 0)
+    {
+        *puLong = pHEAD->X_RDK_FacilityActionResult;
+        ret = TRUE;
+    }
     else if (strcmp(ParamName, "CallWaitingStatus") == 0)
     {
         //Fetch status from voice stack
@@ -1666,6 +1671,16 @@ ULONG TelcoVoiceMgrDml_CallControl_ExtensionList_GetParamStringValue(ANSC_HANDLE
     {
         AnscCopyString(pValue,pHEAD->NumberingPlan);
         ret = 0;
+    }
+    else if (strcmp(ParamName, "X_RDK_FacilityAction") == 0)
+    {
+          AnscCopyString(pValue, pHEAD->X_RDK_FacilityAction);
+          ret = 0;
+    }
+    else if (strcmp(ParamName, "X_RDK_FacilityActionArgument") == 0)
+    {
+          AnscCopyString(pValue, pHEAD->X_RDK_FacilityActionArgument);
+          ret = 0;
     }
     else if (strcmp(ParamName, "Name") == 0)
     {
@@ -1807,6 +1822,38 @@ BOOL TelcoVoiceMgrDml_CallControl_ExtensionList_SetParamStringValue(ANSC_HANDLE 
 
             ret = TRUE;
         }
+    }
+    else if (strcmp(ParamName, "X_RDK_FacilityAction") == 0)
+    {
+        snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.Extension.%d.X_RDK_FacilityAction",
+                                       uVsIndex, uExtensionIndex);
+
+        if (TelcoVoiceMgrHal_SetParamString(HalName, pString) == ANSC_STATUS_SUCCESS)
+        {
+            TELCOVOICEMGR_LOCK_OR_EXIT()
+
+            AnscCopyString(pHEAD->X_RDK_FacilityAction, pString);
+
+            TELCOVOICEMGR_UNLOCK()
+
+            ret = TRUE;
+        }
+    }
+    else if (strcmp(ParamName, "X_RDK_FacilityActionArgument") == 0)
+    {
+        snprintf(HalName, MAX_STR_LEN, "Device.Services.VoiceService.%d.CallControl.Extension.%d.X_RDK_FacilityActionArgument",
+                                       uVsIndex, uExtensionIndex);
+
+        if (TelcoVoiceMgrHal_SetParamString(HalName, pString) == ANSC_STATUS_SUCCESS)
+        {
+            TELCOVOICEMGR_LOCK_OR_EXIT()
+
+            AnscCopyString(pHEAD->X_RDK_FacilityActionArgument, pString);
+
+            TELCOVOICEMGR_UNLOCK()
+
+            ret = TRUE;
+       }
     }
     else if (strcmp(ParamName, "Name") == 0)
     {

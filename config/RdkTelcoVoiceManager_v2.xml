@@ -3545,6 +3545,23 @@
                         <syntax>string</syntax>
                         <writable>true</writable>
                     </parameter>
+		    <parameter>
+                        <name>X_RDK_FacilityAction</name>
+                        <type>String(64)</type>
+                        <syntax>string</syntax>
+                        <writable>true</writable>
+                    </parameter>
+                    <parameter>
+                        <name>X_RDK_FacilityActionArgument</name>
+                        <type>String(256)</type>
+                        <syntax>string</syntax>
+                        <writable>true</writable>
+                    </parameter>
+                    <parameter>
+                        <name>X_RDK_FacilityActionResult</name>
+                        <type>string: Idle(0),InProgress(1),Success(2),Error_Not_In_Reach(3),Error_TimeOut(4)</type>
+                        <syntax>uint32/mapped</syntax>
+                    </parameter>
                     <parameter>
                         <name>CallingFeatures</name>
                         <type>String(256)</type>

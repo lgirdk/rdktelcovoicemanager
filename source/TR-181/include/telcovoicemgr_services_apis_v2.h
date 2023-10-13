@@ -1979,6 +1979,15 @@ typedef enum _CONF_CALLING_STATUS_ENUM
     CONF_CALLING_STATUS_INCONFERENCECALL
 } CONF_CALLING_STATUS_ENUM;
 
+typedef enum _FACILITY_ACTION_RES_ENUM
+{
+    FACILITY_ACTION_RES_IDLE,
+    FACILITY_ACTION_RES_INPROGRESS,
+    FACILITY_ACTION_RES_SUCCESS,
+    FACILITY_ACTION_RES_ERRNOTINREACH,
+    FACILITY_ACTION_RES_ERRTIMEOUT
+}FACILITY_ACTION_RES_ENUM;
+
 typedef  struct _DML_CALLCONTROL_EXTENSION
  {
     ULONG                               uInstanceNumber;
@@ -1993,6 +2002,9 @@ typedef  struct _DML_CALLCONTROL_EXTENSION
     CHAR                                ExtensionNumber[STR_LEN_32];
     CHAR                                Provider[STR_LEN_256];
     CHAR                                NumberingPlan[STR_LEN_256];
+    CHAR                                X_RDK_FacilityAction[STR_LEN_64];
+    CHAR                                X_RDK_FacilityActionArgument[STR_LEN_256];
+    FACILITY_ACTION_RES_ENUM            X_RDK_FacilityActionResult;
     CHAR                                CallingFeatures[STR_LEN_256];
     CALL_WAITING_STATUS_ENUM            CallWaitingStatus;
     CONF_CALLING_STATUS_ENUM            ConferenceCallingStatus;
