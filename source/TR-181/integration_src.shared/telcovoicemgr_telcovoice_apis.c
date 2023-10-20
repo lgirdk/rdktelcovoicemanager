@@ -82,7 +82,7 @@ pErr TelcoVoiceMgr_Process_Webconfig_Request(void *Data)
     int i, j;
     unsigned int uVsIndex = 0, uVpIndex = 0, uVlIndex = 0;
 #ifdef FEATURE_RDKB_VOICE_DM_TR104_V2
-    unsigned int uSipClientIndex = 0, uSipNetworkIndex = 0, uFXSIndex = 0, uCallControlSetIndex = 0;
+    unsigned int uSipClientIndex = 0, uSipNetworkIndex = 0, uFXSIndex = 0, uCallControlSetIndex = 0, retVal = 0;
 #endif
     unsigned long ulInstance;
 
@@ -387,22 +387,38 @@ pErr TelcoVoiceMgr_Process_Webconfig_Request(void *Data)
 
             if( TRUE == pstLineCfg->IsLineEnablePresent )
             {
-                TelcoVoiceMgrDml_CallControl_LineList_SetParamBoolValue(pCallCtrlLineCtrl, "Enable", pstLineCfg->LineEnable);
+                if(TelcoVoiceMgrDml_CallControl_LineList_SetParamBoolValue(pCallCtrlLineCtrl, "Enable", pstLineCfg->LineEnable) != TRUE)
+                {
+                    CcspTraceError(("%s: Webconfig set failed for LineEnable\n",__FUNCTION__));
+                    retVal = 1;
+                }
             }
 
             if( TRUE == pstLineCfg->IsDirectoryNumberPresent )
             {
-                TelcoVoiceMgrDml_CallControl_LineList_SetParamStringValue(pCallCtrlLineCtrl, "DirectoryNumber", pstLineCfg->DirectoryNumber);
+                if(TelcoVoiceMgrDml_CallControl_LineList_SetParamStringValue(pCallCtrlLineCtrl, "DirectoryNumber", pstLineCfg->DirectoryNumber) != TRUE)
+                {
+                    CcspTraceError(("%s: Webconfig set failed for DirectoryNumber\n",__FUNCTION__));
+                    retVal = 1;
+                }
             }
 
             if( TRUE == pstLineCfg->IsLineProviderPresent )
             {
-                TelcoVoiceMgrDml_CallControl_LineList_SetParamStringValue(pCallCtrlLineCtrl, "Provider", pstLineCfg->LineProvider);
+                if(TelcoVoiceMgrDml_CallControl_LineList_SetParamStringValue(pCallCtrlLineCtrl, "Provider", pstLineCfg->LineProvider) != TRUE)
+                {
+                    CcspTraceError(("%s: Webconfig set failed for LineProvider\n",__FUNCTION__));
+                    retVal = 1;
+                }
             }
 
             if( TRUE == pstLineCfg->IsLineCallingFeaturesPresent )
             {
-                TelcoVoiceMgrDml_CallControl_LineList_SetParamStringValue(pCallCtrlLineCtrl, "CallingFeatures", pstLineCfg->LineCallingFeatures);
+                if(TelcoVoiceMgrDml_CallControl_LineList_SetParamStringValue(pCallCtrlLineCtrl, "CallingFeatures", pstLineCfg->LineCallingFeatures) != TRUE)
+                {
+                    CcspTraceError(("%s: Webconfig set failed for LineCallingFeatures\n",__FUNCTION__));
+                    retVal = 1;
+                }
             }
 
             uCallControlSetIndex = pstLineCfg->uiLineInstanceNumber;
@@ -417,23 +433,43 @@ pErr TelcoVoiceMgr_Process_Webconfig_Request(void *Data)
 
             if( TRUE == pstLineCfg->IsCallWaitingEnablePresent )
             {
-                TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_SetParamBoolValue(pCallFeaturesSetCtrl, "CallWaitingEnable", pstLineCfg->CallWaitingEnable);
+                if(TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_SetParamBoolValue(pCallFeaturesSetCtrl, "CallWaitingEnable", pstLineCfg->CallWaitingEnable) != TRUE)
+                {
+                    CcspTraceError(("%s: Webconfig set failed for CallWaitingEnable\n",__FUNCTION__));
+                    retVal = 1;
+                }
             }
             if( TRUE == pstLineCfg->IsMWIEnablePresent )
             {
-                TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_SetParamBoolValue(pCallFeaturesSetCtrl, "MWIEnable", pstLineCfg->MWIEnable);
+                if(TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_SetParamBoolValue(pCallFeaturesSetCtrl, "MWIEnable", pstLineCfg->MWIEnable) != TRUE)
+                {
+                    CcspTraceError(("%s: Webconfig set failed for MWIEnable\n",__FUNCTION__));
+                    retVal = 1;
+                }
             }
             if( TRUE == pstLineCfg->IsConferenceCallingEnablePresent )
             {
-                TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_SetParamBoolValue(pCallFeaturesSetCtrl, "X_RDK-Central_COM_ConferenceCallingEnable", pstLineCfg->ConferenceCallingEnable);
+                if(TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_SetParamBoolValue(pCallFeaturesSetCtrl, "X_RDK-Central_COM_ConferenceCallingEnable", pstLineCfg->ConferenceCallingEnable) != TRUE)
+                {
+                    CcspTraceError(("%s: Webconfig set failed for ConferenceCallingEnable\n",__FUNCTION__));
+                    retVal = 1;
+                }
             }
             if( TRUE == pstLineCfg->IsHoldEnablePresent )
             {
-                TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_SetParamBoolValue(pCallFeaturesSetCtrl, "X_RDK-Central_COM_HoldEnable", pstLineCfg->HoldEnable);
+                if(TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_SetParamBoolValue(pCallFeaturesSetCtrl, "X_RDK-Central_COM_HoldEnable", pstLineCfg->HoldEnable) != TRUE)
+                {
+                    CcspTraceError(("%s: Webconfig set failed for HoldEnable\n",__FUNCTION__));
+                    retVal = 1;
+                }
             }
             if( TRUE == pstLineCfg->IsPhoneCallerIDEnablePresent )
             {
-                TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_SetParamBoolValue(pCallFeaturesSetCtrl, "X_RDK-Central_COM_PhoneCallerIDEnable", pstLineCfg->PhoneCallerIDEnable);
+                if(TelcoVoiceMgrDml_CallControl_CallingFeatures_SetList_SetParamBoolValue(pCallFeaturesSetCtrl, "X_RDK-Central_COM_PhoneCallerIDEnable", pstLineCfg->PhoneCallerIDEnable) != TRUE)
+                {
+                    CcspTraceError(("%s: Webconfig set failed for PhoneCallerIDEnable\n",__FUNCTION__));
+                    retVal = 1;
+                }
             }
         }
 
@@ -457,101 +493,173 @@ pErr TelcoVoiceMgr_Process_Webconfig_Request(void *Data)
 
             if( TRUE == pstSipNwCfg->IsSIPNetworkEnablePresent )
             {
-                TelcoVoiceMgrDml_SIP_NetworkList_SetParamBoolValue(pSipNetworkCtrl, "Enable", pstSipNwCfg->SIPNetworkEnable);
+                if(TelcoVoiceMgrDml_SIP_NetworkList_SetParamBoolValue(pSipNetworkCtrl, "Enable", pstSipNwCfg->SIPNetworkEnable) != TRUE)
+                {
+                    CcspTraceError(("%s: Webconfig set failed for SIPNetworkEnable\n",__FUNCTION__));
+                    retVal = 1;
+                }
             }
 
             if( TRUE == pstSipNwCfg->IsOutboundProxyPresent )
             {
-                TelcoVoiceMgrDml_SIP_NetworkList_SetParamStringValue(pSipNetworkCtrl, "OutboundProxy", pstSipNwCfg->OutboundProxy);
+                if(TelcoVoiceMgrDml_SIP_NetworkList_SetParamStringValue(pSipNetworkCtrl, "OutboundProxy", pstSipNwCfg->OutboundProxy) != TRUE)
+                {
+                    CcspTraceError(("%s: Webconfig set failed for OutboundProxy\n",__FUNCTION__));
+                    retVal = 1;
+                }
             }
 
             if( TRUE == pstSipNwCfg->IsProxyServerPresent )
             {
-                TelcoVoiceMgrDml_SIP_NetworkList_SetParamStringValue(pSipNetworkCtrl, "ProxyServer", pstSipNwCfg->ProxyServer);
+                if(TelcoVoiceMgrDml_SIP_NetworkList_SetParamStringValue(pSipNetworkCtrl, "ProxyServer", pstSipNwCfg->ProxyServer) != TRUE)
+                {
+                    CcspTraceError(("%s: Webconfig set failed for ProxyServer\n",__FUNCTION__));
+                    retVal = 1;
+                }
             }
 
             if( TRUE == pstSipNwCfg->IsProxyServerTransportPresent )
             {
                 if(TelcoVoiceMgrConvertProtocolToEnum(pstSipNwCfg->ProxyServerTransport, &transportProtocol) == ANSC_STATUS_SUCCESS)
                 {
-                    TelcoVoiceMgrDml_SIP_NetworkList_SetParamUlongValue(pSipNetworkCtrl, "ProxyServerTransport", transportProtocol);
+                    if(TelcoVoiceMgrDml_SIP_NetworkList_SetParamUlongValue(pSipNetworkCtrl, "ProxyServerTransport", transportProtocol) != TRUE)
+                    {
+                        CcspTraceError(("%s: Webconfig set failed for ProxyServerTransport\n",__FUNCTION__));
+                        retVal = 1;
+                    }
                 }
             }
 
             if( TRUE == pstSipNwCfg->IsRegistrarServerPresent )
             {
-                TelcoVoiceMgrDml_SIP_NetworkList_SetParamStringValue(pSipNetworkCtrl, "RegistrarServer", pstSipNwCfg->RegistrarServer);
+                if(TelcoVoiceMgrDml_SIP_NetworkList_SetParamStringValue(pSipNetworkCtrl, "RegistrarServer", pstSipNwCfg->RegistrarServer) != TRUE)
+                {
+                    CcspTraceError(("%s: Webconfig set failed for RegistrarServer\n",__FUNCTION__));
+                    retVal = 1;
+                }
             }
 
             if( TRUE == pstSipNwCfg->IsRegistrarServerTransportPresent )
             {
                 if(TelcoVoiceMgrConvertProtocolToEnum(pstSipNwCfg->RegistrarServerTransport, &transportProtocol) == ANSC_STATUS_SUCCESS)
                 {
-                   TelcoVoiceMgrDml_SIP_NetworkList_SetParamUlongValue(pSipNetworkCtrl, "RegistrarServerTransport", transportProtocol);
+                   if(TelcoVoiceMgrDml_SIP_NetworkList_SetParamUlongValue(pSipNetworkCtrl, "RegistrarServerTransport", transportProtocol) != TRUE)
+                   {
+                      CcspTraceError(("%s: Webconfig set failed for RegistrarServerTransport\n",__FUNCTION__));
+                      retVal = 1;
+                   }
                 }
             }
 
             if( TRUE == pstSipNwCfg->IsUserAgentDomainPresent )
             {
-                TelcoVoiceMgrDml_SIP_NetworkList_SetParamStringValue(pSipNetworkCtrl, "UserAgentDomain", pstSipNwCfg->UserAgentDomain);
+                if(TelcoVoiceMgrDml_SIP_NetworkList_SetParamStringValue(pSipNetworkCtrl, "UserAgentDomain", pstSipNwCfg->UserAgentDomain) != TRUE)
+                {
+                    CcspTraceError(("%s: Webconfig set failed for UserAgentDomain\n",__FUNCTION__));
+                    retVal = 1;
+                }
             }
 
             if( TRUE == pstSipNwCfg->IsUserAgentTransportPresent )
             {
                 if(TelcoVoiceMgrConvertProtocolToEnum(pstSipNwCfg->UserAgentTransport, &transportProtocol) == ANSC_STATUS_SUCCESS)
                 {
-                   TelcoVoiceMgrDml_SIP_NetworkList_SetParamUlongValue(pSipNetworkCtrl, "UserAgentTransport", transportProtocol);
+                    if(TelcoVoiceMgrDml_SIP_NetworkList_SetParamUlongValue(pSipNetworkCtrl, "UserAgentTransport", transportProtocol) != TRUE)
+                    {
+                        CcspTraceError(("%s: Webconfig set failed for UserAgentTransport\n",__FUNCTION__));
+                        retVal = 1;
+                    }
                 }
             }
 
             if( TRUE == pstSipNwCfg->IsConferencingURIPresent )
             {
-                TelcoVoiceMgrDml_SIP_NetworkList_SetParamStringValue(pSipNetworkCtrl, "X_RDK-Central_COM_ConferencingURI", pstSipNwCfg->ConferencingURI);
+                if(TelcoVoiceMgrDml_SIP_NetworkList_SetParamStringValue(pSipNetworkCtrl, "X_RDK-Central_COM_ConferencingURI", pstSipNwCfg->ConferencingURI) != TRUE)
+                {
+                    CcspTraceError(("%s: Webconfig set failed for ConferencingURI\n",__FUNCTION__));
+                    retVal = 1;
+                }
             }
 
             if( TRUE == pstSipNwCfg->IsSIPNetworkVoIPProfilePresent )
             {
-                TelcoVoiceMgrDml_SIP_NetworkList_SetParamStringValue(pSipNetworkCtrl, "VoIPProfile", pstSipNwCfg->SIPNetworkVoIPProfile);
+                if(TelcoVoiceMgrDml_SIP_NetworkList_SetParamStringValue(pSipNetworkCtrl, "VoIPProfile", pstSipNwCfg->SIPNetworkVoIPProfile) != TRUE)
+                {
+                    CcspTraceError(("%s: Webconfig set failed for SIPNetworkVoIPProfile\n",__FUNCTION__));
+                    retVal = 1;
+                }
             }
 
             if( TRUE == pstSipNwCfg->IsOutboundProxyPortPresent )
             {
-                TelcoVoiceMgrDml_SIP_NetworkList_SetParamUlongValue(pSipNetworkCtrl, "OutboundProxyPort", pstSipNwCfg->OutboundProxyPort);
+                if(TelcoVoiceMgrDml_SIP_NetworkList_SetParamUlongValue(pSipNetworkCtrl, "OutboundProxyPort", pstSipNwCfg->OutboundProxyPort) != TRUE)
+                {
+                    CcspTraceError(("%s: Webconfig set failed for OutboundProxyPort\n",__FUNCTION__));
+                    retVal = 1;
+                }
             }
 
             if( TRUE == pstSipNwCfg->IsProxyServerPortPresent )
             {
-                TelcoVoiceMgrDml_SIP_NetworkList_SetParamUlongValue(pSipNetworkCtrl, "ProxyServerPort", pstSipNwCfg->ProxyServerPort);
+                if(TelcoVoiceMgrDml_SIP_NetworkList_SetParamUlongValue(pSipNetworkCtrl, "ProxyServerPort", pstSipNwCfg->ProxyServerPort) != TRUE)
+                {
+                    CcspTraceError(("%s: Webconfig set failed for ProxyServerPort\n",__FUNCTION__));
+                    retVal = 1;
+                }
             }
 
             if( TRUE == pstSipNwCfg->IsRegistrarServerPortPresent )
             {
-                TelcoVoiceMgrDml_SIP_NetworkList_SetParamUlongValue(pSipNetworkCtrl, "RegistrarServerPort", pstSipNwCfg->RegistrarServerPort);
+                if(TelcoVoiceMgrDml_SIP_NetworkList_SetParamUlongValue(pSipNetworkCtrl, "RegistrarServerPort", pstSipNwCfg->RegistrarServerPort) != TRUE)
+                {
+                    CcspTraceError(("%s: Webconfig set failed for RegistrarServerPort\n",__FUNCTION__));
+                    retVal = 1;
+                }
             }
 
             if( TRUE == pstSipNwCfg->IsUserAgentPortPresent )
             {
-                TelcoVoiceMgrDml_SIP_NetworkList_SetParamUlongValue(pSipNetworkCtrl, "UserAgentPort", pstSipNwCfg->UserAgentPort);
+                if(TelcoVoiceMgrDml_SIP_NetworkList_SetParamUlongValue(pSipNetworkCtrl, "UserAgentPort", pstSipNwCfg->UserAgentPort) != TRUE)
+                {
+                    CcspTraceError(("%s: Webconfig set failed for UserAgentPort\n",__FUNCTION__));
+                    retVal = 1;
+                }
             }
 
             if( TRUE == pstSipNwCfg->IsSIPEthernetPriorityMarkPresent )
             {
-                TelcoVoiceMgrDml_SIP_NetworkList_SetParamIntValue(pSipNetworkCtrl, "EthernetPriorityMark", pstSipNwCfg->SIPEthernetPriorityMark);
+                if(TelcoVoiceMgrDml_SIP_NetworkList_SetParamIntValue(pSipNetworkCtrl, "EthernetPriorityMark", pstSipNwCfg->SIPEthernetPriorityMark) != TRUE)
+                {
+                    CcspTraceError(("%s: Webconfig set failed for SIPEthernetPriorityMark\n",__FUNCTION__));
+                    retVal = 1;
+                }
             }
 
             if( TRUE == pstSipNwCfg->IsSIPDSCPMarkPresent )
             {
-                TelcoVoiceMgrDml_SIP_NetworkList_SetParamUlongValue(pSipNetworkCtrl, "DSCPMark", pstSipNwCfg->SIPDSCPMark);
+                if(TelcoVoiceMgrDml_SIP_NetworkList_SetParamUlongValue(pSipNetworkCtrl, "DSCPMark", pstSipNwCfg->SIPDSCPMark) != TRUE)
+                {
+                    CcspTraceError(("%s: Webconfig set failed for SIPDSCPMark\n",__FUNCTION__));
+                    retVal = 1;
+                }
             }
 
             if( TRUE == pstSipNwCfg->IsNetworkDisconnectPresent )
             {
-                TelcoVoiceMgrDml_SIP_NetworkList_SetParamBoolValue(pSipNetworkCtrl, "X_RDK-Central_COM_NetworkDisconnect", pstSipNwCfg->NetworkDisconnect);
+                if(TelcoVoiceMgrDml_SIP_NetworkList_SetParamBoolValue(pSipNetworkCtrl, "X_RDK-Central_COM_NetworkDisconnect", pstSipNwCfg->NetworkDisconnect) != TRUE)
+                {
+                    CcspTraceError(("%s: Webconfig set failed for NetworkDisconnect\n",__FUNCTION__));
+                    retVal = 1;
+                }
             }
 
             if( TRUE == pstSipNwCfg->IsPRACKRequiredPresent )
             {
-                TelcoVoiceMgrDml_SIP_NetworkList_SetParamBoolValue(pSipNetworkCtrl, "X_RDK_PRACKRequired", pstSipNwCfg->PRACKRequired);
+                if(TelcoVoiceMgrDml_SIP_NetworkList_SetParamBoolValue(pSipNetworkCtrl, "X_RDK_PRACKRequired", pstSipNwCfg->PRACKRequired) != TRUE)
+                {
+                    CcspTraceError(("%s: Webconfig set failed for PRACKRequired\n",__FUNCTION__));
+                    retVal = 1;
+                }
             }
         }
 
@@ -574,27 +682,47 @@ pErr TelcoVoiceMgr_Process_Webconfig_Request(void *Data)
 
             if( TRUE == pstSipClientCfg->IsSIPClientEnablePresent )
             {
-                TelcoVoiceMgrDml_SIP_ClientList_SetParamBoolValue(pSipClientCtrl, "Enable", pstSipClientCfg->SIPClientEnable);
+                if(TelcoVoiceMgrDml_SIP_ClientList_SetParamBoolValue(pSipClientCtrl, "Enable", pstSipClientCfg->SIPClientEnable) != TRUE)
+                {
+                    CcspTraceError(("%s: Webconfig set failed for SIPClientEnable\n",__FUNCTION__));
+                    retVal = 1;
+                }
             }
 
             if( TRUE == pstSipClientCfg->IsSIPClientNetworkPresent )
             {
-                TelcoVoiceMgrDml_SIP_ClientList_SetParamStringValue(pSipClientCtrl, "Network", pstSipClientCfg->SIPClientNetwork);
+                if(TelcoVoiceMgrDml_SIP_ClientList_SetParamStringValue(pSipClientCtrl, "Network", pstSipClientCfg->SIPClientNetwork) != TRUE)
+                {
+                    CcspTraceError(("%s: Webconfig set failed for SIPClientNetwork\n",__FUNCTION__));
+                    retVal = 1;
+                }
             }
 
             if( TRUE == pstSipClientCfg->IsSIPAuthUserNamePresent )
             {
-                TelcoVoiceMgrDml_SIP_ClientList_SetParamStringValue(pSipClientCtrl, "AuthUserName", pstSipClientCfg->SIPAuthUserName);
+                if(TelcoVoiceMgrDml_SIP_ClientList_SetParamStringValue(pSipClientCtrl, "AuthUserName", pstSipClientCfg->SIPAuthUserName) != TRUE)
+                {
+                    CcspTraceError(("%s: Webconfig set failed for SIPAuthUserName\n",__FUNCTION__));
+                    retVal = 1;
+                }
             }
 
             if( TRUE == pstSipClientCfg->IsSIPAuthPasswordPresent )
             {
-                TelcoVoiceMgrDml_SIP_ClientList_SetParamStringValue(pSipClientCtrl, "AuthPassword", pstSipClientCfg->SIPAuthPassword);
+                if(TelcoVoiceMgrDml_SIP_ClientList_SetParamStringValue(pSipClientCtrl, "AuthPassword", pstSipClientCfg->SIPAuthPassword) != TRUE)
+                {
+                    CcspTraceError(("%s: Webconfig set failed for SIPAuthPassword\n",__FUNCTION__));
+                    retVal = 1;
+                }
             }
 
             if( TRUE == pstSipClientCfg->IsSIPURIPresent )
             {
-                TelcoVoiceMgrDml_SIP_ClientList_SetParamStringValue(pSipClientCtrl, "RegisterURI", pstSipClientCfg->SIPURI);
+                if(TelcoVoiceMgrDml_SIP_ClientList_SetParamStringValue(pSipClientCtrl, "RegisterURI", pstSipClientCfg->SIPURI) != TRUE)
+                {
+                    CcspTraceError(("%s: Webconfig set failed for SIPURI\n",__FUNCTION__));
+                    retVal = 1;
+                }
             }
         }
 
@@ -617,37 +745,65 @@ pErr TelcoVoiceMgr_Process_Webconfig_Request(void *Data)
 
             if( TRUE == pstVoIPCfg->IsProfileEnablePresent )
             {
-                TelcoVoiceMgrDml_VoipProfileList_SetParamBoolValue(pVoipProfileCtrl, "Enable", pstVoIPCfg->ProfileEnable);
+                if(TelcoVoiceMgrDml_VoipProfileList_SetParamBoolValue(pVoipProfileCtrl, "Enable", pstVoIPCfg->ProfileEnable) != TRUE)
+                {
+                    CcspTraceError(("%s: Webconfig set failed for ProfileEnable\n",__FUNCTION__));
+                    retVal = 1;
+                }
             }
 
             if( TRUE == pstVoIPCfg->IsRTPDSCPMarkPresent )
             {
-                TelcoVoiceMgrDml_VoipProfileList_RTP_SetParamUlongValue(pVoipProfileCtrl, "DSCPMark", pstVoIPCfg->RTPDSCPMark);
+                if(TelcoVoiceMgrDml_VoipProfileList_RTP_SetParamUlongValue(pVoipProfileCtrl, "DSCPMark", pstVoIPCfg->RTPDSCPMark) != TRUE)
+                {
+                    CcspTraceError(("%s: Webconfig set failed for RTPDSCPMark\n",__FUNCTION__));
+                    retVal = 1;
+                }
             }
 
             if( TRUE == pstVoIPCfg->IsRTPEthernetPriorityMarkPresent )
             {
-                TelcoVoiceMgrDml_VoipProfileList_RTP_SetParamIntValue(pVoipProfileCtrl, "EthernetPriorityMark", pstVoIPCfg->RTPEthernetPriorityMark);
+                if(TelcoVoiceMgrDml_VoipProfileList_RTP_SetParamIntValue(pVoipProfileCtrl, "EthernetPriorityMark", pstVoIPCfg->RTPEthernetPriorityMark) != TRUE)
+                {
+                    CcspTraceError(("%s: Webconfig set failed for RTPEthernetPriorityMark\n",__FUNCTION__));
+                    retVal = 1;
+                }
             }
 
             if( TRUE == pstVoIPCfg->IsSDigitTimerPresent )
             {
-                TelcoVoiceMgrDml_VoipProfileList_SetParamUlongValue(pVoipProfileCtrl, "X_RDK-Central_COM_SDigitTimer", pstVoIPCfg->SDigitTimer);
+                if(TelcoVoiceMgrDml_VoipProfileList_SetParamUlongValue(pVoipProfileCtrl, "X_RDK-Central_COM_SDigitTimer", pstVoIPCfg->SDigitTimer) != TRUE)
+                {
+                    CcspTraceError(("%s: Webconfig set failed for SDigitTimer\n",__FUNCTION__));
+                    retVal = 1;
+                }
             }
 
             if( TRUE == pstVoIPCfg->IsZDigitTimerPresent )
             {
-                TelcoVoiceMgrDml_VoipProfileList_SetParamUlongValue(pVoipProfileCtrl, "X_RDK-Central_COM_ZDigitTimer", pstVoIPCfg->ZDigitTimer);
+                if(TelcoVoiceMgrDml_VoipProfileList_SetParamUlongValue(pVoipProfileCtrl, "X_RDK-Central_COM_ZDigitTimer", pstVoIPCfg->ZDigitTimer) != TRUE)
+                {
+                    CcspTraceError(("%s: Webconfig set failed for ZDigitTimer\n",__FUNCTION__));
+                    retVal = 1;
+                }
             }
 
             if( TRUE == pstVoIPCfg->IsDigitMapPresent )
             {
-                TelcoVoiceMgrDml_VoipProfileList_SetParamStringValue(pVoipProfileCtrl, "X_RDK-Central_COM_DigitMap", pstVoIPCfg->DigitMap);
+                if(TelcoVoiceMgrDml_VoipProfileList_SetParamStringValue(pVoipProfileCtrl, "X_RDK-Central_COM_DigitMap", pstVoIPCfg->DigitMap) != TRUE)
+                {
+                    CcspTraceError(("%s: Webconfig set failed for DigitMap\n",__FUNCTION__));
+                    retVal = 1;
+                }
             }
 
             if( TRUE == pstVoIPCfg->IsEmergencyDigitMapPresent )
             {
-               TelcoVoiceMgrDml_VoipProfileList_SetParamStringValue(pVoipProfileCtrl, "X_RDK-Central_COM_EmergencyDigitMap", pstVoIPCfg->EmergencyDigitMap);
+                if(TelcoVoiceMgrDml_VoipProfileList_SetParamStringValue(pVoipProfileCtrl, "X_RDK-Central_COM_EmergencyDigitMap", pstVoIPCfg->EmergencyDigitMap) != TRUE)
+                {
+                    CcspTraceError(("%s: Webconfig set failed for EmergencyDigit\n",__FUNCTION__));
+                    retVal = 1;
+                }
             }
         }
 
@@ -671,24 +827,42 @@ pErr TelcoVoiceMgr_Process_Webconfig_Request(void *Data)
             if( TRUE == pstPOTSFxsCfg->IsFXSEnablePresent )
             {
                 CcspTraceInfo(("%s : FXS Enable received Successfully\n",__FUNCTION__));
-                TelcoVoiceMgrDml_POTS_FXSList_SetParamBoolValue(pPOTSFxsCtrl, "Enable", pstPOTSFxsCfg->FXSEnable);
+                if(TelcoVoiceMgrDml_POTS_FXSList_SetParamBoolValue(pPOTSFxsCtrl, "Enable", pstPOTSFxsCfg->FXSEnable) != TRUE)
+                {
+                    CcspTraceError(("%s: Webconfig set failed for FXSEnable\n",__FUNCTION__));
+                    retVal = 1;
+                }
             }
             if( TRUE == pstPOTSFxsCfg->IsReceiveGainPresent )
             {
                 CcspTraceInfo(("%s : FXS ReceiveGain received Successfully\n",__FUNCTION__));
-                TelcoVoiceMgrDml_POTS_FXSList_VoiceProcessing_SetParamIntValue(pPOTSFxsCtrl, "ReceiveGain", pstPOTSFxsCfg->ReceiveGain);
+                if(TelcoVoiceMgrDml_POTS_FXSList_VoiceProcessing_SetParamIntValue(pPOTSFxsCtrl, "ReceiveGain", pstPOTSFxsCfg->ReceiveGain) != TRUE)
+                {
+                    CcspTraceError(("%s: Webconfig set failed for ReceiveGain\n",__FUNCTION__));
+                    retVal = 1;
+                }
             }
             if( TRUE == pstPOTSFxsCfg->IsTransmitGainPresent )
             {
                 CcspTraceInfo(("%s : FXS TransmitGain received Successfully\n",__FUNCTION__));
-                TelcoVoiceMgrDml_POTS_FXSList_VoiceProcessing_SetParamIntValue(pPOTSFxsCtrl, "TransmitGain", pstPOTSFxsCfg->TransmitGain);
+                if(TelcoVoiceMgrDml_POTS_FXSList_VoiceProcessing_SetParamIntValue(pPOTSFxsCtrl, "TransmitGain", pstPOTSFxsCfg->TransmitGain) != TRUE)
+                {
+                    CcspTraceError(("%s: Webconfig set failed for TransmitGain\n",__FUNCTION__));
+                    retVal = 1;
+                }
             }
         }
 
 #endif
     }
-    CcspTraceInfo(("%s : Telcovoice Blob Data Applied Successfully\n",__FUNCTION__));
-
+#ifdef FEATURE_RDKB_VOICE_DM_TR104_V2
+    if(retVal)
+    {
+        CcspTraceError(("%s : Telcovoice Data Provisioning failed for one or more parameters\n",__FUNCTION__));
+    }
+    else
+#endif
+        CcspTraceInfo(("%s : Telcovoice Data Provisioned Successfully\n",__FUNCTION__));
     return execRetVal;
 }
 
