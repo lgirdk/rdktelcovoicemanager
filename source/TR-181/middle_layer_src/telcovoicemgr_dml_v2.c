@@ -369,7 +369,7 @@ BOOL VoiceService_GetParamBoolValue(ANSC_HANDLE hInsContext, char* ParamName, BO
         *pBool = pHEAD->X_RDK_DisableLoopCurrentUntilRegistered;
         ret = TRUE;
     }
-    else if( AnscEqualString(ParamName, "X_RDK_OngoingEmergencyCall", TRUE) )
+    else if (strcmp(ParamName, "X_RDK_OngoingEmergencyCall") == 0)
     {
         *pBool = pHEAD->X_RDK_OngoingEmergencyCall;
         ret = TRUE;
