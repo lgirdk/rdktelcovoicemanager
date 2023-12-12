@@ -3917,13 +3917,15 @@
             </object>
             <object>
                 <name>OutgoingMap</name>
-                <objectType>dynamicTable</objectType>
+                <objectType>writableTable</objectType>
                 <maxInstance>128</maxInstance>
                 <functions>
                    <func_IsUpdated>TelcoVoiceMgrDml_CallControl_OutgoingMapList_IsUpdated</func_IsUpdated>
                    <func_Synchronize>TelcoVoiceMgrDml_CallControl_OutgoingMapList_Synchronize</func_Synchronize>
                    <func_GetEntryCount>TelcoVoiceMgrDml_CallControl_OutgoingMapList_GetEntryCount</func_GetEntryCount>
                    <func_GetEntry>TelcoVoiceMgrDml_CallControl_OutgoingMapList_GetEntry</func_GetEntry>
+		   <func_AddEntry>TelcoVoiceMgrDml_CallControl_OutgoingMapList_AddEntry</func_AddEntry>
+                   <func_DelEntry>TelcoVoiceMgrDml_CallControl_OutgoingMapList_DelEntry</func_DelEntry>
                    <func_GetParamUlongValue>TelcoVoiceMgrDml_CallControl_OutgoingMapList_GetParamUlongValue</func_GetParamUlongValue>
                    <func_SetParamUlongValue>TelcoVoiceMgrDml_CallControl_OutgoingMapList_SetParamUlongValue</func_SetParamUlongValue>
                    <func_GetParamStringValue>TelcoVoiceMgrDml_CallControl_OutgoingMapList_GetParamStringValue</func_GetParamStringValue>
@@ -3975,13 +3977,15 @@
             </object>
             <object>
                 <name>NumberingPlan</name>
-                <objectType>dynamicTable</objectType>
+                <objectType>writableTable</objectType>
                 <maxInstance>128</maxInstance>
                 <functions>
                    <func_IsUpdated>TelcoVoiceMgrDml_CallControl_NumberingPlanList_IsUpdated</func_IsUpdated>
                    <func_Synchronize>TelcoVoiceMgrDml_CallControl_NumberingPlanList_Synchronize</func_Synchronize>
                    <func_GetEntryCount>TelcoVoiceMgrDml_CallControl_NumberingPlanList_GetEntryCount</func_GetEntryCount>
                    <func_GetEntry>TelcoVoiceMgrDml_CallControl_NumberingPlanList_GetEntry</func_GetEntry>
+		   <func_AddEntry>TelcoVoiceMgrDml_CallControl_NumberingPlanList_AddEntry</func_AddEntry>
+                   <func_DelEntry>TelcoVoiceMgrDml_CallControl_NumberingPlanList_DelEntry</func_DelEntry>
                    <func_GetParamUlongValue>TelcoVoiceMgrDml_CallControl_NumberingPlanList_GetParamUlongValue</func_GetParamUlongValue>
                    <func_SetParamUlongValue>TelcoVoiceMgrDml_CallControl_NumberingPlanList_SetParamUlongValue</func_SetParamUlongValue>
                    <func_GetParamStringValue>TelcoVoiceMgrDml_CallControl_NumberingPlanList_GetParamStringValue</func_GetParamStringValue>

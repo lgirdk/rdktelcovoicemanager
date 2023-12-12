@@ -4681,6 +4681,118 @@ ANSC_HANDLE TelcoVoiceMgrDml_CallControl_OutgoingMapList_GetEntry(ANSC_HANDLE hI
     return ret;
 }
 
+/********************************************************************
+
+    caller:     owner of this object
+
+    prototype:
+
+        ANSC_HANDLE TelcoVoiceMgrDml_CallControl_OutgoingMapList_AddEntry(ANSC_HANDLE hInsContext, ULONG* pInsNumber);
+
+    description:
+
+        This function is called to add a new entry.
+
+    argument:   ANSC_HANDLE                 hInsContext,
+                The instance handle;
+
+                ULONG*                      pInsNumber
+                The output instance number;
+
+    return:     The handle of new added entry.
+
+*********************************************************************/
+
+ANSC_HANDLE TelcoVoiceMgrDml_CallControl_OutgoingMapList_AddEntry(ANSC_HANDLE hInsContext, ULONG* pInsNumber)
+{
+    ANSC_HANDLE ret = NULL;
+
+    TELCOVOICEMGR_LOCK_OR_EXIT()
+
+    DML_VOICE_SERVICE_CTRL_T* pVoiceService = (DML_VOICE_SERVICE_CTRL_T*) hInsContext;
+
+    PTELCOVOICEMGR_DML_VOICESERVICE pDmlVoiceService = &(pVoiceService->dml);
+
+    PDML_CALLCONTROL_OUTGOINGMAP_LIST_T pOutmapList = &(pDmlVoiceService->CallControl_obj.OutgoingMap);
+
+    if(pOutmapList != NULL)
+    {
+        ret = TelcoVoiceMgrHal_AddCallCtrlOutMap((ANSC_HANDLE)pDmlVoiceService,pInsNumber,(ANSC_HANDLE)pOutmapList); // use to set alias/status/origin
+        if( ret == NULL)
+        {
+                CcspTraceError(("%s:%d:: Add CallControl.OutgoingMap failed\n", __FUNCTION__, __LINE__));
+        }
+    }
+
+    TELCOVOICEMGR_UNLOCK()
+
+        return ret;
+}
+
+/*********************************************************************
+
+    caller:     owner of this object
+
+    prototype:
+
+        ULONG TelcoVoiceMgrDml_CallControl_OutgoingMapList_DelEntry(ANSC_HANDLE hInsContext, ANSC_HANDLE hInstance);
+
+    description:
+
+        This function is called to delete an exist entry.
+
+    argument:   ANSC_HANDLE                 hInsContext,
+                The instance handle;
+
+                ANSC_HANDLE                 hInstance
+                The exist entry handle;
+
+    return:     The status of the operation.
+
+*********************************************************************/
+
+ULONG TelcoVoiceMgrDml_CallControl_OutgoingMapList_DelEntry(ANSC_HANDLE hInsContext, ANSC_HANDLE hInstance)
+{
+    ANSC_STATUS ret = ANSC_STATUS_SUCCESS;
+    ULONG uVsIndex  = 0;
+    ULONG uOutgoingMapIndex = 0;
+    char HalName[MAX_STR_LEN] = {0};
+
+    TELCOVOICEMGR_LOCK_OR_EXIT()
+
+    PDML_VOICE_SERVICE_CTRL_T pVoiceService = (PDML_VOICE_SERVICE_CTRL_T) hInsContext;
+
+    PTELCOVOICEMGR_DML_VOICESERVICE pDmlVoiceService = &(pVoiceService->dml);
+
+    PDML_CALLCONTROL_OUTGOINGMAP_LIST_T pOutmapList = &(pDmlVoiceService->CallControl_obj.OutgoingMap);
+
+    PDML_CALLCONTROL_OUTGOINGMAP_CTRL_T pCallCtrlOutMapCtrl = (PDML_CALLCONTROL_OUTGOINGMAP_CTRL_T) hInstance;
+
+    if(pOutmapList != NULL && pCallCtrlOutMapCtrl!= NULL)
+    {
+        uVsIndex = pDmlVoiceService->InstanceNumber;
+        uOutgoingMapIndex = pCallCtrlOutMapCtrl->dml.uInstanceNumber;
+        snprintf(HalName, MAX_STR_LEN, DML_VOICESERVICE_CALLCONTROL_OUTGOINGMAP_PARAM_NAME, uVsIndex,uOutgoingMapIndex);
+
+
+                if (TelcoVoiceMgrHal_DelParam(HalName) == ANSC_STATUS_SUCCESS)
+                {
+                        if(pOutmapList->pdata[uOutgoingMapIndex-1] != NULL)
+                        {
+                                AnscFreeMemory((ANSC_HANDLE) pOutmapList->pdata[uOutgoingMapIndex-1]);
+                                pOutmapList->pdata[uOutgoingMapIndex-1]=NULL;
+                                pOutmapList->ulQuantity--;
+                        }
+                }
+    }
+    TELCOVOICEMGR_UNLOCK()
+
+   (void)deleteObject(HalName);
+
+    return ret;
+}
+
+
 /**********************************************************************
 
     caller:     owner of this object
@@ -5386,6 +5498,111 @@ ANSC_HANDLE TelcoVoiceMgrDml_CallControl_NumberingPlanList_GetEntry(ANSC_HANDLE 
     }
 
     TELCOVOICEMGR_UNLOCK()
+
+    return ret;
+}
+
+/********************************************************************
+
+    caller:     owner of this object
+
+    prototype:
+
+        ANSC_HANDLE TelcoVoiceMgrDml_CallControl_NumberingPlanList_AddEntry(ANSC_HANDLE hInsContext, ULONG* pInsNumber);
+    description:
+       This function is called to add a new entry.
+
+    argument:   ANSC_HANDLE                 hInsContext,+                The instance handle;
+                ULONG*                      pInsNumber
+                The output instance number;
+
+    return:     The handle of new added entry.
+
+*********************************************************************/
+ANSC_HANDLE TelcoVoiceMgrDml_CallControl_NumberingPlanList_AddEntry(ANSC_HANDLE hInsContext, ULONG* pInsNumber)
+{
+    ANSC_HANDLE ret = NULL;
+
+    TELCOVOICEMGR_LOCK_OR_EXIT()
+
+    DML_VOICE_SERVICE_CTRL_T* pVoiceService = (DML_VOICE_SERVICE_CTRL_T*) hInsContext;
+
+    PTELCOVOICEMGR_DML_VOICESERVICE pDmlVoiceService = &(pVoiceService->dml);
+
+    PDML_CALLCONTROL_NUMBERINGPLAN_LIST_T pNumPlanList = &(pDmlVoiceService->CallControl_obj.NumberingPlan);
+
+    if(pNumPlanList != NULL)
+    {
+        ret = TelcoVoiceMgrHal_AddCallCtrlNumberingPlan((ANSC_HANDLE)pDmlVoiceService,pInsNumber,(ANSC_HANDLE)pNumPlanList); // use to set alias/status/origin
+        if( ret == NULL)
+        {
+                CcspTraceError(("%s:%d:: Add CallControl.NumberingPlan failed\n", __FUNCTION__, __LINE__));
+        }
+    }
+
+    TELCOVOICEMGR_UNLOCK()
+
+        return ret;
+}
+
+/*********************************************************************
+
+    caller:     owner of this object
+
+    prototype:
+
+        ULONG TelcoVoiceMgrDml_CallControl_NumberingPlanList_DelEntry(ANSC_HANDLE hInsContext, ANSC_HANDLE hInstance);
+
+    description:
+
+        This function is called to delete an exist entry.
+
+    argument:   ANSC_HANDLE                 hInsContext,
+                The instance handle;
+
+                ANSC_HANDLE                 hInstance
+                The exist entry handle;
+
+    return:     The status of the operation.
+
+*********************************************************************/
+ULONG TelcoVoiceMgrDml_CallControl_NumberingPlanList_DelEntry(ANSC_HANDLE hInsContext, ANSC_HANDLE hInstance)
+{
+    ANSC_STATUS ret = ANSC_STATUS_SUCCESS;
+    ULONG uVsIndex  = 0;
+    ULONG uNumPlanIndex = 0;
+    char HalName[MAX_STR_LEN] = {0};
+
+    TELCOVOICEMGR_LOCK_OR_EXIT()
+
+    PDML_VOICE_SERVICE_CTRL_T pVoiceService = (PDML_VOICE_SERVICE_CTRL_T) hInsContext;
+
+    PTELCOVOICEMGR_DML_VOICESERVICE pDmlVoiceService = &(pVoiceService->dml);
+
+    PDML_CALLCONTROL_NUMBERINGPLAN_LIST_T pNumPlanList = &(pDmlVoiceService->CallControl_obj.NumberingPlan);
+
+    PDML_CALLCONTROL_NUMBERINGPLAN_CTRL_T pCallCtrlNumPlanCtrl = (PDML_CALLCONTROL_NUMBERINGPLAN_CTRL_T) hInstance;
+
+    if(pNumPlanList != NULL && pCallCtrlNumPlanCtrl!= NULL)
+    {
+        uVsIndex = pDmlVoiceService->InstanceNumber;
+        uNumPlanIndex = pCallCtrlNumPlanCtrl->dml.uInstanceNumber;
+        snprintf(HalName, MAX_STR_LEN, DML_VOICESERVICE_CALLCONTROL_NUMPLAN_PARAM_NAME, uVsIndex,uNumPlanIndex);
+
+
+                if (TelcoVoiceMgrHal_DelParam(HalName) == ANSC_STATUS_SUCCESS)
+                {
+                        if(pNumPlanList->pdata[uNumPlanIndex-1] != NULL)
+                        {
+                                AnscFreeMemory((ANSC_HANDLE) pNumPlanList->pdata[uNumPlanIndex-1]);
+                                pNumPlanList->pdata[uNumPlanIndex-1]=NULL;
+                                pNumPlanList->ulQuantity--;
+                        }
+                }
+    }
+    TELCOVOICEMGR_UNLOCK()
+
+   (void)deleteObject(HalName);
 
     return ret;
 }

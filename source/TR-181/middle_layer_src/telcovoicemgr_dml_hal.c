@@ -993,6 +993,49 @@ ANSC_STATUS TelcoVoiceMgrHal_SetParam(char *pName, eParamType pType, char *pValu
 
     return rc;
 }
+#ifdef FEATURE_RDKB_VOICE_DM_TR104_V2
+ANSC_STATUS TelcoVoiceMgrHal_DelParam(const char *param_name)
+{
+    CHECK(param_name != NULL);
+
+    ANSC_STATUS rc = ANSC_STATUS_SUCCESS;
+
+    json_object *jreply_msg = NULL;
+    json_bool status = FALSE;
+    json_object *jrequest = create_json_request_message(DELETE_REQUEST_MESSAGE, param_name, NULL_TYPE , NULL);
+    CHECK(jrequest != NULL);
+
+    if (json_hal_client_send_and_get_reply(jrequest, &jreply_msg) != RETURN_OK)
+    {
+        CcspTraceError(("%s - %d Failed to get reply for the json request \n", __FUNCTION__, __LINE__));
+        FREE_JSON_OBJECT(jrequest);
+        FREE_JSON_OBJECT(jreply_msg);
+        return ANSC_STATUS_FAILURE;
+    }
+
+
+    if (json_hal_get_result_status(jreply_msg, &status) == RETURN_OK)
+    {
+        if (status)
+        {
+            rc = ANSC_STATUS_SUCCESS;
+        }
+        else
+        {
+            fprintf(stderr,"%s - %d Set request for [%s] is failed\n", __FUNCTION__, __LINE__, param_name);
+        }
+    }
+    else
+    {
+        fprintf(stderr,"%s - %d Failed to get result status from json response, something wrong happened!!! \n", __FUNCTION__, __LINE__);
+    }
+
+    // Free json objects.
+    FREE_JSON_OBJECT(jrequest);
+    FREE_JSON_OBJECT(jreply_msg);
+    return rc;
+}
+#endif
 
 ANSC_STATUS get_event_param(const char* msg, const int len, char* event_name, char* event_val)
 {
@@ -1286,3 +1329,200 @@ ANSC_STATUS TelcoVoiceMgrHal_EventSubscribe(event_callback callback, const char*
     return ANSC_STATUS_FAILURE;
 }
 
+#ifdef FEATURE_RDKB_VOICE_DM_TR104_V2
+ANSC_HANDLE
+TelcoVoiceMgrHal_AddCallCtrlOutMap
+    (
+                ANSC_HANDLE                 pVoiceService,
+                ULONG*                                          pInsNumber,
+                ANSC_HANDLE                 CallCtrlOutMapList
+    )
+{
+    ANSC_HANDLE                     returnEntry      = NULL;
+    PDML_CALLCONTROL_OUTGOINGMAP_LIST_T    pCallCtrlOutMapList         = (PDML_CALLCONTROL_OUTGOINGMAP_LIST_T)CallCtrlOutMapList;
+    PTELCOVOICEMGR_DML_VOICESERVICE pDmlVoiceService  = (PDML_CALLCONTROL_OUTGOINGMAP_LIST_T)pVoiceService;
+    PDML_CALLCONTROL_OUTGOINGMAP_CTRL_T pCallCtrlOutMapCtrl         = NULL;
+
+
+    /*
+     *
+     */
+    int NextInstanceNumber =0;
+    FIND_NEW_OBJECT_ENTY_ID(pCallCtrlOutMapList,NextInstanceNumber);
+    if(NextInstanceNumber ==0)
+    {
+        CcspTraceError(("%s:%d:: New  InstanceNumber Not Found \n", __FUNCTION__, __LINE__));
+        return returnEntry;
+    }
+
+    if(pCallCtrlOutMapList && TelcoVoiceMgrDmlAddCallCtrlOutMap(pCallCtrlOutMapList, NextInstanceNumber-1) == ANSC_STATUS_SUCCESS)
+    {
+        pCallCtrlOutMapCtrl = pCallCtrlOutMapList->pdata[NextInstanceNumber-1];
+                if(pCallCtrlOutMapCtrl != NULL)
+                {
+                        pCallCtrlOutMapCtrl->dml.pParentVoiceService=pDmlVoiceService;
+                        pCallCtrlOutMapCtrl->dml.uInstanceNumber=NextInstanceNumber;
+                        returnEntry = (ANSC_HANDLE) pCallCtrlOutMapCtrl;
+                        *pInsNumber=NextInstanceNumber;
+                }
+                else
+                {
+                        return returnEntry;
+                }
+    }
+    else
+    {
+        CcspTraceError(("%s:%d:: Add New  InstanceNumber failed \n", __FUNCTION__, __LINE__));
+        return returnEntry;
+    }
+
+    //Init all memory
+    _ansc_sprintf( pCallCtrlOutMapCtrl->dml.Alias, "%s%d", "cpe-OutgoingMap",NextInstanceNumber);
+    pCallCtrlOutMapCtrl->dml.Enable=FALSE;
+    pCallCtrlOutMapCtrl->dml.Order = 1;
+    /*
+     * send default cfg to voice stack
+     */
+
+    hal_param_t setParam;
+    json_object *jAddMsg = json_hal_client_get_request_header(SET_PARAMETER_METHOD);
+
+    if(pDmlVoiceService == NULL)
+    {
+        CcspTraceError(("%s:%d:: VoiceService InstanceNumber Not Found \n", __FUNCTION__, __LINE__));
+        return returnEntry;
+    }
+
+    char HalName[JSON_MAX_STR_ARR_SIZE] = { 0 };
+    snprintf(HalName, sizeof(HalName)-1, DML_VOICESERVICE_CALLCONTROL_OUTGOINGMAP_PARAM_NAME, pDmlVoiceService->InstanceNumber, NextInstanceNumber);
+
+    (void)storeObjectString(HalName,""/*not used */);//add OutgoingMap.{i}.
+
+
+
+    //Alias
+    memset(&setParam, 0, sizeof(setParam));
+    snprintf(setParam.name, sizeof(setParam.name), DML_VOICESERVICE_CALLCONTROL_OUTGOINGMAP_PARAM_NAME"%s", pDmlVoiceService->InstanceNumber, NextInstanceNumber, "Alias");
+    snprintf(setParam.value, sizeof(setParam.value), "%s", pCallCtrlOutMapCtrl->dml.Alias);
+    setParam.type = PARAM_STRING;
+    json_hal_add_param(jAddMsg, SET_REQUEST_MESSAGE, &setParam);
+    (void)storeObjectString(setParam.name,setParam.value);
+
+    //Enable
+    memset(&setParam, 0, sizeof(setParam));
+    snprintf(setParam.name, sizeof(setParam.name), DML_VOICESERVICE_CALLCONTROL_OUTGOINGMAP_PARAM_NAME"%s", pDmlVoiceService->InstanceNumber, NextInstanceNumber, "Enable");
+    snprintf(setParam.value, sizeof(setParam.value), "%s", pCallCtrlOutMapCtrl->dml.Enable==FALSE?"false":"true");
+    setParam.type = PARAM_BOOLEAN;
+    json_hal_add_param(jAddMsg, SET_REQUEST_MESSAGE, &setParam);
+    (void)storeObjectBool(setParam.name,pCallCtrlOutMapCtrl->dml.Enable);
+
+
+     //Order
+     memset(&setParam, 0, sizeof(setParam));
+     snprintf(setParam.name, sizeof(setParam.name),DML_VOICESERVICE_CALLCONTROL_OUTGOINGMAP_PARAM_NAME"%s", pDmlVoiceService->InstanceNumber, NextInstanceNumber, "Order");
+     snprintf(setParam.value, sizeof(setParam.value), "%d", pCallCtrlOutMapCtrl->dml.Order);
+     setParam.type = PARAM_UNSIGNED_INTEGER;
+     json_hal_add_param(jAddMsg, SET_REQUEST_MESSAGE, &setParam);
+     (void)storeObjectInteger(setParam.name, pCallCtrlOutMapCtrl->dml.Order);
+
+    if(TelcoVoiceMgrHal_SendJsonRequest(jAddMsg) == ANSC_STATUS_SUCCESS)
+    {
+       CcspTraceInfo(("%s: NEW  CallControl OutgoinggMap Initialised successfully with Json defaults !!\n", __FUNCTION__));
+    }
+    else
+    {
+       CcspTraceInfo(("%s: NEW  CallControl OutgoingMap Initialisation failed !!\n", __FUNCTION__));
+    }
+
+
+    return returnEntry;
+}
+
+ANSC_HANDLE
+TelcoVoiceMgrHal_AddCallCtrlNumberingPlan
+    (
+                ANSC_HANDLE                 pVoiceService,
+                ULONG*                                          pInsNumber,
+                ANSC_HANDLE                 CallCtrlNumPlanList
+    )
+{
+        ANSC_HANDLE                     returnEntry      = NULL;
+    PDML_CALLCONTROL_NUMBERINGPLAN_LIST_T    pCallCtrlNumPlanList         = (PDML_CALLCONTROL_NUMBERINGPLAN_LIST_T)CallCtrlNumPlanList;
+    PTELCOVOICEMGR_DML_VOICESERVICE pDmlVoiceService  = (PDML_CALLCONTROL_NUMBERINGPLAN_LIST_T)pVoiceService;
+    PDML_CALLCONTROL_NUMBERINGPLAN_CTRL_T       pCallCtrlNumPlanCtrl         = NULL;
+
+
+    /*
+     *
+     */
+    int NextInstanceNumber =0;
+    FIND_NEW_OBJECT_ENTY_ID(pCallCtrlNumPlanList,NextInstanceNumber);
+    if(NextInstanceNumber ==0)
+    {
+        CcspTraceError(("%s:%d:: New  InstanceNumber Not Found \n", __FUNCTION__, __LINE__));
+        return returnEntry;
+    }
+
+    if(pCallCtrlNumPlanList && TelcoVoiceMgrDmlAddCallCtrlNumPlan(pCallCtrlNumPlanList, NextInstanceNumber-1) == ANSC_STATUS_SUCCESS)
+    {
+        pCallCtrlNumPlanCtrl = pCallCtrlNumPlanList->pdata[NextInstanceNumber-1];
+                if(pCallCtrlNumPlanCtrl != NULL)
+                {
+                        pCallCtrlNumPlanCtrl->dml.pParentVoiceService=pDmlVoiceService;
+                        pCallCtrlNumPlanCtrl->dml.uInstanceNumber=NextInstanceNumber;
+                        returnEntry = (ANSC_HANDLE) pCallCtrlNumPlanCtrl;
+                        *pInsNumber=NextInstanceNumber;
+                }
+                else
+                {
+                        return returnEntry;
+                }
+    }
+    else
+    {
+        CcspTraceError(("%s:%d:: Add New  InstanceNumber failed \n", __FUNCTION__, __LINE__));
+        return returnEntry;
+    }
+
+    //Init all memory
+    _ansc_sprintf( pCallCtrlNumPlanCtrl->dml.Alias, "%s%d", "cpe-NumberingPlan",NextInstanceNumber);
+
+    /*
+     * send default cfg to voice stack
+     */
+
+    hal_param_t setParam;
+    json_object *jAddMsg = json_hal_client_get_request_header(SET_PARAMETER_METHOD);
+
+    if(pDmlVoiceService == NULL)
+    {
+        CcspTraceError(("%s:%d:: VoiceService InstanceNumber Not Found \n", __FUNCTION__, __LINE__));
+        return returnEntry;
+    }
+
+    char HalName[JSON_MAX_STR_ARR_SIZE] = { 0 };
+    snprintf(HalName, sizeof(HalName)-1, DML_VOICESERVICE_CALLCONTROL_NUMPLAN_PARAM_NAME, pDmlVoiceService->InstanceNumber, NextInstanceNumber);
+
+    (void)storeObjectString(HalName,""/*not used */);//add NumberingPlan.{i}.
+
+
+    //Alias
+    memset(&setParam, 0, sizeof(setParam));
+    snprintf(setParam.name, sizeof(setParam.name), DML_VOICESERVICE_CALLCONTROL_NUMPLAN_PARAM_NAME"%s", pDmlVoiceService->InstanceNumber, NextInstanceNumber, "Alias");
+    snprintf(setParam.value, sizeof(setParam.value), "%s", pCallCtrlNumPlanCtrl->dml.Alias);
+    setParam.type = PARAM_STRING;
+    json_hal_add_param(jAddMsg, SET_REQUEST_MESSAGE, &setParam);
+    (void)storeObjectString(setParam.name,setParam.value);
+
+    if(TelcoVoiceMgrHal_SendJsonRequest(jAddMsg) == ANSC_STATUS_SUCCESS)
+    {
+       CcspTraceInfo(("%s: NEW  CallControl NumberingPlan Initialised successfully with Json defaults !!\n", __FUNCTION__));
+    }
+    else
+    {
+       CcspTraceInfo(("%s: NEW  CallControl NumberingPlan Initialisation failed !!\n", __FUNCTION__));
+    }
+
+    return returnEntry;
+}
+#endif

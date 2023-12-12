@@ -911,6 +911,10 @@ ULONG TelcoVoiceMgrDml_CallControl_OutgoingMapList_GetEntryCount(ANSC_HANDLE hIn
 
 ANSC_HANDLE TelcoVoiceMgrDml_CallControl_OutgoingMapList_GetEntry(ANSC_HANDLE hInsContext, ULONG nIndex, ULONG* pInsNumber);
 
+ANSC_HANDLE TelcoVoiceMgrDml_CallControl_OutgoingMapList_AddEntry(ANSC_HANDLE hInsContext, ULONG* pInsNumber);
+
+ULONG TelcoVoiceMgrDml_CallControl_OutgoingMapList_DelEntry(ANSC_HANDLE hInsContext, ANSC_HANDLE hInstance);
+
 BOOL TelcoVoiceMgrDml_CallControl_OutgoingMapList_GetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, ULONG* puLong);
 
 BOOL TelcoVoiceMgrDml_CallControl_OutgoingMapList_SetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, ULONG uValue);
@@ -936,6 +940,10 @@ ULONG TelcoVoiceMgrDml_CallControl_NumberingPlanList_Synchronize(ANSC_HANDLE hIn
 ULONG TelcoVoiceMgrDml_CallControl_NumberingPlanList_GetEntryCount(ANSC_HANDLE hInsContext);
 
 ANSC_HANDLE TelcoVoiceMgrDml_CallControl_NumberingPlanList_GetEntry(ANSC_HANDLE hInsContext, ULONG nIndex, ULONG* pInsNumber);
+
+ANSC_HANDLE TelcoVoiceMgrDml_CallControl_NumberingPlanList_AddEntry(ANSC_HANDLE hInsContext, ULONG* pInsNumber);
+
+ULONG TelcoVoiceMgrDml_CallControl_NumberingPlanList_DelEntry(ANSC_HANDLE hInsContext, ANSC_HANDLE hInstance);
 
 BOOL TelcoVoiceMgrDml_CallControl_NumberingPlanList_GetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, ULONG* puLong);
 

@@ -119,6 +119,15 @@
         json_object_put(expr); \
         }                      \
 
+#define FIND_NEW_OBJECT_ENTY_ID(listhead,new_id)                   \
+    if(listhead)                                                   \
+    {                                                              \
+        do{                                                        \
+                        new_id++;                                  \
+                }while(listhead->pdata[new_id-1]!=NULL);           \
+    }
+
+
 /**
  * @brief Initialise the TelcoVoice features
  *
@@ -139,6 +148,9 @@ ANSC_STATUS TelcoVoiceMgrHal_SendJsonRequest(json_object *jmsg);
 ANSC_STATUS TelcoVoiceMgrHal_GetCapabilities(PTELCOVOICEMGR_DML_CAPABILITIES pCapabilities);
 ANSC_STATUS TelcoVoiceMgrHal_GetVoiceProfile(DML_PROFILE_LIST_T* pVoiceProfileList, int vsIndex);
 ANSC_STATUS TelcoVoiceMgrHal_GetPhyInterface(DML_PHYINTERFACE_LIST_T* pPhyInterfaceList, int vsIndex);
+ANSC_STATUS TelcoVoiceMgrHal_DelParam(const char *param_name);
+ANSC_HANDLE TelcoVoiceMgrHal_AddCallCtrlOutMap(ANSC_HANDLE pVoiceService,ULONG* pInsNumber,ANSC_HANDLE CallCtrlOutMapList);
+ANSC_HANDLE TelcoVoiceMgrHal_AddCallCtrlNumberingPlan(ANSC_HANDLE pVoiceService,ULONG* pInsNumber,ANSC_HANDLE CallCtrlNumPlanList);
 #endif
 ANSC_STATUS TelcoVoiceHal_GetLineStats(const char *param_name, TELCOVOICEMGR_DML_VOICESERVICE_STATS *pLineStats);
 ANSC_STATUS TelcoVoiceMgrHal_GetInitData(void);
