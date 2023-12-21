@@ -503,7 +503,7 @@ BOOL VoiceService_SetParamBoolValue(ANSC_HANDLE hInsContext, char* ParamName, BO
 
 ULONG VoiceService_GetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName, char* pValue, ULONG* pulSize)
 {
-    int ret = 1;
+    int  ret                = 1;
 
     if(ParamName == NULL || pValue == NULL || pulSize == NULL)
     {
@@ -541,6 +541,14 @@ ULONG VoiceService_GetParamStringValue(ANSC_HANDLE hInsContext, char* ParamName,
     {
         AnscCopyString(pValue,pHEAD->X_RDK_Firewall_Rule_Data);
         ret = 0;
+    }
+    else if( AnscEqualString(ParamName, "X_RDK_LocalTimeZone", TRUE) )
+    {
+        if(ANSC_STATUS_SUCCESS == TelcoVoiceMgrDmlGetX_RDK_LocalTimeZone(pHEAD->X_RDK_LocalTimeZone))
+        {
+            AnscCopyString(pValue, pHEAD->X_RDK_LocalTimeZone);
+            ret = 0;
+        }
     }
     else
     {

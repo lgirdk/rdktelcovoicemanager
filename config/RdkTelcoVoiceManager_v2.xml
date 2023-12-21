@@ -200,6 +200,11 @@
               <type>boolean</type>
               <syntax>bool</syntax>
             </parameter>
+            <parameter>
+              <name>X_RDK_LocalTimeZone</name>
+              <type>string(256)</type>
+              <syntax>string</syntax>
+            </parameter>
          </parameters>
     <objects>
         <object>

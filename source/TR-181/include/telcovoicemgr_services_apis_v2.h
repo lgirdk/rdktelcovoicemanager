@@ -3086,6 +3086,7 @@ typedef struct _TELCOVOICEMGR_DML_VOICESERVICE
     TELCOVOICEMGR_VOICE_STATUS_ENUM         X_RDK_Status;
     BOOL                                    X_RDK_FactoryReset;
     BOOL                                    X_RDK_OngoingEmergencyCall;
+    CHAR                                    X_RDK_LocalTimeZone[STR_LEN_256];
     TELCOVOICEMGR_DML_X_RDK_DEBUG           X_RDK_DebugObj;
     DML_VOICESERVICE_CAPABILITIES           Capabilities;
     DML_RESERVEDPORTS                       ReservedPorts;
@@ -3227,4 +3228,5 @@ ANSC_STATUS TelcoVoiceMgrDmlSetPrackRequired(UINT uiService, UINT uiProfile, BOO
 ANSC_STATUS TelcoVoiceMgrDmlGetLineStats(UINT uiService, UINT uiProfile, UINT uiLine, TELCOVOICEMGR_DML_VOICESERVICE_STATS *pStats);
 ANSC_STATUS TelcoVoiceMgrDmlSetX_RDK_FirewallRuleData(char * FirewallRuleData, ULONG uVsIndex, ULONG uVpQuantity);
 
+ANSC_STATUS TelcoVoiceMgrDmlGetX_RDK_LocalTimeZone(char *localTimeZone);
 #endif /* _TELCOVOICEMGR_SERVICES_APIS_H */

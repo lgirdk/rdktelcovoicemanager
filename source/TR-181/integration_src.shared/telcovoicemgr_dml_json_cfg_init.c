@@ -88,6 +88,7 @@ static ANSC_STATUS checkAndUpdateHookParam(char *fullName,cJSON *item);
 static ANSC_STATUS jsonCfgDecryptAndSavePassword(char *fullName,cJSON *item);
 static ANSC_STATUS jsonCfgSetInitMark(char *fullName,cJSON *item);
 static ANSC_STATUS jsonCfgSysEventSetVoiceToken(char *fullName,cJSON *item);
+static ANSC_STATUS jsonCfgUpdateLocalTimeZone(char *fullName,cJSON *item);
 #endif
 char gVOICE_CONFIG_DEFAULT_NAME[MAX_FILENAME_LENGTH];
 
@@ -258,6 +259,7 @@ static struct
 {
     { "X_RDK_BoundIfName", jsonCfgSysEventSetVoiceToken },
     { "X_RDK_IpAddressFamily", jsonCfgSysEventSetVoiceToken },
+    { "X_RDK_LocalTimeZone", jsonCfgUpdateLocalTimeZone },
     { "AuthPassword", jsonCfgDecryptAndSavePassword },
     { "EthernetPriorityMark", jsonCfgSetInitMark },
     { "DSCPMark",jsonCfgSetInitMark }
@@ -336,6 +338,39 @@ static ANSC_STATUS jsonCfgSysEventSetVoiceToken(char *fullName,cJSON *item)
     {
         CcspTraceWarning(("%s :: sysevent_set Failed\n", __FUNCTION__));
     }
+
+    return ANSC_STATUS_SUCCESS;
+}
+
+static ANSC_STATUS jsonCfgUpdateLocalTimeZone(char *fullName, cJSON *item)
+{
+    char *pBuffer = NULL;
+
+    if (syscfg_init() < 0)
+    {
+        CcspTraceError(("[%s]::[%d] Failed to initialize syscfg\n", __FUNCTION__, __LINE__));
+        return ANSC_STATUS_FAILURE;
+    }
+
+    pBuffer = malloc(JSON_MAX_STR_ARR_SIZE);
+    if(pBuffer == NULL)
+    {
+        CcspTraceError(("[%s]::[%d] Failed to allocate memory\n", __FUNCTION__, __LINE__));
+        return ANSC_STATUS_FAILURE;
+    }
+
+    memset(pBuffer, 0, JSON_MAX_STR_ARR_SIZE);
+    if (syscfg_get( NULL, "TZ", pBuffer, JSON_MAX_STR_ARR_SIZE) != 0 )
+    {
+        CcspTraceError(("[%s]::[%d] Failed to get localTimeZone from syscfg\n", __FUNCTION__, __LINE__));
+	free(pBuffer);
+
+	return ANSC_STATUS_FAILURE;
+    }
+
+    free(item->valuestring);
+    item->valuestring = strdup(pBuffer);
+    free(pBuffer);
 
     return ANSC_STATUS_SUCCESS;
 }

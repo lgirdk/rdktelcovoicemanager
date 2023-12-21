@@ -1991,6 +1991,38 @@ static ANSC_STATUS TelcoVoiceMgrDmlGetDnsServers(char *dns_server_address)
     return ANSC_STATUS_SUCCESS;
 }
 
+/* TelcoVoiceMgrDmlGetX_RDK_LocalTimeZone: */
+/**
+* @description get LocalTimeZone value from syscfg
+*
+* @return The status of the operation.
+* @retval ANSC_STATUS_SUCCESS if successful.
+* @retval ANSC_STATUS_FAILURE if any error is detected
+*
+* @execution Synchronous.
+* @sideeffect None.
+*
+*/
+ANSC_STATUS TelcoVoiceMgrDmlGetX_RDK_LocalTimeZone(char *localTimeZone)
+{
+    char buf[256] = {0};
+
+    if(localTimeZone == NULL)
+    {
+        return ANSC_STATUS_FAILURE;
+    }
+
+    if ( syscfg_get( NULL, "TZ", buf, sizeof(buf)) != 0 )
+    {
+        CcspTraceInfo(("[%s]::[%d] Failed to get localTimeZone from syscfg\n", __FUNCTION__, __LINE__));
+        return ANSC_STATUS_FAILURE;
+    }
+
+    strncpy(localTimeZone, buf, (sizeof(buf) - 1));
+
+    return ANSC_STATUS_SUCCESS;
+}
+
 /* TelcoVoiceMgrDmlFactoryReset: */
 /**
 * @description Factory Reset Voice Process (Datamodel reset only)
