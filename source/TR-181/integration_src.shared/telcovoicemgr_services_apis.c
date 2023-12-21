@@ -1848,7 +1848,9 @@ ANSC_STATUS TelcoVoiceMgrDmlSetLinkState(TELCOVOICEMGR_VOICE_IP_LINK_STATE linkS
         TelcoVoiceMgrDmlGetDataRelease(pTelcoVoiceMgrDmlData);
         return ANSC_STATUS_RESOURCES;
     }
+#ifndef TELCO_VOICE_FEATURE_ENABLE_PERSIST
     pDmlVoiceService->X_RDK_Enable = linkState;
+#endif
     uVsIndex = pDmlVoiceService->InstanceNumber;
     TelcoVoiceMgrDmlGetDataRelease(pTelcoVoiceMgrDmlData);
 
@@ -2114,6 +2116,13 @@ ANSC_STATUS TelcoVoiceMgrDmlSetVoiceProcessState(uint32_t uiService, uint32_t uS
     {
        return ANSC_STATUS_FAILURE;
     }
+#ifdef TELCO_VOICE_FEATURE_ENABLE_PERSIST
+#ifdef FEATURE_RDKB_VOICE_DM_TR104_V2
+    (void)storeObjectString(strName, strValue);
+#else
+    (void)storeObjectString(uiService, TELCOVOICEMGR_DML_NUMBER_OF_VOICE_PROFILE, TELCOVOICEMGR_DML_NUMBER_OF_LINE, TELCOVOICEMGR_DML_NUMBER_OF_PHY_INTERFACE, "Set-X_RDK_Enable", uState);
+#endif
+#endif
     return ANSC_STATUS_SUCCESS;
 }
 

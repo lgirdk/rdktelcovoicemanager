@@ -252,7 +252,16 @@ ANSC_STATUS Map_hal_dml_voiceService(DML_VOICE_SERVICE_LIST_T* pVoiceServiceList
     }
     else if( strstr(ParamName, "X_RDK_Enable"))
     {
-        // Do nothing
+#ifdef TELCO_VOICE_FEATURE_ENABLE_PERSIST
+        if(strcmp(pValue, "0") == 0)
+        {
+            pVoiceService->X_RDK_Enable = VOICE_SERVICE_DISABLE;
+        }
+        else if(strcmp(pValue, "1") == 0)
+        {
+            pVoiceService->X_RDK_Enable = VOICE_SERVICE_ENABLE;
+        }
+#endif
     }
     else if( strstr(ParamName, "X_RDK_Status"))
     {
