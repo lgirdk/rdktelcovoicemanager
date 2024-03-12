@@ -225,6 +225,7 @@ BOOL TelcoVoiceMgrDml_SIP_ClientList_GetParamUlongValue(ANSC_HANDLE hInsContext,
         return ret;
     }
 
+    hal_param_t req_param;
     uVsIndex = pDmlVoiceService->InstanceNumber;
 
     uSIPClientIndex = pHEAD->uInstanceNumber;
@@ -232,7 +233,6 @@ BOOL TelcoVoiceMgrDml_SIP_ClientList_GetParamUlongValue(ANSC_HANDLE hInsContext,
     if (strcmp(ParamName, "Status") == 0)
     {
         //Fetch status from voice stack
-        hal_param_t req_param;
         memset(&req_param, 0, sizeof(req_param));
         snprintf(req_param.name, sizeof(req_param.name), DML_VOICESERVICE_SIP_CLIENT_PARAM_NAME"%s", uVsIndex, uSIPClientIndex, "Status");
         if (ANSC_STATUS_SUCCESS == TelcoVoiceHal_GetSingleParameter(&req_param))
@@ -260,6 +260,17 @@ BOOL TelcoVoiceMgrDml_SIP_ClientList_GetParamUlongValue(ANSC_HANDLE hInsContext,
     else if (strcmp(ParamName, "MaxSessions") == 0)
     {
         *puLong = pHEAD->MaxSessions;
+        ret = TRUE;
+    }
+    else if( AnscEqualString(ParamName, "X_RDK_LastChange", TRUE) )
+    {
+        memset(&req_param, 0, sizeof(req_param));
+        snprintf(req_param.name, sizeof(req_param.name), "Device.Services.VoiceService.%d.SIP.Client.%d.X_RDK_LastChange",
+        uVsIndex, uSIPClientIndex);
+        if (ANSC_STATUS_SUCCESS == TelcoVoiceHal_GetSingleParameter(&req_param))
+        {
+            *puLong = strtoul(req_param.value,NULL,10);
+        }
         ret = TRUE;
     }
     else

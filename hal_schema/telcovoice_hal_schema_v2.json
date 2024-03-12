@@ -985,6 +985,7 @@
         { "$ref": "#/definitions/voiceServiceSIPClientEventSubscribeEnable" },
         { "$ref": "#/definitions/voiceServiceSIPClientEventSubscribeAuthUserName" },
         { "$ref": "#/definitions/voiceServiceSIPClientEventSubscribeAuthPassword" },
+        { "$ref": "#/definitions/voiceServiceSIPClientX_RDK_LastChange" },
         { "$ref": "#/definitions/voiceServiceSIPNetwork" },
         { "$ref": "#/definitions/voiceServiceSIPNetworkEnable" },
         { "$ref": "#/definitions/voiceServiceSIPNetworkQuiescentMode" },
@@ -5753,6 +5754,25 @@
           "type": "string",
           "pattern": "^Device\\.Services\\.VoiceService\\.\\d+\\.SIP\\.Network\\.\\d+\\.$"
         }
+      }
+    },
+    "voiceServiceSIPClientX_RDK_LastChange": {
+     "description": "The accumulated time in seconds since the last successful SIP registration, the value is only valid if the status is up. (Access = Read)",
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+       "name": {
+         "type": "string",
+         "pattern": "^Device\\.Services\\.VoiceService\\.\\d+\\.SIP\\.Client\\.\\d+\\.X_RDK_LastChange$"
+       },
+       "type": {
+          "type": "string",
+          "const": "unsignedInt"
+       },
+       "value": {
+          "type": "integer",
+          "minimum": 0
+       }
       }
     },
     "voiceServiceSIPNetworkEnable": {

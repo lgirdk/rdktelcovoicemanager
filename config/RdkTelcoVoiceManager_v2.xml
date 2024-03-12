@@ -1615,7 +1615,12 @@
                         <type>boolean</type>
                         <syntax>bool</syntax>
                         <writable>true</writable>
+                    <parameter>
+                        <name>X_RDK_LastChange</name>
+                        <type>unsignedInt</type>
+                        <syntax>uint32</syntax>
                     </parameter>
+		    </parameter>
                </parameters>
                <objects>
                <object>
