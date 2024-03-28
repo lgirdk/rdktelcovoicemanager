@@ -2884,19 +2884,7 @@ ANSC_STATUS Map_hal_dml_DECT(PDML_VOICE_SERVICE_LIST_T pVoiceServiceList, char* 
         pDectBase->pParentVoiceService = pVoiceService;
 
         //VoiceService.{i}.DECT.Base.{i}.
-        if( strstr(ParamName, "Enable") )
-        {
-            //VoiceService.{i}.DECT.Base.{i}.Enable
-            if( strcmp(pValue, "true") == 0 || strcmp(pValue, "1") == 0 )
-            {
-                 pDectBase->Enable = true;
-            }
-            else
-            {
-                 pDectBase->Enable = false;
-            }
-        }
-        else if( strstr(ParamName, "Status") )
+        if( strstr(ParamName, "Status") )
         {
             //VoiceService.{i}.DECT.Base.{i}.Status
             if(strcmp(pValue,"Up") == 0)
@@ -3109,6 +3097,18 @@ ANSC_STATUS Map_hal_dml_DECT(PDML_VOICE_SERVICE_LIST_T pVoiceServiceList, char* 
             {
                 AnscTraceError(("%s:%d:: Invalid index ParamName[%s]\n", __FUNCTION__, __LINE__, ParamName));
                 return ANSC_STATUS_FAILURE;
+            }
+        }
+        else if( strstr(ParamName, "Enable") )
+        {
+            //VoiceService.{i}.DECT.Base.{i}.Enable
+            if( strcmp(pValue, "true") == 0 || strcmp(pValue, "1") == 0 )
+            {
+                 pDectBase->Enable = true;
+            }
+            else
+            {
+                 pDectBase->Enable = false;
             }
         }
         else
@@ -3393,164 +3393,7 @@ ANSC_STATUS Map_hal_dml_SIP(PDML_VOICE_SERVICE_LIST_T pVoiceServiceList, char* P
         pSipCli->pParentVoiceService = pVoiceService;
 
         //VoiceService.{i}.SIP.Client.{i}.
-        if( strstr(ParamName, "Enable") )
-        {
-            //VoiceService.{i}.SIP.Client.{i}.Enable
-            if( strcmp(pValue, "true") == 0 || strcmp(pValue, "1") == 0 )
-            {
-                 pSipCli->Enable = true;
-            }
-            else
-            {
-                 pSipCli->Enable = false;
-            }
-        }
-        else if( strstr(ParamName, "QuiescentMode") )
-        {
-            //VoiceService.{i}.SIP.Client.{i}.QuiescentMode
-            if( strcmp(pValue, "true") == 0 || strcmp(pValue, "1") == 0 )
-            {
-                 pSipCli->QuiescentMode = true;
-            }
-            else
-            {
-                 pSipCli->QuiescentMode = false;
-            }
-        }
-        else if( strstr(ParamName, "Status") )
-        {
-            //VoiceService.{i}.SIP.Client.{i}.Status
-            if (strcmp(pValue,"Up") == 0)
-            {
-                pSipCli->Status = CLIENT_STATUS_UP;
-            }
-            else if (strcmp(pValue,"Initializing") == 0)
-            {
-                pSipCli->Status = CLIENT_STATUS_INITIALIZING;
-            }
-            else if (strcmp(pValue,"Registering") == 0)
-            {
-                pSipCli->Status = CLIENT_STATUS_REGISTERING;
-            }
-            else if (strcmp(pValue,"Deregistering") == 0)
-            {
-                pSipCli->Status = CLIENT_STATUS_DEREGISTERING;
-            }
-            else if (strcmp(pValue,"Error_Misconfigured") == 0)
-            {
-                pSipCli->Status = CLIENT_STATUS_ERROR_MISCONFIGURED;
-            }
-            else if (strcmp(pValue,"Error_Network") == 0)
-            {
-                pSipCli->Status = CLIENT_STATUS_ERROR_NETWORK;
-            }
-            else if (strcmp(pValue,"Error_Registration") == 0)
-            {
-                pSipCli->Status = CLIENT_STATUS_ERROR_REGISTRATION;
-            }
-            else if (strcmp(pValue,"Quiescent") == 0)
-            {
-                pSipCli->Status = CLIENT_STATUS_QUIESCENT;
-            }
-            else if (strcmp(pValue,"Disabled") == 0)
-            {
-                pSipCli->Status = CLIENT_STATUS_DISABLED;
-            }
-            else
-            {
-                AnscTraceError(("%s:%d:: Invalid ParamName[%s] paramValue[%s].\n", __FUNCTION__, __LINE__, ParamName, pValue));
-            }
-        }
-        else if( strstr(ParamName, "Origin") )
-        {
-            //VoiceService.{i}.SIP.Client.{i}.Origin
-            if (strcmp(pValue,"AutoConfigured") == 0)
-            {
-                pSipCli->Origin = ORIGIN_AUTOCONFIGURED;
-            }
-            else if (strcmp(pValue,"Static") == 0)
-            {
-                pSipCli->Origin = ORIGIN_STATIC;
-            }
-            else
-            {
-                AnscTraceError(("%s:%d:: Invalid ParamName[%s] paramValue[%s].\n", __FUNCTION__, __LINE__, ParamName, pValue));
-            }
-        }
-        else if( strstr(ParamName, "RegisterMode") )
-        {
-            //VoiceService.{i}.SIP.Client.{i}.RegisterMode
-            if (strcmp(pValue,"RFC3261") == 0)
-            {
-                pSipCli->RegisterMode = REGISTER_MODE_RFC3261;
-            }
-            else if (strcmp(pValue,"STATIC") == 0)
-            {
-                pSipCli->RegisterMode = REGISTER_MODE_STATIC;
-            }
-            else if (strcmp(pValue,"RFC6140") == 0)
-            {
-                pSipCli->RegisterMode = REGISTER_MODE_RFC6140;
-            }
-            else if (strcmp(pValue,"TISPAN") == 0)
-            {
-                pSipCli->RegisterMode = REGISTER_MODE_TISPAN;
-            }
-            else
-            {
-                AnscTraceError(("%s:%d:: Invalid ParamName[%s] paramValue[%s].\n", __FUNCTION__, __LINE__, ParamName, pValue));
-            }
-        }
-        else if( strstr(ParamName, "AuthUserName") )
-        {
-            //VoiceService.{i}.SIP.Client.{i}.AuthUserName
-            STRNCPY(pSipCli->AuthUserName, pValue);
-        }
-        else if( strstr(ParamName, "AuthPassword") )
-        {
-            //VoiceService.{i}.SIP.Client.{i}.AuthPassword
-            STRNCPY(pSipCli->AuthPassword, pValue);
-        }
-        else if( strstr(ParamName, "Network") )
-        {
-            //VoiceService.{i}.SIP.Client.{i}.Network
-            STRNCPY(pSipCli->Network, pValue);
-        }
-        else if( strstr(ParamName, "MaxSessions") )
-        {
-            //VoiceService.{i}.SIP.Client.{i}.MaxSessions
-            pSipCli->MaxSessions = strtoul(pValue,&err, 10);
-        }
-        else if( strstr(ParamName, "RegisterURI") )
-        {
-            //VoiceService.{i}.SIP.Client.{i}.RegisterURI
-            STRNCPY(pSipCli->RegisterURI, pValue);
-        }
-        else if( strstr(ParamName, "E164Format") )
-        {
-            //VoiceService.{i}.SIP.Client.{i}.E164Format
-            if( strcmp(pValue, "true") == 0 || strcmp(pValue, "1") == 0 )
-            {
-                 pSipCli->E164Format = true;
-            }
-            else
-            {
-                 pSipCli->E164Format = false;
-            }
-        }
-        else if( strstr(ParamName, "T38Enable") )
-        {
-            //VoiceService.{i}.SIP.Client.{i}.T38Enable
-            if( strcmp(pValue, "true") == 0 || strcmp(pValue, "1") == 0 )
-            {
-                 pSipCli->T38Enable = true;
-            }
-            else
-            {
-                 pSipCli->T38Enable = false;
-            }
-        }
-        else if( strstr(ParamName, "Contact") )
+        if( strstr(ParamName, "Contact") )
         {
             if( (ANSC_STATUS_FAILURE == telcovoicemgr_hal_get_VoiceService_SIP_Client_Contact_index(ParamName, DML_VOICESERVICE_SIP_CLIENT_CONTACT_PARAM_NAME, &hal_index)) ||
                 ( hal_index <= 0 ))
@@ -3724,11 +3567,6 @@ ANSC_STATUS Map_hal_dml_SIP(PDML_VOICE_SERVICE_LIST_T pVoiceServiceList, char* P
                      pSipCliEvtSubscribe->Enable = false;
                 }
             }
-            else if( strstr(ParamName, "Event") )
-            {
-                //VoiceService.{i}.SIP.Client.{i}.EventSubscribe.{i}.Event
-                STRNCPY(pSipCliEvtSubscribe->Event, pValue);
-            }
             else if( strstr(ParamName, "AuthUserName") )
             {
                 //VoiceService.{i}.SIP.Client.{i}.EventSubscribe.{i}.AuthUserName
@@ -3739,10 +3577,172 @@ ANSC_STATUS Map_hal_dml_SIP(PDML_VOICE_SERVICE_LIST_T pVoiceServiceList, char* P
                 //VoiceService.{i}.SIP.Client.{i}.EventSubscribe.{i}.AuthPassword
                 STRNCPY(pSipCliEvtSubscribe->AuthPassword, pValue);
             }
+            else if( strstr(ParamName, "Event") )
+            {
+                //VoiceService.{i}.SIP.Client.{i}.EventSubscribe.{i}.Event
+                STRNCPY(pSipCliEvtSubscribe->Event, pValue);
+            }
             else
             {
                 AnscTraceError(("%s:%d:: Invalid index ParamName[%s]\n", __FUNCTION__, __LINE__, ParamName));
                 return ANSC_STATUS_FAILURE;
+            }
+        }
+        else if( strstr(ParamName, "Enable") )
+        {
+            //VoiceService.{i}.SIP.Client.{i}.Enable
+            if( strcmp(pValue, "true") == 0 || strcmp(pValue, "1") == 0 )
+            {
+                 pSipCli->Enable = true;
+            }
+            else
+            {
+                 pSipCli->Enable = false;
+            }
+        }
+        else if( strstr(ParamName, "QuiescentMode") )
+        {
+            //VoiceService.{i}.SIP.Client.{i}.QuiescentMode
+            if( strcmp(pValue, "true") == 0 || strcmp(pValue, "1") == 0 )
+            {
+                 pSipCli->QuiescentMode = true;
+            }
+            else
+            {
+                 pSipCli->QuiescentMode = false;
+            }
+        }
+        else if( strstr(ParamName, "Status") )
+        {
+            //VoiceService.{i}.SIP.Client.{i}.Status
+            if (strcmp(pValue,"Up") == 0)
+            {
+                pSipCli->Status = CLIENT_STATUS_UP;
+            }
+            else if (strcmp(pValue,"Initializing") == 0)
+            {
+                pSipCli->Status = CLIENT_STATUS_INITIALIZING;
+            }
+            else if (strcmp(pValue,"Registering") == 0)
+            {
+                pSipCli->Status = CLIENT_STATUS_REGISTERING;
+            }
+            else if (strcmp(pValue,"Deregistering") == 0)
+            {
+                pSipCli->Status = CLIENT_STATUS_DEREGISTERING;
+            }
+            else if (strcmp(pValue,"Error_Misconfigured") == 0)
+            {
+                pSipCli->Status = CLIENT_STATUS_ERROR_MISCONFIGURED;
+            }
+            else if (strcmp(pValue,"Error_Network") == 0)
+            {
+                pSipCli->Status = CLIENT_STATUS_ERROR_NETWORK;
+            }
+            else if (strcmp(pValue,"Error_Registration") == 0)
+            {
+                pSipCli->Status = CLIENT_STATUS_ERROR_REGISTRATION;
+            }
+            else if (strcmp(pValue,"Quiescent") == 0)
+            {
+                pSipCli->Status = CLIENT_STATUS_QUIESCENT;
+            }
+            else if (strcmp(pValue,"Disabled") == 0)
+            {
+                pSipCli->Status = CLIENT_STATUS_DISABLED;
+            }
+            else
+            {
+                AnscTraceError(("%s:%d:: Invalid ParamName[%s] paramValue[%s].\n", __FUNCTION__, __LINE__, ParamName, pValue));
+            }
+        }
+        else if( strstr(ParamName, "Origin") )
+        {
+            //VoiceService.{i}.SIP.Client.{i}.Origin
+            if (strcmp(pValue,"AutoConfigured") == 0)
+            {
+                pSipCli->Origin = ORIGIN_AUTOCONFIGURED;
+            }
+            else if (strcmp(pValue,"Static") == 0)
+            {
+                pSipCli->Origin = ORIGIN_STATIC;
+            }
+            else
+            {
+                AnscTraceError(("%s:%d:: Invalid ParamName[%s] paramValue[%s].\n", __FUNCTION__, __LINE__, ParamName, pValue));
+            }
+        }
+        else if( strstr(ParamName, "RegisterMode") )
+        {
+            //VoiceService.{i}.SIP.Client.{i}.RegisterMode
+            if (strcmp(pValue,"RFC3261") == 0)
+            {
+                pSipCli->RegisterMode = REGISTER_MODE_RFC3261;
+            }
+            else if (strcmp(pValue,"STATIC") == 0)
+            {
+                pSipCli->RegisterMode = REGISTER_MODE_STATIC;
+            }
+            else if (strcmp(pValue,"RFC6140") == 0)
+            {
+                pSipCli->RegisterMode = REGISTER_MODE_RFC6140;
+            }
+            else if (strcmp(pValue,"TISPAN") == 0)
+            {
+                pSipCli->RegisterMode = REGISTER_MODE_TISPAN;
+            }
+            else
+            {
+                AnscTraceError(("%s:%d:: Invalid ParamName[%s] paramValue[%s].\n", __FUNCTION__, __LINE__, ParamName, pValue));
+            }
+        }
+        else if( strstr(ParamName, "AuthUserName") )
+        {
+            //VoiceService.{i}.SIP.Client.{i}.AuthUserName
+            STRNCPY(pSipCli->AuthUserName, pValue);
+        }
+        else if( strstr(ParamName, "AuthPassword") )
+        {
+            //VoiceService.{i}.SIP.Client.{i}.AuthPassword
+            STRNCPY(pSipCli->AuthPassword, pValue);
+        }
+        else if( strstr(ParamName, "Network") )
+        {
+            //VoiceService.{i}.SIP.Client.{i}.Network
+            STRNCPY(pSipCli->Network, pValue);
+        }
+        else if( strstr(ParamName, "MaxSessions") )
+        {
+            //VoiceService.{i}.SIP.Client.{i}.MaxSessions
+            pSipCli->MaxSessions = strtoul(pValue,&err, 10);
+        }
+        else if( strstr(ParamName, "RegisterURI") )
+        {
+            //VoiceService.{i}.SIP.Client.{i}.RegisterURI
+            STRNCPY(pSipCli->RegisterURI, pValue);
+        }
+        else if( strstr(ParamName, "E164Format") )
+        {
+            //VoiceService.{i}.SIP.Client.{i}.E164Format
+            if( strcmp(pValue, "true") == 0 || strcmp(pValue, "1") == 0 )
+            {
+                 pSipCli->E164Format = true;
+            }
+            else
+            {
+                 pSipCli->E164Format = false;
+            }
+        }
+        else if( strstr(ParamName, "T38Enable") )
+        {
+            //VoiceService.{i}.SIP.Client.{i}.T38Enable
+            if( strcmp(pValue, "true") == 0 || strcmp(pValue, "1") == 0 )
+            {
+                 pSipCli->T38Enable = true;
+            }
+            else
+            {
+                 pSipCli->T38Enable = false;
             }
         }
         else
@@ -3788,19 +3788,7 @@ ANSC_STATUS Map_hal_dml_SIP(PDML_VOICE_SERVICE_LIST_T pVoiceServiceList, char* P
         pSipNetwork->pParentVoiceService = pVoiceService;
 
         //VoiceService.{i}.SIP.Network.{i}.
-        if( strstr(ParamName, "Enable") )
-        {
-            //VoiceService.{i}.SIP.Network.{i}.Enable
-            if( strcmp(pValue, "true") == 0 || strcmp(pValue, "1") == 0 )
-            {
-                 pSipNetwork->Enable = true;
-            }
-            else
-            {
-                 pSipNetwork->Enable = false;
-            }
-        }
-        else if( strstr(ParamName, "QuiescentMode") )
+        if( strstr(ParamName, "QuiescentMode") )
         {
             //VoiceService.{i}.SIP.Network.{i}.QuiescentMode
             if( strcmp(pValue, "true") == 0 || strcmp(pValue, "1") == 0 )
@@ -4417,11 +4405,6 @@ ANSC_STATUS Map_hal_dml_SIP(PDML_VOICE_SERVICE_LIST_T pVoiceServiceList, char* P
                      pSipNetworkEvtSubscribe->Enable = false;
                 }
             }
-            else if( strstr(ParamName, "Event") )
-            {
-                //VoiceService.{i}.SIP.Network.{i}.EventSubscribe.{i}.Event
-                STRNCPY(pSipNetworkEvtSubscribe->Event, pValue);
-            }
             else if( strstr(ParamName, "NotifierPort") )
             {
                 //VoiceService.{i}.SIP.Network.{i}.EventSubscribe.{i}.NotifierPort
@@ -4460,6 +4443,11 @@ ANSC_STATUS Map_hal_dml_SIP(PDML_VOICE_SERVICE_LIST_T pVoiceServiceList, char* P
             {
                 //VoiceService.{i}.SIP.Network.{i}.EventSubscribe.{i}.ExpireTime
                 pSipNetworkEvtSubscribe->ExpireTime = strtoul(pValue,&err, 10);
+            }
+            else if( strstr(ParamName, "Event") )
+            {
+                //VoiceService.{i}.SIP.Network.{i}.EventSubscribe.{i}.Event
+                STRNCPY(pSipNetworkEvtSubscribe->Event, pValue);
             }
             else
             {
@@ -4536,6 +4524,18 @@ ANSC_STATUS Map_hal_dml_SIP(PDML_VOICE_SERVICE_LIST_T pVoiceServiceList, char* P
             {
                 AnscTraceError(("%s:%d:: Invalid index ParamName[%s]\n", __FUNCTION__, __LINE__, ParamName));
                 return ANSC_STATUS_FAILURE;
+            }
+        }
+        else if( strstr(ParamName, "Enable") )
+        {
+            //VoiceService.{i}.SIP.Network.{i}.Enable
+            if( strcmp(pValue, "true") == 0 || strcmp(pValue, "1") == 0 )
+            {
+                 pSipNetwork->Enable = true;
+            }
+            else
+            {
+                 pSipNetwork->Enable = false;
             }
         }
         else
@@ -4692,107 +4692,7 @@ ANSC_STATUS Map_hal_dml_SIP(PDML_VOICE_SERVICE_LIST_T pVoiceServiceList, char* P
 
         pSipRegistrar->pParentVoiceService = pVoiceService;
 
-        if( strstr(ParamName, "Enable") )
-        {
-            //VoiceService.{i}.SIP.Registrar.{i}.Enable
-            if( strcmp(pValue, "true") == 0 || strcmp(pValue, "1") == 0 )
-            {
-                 pSipRegistrar->Enable = true;
-            }
-            else
-            {
-                 pSipRegistrar->Enable = false;
-            }
-        }
-        else if( strstr(ParamName, "QuiescentMode") )
-        {
-            //VoiceService.{i}.SIP.Registrar.{i}.QuiescentMode
-            if( strcmp(pValue, "true") == 0 || strcmp(pValue, "1") == 0 )
-            {
-                 pSipRegistrar->QuiescentMode = true;
-            }
-            else
-            {
-                 pSipRegistrar->QuiescentMode = false;
-            }
-        }
-        else if( strstr(ParamName, "Status") )
-        {
-            //VoiceService.{i}.SIP.Registrar.{i}.Status
-            if(strcmp(pValue,"Up") == 0)
-            {
-                pSipRegistrar->Status = SIP_STATUS_UP;
-            }
-            else if(strcmp(pValue,"Error") == 0)
-            {
-                pSipRegistrar->Status = SIP_STATUS_ERROR;
-            }
-            else if(strcmp(pValue,"Disabled") == 0)
-            {
-                pSipRegistrar->Status = SIP_STATUS_DISABLED;
-            }
-            else
-            {
-                AnscTraceError(("%s:%d:: Invalid ParamName[%s] paramValue[%s].\n", __FUNCTION__, __LINE__, ParamName, pValue));
-            }
-        }
-        else if( strstr(ParamName, "Origin") )
-        {
-            //VoiceService.{i}.SIP.Registrar.{i}.Origin
-            if (strcmp(pValue,"AutoConfigured") == 0)
-            {
-                pSipRegistrar->Origin = ORIGIN_AUTOCONFIGURED;
-            }
-            else if (strcmp(pValue,"Static") == 0)
-            {
-                pSipRegistrar->Origin = ORIGIN_STATIC;
-            }
-            else
-            {
-                AnscTraceError(("%s:%d:: Invalid ParamName[%s] paramValue[%s].\n", __FUNCTION__, __LINE__, ParamName, pValue));
-            }
-        }
-        else if( strstr(ParamName, "RegistrarIPAddress") )
-        {
-            //VoiceService.{i}.SIP.Registrar.{i}.RegistrarIPAddress
-            STRNCPY(pSipRegistrar->RegistrarIPAddress, pValue);
-        }
-        else if( strstr(ParamName, "RegistrarPort") )
-        {
-            //VoiceService.{i}.SIP.Registrar.{i}.RegistrarPort
-            pSipRegistrar->RegistrarPort = strtoul(pValue,&err, 10);
-        }
-        else if( strstr(ParamName, "RegisterExpires") )
-        {
-            //VoiceService.{i}.SIP.Registrar.{i}.RegisterExpires
-            pSipRegistrar->RegisterExpires = strtoul(pValue,&err, 10);
-        }
-        else if( strstr(ParamName, "PingInterval") )
-        {
-            //VoiceService.{i}.SIP.Registrar.{i}.PingInterval
-            pSipRegistrar->PingInterval = strtoul(pValue,&err, 10);
-        }
-        else if( strstr(ParamName, "Organization") )
-        {
-            //VoiceService.{i}.SIP.Registrar.{i}.Organization
-            STRNCPY(pSipRegistrar->Organization, pValue);
-        }
-        else if( strstr(ParamName, "Realm") )
-        {
-            //VoiceService.{i}.SIP.Registrar.{i}.Realm
-            STRNCPY(pSipRegistrar->Realm, pValue);
-        }
-        else if( strstr(ParamName, "VoIPProfile") )
-        {
-            //VoiceService.{i}.SIP.Registrar.{i}.VoIPProfile
-            STRNCPY(pSipRegistrar->VoIPProfile, pValue);
-        }
-        else if( strstr(ParamName, "ContactURI") )
-        {
-            //VoiceService.{i}.SIP.Registrar.{i}.ContactURI
-            STRNCPY(pSipRegistrar->ContactURI, pValue);
-        }
-        else if( strstr(ParamName, "Account") )
+        if( strstr(ParamName, "Account") )
         {
             //VoiceService.{i}.SIP.Registrar.{i}.Account.{i}.
             if( (ANSC_STATUS_FAILURE == telcovoicemgr_hal_get_VoiceService_SIP_Registrar_Account_index(ParamName, DML_VOICESERVICE_SIP_REGISTRAR_ACCOUNT_PARAM_NAME, &hal_index)) ||
@@ -4831,178 +4731,7 @@ ANSC_STATUS Map_hal_dml_SIP(PDML_VOICE_SERVICE_LIST_T pVoiceServiceList, char* P
 
             pSipRegistrarAcc->pParentVoiceService = pVoiceService;
 
-            if( strstr(ParamName, "Enable") )
-            {
-                //VoiceService.{i}.SIP.Registrar.{i}.Account.{i}.Enable
-                if(strcmp(pValue,"Enable") == 0)
-                {
-                    pSipRegistrarAcc->Enable = SIP_REGISTRAR_ACC_ENABLE;
-                }
-                else if(strcmp(pValue,"Quiescent") == 0)
-                {
-                    pSipRegistrarAcc->Enable = SIP_REGISTRAR_ACC_QUIESCENT;
-                }
-                else if(strcmp(pValue,"Disable") == 0)
-                {
-                    pSipRegistrarAcc->Enable = SIP_REGISTRAR_ACC_DISABLE;
-                }
-                else
-                {
-                    AnscTraceError(("%s:%d:: Invalid ParamName[%s] paramValue[%s].\n", __FUNCTION__, __LINE__, ParamName, pValue));
-                }
-            }
-            else if( strstr(ParamName, "QuiescentMode") )
-            {
-                //VoiceService.{i}.SIP.Registrar.{i}.Account.{i}.QuiescentMode
-                if( strcmp(pValue, "true") == 0 || strcmp(pValue, "1") == 0 )
-                {
-                     pSipRegistrarAcc->QuiescentMode = true;
-                }
-                else
-                {
-                     pSipRegistrarAcc->QuiescentMode = false;
-                }
-            }
-            else if( strstr(ParamName, "Status") )
-            {
-                //VoiceService.{i}.SIP.Registrar.{i}.Account.{i}.Status
-                if (strcmp(pValue,"Up") == 0)
-                {
-                    pSipRegistrarAcc->Status = CLIENT_STATUS_UP;
-                }
-                else if (strcmp(pValue,"Initializing") == 0)
-                {
-                    pSipRegistrarAcc->Status = CLIENT_STATUS_INITIALIZING;
-                }
-                else if (strcmp(pValue,"Registering") == 0)
-                {
-                    pSipRegistrarAcc->Status = CLIENT_STATUS_REGISTERING;
-                }
-                else if (strcmp(pValue,"Deregistering") == 0)
-                {
-                    pSipRegistrarAcc->Status = CLIENT_STATUS_DEREGISTERING;
-                }
-                else if (strcmp(pValue,"Error_Misconfigured") == 0)
-                {
-                    pSipRegistrarAcc->Status = CLIENT_STATUS_ERROR_MISCONFIGURED;
-                }
-                else if (strcmp(pValue,"Error_Network") == 0)
-                {
-                    pSipRegistrarAcc->Status = CLIENT_STATUS_ERROR_NETWORK;
-                }
-                else if (strcmp(pValue,"Error_Registration") == 0)
-                {
-                    pSipRegistrarAcc->Status = CLIENT_STATUS_ERROR_REGISTRATION;
-                }
-                else if (strcmp(pValue,"Quiescent") == 0)
-                {
-                    pSipRegistrarAcc->Status = CLIENT_STATUS_QUIESCENT;
-                }
-                else if (strcmp(pValue,"Disabled") == 0)
-                {
-                    pSipRegistrarAcc->Status = CLIENT_STATUS_DISABLED;
-                }
-                else
-                {
-                    AnscTraceError(("%s:%d:: Invalid ParamName[%s] paramValue[%s].\n", __FUNCTION__, __LINE__, ParamName, pValue));
-                }
-
-            }
-            else if( strstr(ParamName, "Origin") )
-            {
-                //VoiceService.{i}.SIP.Registrar.{i}.Account.{i}.Origin
-                if (strcmp(pValue,"AutoConfigured") == 0)
-                {
-                    pSipRegistrarAcc->Origin = ORIGIN_AUTOCONFIGURED;
-                }
-                else if (strcmp(pValue,"Static") == 0)
-                {
-                    pSipRegistrarAcc->Origin = ORIGIN_STATIC;
-                }
-                else
-                {
-                    AnscTraceError(("%s:%d:: Invalid ParamName[%s] paramValue[%s].\n", __FUNCTION__, __LINE__, ParamName, pValue));
-                }
-            }
-            else if( strstr(ParamName, "CallStatus") )
-            {
-                //VoiceService.{i}.SIP.Registrar.{i}.Account.{i}.CallStatus
-                if (strcmp(pValue,"Idle") == 0)
-                {
-                    pSipRegistrarAcc->CallStatus = CALLSTATUS_IDLE;
-                }
-                else if (strcmp(pValue,"Dialing") == 0)
-                {
-                    pSipRegistrarAcc->CallStatus = CALLSTATUS_DIALING;
-                }
-                else if (strcmp(pValue,"Delivered") == 0)
-                {
-                    pSipRegistrarAcc->CallStatus = CALLSTATUS_DELIVERED;
-                }
-                else if (strcmp(pValue,"Connected") == 0)
-                {
-                    pSipRegistrarAcc->CallStatus = CALLSTATUS_CONNECTED;
-                }
-                else if (strcmp(pValue,"Alerting") == 0)
-                {
-                    pSipRegistrarAcc->CallStatus = CALLSTATUS_ALERTING;
-                }
-                else if (strcmp(pValue,"Disconnected") == 0)
-                {
-                    pSipRegistrarAcc->CallStatus = CALLSTATUS_DISCONNECTED;
-                }
-                else
-                {
-                    AnscTraceError(("%s:%d:: Invalid ParamName[%s] paramValue[%s].\n", __FUNCTION__, __LINE__, ParamName, pValue));
-                }
-            }
-            else if( strstr(ParamName, "AuthUserName") )
-            {
-                //VoiceService.{i}.SIP.Registrar.{i}.Account.{i}.AuthUserName
-                STRNCPY(pSipRegistrarAcc->AuthUserName, pValue);
-            }
-            else if( strstr(ParamName, "AuthPassword") )
-            {
-                //VoiceService.{i}.SIP.Registrar.{i}.Account.{i}.AuthPassword
-                STRNCPY(pSipRegistrarAcc->AuthPassword, pValue);
-            }
-            else if( strstr(ParamName, "RegistrationStatus") )
-            {
-                //VoiceService.{i}.SIP.Registrar.{i}.Account.{i}.RegistrationStatus
-                if (strcmp(pValue,"Registered") == 0)
-                {
-                    pSipRegistrarAcc->RegistrationStatus = ACC_REGISTERED;
-                }
-                else if (strcmp(pValue,"Static") == 0)
-                {
-                    pSipRegistrarAcc->RegistrationStatus = ACC_UNREGISTERED;
-                }
-                else
-                {
-                    AnscTraceError(("%s:%d:: Invalid ParamName[%s] paramValue[%s].\n", __FUNCTION__, __LINE__, ParamName, pValue));
-                }
-            }
-            else if( strstr(ParamName, "URI") )
-            {
-                //VoiceService.{i}.SIP.Registrar.{i}.Account.{i}.URI
-                STRNCPY(pSipRegistrarAcc->URI, pValue);
-            }
-            else if( strstr(ParamName, "Domain") )
-            {
-                //VoiceService.{i}.SIP.Registrar.{i}.Account.{i}.Domain
-                STRNCPY(pSipRegistrarAcc->Domain, pValue);
-            }
-            else if( strstr(ParamName, "CodecList") )
-            {
-                //VoiceService.{i}.SIP.Registrar.{i}.Account.{i}.CodecList
-                STRNCPY(pSipRegistrarAcc->CodecList, pValue);
-            }
-            else if( strstr(ParamName, "VoIPProfile") )
-            {
-                //VoiceService.{i}.SIP.Registrar.{i}.Account.{i}.VoIPProfile
-                STRNCPY(pSipRegistrarAcc->VoIPProfile, pValue);
-            }
-            else if( strstr(ParamName, "Contact") )
+            if( strstr(ParamName, "Contact") )
             {
                 //VoiceService.{i}.SIP.Registrar.{i}.Account.{i}.Contact.{i}.
                 if( (ANSC_STATUS_FAILURE == telcovoicemgr_hal_get_VoiceService_SIP_Registrar_Account_Contact_index(ParamName, DML_VOICESERVICE_SIP_REGISTRAR_ACCOUNT_CONTACT_PARAM_NAME, &hal_index)) ||
@@ -5122,11 +4851,281 @@ ANSC_STATUS Map_hal_dml_SIP(PDML_VOICE_SERVICE_LIST_T pVoiceServiceList, char* P
                     return ANSC_STATUS_FAILURE;
                 }
             }
+            else if( strstr(ParamName, "Enable") )
+            {
+                //VoiceService.{i}.SIP.Registrar.{i}.Account.{i}.Enable
+                if(strcmp(pValue,"Enable") == 0)
+                {
+                    pSipRegistrarAcc->Enable = SIP_REGISTRAR_ACC_ENABLE;
+                }
+                else if(strcmp(pValue,"Quiescent") == 0)
+                {
+                    pSipRegistrarAcc->Enable = SIP_REGISTRAR_ACC_QUIESCENT;
+                }
+                else if(strcmp(pValue,"Disable") == 0)
+                {
+                    pSipRegistrarAcc->Enable = SIP_REGISTRAR_ACC_DISABLE;
+                }
+                else
+                {
+                    AnscTraceError(("%s:%d:: Invalid ParamName[%s] paramValue[%s].\n", __FUNCTION__, __LINE__, ParamName, pValue));
+                }
+            }
+            else if( strstr(ParamName, "QuiescentMode") )
+            {
+                //VoiceService.{i}.SIP.Registrar.{i}.Account.{i}.QuiescentMode
+                if( strcmp(pValue, "true") == 0 || strcmp(pValue, "1") == 0 )
+                {
+                     pSipRegistrarAcc->QuiescentMode = true;
+                }
+                else
+                {
+                     pSipRegistrarAcc->QuiescentMode = false;
+                }
+            }
+            else if( strstr(ParamName, "Origin") )
+            {
+                //VoiceService.{i}.SIP.Registrar.{i}.Account.{i}.Origin
+                if (strcmp(pValue,"AutoConfigured") == 0)
+                {
+                    pSipRegistrarAcc->Origin = ORIGIN_AUTOCONFIGURED;
+                }
+                else if (strcmp(pValue,"Static") == 0)
+                {
+                    pSipRegistrarAcc->Origin = ORIGIN_STATIC;
+                }
+                else
+                {
+                    AnscTraceError(("%s:%d:: Invalid ParamName[%s] paramValue[%s].\n", __FUNCTION__, __LINE__, ParamName, pValue));
+                }
+            }
+            else if( strstr(ParamName, "CallStatus") )
+            {
+                //VoiceService.{i}.SIP.Registrar.{i}.Account.{i}.CallStatus
+                if (strcmp(pValue,"Idle") == 0)
+                {
+                    pSipRegistrarAcc->CallStatus = CALLSTATUS_IDLE;
+                }
+                else if (strcmp(pValue,"Dialing") == 0)
+                {
+                    pSipRegistrarAcc->CallStatus = CALLSTATUS_DIALING;
+                }
+                else if (strcmp(pValue,"Delivered") == 0)
+                {
+                    pSipRegistrarAcc->CallStatus = CALLSTATUS_DELIVERED;
+                }
+                else if (strcmp(pValue,"Connected") == 0)
+                {
+                    pSipRegistrarAcc->CallStatus = CALLSTATUS_CONNECTED;
+                }
+                else if (strcmp(pValue,"Alerting") == 0)
+                {
+                    pSipRegistrarAcc->CallStatus = CALLSTATUS_ALERTING;
+                }
+                else if (strcmp(pValue,"Disconnected") == 0)
+                {
+                    pSipRegistrarAcc->CallStatus = CALLSTATUS_DISCONNECTED;
+                }
+                else
+                {
+                    AnscTraceError(("%s:%d:: Invalid ParamName[%s] paramValue[%s].\n", __FUNCTION__, __LINE__, ParamName, pValue));
+                }
+            }
+            else if( strstr(ParamName, "AuthUserName") )
+            {
+                //VoiceService.{i}.SIP.Registrar.{i}.Account.{i}.AuthUserName
+                STRNCPY(pSipRegistrarAcc->AuthUserName, pValue);
+            }
+            else if( strstr(ParamName, "AuthPassword") )
+            {
+                //VoiceService.{i}.SIP.Registrar.{i}.Account.{i}.AuthPassword
+                STRNCPY(pSipRegistrarAcc->AuthPassword, pValue);
+            }
+            else if( strstr(ParamName, "RegistrationStatus") )
+            {
+                //VoiceService.{i}.SIP.Registrar.{i}.Account.{i}.RegistrationStatus
+                if (strcmp(pValue,"Registered") == 0)
+                {
+                    pSipRegistrarAcc->RegistrationStatus = ACC_REGISTERED;
+                }
+                else if (strcmp(pValue,"Static") == 0)
+                {
+                    pSipRegistrarAcc->RegistrationStatus = ACC_UNREGISTERED;
+                }
+                else
+                {
+                    AnscTraceError(("%s:%d:: Invalid ParamName[%s] paramValue[%s].\n", __FUNCTION__, __LINE__, ParamName, pValue));
+                }
+            }
+            else if( strstr(ParamName, "URI") )
+            {
+                //VoiceService.{i}.SIP.Registrar.{i}.Account.{i}.URI
+                STRNCPY(pSipRegistrarAcc->URI, pValue);
+            }
+            else if( strstr(ParamName, "Domain") )
+            {
+                //VoiceService.{i}.SIP.Registrar.{i}.Account.{i}.Domain
+                STRNCPY(pSipRegistrarAcc->Domain, pValue);
+            }
+            else if( strstr(ParamName, "CodecList") )
+            {
+                //VoiceService.{i}.SIP.Registrar.{i}.Account.{i}.CodecList
+                STRNCPY(pSipRegistrarAcc->CodecList, pValue);
+            }
+            else if( strstr(ParamName, "VoIPProfile") )
+            {
+                //VoiceService.{i}.SIP.Registrar.{i}.Account.{i}.VoIPProfile
+                STRNCPY(pSipRegistrarAcc->VoIPProfile, pValue);
+            }
+            else if( strstr(ParamName, "Status") )
+            {
+                //VoiceService.{i}.SIP.Registrar.{i}.Account.{i}.Status
+                if (strcmp(pValue,"Up") == 0)
+                {
+                    pSipRegistrarAcc->Status = CLIENT_STATUS_UP;
+                }
+                else if (strcmp(pValue,"Initializing") == 0)
+                {
+                    pSipRegistrarAcc->Status = CLIENT_STATUS_INITIALIZING;
+                }
+                else if (strcmp(pValue,"Registering") == 0)
+                {
+                    pSipRegistrarAcc->Status = CLIENT_STATUS_REGISTERING;
+                }
+                else if (strcmp(pValue,"Deregistering") == 0)
+                {
+                    pSipRegistrarAcc->Status = CLIENT_STATUS_DEREGISTERING;
+                }
+                else if (strcmp(pValue,"Error_Misconfigured") == 0)
+                {
+                    pSipRegistrarAcc->Status = CLIENT_STATUS_ERROR_MISCONFIGURED;
+                }
+                else if (strcmp(pValue,"Error_Network") == 0)
+                {
+                    pSipRegistrarAcc->Status = CLIENT_STATUS_ERROR_NETWORK;
+                }
+                else if (strcmp(pValue,"Error_Registration") == 0)
+                {
+                    pSipRegistrarAcc->Status = CLIENT_STATUS_ERROR_REGISTRATION;
+                }
+                else if (strcmp(pValue,"Quiescent") == 0)
+                {
+                    pSipRegistrarAcc->Status = CLIENT_STATUS_QUIESCENT;
+                }
+                else if (strcmp(pValue,"Disabled") == 0)
+                {
+                    pSipRegistrarAcc->Status = CLIENT_STATUS_DISABLED;
+                }
+                else
+                {
+                    AnscTraceError(("%s:%d:: Invalid ParamName[%s] paramValue[%s].\n", __FUNCTION__, __LINE__, ParamName, pValue));
+                }
+            }
             else
             {
                 AnscTraceError(("%s:%d:: Invalid index ParamName[%s]\n", __FUNCTION__, __LINE__, ParamName));
                 return ANSC_STATUS_FAILURE;
             }
+        }
+        else if( strstr(ParamName, "Enable") )
+        {
+            //VoiceService.{i}.SIP.Registrar.{i}.Enable
+            if( strcmp(pValue, "true") == 0 || strcmp(pValue, "1") == 0 )
+            {
+                 pSipRegistrar->Enable = true;
+            }
+            else
+            {
+                 pSipRegistrar->Enable = false;
+            }
+        }
+        else if( strstr(ParamName, "QuiescentMode") )
+        {
+            //VoiceService.{i}.SIP.Registrar.{i}.QuiescentMode
+            if( strcmp(pValue, "true") == 0 || strcmp(pValue, "1") == 0 )
+            {
+                 pSipRegistrar->QuiescentMode = true;
+            }
+            else
+            {
+                 pSipRegistrar->QuiescentMode = false;
+            }
+        }
+        else if( strstr(ParamName, "Status") )
+        {
+            //VoiceService.{i}.SIP.Registrar.{i}.Status
+            if(strcmp(pValue,"Up") == 0)
+            {
+                pSipRegistrar->Status = SIP_STATUS_UP;
+            }
+            else if(strcmp(pValue,"Error") == 0)
+            {
+                pSipRegistrar->Status = SIP_STATUS_ERROR;
+            }
+            else if(strcmp(pValue,"Disabled") == 0)
+            {
+                pSipRegistrar->Status = SIP_STATUS_DISABLED;
+            }
+            else
+            {
+                AnscTraceError(("%s:%d:: Invalid ParamName[%s] paramValue[%s].\n", __FUNCTION__, __LINE__, ParamName, pValue));
+            }
+        }
+        else if( strstr(ParamName, "Origin") )
+        {
+            //VoiceService.{i}.SIP.Registrar.{i}.Origin
+            if (strcmp(pValue,"AutoConfigured") == 0)
+            {
+                pSipRegistrar->Origin = ORIGIN_AUTOCONFIGURED;
+            }
+            else if (strcmp(pValue,"Static") == 0)
+            {
+                pSipRegistrar->Origin = ORIGIN_STATIC;
+            }
+            else
+            {
+                AnscTraceError(("%s:%d:: Invalid ParamName[%s] paramValue[%s].\n", __FUNCTION__, __LINE__, ParamName, pValue));
+            }
+        }
+        else if( strstr(ParamName, "RegistrarIPAddress") )
+        {
+            //VoiceService.{i}.SIP.Registrar.{i}.RegistrarIPAddress
+            STRNCPY(pSipRegistrar->RegistrarIPAddress, pValue);
+        }
+        else if( strstr(ParamName, "RegistrarPort") )
+        {
+            //VoiceService.{i}.SIP.Registrar.{i}.RegistrarPort
+            pSipRegistrar->RegistrarPort = strtoul(pValue,&err, 10);
+        }
+        else if( strstr(ParamName, "RegisterExpires") )
+        {
+            //VoiceService.{i}.SIP.Registrar.{i}.RegisterExpires
+            pSipRegistrar->RegisterExpires = strtoul(pValue,&err, 10);
+        }
+        else if( strstr(ParamName, "PingInterval") )
+        {
+            //VoiceService.{i}.SIP.Registrar.{i}.PingInterval
+            pSipRegistrar->PingInterval = strtoul(pValue,&err, 10);
+        }
+        else if( strstr(ParamName, "Organization") )
+        {
+            //VoiceService.{i}.SIP.Registrar.{i}.Organization
+            STRNCPY(pSipRegistrar->Organization, pValue);
+        }
+        else if( strstr(ParamName, "Realm") )
+        {
+            //VoiceService.{i}.SIP.Registrar.{i}.Realm
+            STRNCPY(pSipRegistrar->Realm, pValue);
+        }
+        else if( strstr(ParamName, "VoIPProfile") )
+        {
+            //VoiceService.{i}.SIP.Registrar.{i}.VoIPProfile
+            STRNCPY(pSipRegistrar->VoIPProfile, pValue);
+        }
+        else if( strstr(ParamName, "ContactURI") )
+        {
+            //VoiceService.{i}.SIP.Registrar.{i}.ContactURI
+            STRNCPY(pSipRegistrar->ContactURI, pValue);
         }
         else
         {
@@ -9487,115 +9486,7 @@ ANSC_STATUS Map_hal_dml_VoipProfile(PDML_VOICE_SERVICE_LIST_T pVoiceServiceList,
 
     pVoipProfile->pParentVoiceService = pVoiceService;
 
-    if( strstr(ParamName, "Enable") )
-    {
-        //VoiceService.{i}.VoIPProfile.{i}.Enable
-        if( strcmp(pValue, "true") == 0 || strcmp(pValue, "1") == 0 )
-        {
-             pVoipProfile->Enable = true;
-        }
-        else
-        {
-             pVoipProfile->Enable = false;
-        }
-    }
-    else if( strstr(ParamName, "QuiescentMode") )
-    {
-        //VoiceService.{i}.VoIPProfile.{i}.QuiescentMode
-        if( strcmp(pValue, "true") == 0 || strcmp(pValue, "1") == 0 )
-        {
-             pVoipProfile->QuiescentMode = true;
-        }
-        else
-        {
-             pVoipProfile->QuiescentMode = false;
-        }
-    }
-    else if( strstr(ParamName, "Name") )
-    {
-        //VoiceService.{i}.VoIPProfile.{i}.Name
-        STRNCPY(pVoipProfile->Name, pValue);
-    }
-    else if( strstr(ParamName, "DTMFMethodG711") )
-    {
-        //VoiceService.{i}.VoIPProfile.{i}.DTMFMethodG711
-        if (strcmp(pValue,"InBand") == 0)
-        {
-            pVoipProfile->DTMFMethodG711 = DTMF_G711_INBAND;
-        }
-        else if (strcmp(pValue,"RFC4733") == 0)
-        {
-            pVoipProfile->DTMFMethodG711 = DTMF_G711_RFC4733;
-        }
-        else if (strcmp(pValue,"SIPInfo") == 0)
-        {
-            pVoipProfile->DTMFMethodG711 = DTMF_G711_SIPINFO;
-        }
-        else if (strcmp(pValue,"") == 0)
-        {
-            pVoipProfile->DTMFMethodG711 = DTMF_G711_EMPTY;
-        }
-        else
-        {
-            AnscTraceError(("%s:%d:: Invalid ParamName[%s] paramValue[%s].\n", __FUNCTION__, __LINE__, ParamName, pValue));
-        }
-    }
-    else if( strstr(ParamName, "DTMFMethod") )
-    {
-        //VoiceService.{i}.VoIPProfile.{i}.DTMFMethod
-        if (strcmp(pValue,"InBand") == 0)
-        {
-            pVoipProfile->DTMFMethod = DTMF_INBAND;
-        }
-        else if (strcmp(pValue,"RFC4733") == 0)
-        {
-            pVoipProfile->DTMFMethod = DTMF_RFC4733;
-        }
-        else if (strcmp(pValue,"SIPInfo") == 0)
-        {
-            pVoipProfile->DTMFMethod = DTMF_SIPINFO;
-        }
-        else
-        {
-            AnscTraceError(("%s:%d:: Invalid ParamName[%s] paramValue[%s].\n", __FUNCTION__, __LINE__, ParamName, pValue));
-        }
-    }
-    else if( strstr(ParamName, "QIModelUsed") )
-    {
-        //VoiceService.{i}.VoIPProfile.{i}.QIModelUsed
-        STRNCPY(pVoipProfile->QIModelUsed, pValue);
-    }
-    else if( strstr(ParamName, "QICalculationInterval") )
-    {
-        //VoiceService.{i}.VoIPProfile.{i}.QICalculationInterval
-        pVoipProfile->QICalculationInterval = strtoul(pValue,&err, 10);
-    }
-    else if( strstr(ParamName, "NumberOfWorstQIValues") )
-    {
-        //VoiceService.{i}.VoIPProfile.{i}.NumberOfWorstQIValues
-        pVoipProfile->NumberOfWorstQIValues = strtoul(pValue,&err, 10);
-    }
-    else if( strstr(ParamName, "X_RDK-Central_COM_DigitMap"))
-    {
-        //VoiceService.{i}.VoIPProfile.{i}.X_RDK-Central_COM_DigitMap
-        STRNCPY(pVoipProfile->X_RDK_Central_COM_DigitMap, pValue);
-    }
-    else if( strstr(ParamName, "X_RDK-Central_COM_EmergencyDigitMap"))
-    {
-        //VoiceService.{i}.VoIPProfile.{i}.X_RDK-Central_COM_EmergencyDigitMap
-        STRNCPY(pVoipProfile->X_RDK_Central_COM_EmergencyDigitMap, pValue);
-    }
-    else if( strstr(ParamName, "X_RDK-Central_COM_SDigitTimer"))
-    {
-        //VoiceService.{i}.VoIPProfile.{i}.X_RDK-Central_COM_SDigitTimer
-        pVoipProfile->X_RDK_Central_COM_SDigitTimer = strtoul(pValue,&err,10);
-    }
-    else if( strstr(ParamName, "X_RDK-Central_COM_ZDigitTimer"))
-    {
-        //VoiceService.{i}.VoIPProfile.{i}.X_RDK-Central_COM_ZDigitTimer
-        pVoipProfile->X_RDK_Central_COM_ZDigitTimer = strtoul(pValue,&err,10);
-    }
-    else if( strstr(ParamName, "RTP") )
+    if( strstr(ParamName, "RTP") )
     {
         PDML_VOIPPROFILE_RTP pRTP = &(pVoipProfile->RTP);
         //VoiceService.{i}.VoIPProfile.{i}.RTP.
@@ -9857,6 +9748,113 @@ ANSC_STATUS Map_hal_dml_VoipProfile(PDML_VOICE_SERVICE_LIST_T pVoiceServiceList,
             AnscTraceError(("%s:%d:: Invalid index ParamName[%s]\n", __FUNCTION__, __LINE__, ParamName));
             return ANSC_STATUS_FAILURE;
         }
+    }if( strstr(ParamName, "Enable") )
+    {
+        //VoiceService.{i}.VoIPProfile.{i}.Enable
+        if( strcmp(pValue, "true") == 0 || strcmp(pValue, "1") == 0 )
+        {
+             pVoipProfile->Enable = true;
+        }
+        else
+        {
+             pVoipProfile->Enable = false;
+        }
+    }
+    else if( strstr(ParamName, "QuiescentMode") )
+    {
+        //VoiceService.{i}.VoIPProfile.{i}.QuiescentMode
+        if( strcmp(pValue, "true") == 0 || strcmp(pValue, "1") == 0 )
+        {
+             pVoipProfile->QuiescentMode = true;
+        }
+        else
+        {
+             pVoipProfile->QuiescentMode = false;
+        }
+    }
+    else if( strstr(ParamName, "DTMFMethodG711") )
+    {
+        //VoiceService.{i}.VoIPProfile.{i}.DTMFMethodG711
+        if (strcmp(pValue,"InBand") == 0)
+        {
+            pVoipProfile->DTMFMethodG711 = DTMF_G711_INBAND;
+        }
+        else if (strcmp(pValue,"RFC4733") == 0)
+        {
+            pVoipProfile->DTMFMethodG711 = DTMF_G711_RFC4733;
+        }
+        else if (strcmp(pValue,"SIPInfo") == 0)
+        {
+            pVoipProfile->DTMFMethodG711 = DTMF_G711_SIPINFO;
+        }
+        else if (strcmp(pValue,"") == 0)
+        {
+            pVoipProfile->DTMFMethodG711 = DTMF_G711_EMPTY;
+        }
+        else
+        {
+            AnscTraceError(("%s:%d:: Invalid ParamName[%s] paramValue[%s].\n", __FUNCTION__, __LINE__, ParamName, pValue));
+        }
+    }
+    else if( strstr(ParamName, "DTMFMethod") )
+    {
+        //VoiceService.{i}.VoIPProfile.{i}.DTMFMethod
+        if (strcmp(pValue,"InBand") == 0)
+        {
+            pVoipProfile->DTMFMethod = DTMF_INBAND;
+        }
+        else if (strcmp(pValue,"RFC4733") == 0)
+        {
+            pVoipProfile->DTMFMethod = DTMF_RFC4733;
+        }
+        else if (strcmp(pValue,"SIPInfo") == 0)
+        {
+            pVoipProfile->DTMFMethod = DTMF_SIPINFO;
+        }
+        else
+        {
+            AnscTraceError(("%s:%d:: Invalid ParamName[%s] paramValue[%s].\n", __FUNCTION__, __LINE__, ParamName, pValue));
+        }
+    }
+    else if( strstr(ParamName, "QIModelUsed") )
+    {
+        //VoiceService.{i}.VoIPProfile.{i}.QIModelUsed
+        STRNCPY(pVoipProfile->QIModelUsed, pValue);
+    }
+    else if( strstr(ParamName, "QICalculationInterval") )
+    {
+        //VoiceService.{i}.VoIPProfile.{i}.QICalculationInterval
+        pVoipProfile->QICalculationInterval = strtoul(pValue,&err, 10);
+    }
+    else if( strstr(ParamName, "NumberOfWorstQIValues") )
+    {
+        //VoiceService.{i}.VoIPProfile.{i}.NumberOfWorstQIValues
+        pVoipProfile->NumberOfWorstQIValues = strtoul(pValue,&err, 10);
+    }
+    else if( strstr(ParamName, "X_RDK-Central_COM_DigitMap"))
+    {
+        //VoiceService.{i}.VoIPProfile.{i}.X_RDK-Central_COM_DigitMap
+        STRNCPY(pVoipProfile->X_RDK_Central_COM_DigitMap, pValue);
+    }
+    else if( strstr(ParamName, "X_RDK-Central_COM_EmergencyDigitMap"))
+    {
+        //VoiceService.{i}.VoIPProfile.{i}.X_RDK-Central_COM_EmergencyDigitMap
+        STRNCPY(pVoipProfile->X_RDK_Central_COM_EmergencyDigitMap, pValue);
+    }
+    else if( strstr(ParamName, "X_RDK-Central_COM_SDigitTimer"))
+    {
+        //VoiceService.{i}.VoIPProfile.{i}.X_RDK-Central_COM_SDigitTimer
+        pVoipProfile->X_RDK_Central_COM_SDigitTimer = strtoul(pValue,&err,10);
+    }
+    else if( strstr(ParamName, "X_RDK-Central_COM_ZDigitTimer"))
+    {
+        //VoiceService.{i}.VoIPProfile.{i}.X_RDK-Central_COM_ZDigitTimer
+        pVoipProfile->X_RDK_Central_COM_ZDigitTimer = strtoul(pValue,&err,10);
+    }
+    else if( strstr(ParamName, "Name") )
+    {
+        //VoiceService.{i}.VoIPProfile.{i}.Name
+        STRNCPY(pVoipProfile->Name, pValue);
     }
     else
     {

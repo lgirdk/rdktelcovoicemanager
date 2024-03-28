@@ -1826,7 +1826,7 @@ ANSC_HANDLE TelcoVoiceMgrDml_SIP_ClientList_EvtSubList_GetEntry(ANSC_HANDLE hIns
 
     PDML_SIP_CLIENT pDmlSipClient = &(pSipClientCtrl->dml);
 
-    PDML_SIP_CLIENT_SIPEVENTSUB_LIST_T pSipEvtSubList = &(pDmlSipClient->Contact);
+    PDML_SIP_CLIENT_SIPEVENTSUB_LIST_T pSipEvtSubList = &(pDmlSipClient->SIPEventSub);
 
     if(pSipEvtSubList != NULL)
     {
