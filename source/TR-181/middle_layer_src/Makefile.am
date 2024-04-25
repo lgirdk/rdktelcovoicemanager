@@ -17,7 +17,7 @@
  # limitations under the License.
 ###########################################################################
 AM_CFLAGS =
-AM_CFLAGS += -DFEATURE_SUPPORT_RDKLOG $(DBUS_CFLAGS) $(SYSTEMD_CFLAGS)
+AM_CFLAGS += -DFEATURE_SUPPORT_RDKLOG $(SYSTEMD_CFLAGS)
 
 ACLOCAL_AMFLAGS = -I m4
 
