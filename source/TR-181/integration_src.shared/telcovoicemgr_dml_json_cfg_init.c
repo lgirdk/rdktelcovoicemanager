@@ -294,8 +294,6 @@ static ANSC_STATUS jsonCfgDecryptAndSavePassword(char *fullName,cJSON *item)
         return ANSC_STATUS_FAILURE;
     }
 
-    CcspTraceInfo(("Voice config Decrypt %s value \n", item->string));
-
     inLen = strlen(item->valuestring);
     outLen = (1 + inLen/2);
     /* The decrypted pwd is half the length of the encrypted one plus \0 */

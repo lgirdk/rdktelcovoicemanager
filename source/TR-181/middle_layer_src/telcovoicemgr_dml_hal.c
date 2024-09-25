@@ -600,9 +600,27 @@ ANSC_STATUS TelcoVoiceMgrHal_SendJsonRequest(json_object *jmsg)
 {
     ANSC_STATUS rc = ANSC_STATUS_SUCCESS;
     json_object *jreply_msg = NULL;
+    const char *json_msg = NULL;
     json_bool status = FALSE;
 
-    CcspTraceInfo(("JSON Request message = %s \n", json_object_to_json_string_ext(jmsg, JSON_C_TO_STRING_PRETTY)));
+    if(!jmsg)
+    {
+        CcspTraceError(("[%s][%d] Invalid Json object\n", __FUNCTION__, __LINE__));
+        return RETURN_ERR;
+    }
+
+    json_msg = json_object_to_json_string_ext(jmsg, JSON_C_TO_STRING_PRETTY);
+    if(!json_msg)
+    {
+        CcspTraceError(("[%s][%d] Json Object to string conversion failed!\n", __FUNCTION__, __LINE__));
+        return RETURN_ERR;
+    }
+
+    if( !strstr(json_msg, ".AuthPassword") ) // SHARMAN-3026
+    {
+        CcspTraceInfo(("JSON Request message = %s \n", json_msg));
+    }
+
     if( json_hal_client_send_and_get_reply_with_timeout(jmsg, HAL_SEND_AND_REPLY_TIMEOUT, &jreply_msg) != RETURN_OK)
     {
         CcspTraceError(("[%s][%d] RPC message failed \n", __FUNCTION__, __LINE__));

@@ -162,7 +162,6 @@ ANSC_STATUS TelcoVoiceMgr_WebConfig_Process_LineTable( WebConfig_LineTable_t *e,
                 strncpy(e->SIPAuthPassword,p->val.via.str.ptr, p->val.via.str.size);
                 e->SIPAuthPassword[p->val.via.str.size] = '\0';
                 e->IsSIPAuthPasswordPresent = TRUE;
-                CcspTraceInfo(("SIPAuthPassword :%s\n", e->SIPAuthPassword));
             }
             else if( 0 == match(p, "SIPURI") )
             {
@@ -779,7 +778,6 @@ ANSC_STATUS TelcoVoiceMgr_WebConfig_Process_SipClientTable( WebConfig_SipClientT
                 strncpy(e->SIPAuthPassword,p->val.via.str.ptr, p->val.via.str.size);
                 e->SIPAuthPassword[p->val.via.str.size] = '\0';
                 e->IsSIPAuthPasswordPresent = TRUE;
-                CcspTraceInfo(("SIPAuthPassword :%s\n", e->SIPAuthPassword));
             }
             else if( 0 == match(p, "SIPURI") )
             {
